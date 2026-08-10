@@ -27,19 +27,19 @@
 		};
 
 		var zNodes =[
-			{ id:1, pId:0, name:"随意勾选 1", open:true},
-			{ id:11, pId:1, name:"随意勾选 1-1", open:true},
+			{ id:1, pId:0, name:"can check 1", open:true},
+			{ id:11, pId:1, name:"can check 1-1", open:true},
 			{ id:111, pId:11, name:"disabled 1-1-1", chkDisabled:true, checked:true},
-			{ id:112, pId:11, name:"随意勾选 1-1-2"},
+			{ id:112, pId:11, name:"can check 1-1-2"},
 			{ id:12, pId:1, name:"disabled 1-2", chkDisabled:true, open:true},
 			{ id:121, pId:12, name:"disabled 1-2-1", checked:true},
 			{ id:122, pId:12, name:"disabled 1-2-2"},
-			{ id:2, pId:0, name:"随意勾选 2", checked:true, open:true},
-			{ id:21, pId:2, name:"随意勾选 2-1"},
-			{ id:22, pId:2, name:"随意勾选 2-2", open:true},
-			{ id:221, pId:22, name:"随意勾选 2-2-1", checked:true},
-			{ id:222, pId:22, name:"随意勾选 2-2-2"},
-			{ id:23, pId:2, name:"随意勾选 2-3"}
+			{ id:2, pId:0, name:"can check 2", checked:true, open:true},
+			{ id:21, pId:2, name:"can check 2-1"},
+			{ id:22, pId:2, name:"can check 2-2", open:true},
+			{ id:221, pId:22, name:"can check 2-2-1", checked:true},
+			{ id:222, pId:22, name:"can check 2-2-2"},
+			{ id:23, pId:2, name:"can check 2-3"}
 		];
 		
 		function disabledNode(e) {
@@ -47,7 +47,7 @@
 			disabled = e.data.disabled,
 			nodes = zTree.getSelectedNodes();
 			if (nodes.length == 0) {
-				alert("请先选择一个节点");
+				alert("Please select one node at first...");
 			}
 
 			for (var i=0, l=nodes.length; i<l; i++) {
@@ -66,32 +66,32 @@
 </HEAD>
 
 <BODY>
-<h1>Radio chkDisabled 演示</h1>
-<h6>[ 文件路径: excheck/radio_chkDisabled.html ]</h6>
+<h1>Radio chkDisabled Demo</h1>
+<h6>[ File Path: excheck/radio_chkDisabled.html ]</h6>
 <div class="content_wrap">
 	<div class="zTreeDemoBackground left">
 		<ul id="treeDemo" class="ztree"></ul>
 	</div>
 	<div class="right">
 		<ul class="info">
-			<li class="title"><h2>1、setChkDisabled 方法操作说明</h2>
+			<li class="title"><h2>1, Explanation of 'setChkDisabled' method</h2>
 				<ul class="list">
-				<li>setChkDisabled 方法可以设置节点 checkbox / radio 禁用 或 取消禁用，详细请参见 API 文档中的相关内容</li>
-				<li><p>试试看：<br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="disabledTrue" href="#" title="set checkbox to be disabled." onclick="return false;">禁用</a> ]
-					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="disabledFalse" href="#" title="set checkbox to be abled." onclick="return false;">取消禁用</a> ]</p>
+				<li>'setChkDisabled' method can set the node's checkbox / radio to be disabled or abled. See the API documentation for more related contents.</li>
+				<li><p>Try:<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="disabledTrue" href="#" title="set checkbox to be disabled." onclick="return false;">be disabled</a> ]
+					&nbsp;&nbsp;&nbsp;&nbsp;[ <a id="disabledFalse" href="#" title="set checkbox to be abled." onclick="return false;">be abled</a> ]</p>
 				</li>
 				</ul>
 			</li>
-			<li class="title"><h2>2、setting 配置信息说明</h2>
+			<li class="title"><h2>2, Explanation of setting</h2>
 				<ul class="list">
-				<li>这个 Demo 只简单演示 chkDisabled 的使用方法，详细配置信息请参考 ‘Radio 勾选操作’</li>
+				<li>This Demo only shows how use the ‘nocheck’ attribute, detailed configuration information, please refer to 'Radio Operation'</li>
 				</ul>
 			</li>
-			<li class="title"><h2>3、treeNode 节点数据说明</h2>
+			<li class="title"><h2>3, Explanation of treeNode</h2>
 				<ul class="list">
-				<li class="highlight_red">1)、如果某节点不显示 radio，请设置 treeNode.chkDisabled 属性，详细请参见 API 文档中的相关内容</li>
-				<li>2)、其他请参考 ‘Radio 勾选操作’</li>
+				<li class="highlight_red">1), If you need to initialize the node don't show radio, please set treeNode.chkDisabled attribute. See the API documentation for more related contents.</li>
+				<li>2), By the way, please see the 'Radio Operation' Demo.</li>
 				</ul>
 			</li>
 		</ul>
