@@ -4,5 +4,202 @@
     Layout = "~/Views/Shared/_Layout_Wordutopia_Home.cshtml";
 }
 
-<h2>ManageSharedTestStats</h2>
+   
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+
+
+
+
+    <section class="manage_sec">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                    <div class="heading">
+                        <h6>Manage Shared Test Stats</h6>
+                    </div>
+                    <div class="newdrpn">
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-primary " data-toggle="dropdown">Task Dropdown List <img src="~/Content/img/rightarrow.png" /></button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" onclick="history.back()">Back</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                    <div class="searching">
+                        <p>Find summary result for any Shared Test</p>
+                        <form class="inner_serach">
+                            <div class="form_srches">
+                                @*<div class="form-group">
+                                    <label>Enter Password</label>
+                                    <input type="text" class="form-control cust_textbx" id="txt_Password">
+                                </div>*@
+                                @*<span class="or">OR,</span>*@
+                                <div class="form-group">
+                                    <label>Test ID</label>
+                                    <input type="text" class="form-control cust_textbx" id="txt_TestId">
+                                </div>
+                                @*<div class="form-group">
+                                    <label>Enter TestName</label>
+                                    <input type="text" class="form-control cust_textbx" id="txt_LastName">
+                                </div>*@
+                            </div>
+                            <div class="bottom_srch">
+                                <a href="#" class="btn sreach_button" id="a_btn_SharedTest"></a>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="searching">
+                        <p>Find All Test Stats for Specific Users</p>
+                       
+                        @using (Html.BeginForm("TestStatsForSpecificUsers", "Sharing", FormMethod.Post, new { @class = "inner_serach" }))
+                        {
+    @*<form class="inner_serach">*@
+        <div class="form_srches">
+            <div class="form-group">
+                <label>Enter Username</label>
+                @*<input type="text" class="form-control cust_textbx" placeholder="stewgem">*@
+                @Html.TextBox("SearchName", null, new { @class = "form-control cust_textbx" })
+
+                @*Html.TextBox("SearchString", new { @class="form-control cust_textbx", placeholder="stewgem"})*@
+            </div>
+        </div>
+        <div class="bottom_srch">
+            <a class="btn sreach_button" id="A_btn_SpecificUsers"></a>
+            <input type="submit" id="btn_SpecificUsers" style="display:none;" value="submit" />
+        </div>
+    @*</form>*@
+                        }
+                       
+                    </div>
+
+                    <div class="searching">
+                        <p>Find Stats for all Shared Test Words</p>
+                        @using (Html.BeginForm("TestStatsForSpecificWord", "Sharing", FormMethod.Post, new { @class = "inner_serach" }))
+                        {
+                        @*<form class="inner_serach">*@
+                            
+                            <div class="form_srches">
+                                <div class="form-group">
+                                    <label>Enter a Test Word</label>
+                                    @*<input type="text" class="form-control cust_textbx" placeholder="stewgem">*@
+                                    @Html.TextBox("Searchword", null, new { @class = "form-control cust_textbx" })
+
+                                    @*Html.TextBox("SearchString", new { @class="form-control cust_textbx", placeholder="stewgem"})*@
+                                </div>
+                            </div>
+                            
+                            
+                            @*<div class="form_srches">
+                                <div class="form-group">
+                                    <label>Enter a Test Word</label>
+                                    <input type="text" class="form-control cust_textbx" placeholder="eclipse">
+                                </div>
+                            </div>*@
+                            
+                            <div class="bottom_srch">
+                                <a class="btn sreach_button" id="A_btn_SpecificWords"></a>
+                                <input type="submit" id="btn_SpecificWords" style="display:none;" value="submit" />
+                            </div>
+                            
+                            @*<div class="bottom_srch">
+                                <a href="#" class="btn sreach_button"></a>
+                            </div>*@
+                        @*</form>*@
+                    }
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="lowerNav">
+                <nav class="navbar navbar-expand-sm  justify-content-center">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="https://en.wikipedia.org/wiki/Main.page" target="_blank">Wikipedia</a>
+                        </li>
+                        <li class="nav-item">
+                            @*<a href="http://www.xnumber.com/xnumber/windows_calc.htm" target="_blank">Calculator</a>*@
+                            <a href="https://www.google.com/search?q=calculator" target="_blank">Calculator</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="https://www.google.com/maps/" target="_blank">Maps</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="http://www.xe.com/currencyconverter/" target="_blank">Currency Converter</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="https://www.timeanddate.com/worldclock/full.html" target="_blank">World Clocks</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="https://translate.google.com" target="_blank">Translator</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+
+        </div>
+    </section>
+
+
+
+
+
+    <!-- Bootstrap core JavaScript -->
+   
+    <script type="text/javascript">
+        $(function () {
+            $('#scrollToBottom1').bind("click", function () {
+                $('html, body').animate({ scrollTop: ($('.Slider').offset().top + $('.Slider').height()) }, 1200);
+                return false;
+            });
+           
+        });
+    </script>
+
+<script>
+
+    $("#A_btn_SpecificUsers").click(function () {
+        $("#btn_SpecificUsers").click();
+    });
+
+    $("#A_btn_SpecificWords").click(function () {
+        $("#btn_SpecificWords").click();
+    });
+
+
+    $("#a_btn_SharedTest").click(function () {
+
+        var txt_Password = $("#txt_Password").val();
+        var txt_TestId = $("#txt_TestId").val();
+        var txt_LastName = $("#txt_LastName").val();
+
+        var datas = new Object();
+        datas.Password = txt_Password;
+        datas.TestId = txt_TestId;
+        datas.LastName = txt_LastName;
+
+        $.ajax({
+            type: "POST",
+            url: "/Sharing/FindSummaryResultForAnySharedTest_New",
+            data: datas,
+            //contentType: "application/json; charset=utf-8",
+            //dataType: "json",
+            success: function (response) {
+                var url = "/Sharing/TestStatsForSpecificWord_SharedTest/"
+                window.location.href = url;
+            },
+            failure: function (response) {
+                
+            },
+            error: function (response) {
+
+            }
+        });
+
+    });
+</script>
 

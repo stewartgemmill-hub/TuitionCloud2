@@ -1,6 +1,8 @@
-﻿@model TutionCloudWeb.Model.Wordutopia.WordsModel
+﻿@model TutionCloudWeb.Models.PostModel.Word.WordList
 @{
-    var wordList = new TutionCloudWeb.Models.DataClass.WebService().getUserWordList(Model.userId, Model.index, 10, Model.searchText, Model.sortBy, Model.sortOrder);
+    //var wordList = new TutionCloudWeb.Models.DataClass.WebService().getUserWordList(Model.userId, Model.index, 10, Model.searchText, Model.sortBy, Model.sortOrder);
+    Model.ListCount = 10;
+    var wordList = new TutionCloudWeb.Models.DataClass.WebService().GETSharedwithMeWords(Model);
 }
 
 @*<input type="button" value="selectAll" id="Test1234"/>
@@ -19,7 +21,18 @@
 
 
         <tr class="tr-word-row" style="cursor:pointer;" data-word="@item.WORD" data-pronounciation="@item.PRONOUNCIATION" data-phrase="@item.PHRASE" data-hint="@item.HINT" data-definition="@item.DEFINITION">
-            <td><input type="checkbox" class="ckb-word-item" data-wordid="@item.WORDID"></td>
+            <td>
+                @*<input type="checkbox" class="ckb-word-item" data-wordid="@item.WORDID">*@
+                @if (Model.wordIds != null && Model.wordIds != string.Empty)
+                {
+                    List<string> result = Model.wordIds.Split(',').ToList();
+                    <input class="ckb-word-item" @(result.Contains(item.WORDID.ToString()) == true ? "checked" : "") data-wordid="@item.WORDID" type="checkbox" />
+                }
+                else
+                {
+                    <input class="ckb-word-item" data-wordid="@item.WORDID" type="checkbox" />
+                }
+            </td>
             <td><strong>@item.WORD</strong></td>
             <td>@item.OVERALLSCORE %</td>
             @*<td>

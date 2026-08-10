@@ -1,4 +1,5 @@
-﻿@model TutionCloudWeb.Model.Wordutopia.WordsModel
+﻿
+@model TutionCloudWeb.Models.PostModel.Word.WordListPagination
 @{
     var totalWordCount = Model.totalWordCount;
 }
@@ -32,7 +33,7 @@
                 obj.sortBy = $('#hfn-sortby').val();
                 obj.sortOrder = $('#hfn-sortorder').val();
                 $.ajax({
-                    url: '/Wordutopias/refreshUserWordList',
+                    url: '/Sharing/refreshUserWordList',
                     type: "POST",
                     data: obj,
                     dataType: 'html',
@@ -59,7 +60,7 @@
                         obj1.sortBy = $('#hfn-sortby').val();
                         obj1.sortOrder = $('#hfn-sortorder').val();
                         $.ajax({
-                            url: '/Wordutopias/refreshUserWordListPagination',
+                            url: '/Sharing/refreshUserWordListPagination',
                             type: "POST",
                             data: obj1,
                             dataType: 'html',
@@ -79,5 +80,4 @@
     });
 
 </script>
-
 

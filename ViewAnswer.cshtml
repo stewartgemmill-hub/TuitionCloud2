@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "ViewAnswer";
     Layout = "~/Views/Shared/_Layout_Wordutopia_Home.cshtml";
-    var wordListz = new TutionCloudWeb.Models.DataClass.WebService().getExamWords(Model.userId, Convert.ToInt64(Model.examId));
+    var wordListz = new TutionCloudWeb.Models.DataClass.WebService().getExamWords_share(Model.userId, Convert.ToInt64(Model.examId));
     var newwordlist = wordListz.Where(z => !Model.wordIds.Contains(z.WORDID)).ToList();
 }
 
@@ -28,7 +28,7 @@
                         <div class="dropdown">
                             <button type="button" class="btn btn-primary " data-toggle="dropdown">Task Dropdown List <img src="~/Content/img/rightarrow.png" /></button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Back</a>
+                                <a class="dropdown-item" onclick="history.back()">Back</a>
                                 <a class="dropdown-item" href="#">Create a Test Format </a>
                             </div>
                         </div>
@@ -76,9 +76,9 @@
                                                     </div>
                                                 </div>
                                                 <div id="@targetDiv" class="collapse show" aria-labelledby="@headerId" data-parent="#accordion">
-                                                    <div class="card-body">                                                       
-                                                            @word.WORD
-                                                        </div>
+                                                    <div class="card-body">
+                                                        @word.WORD
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="card">
@@ -215,14 +215,14 @@
         console.log(obj1.resultData);
 
         $.ajax({
-            url: '/Wordutopia/SaveResultToDb',
+            url: '/Sharing/SaveResultToDb',
             type: "POST",
             data: obj1,
             dataType: 'json',
             success: function (data) {
                 if (data.status == true) {
                     var encodedString = btoa(data.id);
-                    window.location.href = "/Wordutopia/TestSummary/" + encodedString;
+                    window.location.href = "/Sharing/TestSummary/" + encodedString;
                 }
                 else {
                     toastrError(data.message);
