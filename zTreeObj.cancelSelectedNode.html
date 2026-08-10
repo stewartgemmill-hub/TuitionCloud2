@@ -1,30 +1,30 @@
 <div class="apiDetail">
 <div>
 	<h2><span>Function(treeNode)</span><span class="path">zTreeObj.</span>cancelSelectedNode</h2>
-	<h3>Overview<span class="h3_info">[ depends on <span class="highlight_green">jquery.ztree.core</span> js ]</span></h3>
+	<h3>概述<span class="h3_info">[ 依赖 <span class="highlight_green">jquery.ztree.core</span> 核心 js ]</span></h3>
 	<div class="desc">
 		<p></p>
 		<div class="longdesc">
-			<p>To cancel the selected node.</p>
-			<p class="highlight_red">zTree v3.x support to select multiple nodes, so you can cancel a single selected node, and you can cancel all of the selected nodes too.</p>
-			<p class="highlight_red">Please use zTree object to executing the method.</p>
+			<p>取消节点的选中状态。</p>
+			<p class="highlight_red">v3.x 支持多点同时选中，因此取消选中状态可以全部取消，也可以单独取消某个节点的选中状态。</p>
+			<p class="highlight_red">请通过 zTree 对象执行此方法。</p>
 		</div>
 	</div>
-	<h3>Function Parameter Descriptions</h3>
+	<h3>Function 参数说明</h3>
 	<div class="desc">
 	<h4><b>treeNode</b><span>JSON</span></h4>
-	<p>JSON data object of the node which need to cancel selected.</p>
-	<p class="highlight_red">Please ensure that this data object is an internal node data object in zTree.</p>
-	<p class="highlight_red">If you omit this parameter,  zTree will cancel all of the selected nodes.</p>
-	<h4 class="topLine"><b>Return </b><span>none</span></h4>
-	<p>no return value</p>
+	<p>需要取消选中状态的节点。</p>
+	<p class="highlight_red">请务必保证此节点数据对象 是 zTree 内部的数据对象</p>
+	<p class="highlight_red">如果省略此参数，则将取消全部被选中节点的选中状态。</p>
+	<h4 class="topLine"><b>返回值</b><span>无</span></h4>
+	<p>目前无任何返回值</p>
 	</div>
-	<h3>Examples of function</h3>
-	<h4>1. Cancel all of the selected nodes</h4>
+	<h3>function 举例</h3>
+	<h4>1. 取消当前所有被选中节点的选中状态</h4>
 	<pre xmlns=""><code>var treeObj = $.fn.zTree.getZTreeObj("tree");
 treeObj.cancelSelectedNode();
 </code></pre>
-	<h4>2. Cancel the first node of the selected nodes</h4>
+	<h4>2. 取消当前第一个被选中节点的选中状态</h4>
 	<pre xmlns=""><code>var treeObj = $.fn.zTree.getZTreeObj("tree");
 var nodes = treeObj.getSelectedNodes();
 if (nodes.length>0) { 

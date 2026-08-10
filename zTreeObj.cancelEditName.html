@@ -1,28 +1,28 @@
 <div class="apiDetail">
 <div>
 	<h2><span>Function(newName)</span><span class="path">zTreeObj.</span>cancelEditName</h2>
-	<h3>Overview<span class="h3_info">[ depends on <span class="highlight_green">jquery.ztree.exedit</span> js ]</span></h3>
+	<h3>概述<span class="h3_info">[ 依赖 <span class="highlight_green">jquery.ztree.exedit</span> 扩展 js ]</span></h3>
 	<div class="desc">
 		<p></p>
 		<div class="longdesc">
-			<p>Cancel the edit name status. Can restore the original name, and can also force assigned to a new name.</p>
-			<p class="highlight_red">Please use zTree object to executing the method.</p>
+			<p>取消节点的编辑名称状态，可以恢复原名称，也可以强行赋给新的名称。</p>
+			<p class="highlight_red">请通过 zTree 对象执行此方法。</p>
 		</div>
 	</div>
-	<h3>Function Parameter Descriptions</h3>
+	<h3>Function 参数说明</h3>
 	<div class="desc">
 	<h4><b>newName</b><span>String</span></h4>
-	<p>Re given a new name</p>
-	<p class="highlight_red">If this parameter is omitted, then restore the original name.</p>
-	<h4 class="topLine"><b>Return </b><span>none</span></h4>
-	<p>no return value</p>
+	<p>重新给定的新名称。</p>
+	<p class="highlight_red">如果省略此参数，则恢复原名称。</p>
+	<h4 class="topLine"><b>返回值</b><span>无</span></h4>
+	<p>目前无任何返回值</p>
 	</div>
-	<h3>Examples of function</h3>
-	<h4>1. Cancel edit name, and restore the original name.</h4>
+	<h3>function 举例</h3>
+	<h4>1. 取消 zTree 的编辑名称状态，恢复该节点原有名称</h4>
 	<pre xmlns=""><code>var treeObj = $.fn.zTree.getZTreeObj("tree");
 treeObj.cancelEditName();
 </code></pre>
-	<h4>2. Cancel edit name , and set the new name.</h4>
+	<h4>2. 取消 zTree 的编辑名称状态，并且重新设定该节点名称</h4>
 	<pre xmlns=""><code>var treeObj = $.fn.zTree.getZTreeObj("tree");
 treeObj.cancelEditName("test_new_name");
 </code></pre>
