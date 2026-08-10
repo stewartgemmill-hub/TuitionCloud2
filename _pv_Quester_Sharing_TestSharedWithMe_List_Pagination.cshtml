@@ -1,11 +1,13 @@
-﻿@model TutionCloudWeb.Models.PostModel.Word.WordListPagination
+﻿@model TutionCloudWeb.Models.PostModel.OnlineCommunity.WordList
+
+
 @{
     var totalWordCount = Model.totalWordCount;
-}
-@{
     var res = Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalWordCount) / Convert.ToDouble(10))));
 }
 <ul id="wordlist-pagination" class="blade-pagination" data-current="@(Model.index)" data-total="@(res)"></ul>
+
+
 
 
 
@@ -29,17 +31,11 @@
                 obj.userId = $('#userId').val();
                 obj.totalWordCount = $('#totalWordCount').val();
                 obj.index = parseInt(parseInt(page) - 1);
+                obj.searchText = $('#ipt-word-search').val();
                 obj.sortBy = $('#hfn-sortby').val();
                 obj.sortOrder = $('#hfn-sortorder').val();
-                if (wordList.length == 0) {
-                    obj.wordIds = "";
-                }
-                else {
-                    obj.wordIds = wordList.join(',');
-                }
-                console.log(obj);
                 $.ajax({
-                    url: '/QuesterSharing/Quester_refreshUserWordList',
+                    url: '/QuesterSharing/Quester_Sharing_WordListTestSharedWithMeList',
                     type: "POST",
                     data: obj,
                     dataType: 'html',
@@ -58,15 +54,16 @@
                             $('#div-Hint').html(hint);
                             $('#div-Definition').html(definition);
                         }
-                        //$('#wordlist-pagination').data("current", page);
+
                         var obj1 = new Object();
                         obj1.userId = $('#userId').val();
                         obj1.totalWordCount = $('#totalWordCount').val();
                         obj1.index = parseInt(parseInt(page));
+                        obj1.searchText = $('#ipt-word-search').val();
                         obj1.sortBy = $('#hfn-sortby').val();
                         obj1.sortOrder = $('#hfn-sortorder').val();
                         $.ajax({
-                            url: '/QuesterSharing/Quester_refreshUserWordListPagination',
+                            url: '/QuesterSharing/Quester_Sharing_WordListTestSharedWithMeList_Pagination',
                             type: "POST",
                             data: obj1,
                             dataType: 'html',
@@ -86,4 +83,5 @@
     });
 
 </script>
+
 

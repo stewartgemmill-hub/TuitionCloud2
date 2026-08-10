@@ -1,0 +1,181 @@
+﻿@model TutionCloudWeb.Models.PostModel.OnlineCommunity.WordList
+@using TutionCloudWeb.Manager.Wordutopia;
+@{
+    SharingManager SharingManager = new SharingManager();
+    string values = Model.userId.ToString();
+    var wordList1 = SharingManager.Quester_GetAllWordListWord_ListTestSharedbyMe_Dates(values);
+
+}
+
+@*---This is start*@
+
+@if (wordList1.Count > 0)
+{
+    int i = 0;
+    int J = 0;
+    List<DateTime> dts = new List<DateTime>();
+    List<DateTime> dts2 = new List<DateTime>();
+    foreach (var a1 in wordList1)
+    {
+        DateTime resrulst = Convert.ToDateTime(a1);
+        dts.Add(resrulst);
+
+        J++;
+    }
+    dts2 = dts.OrderByDescending(x => x.Date).ToList();
+    List<string> wordList = new List<string>();
+    foreach (var a1 in dts2)
+    {
+        string d1 = a1.ToString();
+        wordList.Add(d1);
+
+    }
+
+
+
+
+    //var wordList = dts2;
+    foreach (var word in wordList)
+    {
+        
+        var diusplayName = SharingManager.Quester_GetDisplayNameSingle(wordList[i]);
+
+        DateTime resrulst = Convert.ToDateTime(wordList[i]);
+        string dd = resrulst.ToString("dd");
+        string MM = resrulst.ToString("MM");
+        string yyyy = resrulst.ToString("yyyy");
+        string hh = resrulst.ToString("hh");
+        string mm = resrulst.ToString("mm");
+        string ss = resrulst.ToString("ss");
+        string tt = resrulst.ToString("tt");
+        string dataeTotals = dd + "/" + MM + "/" + yyyy + " " + hh + ":" + mm + " " + tt;
+
+    <tr class="tr-word-row" style="cursor:pointer;" trvalues="@wordList[i]">
+        @*<td>
+            <input class="ckb-word-item" type="checkbox" />
+
+        </td>*@
+        <td class="td-word-col" tdvalues="@wordList[i]"><strong>@diusplayName</strong></td>
+        <td class="td-word-col" tdvalues="@wordList[i]"><strong>@dataeTotals</strong></td>
+        <td class="toggle_dropdown_cust td_View_Delete" style="pointer-events:auto; " pointe-evend-enable="@wordList[i]">
+            <div class="web-dsp div_View_Delete" disabled="true">
+                <span class="edts"><a href="@Url.Action("Quester_WordListSharedTestSharedbyMeWords", "QuesterSharing", new { CreatedOn = wordList[i] })">View</a></span>
+                <span class="ck_brd">|</span>
+                <span class="edts class_Deletes" span-id-values="@wordList[i]"><a><i class="fas fa-trash-alt"></i> Delete</a></span>
+            </div>
+
+            <div class="togButns attachmts">
+                <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-v"></i>
+                </button>
+                <div class="web-dsp div_View_Delete dropdown-menu labes" disabled="true" aria-labelledby="dropdownMenuButton">
+                    <span class="edts"><a href="@Url.Action("Quester_WordListSharedTestSharedbyMeWords", "QuesterSharing", new { CreatedOn = wordList[i] })">View</a></span>
+                    <span class="ck_brd">|</span>
+                    <span class="edts class_Deletes" span-id-values="@wordList[i]"><a><i class="fas fa-trash-alt"></i> Delete</a></span>
+                </div>
+            </div>
+
+        </td>
+    </tr>
+
+
+
+
+
+        i++;
+
+    }
+}
+else
+{
+    <tr>
+        <td colspan="3">No Questions found</td>
+    </tr>
+}
+
+
+
+<script>
+    //$(document).ready(function () {
+    var public_CreatedOn;
+    //$(".td_View_Delete *").attr("disabled", "disabled").off('click');
+    //$('#btn_SendList').click(function () {
+
+
+    function sortLists(Itemarry) {
+        var model = new Array();
+        //Itemarry = $('#select_AddUsers > option');
+
+        $.each(Itemarry, function (key, values) {
+            var items = {};
+            if (values.value !== '') {
+                items.UserID = values.value;
+                items.UserName = values.text;
+                model.push(items);
+            }
+        });
+
+        $('#select_AddUsers').empty();
+
+        $.ajax({
+            url: '/QuesterSharing/Quester_SortDropdownListBYCreateaWordListToShare',
+            dataType: "json",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            async: true,
+            data: JSON.stringify(model),
+            processData: false,
+            cache: false,
+            success: function (data) {
+                $('#select_AddUsers').html('');
+                $.each(data, function (key, value) {
+                    $('#select_AddUsers').append($("<option></option>").attr("value", value.UserID).text(value.UserName));
+                });
+
+            },
+            error: function (xhr) {
+                alert(xhr);
+            }
+        });
+    }
+
+
+    $(".tr-word-row > .td_View_Delete > .div_View_Delete > .class_Deletes").click(function () {
+        var CreatedOn = $(this).attr('span-id-values');
+
+        swal({
+            title: "Are you sure?",
+            text: "Your will not be able to recover this file!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: false
+        },
+            function () {
+                $.ajax({
+                    url: '/QuesterSharing/Quester_DeleteWordListTestSharedbyMeS?CreatedOn=' + CreatedOn,
+                    type: "GET",
+                    dataType: 'JSON',
+                    success: function (data) {
+                        if (data == 1) {
+                            //toastrSuccess("Deleted successfully");
+                            swal("Deleted!", "Your file has been deleted.", "success");
+
+                        }
+                        else {
+                            toastrError("Failed");
+                        }
+                        location.reload();
+                    }
+                });
+
+            });
+
+    });
+
+
+    //});
+</script>
+
+

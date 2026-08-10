@@ -1,0 +1,1132 @@
+﻿@model TutionCloudWeb.Models.PostModel.OnlineCommunity.ShareAnArchivedTest_Get_Set
+
+@{
+    ViewBag.Title = "ShareanArchivedTest";
+    Layout = "~/Views/Shared/_Layout_Quester_Home.cshtml";
+}
+<input type="hidden" id="userId" value="@Model.UserId" />
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-sm-12">
+                <div class="ShareHead">
+                    <div class="row">
+                        <div class="col-lg-7 col-md-7 col-sm-12">
+                            <div class="my-share">
+                                <h6> Share an Archived Test</h6>
+                            </div>
+                        </div>
+                        <span style="padding-left:14px;">Please select a Test Archive then enter your desired Sharing details in the fields provided</span>
+
+                        <div class="col-lg-5 col-md-5 col-sm-12">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="Arch-tab">
+                        <div class="SelectAll">
+                            <p>Average Score to date:87.2%</p>
+                        </div>
+                        <div class=" FAVTAB">
+                            <table class="table table-hover newTable table-bordered" style="border:none;">
+
+                                <tr>
+                                <thead>
+                                    @*<th class="tabhead">Select</th>*@
+                                <th class="tabhead">Test Title</th>
+                                <th class="tabhead"> Date & Time of Tests</th>
+                                <th class="tabhead">Scored</th>
+                                <th class="tabhead">Test Type</th>
+                                <th class="tabhead">Options</th>
+                                </thead>
+                                </tr>
+
+                                <tbody style="min-height:200px;">
+                                    @{
+                                        foreach (var a1 in Model.ShareanArchivedTest_Lists)
+                                        {
+
+                                            DateTime resrulst = Convert.ToDateTime(a1.CreatedDate);
+                                            string dd = resrulst.ToString("dd");
+                                            string MM = resrulst.ToString("MM");
+                                            string yyyy = resrulst.ToString("yyyy");
+                                            string hh = resrulst.ToString("hh");
+                                            string HH = resrulst.ToString("hh");
+                                            string mm = resrulst.ToString("mm");
+                                            string ss = resrulst.ToString("ss");
+                                            string tt = resrulst.ToString("tt");
+                                            string dataeTotals = dd + "/" + MM + "/" + yyyy + " " + hh + ":" + mm + " " + tt;
+
+
+                                                                        <tr class="tr-word-row">
+                                                                            @*<td class="td-word-col"><strong>@a1.LastName</strong></td>*@
+                                                                            <td class="td-word-col" tdvalues="@resrulst.ToString("yyyy-MM-dd HH:mm:ss tt")"><strong>@a1.LastName <span class="spc-Date"></span></strong></td>
+
+                                                                            <td class="td-word-col" tdvalues="@resrulst.ToString("yyyy-MM-dd HH:mm:ss tt")"><strong>@dataeTotals <span class="spc-Date"></span></strong></td>
+                                                                            <td>79%</td>
+                                                                            @{
+                                                                                if (a1.UserId.Value == Convert.ToInt64(a1.SentUserID))
+                                                                                {
+                                                                                    <td shared="1">Shared</td>
+                                                                                }
+                                                                                else if (a1.UserId.Value != Convert.ToInt64(a1.SentUserID))
+                                                                                {
+                                                                                    <td shared="0">Self Gen</td>
+                                                                                }
+                                                                            }
+                                                                            <td class="toggle_dropdown_cust class_td_selectMenu">
+
+                                                                                <div class="togButns attachmts archive class_div_selectMenu">
+                                                                                    <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                                        <i class="fas fa-ellipsis-v"></i>
+                                                                                    </button>
+                                                                                    <div class="dropdown-menu labes class_div_selectSubMenu" aria-labelledby="dropdownMenuButton">
+                                                                                        <span class="edts"><a href="@Url.Action("Quester_WordListShareanArchivedTest_View", "QuesterSharing", new { CreatedOn = resrulst.ToString("yyyy-MM-dd HH:mm:ss tt") })" viewitem="@resrulst.ToString("yyyy-MM-dd HH:mm:ss tt")">View</a></span>
+                                                                                        <span class="edts"><a href="@Url.Action("Quester_StartTest", "Quester", new { id = a1.ExaminationId })" viewitem="@resrulst.ToString("yyyy-MM-dd HH:mm:ss tt")">Resit</a></span>
+                                                                                        @*<span class="edts"><a href="#">View Note</a></span>*@
+                                                                                        <span class="edts span_deleteitem"><a href="#" class="a_deleteItems" testid="@a1.TestID" deleteitemid='@Model.UserId' deleteitem="@resrulst.ToString("yyyy-MM-dd HH:mm:ss tt")">Delete</a></span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                        }
+                                    }
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="Indctor">
+                            <p>Page 1 of 1</p>
+                        </div>
+                        <div class="Pgntation">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>                                    
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                @*<div class="wraper outer_form  arch-frm">
+                    <p>Send Selected Words List To Other Users</p>
+                    <div class="ShareForm wraper">
+                        <form>
+                            <div class="form-group wraper">
+                                <label class="checkbox-inline Label">
+                                    <input type="checkbox" value="">Select If Password Required of Shared User(s)
+                                </label>
+                            </div>
+                            <div class="form-group wraper">
+                                <input type="password" class="form-control Input" placeholder="a820a7de-c">
+                                <label for="password" class="Inputlabel">Password</label>
+                            </div>
+                            <div class="form-group wraper">
+                                <input type="text" class="form-control Input" placeholder="126">
+                                <label class="Inputlabel">Test ID</label>
+                            </div>
+                            <div class="form-group wraper">
+                                <input type="text" class="form-control Input" placeholder="List i told you about yesterday">
+                                <label class="Inputlabel"> List Name</label>
+                            </div>
+                            <div class="form-group wraper">
+                                <label class="wraper">Search for Users to share with</label>
+                                <input type="text" class="form-control txtSrch" placeholder="Aceman" />
+                                <label class="InputSrch"><i class="fa fa-search" aria-hidden="true"></i></label>
+                            </div>
+                            <div class="form-group wraper">
+                                <label class="wraper">Results</label>
+                                <input type="text" class="form-control Input" placeholder="Aceman">
+                                <label class="InputSrch"><i class="fa fa-plus" aria-hidden="true"></i> Add User</label>
+                            </div>
+                            <div class="form-group wraper Send">
+                                <textarea style="min-height: 100px;" class="form-control Input"></textarea>
+                                <label class="Inputlabel">Added Users</label>
+                                <div class="Srchbx">
+                                    <button>Send Test</button>
+                                </div>
+                            </div>
+                            <div class="form-group   ">
+                            </div>
+                        </form>
+                    </div>
+                </div>*@
+                <div class="newdrpn Arch-drp">
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-primary " data-toggle="dropdown">Task Dropdown List <img src="~/Content/img/BotumArrow.png" /></button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" style="cursor:pointer;" onclick="history.back()">Back</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="Crt_tst_fomt assign">
+                    <div class="wraper outer_form  arch-frm">
+                        <p>Send Selected Test To Other Users</p>
+                        <div class="ShareForm wraper">
+                            <form>
+                                <div class="form-group wraper">
+                                    <label class="checkbox-inline Label">
+                                        <input type="checkbox" id="checkbox_PasswordNo" value="">Select If Password Required of Shared User(s)
+                                    </label>
+                                </div>
+                                <div class="form-group wraper">
+                                    <input type="text" id="txt_Password" class="form-control Input">
+                                    <label for="password" class="Inputlabel">Password</label>
+                                </div>
+                                <div class="form-group wraper">
+                                    <input type="text" id="txt_TestID" value="0" readonly class="form-control Input">
+                                    <label class="Inputlabel">Test ID</label>
+                                </div>
+                                <div class="form-group wraper">
+                                    <input type="text" id="txt_ListName" class="form-control Input">
+                                    <label class="Inputlabel"> Test Title</label>
+                                </div>
+
+                                <div class="form-group wraper select_prnt">
+                                    <select class=" add_slt form-control" id="select_AddUsers">
+                                        <option value="" disabled selected>Enter Users Names here</option>
+                                    </select>
+                                    <input type="button" id="btn_AddUsers" class="add_btn" value="Add User" />
+                                </div>
+                                <div class="form-group wraper Send select_prnt" style="align-items:flex-end;">
+                                    <select class="add_slt form-control" size="5" multiple id="select_AddList"></select>
+                                    <div class="btn_prt">
+                                        <input type="button" id="btn_RemoveList" class="add_btn rmove" value="Remove" style="height:40px;" />
+                                        <input type="button" id="btn_ShareAnArchivedTest" class="add_btn" value="Send Test" style="height:40px;" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="lowerNav">
+            <nav class="navbar navbar-expand-sm  justify-content-center">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="https://en.wikipedia.org/wiki/Main.page" target="_blank">Wikipedia</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.google.com/search?q=calculator" target="_blank">Calculator</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.google.com/maps/" target="_blank">Maps</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="http://www.xe.com/currencyconverter/" target="_blank">Currency Converter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.timeanddate.com/worldclock/full.html" target="_blank">World Clocks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://translate.google.com" target="_blank">Translator</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+    //$(document).ready(function () {
+    var public_CreatedOn;
+    //$(".td_View_Delete *").attr("disabled", "disabled").off('click');
+    //$('#btn_SendList').click(function () {
+
+
+    function sortLists(Itemarry) {
+        var model = new Array();
+        //Itemarry = $('#select_AddUsers > option');
+
+        $.each(Itemarry, function (key, values) {
+            var items = {};
+            if (values.value !== '') {
+                items.UserID = values.value;
+                items.UserName = values.text;
+                model.push(items);
+            }
+        });
+
+        $('#select_AddUsers').empty();
+
+        $.ajax({
+            url: '/QuesterSharing/Quester_SortDropdownListBYCreateaWordListToShare',
+            dataType: "json",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            async: true,
+            data: JSON.stringify(model),
+            processData: false,
+            cache: false,
+            success: function (data) {
+                $('#select_AddUsers').html('');
+                $.each(data, function (key, value) {
+                    $('#select_AddUsers').append($("<option></option>").attr("value", value.UserID).text(value.UserName));
+                });
+
+            },
+            error: function (xhr) {
+                alert(xhr);
+            }
+        });
+    }
+    //class_td_selectMenu class_div_selectMenu class_div_selectSubMenu span_deleteitem a_deleteItems ....deleteitem
+    
+    $(".class_td_selectMenu > .class_div_selectMenu > .class_div_selectSubMenu > .span_deleteitem > .a_deleteItems").click(function () {
+        var CreatedOn = $(this).attr('deleteitem');        
+        var obj = Object();
+        obj.CreatedOn = $(this).attr('deleteitem');
+        obj.userId = $(this).attr('deleteitemid');
+        obj.TestID = $(this).attr("TestID");
+        swal({
+            title: "Are you sure?",
+            text: "Your will not be able to recover this file!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: false
+        },
+           function () {
+               $.ajax({
+                   url: '/QuesterSharing/Quester_DeleteWordListAchivedTest_Delete',
+                   type: "GET",
+                   data: obj,
+                   dataType: 'JSON',
+                   success: function (data) {
+                       if (data == 1) {
+                           //toastrSuccess("Deleted successfully");
+                           swal("Deleted!", "Your file has been deleted.", "success");
+
+                       }
+                       else {
+                           toastrError("Failed");
+                       }
+                       location.reload();
+                   }
+               });
+
+           });
+
+    });
+
+    $("#btn_ShareAnArchivedTest").click(function () {
+
+        //$('#btn_SendList').prop('disabled', false);
+        var cbkStatus = false;
+        var wordIds = wordList;
+        console.log(wordList);
+        var count = 0;
+        if (wordIds != "") {
+            cbkStatus = true;
+        }
+        //$(document).find('.ckb-word-item').each(function (index, value) {
+        //    if ($(this).prop("checked") == true) {
+        //        count = count + 1;
+        //        cbkStatus = true;
+        //        if (wordIds == "")
+        //            wordIds = wordIds + $(this).attr('data-wordid');
+        //        else
+        //            wordIds = wordIds + "," + $(this).attr('data-wordid');
+        //    }
+        //});
+        if (cbkStatus == false) {
+            toastrError('Please select a Question');
+        }
+        else {
+            var userId = $('#userId').val();
+            //add sibi
+
+            var SendUserId = "";
+            var Password = "";
+            var TestID = "";
+            var ListName = "";
+
+            Password = $('#txt_Password').val();
+            TestID = $('#txt_TestID').val();
+            ListName = $('#txt_ListName').val();
+
+            $('#select_AddList').find('option').each(function () {
+
+                if (SendUserId == "")
+                    SendUserId = $(this).val();
+                else
+                    SendUserId = SendUserId + "," + $(this).val();
+            });
+
+            // End Add
+            var objs = new Object();
+            objs.userId = userId;
+            objs.wordIds = wordIds.toString();
+            //addsibi
+            objs.Password = Password;
+            objs.TestID = TestID;
+            objs.ListName = ListName;
+            objs.SendUserId = SendUserId;
+            //End sibi
+            var datas = false;
+            datas = checkValidationAllfeeelsd(SendUserId, Password, TestID, ListName);
+
+            function checkValidationAllfeeelsd(SendUserId, Password, TestID, ListName) {
+                if (Password == "") {
+                    if ($('#checkbox_PasswordNo').prop("checked") == true) {
+                        toastrError('Please enter password.');
+                        return false;
+                    }
+                    //else if ($('#checkbox_PasswordNo').prop("checked") == false) {
+                    //    return true;
+                    //}
+
+                }
+                if (TestID == "") {
+
+                    toastrError('Please enter Test Id.');
+                    return false;
+                }
+                if (ListName == "") {
+
+                    toastrError('Please enter ListName.');
+                    return false;
+                }
+                if (SendUserId == "") {
+
+                    toastrError('Please enter SendUser Id.');
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            }
+
+            /////
+            if (datas == true) {
+                $.ajax({
+                    url: '/QuesterSharing/Quester_TestSharedSendList',
+                    type: "GET",
+                    data: objs,
+                    dataType: 'JSON',
+                    success: function (data) {
+                        toastrSuccess(data.message);
+                        setInterval(function () {
+                            location.reload();
+                        }, 3000);
+                        //location.reload();
+                    }
+                });
+            }
+            ///////
+        }
+        //$('#btn_SendList').prop('disabled', true);
+        
+        //swal("Good job!", "word list is sending successful", "success")
+    });
+
+
+    //});
+</script>
+
+
+
+<script>
+
+    //$(document).ready(function () {
+
+    $("#a_ClickSharing").css({ "color": "#98aaff" });
+
+    var wordList = [];
+
+
+    $(".tr-word-row > .td-word-col").click(function () {
+        $("#btn_AddUsers").removeAttr("disabled");
+        $("#select_AddUsers").html('');
+        $("#select_AddList").html('');
+        //alert($(this).attr('trvalues'));
+        var obj = new Object();
+        obj.CreatedOn = $(this).attr('tdvalues');
+        obj.shared = $(this).attr('shared');
+        public_CreatedOn = $(this).attr('tdvalues');
+        $.ajax({
+            url: '/QuesterSharing/Quester_ShareanArchivedTest_Binding',
+            type: "POST",
+            data: obj,
+            dataType: 'json',
+            success: function (datas) {
+
+                $.each(datas.GetAllUserLists, function (key, values) {
+                    $("#select_AddUsers").append($("<option></option").attr("value", values.UserID).text(values.UserName));
+                });
+
+                $.each(datas.GetallItems, function (key, values) {
+
+                    $("#txt_Password").val(values.Password);
+                    $("#txt_TestID").val(values.TestID);
+                    $("#txt_ListName").val(values.LastName);
+                    wordList.push(values.WordId);
+                    var a1 = "0";
+                    a1 = $("#select_AddList option[value='" + values.UserID + "']").text();
+                    if (a1 == "") {
+                        $("#select_AddList").append($("<option></option").attr("value", values.UserID).text(values.UserName));
+                        $("#select_AddList option[value='" + values.UserID + "']").attr('selected', true);
+                    }
+                    $("#select_AddUsers option[value='" + values.UserID + "']").remove();
+                });
+                var Itemarry = $('#select_AddUsers > option');
+                sortLists(Itemarry);
+
+            }
+        });
+
+    });
+
+
+    $(document).on('click', '#btn_SendList', function () {
+        
+        //$('#btn_SendList').prop('disabled', false);
+        var cbkStatus = false;
+        var wordIds = wordList;
+
+        var count = 0;
+        if (wordIds != "") {
+            cbkStatus = true;
+        }
+        //$(document).find('.ckb-word-item').each(function (index, value) {
+        //    if ($(this).prop("checked") == true) {
+        //        count = count + 1;
+        //        cbkStatus = true;
+        //        if (wordIds == "")
+        //            wordIds = wordIds + $(this).attr('data-wordid');
+        //        else
+        //            wordIds = wordIds + "," + $(this).attr('data-wordid');
+        //    }
+        //});
+        if (cbkStatus == false) {
+            toastrError('Please select a Question');
+        }
+        else {
+            var userId = $('#userId').val();
+            //add sibi
+
+            var SendUserId = "";
+            var Password = "";
+            var TestID = "";
+            var ListName = "";
+
+            Password = $('#txt_Password').val();
+            TestID = $('#txt_TestID').val();
+            ListName = $('#txt_ListName').val();
+
+            $('#select_AddList').find('option').each(function () {
+
+                if (SendUserId == "")
+                    SendUserId = $(this).val();
+                else
+                    SendUserId = SendUserId + "," + $(this).val();
+            });
+
+            // End Add
+            var objs = new Object();
+            objs.userId = userId;
+            objs.wordIds = wordIds.toString();
+            //addsibi
+            objs.Password = Password;
+            objs.TestID = TestID;
+            objs.ListName = ListName;
+            objs.SendUserId = SendUserId;
+            //End sibi
+            var datas = false;
+            datas = checkValidationAllfeeelsd(SendUserId, Password, TestID, ListName);
+
+            function checkValidationAllfeeelsd(SendUserId, Password, TestID, ListName) {
+                if (Password == "") {
+                    if ($('#checkbox_PasswordNo').prop("checked") == true) {
+                        toastrError('Please enter password.');
+                        return false;
+                    }
+                    //else if ($('#checkbox_PasswordNo').prop("checked") == false) {
+                    //    return true;
+                    //}
+
+                }
+                if (TestID == "") {
+
+                    toastrError('Please enter Test Id.');
+                    return false;
+                }
+                if (ListName == "") {
+
+                    toastrError('Please enter ListName.');
+                    return false;
+                }
+                if (SendUserId == "") {
+
+                    toastrError('Please enter SendUser Id.');
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            }
+
+            /////
+            if (datas == true) {
+                $.ajax({
+                    url: '/QuesterSharing/Quester_UpdateaWordListToShareSendList',
+                    type: "GET",
+                    data: objs,
+                    dataType: 'JSON',
+                    success: function (data) {
+                        toastrSuccess(data.message);
+                        setInterval(function () {
+                            location.reload();
+                        }, 3000);
+                        //location.reload();
+                    }
+                });
+            }
+            ///////
+        }
+        //$('#btn_SendList').prop('disabled', true);
+    });
+
+
+
+    $('#ipt-word-search').keypress(function (e) {
+
+        var key = e.which;
+        if (key == 13)  // the enter key code
+        {
+            $('#btn-search-word').click();
+            //return false;
+        }
+    });
+
+    $("#btn-search-CLEAR").click(function () {
+        $("#ipt-word-search").val("");
+        $('#btn-search-word').click();
+    });
+
+    var public_SearchItem = [];
+    var public_UserId = $('#userId').val();
+    $.ajax({
+        url: '/QuesterSharing/Quester_GetAllUserLists',
+        dataType: "json",
+        type: "GET",
+        contentType: 'application/json; charset=utf-8',
+        async: true,
+        processData: false,
+        cache: false,
+        success: function (data) {
+            $.each(data, function (key, value) {
+                public_SearchItem.push({ "User": [{ "UserId": value.UserId, "Username": value.Username }] });
+                if (public_UserId != value.UserId) {
+                    $('#select_AddUsers').append($("<option></option>").attr("value", value.UserId).text(value.Username));
+                }
+
+            });
+
+        },
+        error: function (xhr) {
+            alert(xhr);
+        }
+    });
+
+    $("#btn_AddUsers").click(function () {
+
+        var value = $('#select_AddUsers option:selected').val();
+        var textBox = $('#select_AddUsers option:selected').text();
+        if (textBox !== '') {
+            $('#select_AddList').append($("<option></option>").attr("value", value).text(textBox));
+            $("#select_AddUsers option[value='" + value + "']").remove();
+            $("#select_AddList option[value='" + value + "']").attr('selected', true);
+        }
+
+
+    });
+
+    $(document).on('click', '.word-delete', function () {
+        var source = $(this);
+        var wordId = $(this).attr('data-wordid');
+
+        swal({
+            title: "Are you sure?",
+            text: "Permanently delete this Question from your database?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#004b8d",
+            confirmButtonText: "Yes, delete!",
+            closeOnConfirm: true
+        },
+     function (isConfirm) {
+         if (isConfirm) {
+             $.ajax({
+                 url: '/Quester/Quester_deletWord?wordId=' + wordId,
+                 type: "GET",
+                 dataType: 'JSON',
+                 success: function (data) {
+                     if (data.status) {
+                         toastrSuccess("Question deleted");
+
+                         $('#totalWordCount').val(parseInt($('#totalWordCount').val() - 1));
+
+                         var islasttr = $(document).find('.tr-word-row');
+                         if (islasttr.length <= 1) {
+                             if (parseInt($('#hfn-index').val()) != 0)
+                                 $('#hfn-index').val(parseInt($('#hfn-index').val()) - 1)
+                         }
+
+
+                         var obj = new Object();
+                         obj.userId = $('#userId').val();
+                         obj.totalWordCount = $('#totalWordCount').val();
+                         obj.index = parseInt($('#hfn-index').val());
+                         obj.searchText = $('#ipt-word-search').val();
+                         obj.sortBy = $('#hfn-sortby').val();
+                         obj.sortOrder = $('#hfn-sortorder').val();
+                         $.ajax({
+                             url: '/Quester/Quester_refreshUserWordList',
+                             type: "POST",
+                             data: obj,
+                             dataType: 'html',
+                             success: function (data) {
+                                 $('#tbody-wordlist').html(data);
+                                 var tr = $(document).find('.tr-word-row').first();
+                                 if (tr.length > 0) {
+                                     var word = $(tr).attr('data-word');
+                                     var pronounciation = $(tr).attr('data-pronounciation');
+                                     var phrase = $(tr).attr('data-phrase');
+                                     var hint = $(tr).attr('data-hint');
+                                     var definition = $(tr).attr('data-definition');
+                                     $('#div-databaseword').html(word);
+                                     $('#div-Pronounced').html(pronounciation);
+                                     $('#div-Phrase').html(phrase);
+                                     $('#div-Hint').html(hint);
+                                     $('#div-Definition').html(definition);
+                                 }
+                                 //$('#wordlist-pagination').data("current", page);
+                                 var obj1 = new Object();
+                                 obj1.userId = $('#userId').val();
+                                 obj1.totalWordCount = $('#totalWordCount').val();
+                                 obj1.index = parseInt(parseInt($('#hfn-index').val()) + 1);
+                                 obj1.searchText = $('#ipt-word-search').val();
+                                 obj1.sortBy = $('#hfn-sortby').val();
+                                 obj1.sortOrder = $('#hfn-sortorder').val();
+                                 $.ajax({
+                                     url: '/Quester/Quester_refreshUserWordListPagination',
+                                     type: "POST",
+                                     data: obj1,
+                                     dataType: 'html',
+                                     success: function (data) {
+                                         $('#nav-pagination').html(data);
+                                         $('#div-page-count').html('<p>Page ' + parseInt(parseInt($('#hfn-index').val()) + 1) + ' of ' + Math.ceil(parseFloat($('#totalWordCount').val()) / parseFloat(10)) + '</p>')
+                                         //Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalWordCount) / Convert.ToDouble(10))))</p>')
+                                     }
+                                 });
+                             }
+                         });
+
+                     }
+                     else {
+                         toastrError(data.message);
+                     }
+                 }
+             });
+         }
+     });
+    });
+
+
+    $(document).on('click', '#delete-selected-words', function () {
+        var cbkStatus = false;
+        var wordIds = "";
+        var count = 0;
+        $(document).find('.ckb-word-item').each(function (index, value) {
+            if ($(this).prop("checked") == true) {
+                count = count + 1;
+                cbkStatus = true;
+                if (wordIds == "")
+                    wordIds = wordIds + $(this).attr('data-wordid');
+                else
+                    wordIds = wordIds + "," + $(this).attr('data-wordid');
+            }
+        });
+        if (cbkStatus == false && wordList.length <= 0) {
+            toastrError('Please select a Question');
+        }
+        else {
+            swal({
+                title: "Are you sure?",
+                text: "You are about to delete the selected words!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#004b8d",
+                confirmButtonText: "Yes, delete!",
+                closeOnConfirm: true
+            },
+  function (isConfirm) {
+      if (isConfirm) {
+
+          var userId = $('#userId').val();
+          var objs = new Object();
+          objs.userId = userId;
+          objs.wordIds = wordList.join(',')
+
+          $.ajax({
+              url: '/Quester/Quester_deletSelectedWords',
+              type: "POST",
+              data: objs,
+              dataType: 'JSON',
+              success: function (data) {
+                  if (data.status) {
+                      toastrSuccess("Questions deleted");
+
+                      $('#selected-item-count').text("0");
+
+                      $('#totalWordCount').val(parseInt($('#totalWordCount').val() - 1));
+
+                      var islasttr = $(document).find('.tr-word-row');
+                      if (islasttr.length <= 1) {
+                          if (parseInt($('#hfn-index').val()) != 0)
+                              $('#hfn-index').val(parseInt($('#hfn-index').val()) - 1)
+                      }
+
+
+                      var obj = new Object();
+                      obj.userId = $('#userId').val();
+                      obj.totalWordCount = $('#totalWordCount').val();
+                      obj.index = parseInt($('#hfn-index').val());
+                      obj.searchText = $('#ipt-word-search').val();
+                      obj.sortBy = $('#hfn-sortby').val();
+                      obj.sortOrder = $('#hfn-sortorder').val();
+                      $.ajax({
+                          url: '/Quester/Quester_refreshUserWordList',
+                          type: "POST",
+                          data: obj,
+                          dataType: 'html',
+                          success: function (data) {
+                              $('#tbody-wordlist').html(data);
+                              var tr = $(document).find('.tr-word-row').first();
+                              if (tr.length > 0) {
+                                  var word = $(tr).attr('data-word');
+                                  var pronounciation = $(tr).attr('data-pronounciation');
+                                  var phrase = $(tr).attr('data-phrase');
+                                  var hint = $(tr).attr('data-hint');
+                                  var definition = $(tr).attr('data-definition');
+                                  $('#div-databaseword').html(word);
+                                  $('#div-Pronounced').html(pronounciation);
+                                  $('#div-Phrase').html(phrase);
+                                  $('#div-Hint').html(hint);
+                                  $('#div-Definition').html(definition);
+                              }
+                              //$('#wordlist-pagination').data("current", page);
+                              var obj1 = new Object();
+                              obj1.userId = $('#userId').val();
+                              obj1.totalWordCount = $('#totalWordCount').val();
+                              obj1.index = parseInt(parseInt($('#hfn-index').val()) + 1);
+                              obj1.searchText = $('#ipt-word-search').val();
+                              obj1.sortBy = $('#hfn-sortby').val();
+                              obj1.sortOrder = $('#hfn-sortorder').val();
+                              $.ajax({
+                                  url: '/Quester/Quester_refreshUserWordListPagination',
+                                  type: "POST",
+                                  data: obj1,
+                                  dataType: 'html',
+                                  success: function (data) {
+                                      $('#nav-pagination').html(data);
+                                      $('#div-page-count').html('<p>Page ' + parseInt(parseInt($('#hfn-index').val()) + 1) + ' of ' + Math.ceil(parseFloat($('#totalWordCount').val()) / parseFloat(10)) + '</p>')
+                                      //Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalWordCount) / Convert.ToDouble(10))))</p>')
+                                  }
+                              });
+                          }
+                      });
+
+                  }
+                  else {
+                      toastrError(data.message);
+                  }
+              }
+          });
+      }
+  });
+        }
+    });
+
+    $(document).on('click', '#btn-search-word', function () {
+        var searchText = $('#ipt-word-search').val();
+        searchText = $.trim(searchText);
+        $.ajax({
+            url: '/Quester/Quester_WordCount?userId=' + parseInt($('#userId').val()) + '&searchText=' + searchText,
+            type: "GET",
+            dataType: 'JSON',
+            success: function (data) {
+                $('#totalWordCount').val(data);
+                var obj = new Object();
+                obj.userId = $('#userId').val();
+                obj.totalWordCount = $('#totalWordCount').val();
+                obj.index = parseInt($('#hfn-index').val());
+                obj.searchText = searchText;
+                obj.sortBy = $('#hfn-sortby').val();
+                obj.sortOrder = $('#hfn-sortorder').val();
+                if (wordList.length == 0) {
+                    obj.wordIds = "";
+                }
+                else {
+                    obj.wordIds = wordList.join(',');
+                }
+                $.ajax({
+                    url: '/Quester/Quester_refreshUserWordList',
+                    type: "POST",
+                    data: obj,
+                    dataType: 'html',
+                    success: function (data) {
+                        $('#tbody-wordlist').html(data);
+                        var tr = $(document).find('.tr-word-row').first();
+                        if (tr.length > 0) {
+                            var word = $(tr).attr('data-word');
+                            var pronounciation = $(tr).attr('data-pronounciation');
+                            var phrase = $(tr).attr('data-phrase');
+                            var hint = $(tr).attr('data-hint');
+                            var definition = $(tr).attr('data-definition');
+                            $('#div-databaseword').html(word);
+                            $('#div-Pronounced').html(pronounciation);
+                            $('#div-Phrase').html(phrase);
+                            $('#div-Hint').html(hint);
+                            $('#div-Definition').html(definition);
+                        }
+                        //$('#wordlist-pagination').data("current", page);
+                        var obj1 = new Object();
+                        obj1.userId = $('#userId').val();
+                        obj1.totalWordCount = $('#totalWordCount').val();
+                        obj1.index = parseInt(parseInt($('#hfn-index').val()) + 1);
+                        obj1.searchText = $('#ipt-word-search').val();
+                        obj1.sortBy = $('#hfn-sortby').val();
+                        obj1.sortOrder = $('#hfn-sortorder').val();
+                        $.ajax({
+                            url: '/Quester/Quester_refreshUserWordListPagination',
+                            type: "POST",
+                            data: obj1,
+                            dataType: 'html',
+                            success: function (data) {
+                                $('#nav-pagination').html(data);
+                                $('#div-page-count').html('<p>Page ' + parseInt(parseInt($('#hfn-index').val()) + 1) + ' of ' + Math.ceil(parseFloat($('#totalWordCount').val()) / parseFloat(10)) + '</p>')
+                                //$('#div-page-count').html('<p>Page ' + parseInt(parseInt($('#hfn-index').val()) + 1) + ' of Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalWordCount) / Convert.ToDouble(10))))</p>')
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    });
+
+
+
+
+
+
+</script>
+
+
+
+<script>
+    $("#btn_AddUsers").attr("disabled", "disabled");
+    $("#txt_Password").attr("disabled", "disabled");
+
+    $("#select_AddUsers").hover(function () {
+
+
+    });
+
+    $("#select_AddUsers").change(function () {
+        $("#btn_AddUsers").removeAttr("disabled");
+    });
+
+    $('#checkbox_PasswordNo').click(function () {
+        if ($(this).prop("checked") == true) {
+            $("#txt_Password").removeAttr("disabled");
+        }
+        else if ($(this).prop("checked") == false) {
+
+            $("#txt_Password").attr("disabled", "disabled");
+        }
+    });
+
+    $("#SelectAll").click(function () {
+        //$("#selected-item-count").text("0");
+        if ($(this).prop("checked") == true) {
+            $('.ckb-word-item').each(function () {
+                this.checked = true;
+
+            });
+        }
+        else if ($(this).prop("checked") == false) {
+            $('.ckb-word-item').each(function () {
+                this.checked = false;
+
+            });
+        }
+
+
+    });
+
+    $("#btn_RemoveList").click(function () {
+        var model = new Array();
+
+        var value = $('option:selected', '#select_AddList').val();
+        var textBox = $('option:selected', '#select_AddList').text();
+
+        if (textBox !== '') {
+            $('#select_AddUsers').append($("<option></option>").attr("value", value).text(textBox));
+            $('option:selected', '#select_AddList').remove();
+        }
+
+
+        Itemarry = $('#select_AddUsers > option');
+
+        $.each(Itemarry, function (key, values) {
+            var items = {};
+            if (values.value !== '') {
+                items.UserID = values.value;
+                items.UserName = values.text;
+                model.push(items);
+            }
+        });
+
+        
+
+        $('#select_AddUsers').empty();
+
+        $.ajax({
+            url: '/QuesterSharing/Quester_SortDropdownListBYCreateaWordListToShare',
+            dataType: "json",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            async: true,
+            data: JSON.stringify(model),
+            processData: false,
+            cache: false,
+            success: function (data) {
+                $('#select_AddUsers').html('');
+                $.each(data, function (key, value) {
+                    $('#select_AddUsers').append($("<option></option>").attr("value", value.UserID).text(value.UserName));
+                });
+
+            },
+            error: function (xhr) {
+                alert(xhr);
+            }
+        });
+
+
+    });
+
+    function sortList() {
+
+        $('#hfn-index').val(0);
+        var obj = new Object();
+        obj.userId = $('#userId').val();
+        obj.totalWordCount = $('#totalWordCount').val();
+        obj.index = parseInt($('#hfn-index').val());
+        obj.searchText = $('#ipt-word-search').val();
+        obj.sortBy = $('#hfn-sortby').val();
+        obj.sortOrder = $('#hfn-sortorder').val();
+        $.ajax({
+            url: '/Quester/Quester_refreshUserWordList',
+            type: "POST",
+            data: obj,
+            dataType: 'html',
+            success: function (data) {
+                $('#tbody-wordlist').html(data);
+                var tr = $(document).find('.tr-word-row').first();
+                if (tr.length > 0) {
+                    var word = $(tr).attr('data-word');
+                    var pronounciation = $(tr).attr('data-pronounciation');
+                    var phrase = $(tr).attr('data-phrase');
+                    var hint = $(tr).attr('data-hint');
+                    var definition = $(tr).attr('data-definition');
+                    $('#div-databaseword').html(word);
+                    $('#div-Pronounced').html(pronounciation);
+                    $('#div-Phrase').html(phrase);
+                    $('#div-Hint').html(hint);
+                    $('#div-Definition').html(definition);
+                }
+                //$('#wordlist-pagination').data("current", page);
+                var obj1 = new Object();
+                obj1.userId = $('#userId').val();
+                obj1.totalWordCount = $('#totalWordCount').val();
+                obj1.index = parseInt(parseInt($('#hfn-index').val()) + 1);
+                obj1.searchText = $('#ipt-word-search').val();
+                obj1.sortBy = $('#hfn-sortby').val();
+                obj1.sortOrder = $('#hfn-sortorder').val();
+                $.ajax({
+                    url: '/Quester/Quester_refreshUserWordListPagination',
+                    type: "POST",
+                    data: obj1,
+                    dataType: 'html',
+                    success: function (data) {
+                        $('#nav-pagination').html(data);
+                        $('#div-page-count').html('<p>Page ' + parseInt(parseInt($('#hfn-index').val()) + 1) + ' of ' + Math.ceil(parseFloat($('#totalWordCount').val()) / parseFloat(10)) + '</p>')
+                        //Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalWordCount) / Convert.ToDouble(10))))</p>')
+                    }
+                });
+            }
+        });
+    }
+
+    $(document).on('click', '#word-asc', function () {
+        $('#hfn-sortby').val('WORD');
+        $('#hfn-sortorder').val('ASC');
+        sortList();
+        $(this).css('opacity', '1');
+        $('#word-desc').css('opacity', '.3');
+    });
+
+    $(document).on('click', '#word-desc', function () {
+        $('#hfn-sortby').val('WORD');
+        $('#hfn-sortorder').val('DESC');
+        sortList();
+        $(this).css('opacity', '1');
+        $('#word-asc').css('opacity', '.3');
+    });
+
+    $(document).on('click', '#score-asc', function () {
+        $('#hfn-sortby').val('SCORE');
+        $('#hfn-sortorder').val('ASC');
+        sortList();
+        $(this).css('opacity', '1');
+        $('#score-desc').css('opacity', '.3');
+    });
+
+    $(document).on('click', '#score-desc', function () {
+        $('#hfn-sortby').val('SCORE');
+        $('#hfn-sortorder').val('DESC');
+        sortList();
+        $(this).css('opacity', '1');
+        $('#score-asc').css('opacity', '.3');
+    });
+
+
+
+
+</script>
+
+
+

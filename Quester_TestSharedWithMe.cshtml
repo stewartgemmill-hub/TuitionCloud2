@@ -1,0 +1,293 @@
+﻿@model TutionCloudWeb.Models.PostModel.OnlineCommunity.WordClass
+
+@{
+    ViewBag.Title = "WordListSharedwithMe";
+    Layout = "~/Views/Shared/_Layout_Quester_Home.cshtml";
+    var totalWordCount = Model.totalWordCount;
+}
+
+@Html.HiddenFor(z => z.userId, new { Value = Model.userId })
+@Html.HiddenFor(z => z.totalWordCount, new { Value = Model.totalWordCount })
+<input type="hidden" id="hfn-index" value="0" />
+<input type="hidden" id="hfn-sortby" value="" />
+<input type="hidden" id="hfn-sortorder" value="" />
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-sm-12">
+                <div class="ShareHead">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="my-share">
+                                <h6>Tests Shared with Me</h6>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="ShareTab">
+                    <div class="with-me">
+                        <table class="table table-hover newTable table-bordered">
+
+                            <thead>
+                            <th class="tabhead">Select</th>
+                            <th class="tabhead">Test Title</th>
+                            <th class="tabhead"> Date & Time of Tests</th>
+                            <th class="tabhead">Options</th>
+                            </thead>
+                            <tbody id="tbody-wordlist">
+                                @{
+                                    var postModel = new TutionCloudWeb.Models.PostModel.OnlineCommunity.WordList();
+                                    postModel.userId = Model.userId;
+                                    postModel.index = 0;
+                                    postModel.totalWordCount = totalWordCount;
+                                    postModel.searchText = string.Empty;
+                                    postModel.sortBy = string.Empty;
+                                    postModel.sortOrder = string.Empty;
+                                    postModel.wordIds = "";
+                                }
+                                @Html.Partial("~/Views/QuesterSharing/_pv_Quester_Sharing_WordListTestSharedWithMe.cshtml", postModel)
+                            </tbody>
+                        </table>
+
+                        <div class="Indctor" id="div-page-count">
+                            <p>Page 1 of @Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalWordCount) / Convert.ToDouble(10))))</p>
+                        </div>
+                        <div class="Pgntation">
+                            <nav aria-label="Page navigation example" id="nav-pagination">
+                                @{
+                                    var postModelPagination = new TutionCloudWeb.Models.PostModel.OnlineCommunity.WordList();
+                                    postModelPagination.userId = Model.userId;
+                                    postModelPagination.index = 1;
+                                    postModelPagination.totalWordCount = totalWordCount;
+                                    postModelPagination.searchText = string.Empty;
+                                    postModelPagination.sortBy = string.Empty;
+                                    postModelPagination.sortOrder = string.Empty;
+                                }
+                                @Html.Partial("~/Views/QuesterSharing/_pv_Quester_Sharing_TestSharedWithMe_List_Pagination.cshtml", postModelPagination)
+                            </nav>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <div class="wraper ">
+                    <div class="newdrpn drp_sharedwithme">
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-primary " data-toggle="dropdown">Task Dropdown List <img src="~/Content/img/BotumArrow.png" /></button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" onclick="history.back()">Back</a>
+                                <a class="dropdown-item" id="a_DeleteAll">Delete All</a>
+                                <a class="dropdown-item" style="cursor:pointer;" id="a-create-testformat">Test</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ShareForm wraper share-with-me">
+                        <form>
+                            <div class="form-group wraper">
+                                <label class="checkbox-inline Label">
+                                    * Enter Password to View this Questions List
+                                </label>
+                            </div>
+                            <div class="form-group wraper">
+                                <input type="text" id="txt_Password" class="form-control Input">
+                                <label for="password" class="Inputlabel">Password</label>
+                            </div>
+                            <div class="form-group wraper">
+                                <input type="text" class="form-control Input" id="txt_TestID">
+                                <label class="Inputlabel">Test ID</label>
+                            </div>
+                            <div class="form-group wraper">
+                                <input type="text" class="form-control Input" id="txt_WordListName">
+                                <label class="Inputlabel">Questions Test Title</label>
+                            </div>
+                            <div class="form-group wraper Send">
+                                <div class="Srchbx">
+                                    <input type="button" class="button_blue" id="btn_Activate" value="RETRIEVE" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lowerNav">
+            <nav class="navbar navbar-expand-sm  justify-content-center">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="https://en.wikipedia.org/wiki/Main.page" target="_blank">Wikipedia</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.google.com/search?q=calculator" target="_blank">Calculator</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.google.com/maps/" target="_blank">Maps</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="http://www.xe.com/currencyconverter/" target="_blank">Currency Converter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.timeanddate.com/worldclock/full.html" target="_blank">World Clocks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://translate.google.com" target="_blank">Translator</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<script>
+
+    //Commen-Radio-Button-Unselect
+    $(".Commen-Radio-Button-Unselect").prop('checked', false);
+    var wordList = 0;
+    var public_TestDate = 0;
+    var public_TestTime = 0;
+    var public_TimePerWord = 0;
+
+    $("#a_ClickSharing").css({ "color": "#98aaff" });
+
+    $("#btn_Activate").click(function () {
+
+        var Password = $("#txt_Password").val();
+        var TestId = $("#txt_TestID").val();
+        var LastName = $("#txt_WordListName").val();
+        var userId = $("#userId").val();
+
+        if (TestId == "" || LastName == "") {
+            swal("Warning!", "Please enter the details in the fields for Retrieval")
+        }
+        else {
+            var obj = new Object();
+
+            obj.Password = Password;
+            obj.TestId = TestId;
+            obj.LastName = LastName;
+            obj.userId = userId;
+
+            $.ajax({
+                url: '/QuesterSharing/Quester_ShareActivateCheckTestSharedWithMe',
+                type: "POST",
+                data: obj,
+                dataType: 'JSON',
+                success: function (data) {
+                    //alert(data.datestring + " = 09/05/2019 11:50 AM");
+                    public_CreatedOn = data.datestring;
+                    if (public_CreatedOn != null) {
+                        if (public_CreatedOn == 0) {
+                            swal("Warning!", "The Shared Test details you have entered are incorrect. Please try again.")
+
+                        }
+                        else {
+                            $('td[pointe-evend-enable="' + public_CreatedOn + '"]').css({
+                                'pointer-events': 'auto',
+                                'color': 'red',
+                                'font-weight': 'bold'
+
+                            });
+                            $('strong[pointe-evend-enable-strong="' + public_CreatedOn + '"]').css({
+                                'pointer-events': 'auto',
+                                'color': 'red',
+                                'font-weight': 'bold'
+                            });
+                            $('a[pointe-evend-enable-A="' + public_CreatedOn + '"]').css({
+                                'pointer-events': 'auto',
+                                'color': 'red',
+                                'font-weight': 'bold'
+                            });
+                            swal("Retrieval of this Questions Test was successful.", "Please now click on " + public_CreatedOn + " and VIEW link to see your shared Word List.", "success")
+                            location.reload();
+                        }
+
+                    }
+
+
+                }
+            });
+
+        }
+    });
+
+    $("#a_DeleteAll").click(function () {
+        var userId = $("#userId").val();
+        swal({
+            title: "Are you sure?",
+            text: "Your will not be able to recover this imaginary all files!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: false
+        },
+        function () {
+
+            $.ajax({
+                url: '/QuesterSharing/Quester_DeleteALLWordListTestSharedWithMe?userId=' + userId,
+                type: "GET",
+                dataType: 'JSON',
+                success: function (data) {
+                    if (data == 1) {
+                        //toastrSuccess("Deleted successfully");
+                        swal("Deleted!", "Your all file has been deleted.", "success");
+
+                    }
+                    else {
+                        toastrError("Failed");
+                    }
+                    location.reload();
+                }
+            });
+
+
+        });
+
+    });
+
+    $(document).on('click', '#a-create-testformat', function () {
+        
+        if (wordList == 0) {
+            toastrError('Select the Tests');
+        }
+        else {
+            //wordList.push(wordId);SetTestFormatSecond
+            //var encodedString = btoa(wordList.join(','));
+            //window.location.href = "/Wordutopia/StartTest/" + encodedString;
+           
+            var totaldata = "none" + "~" + wordList + "~" + public_TestTime + "~" + public_TimePerWord;
+            window.location.href = "/QuesterSharing/Quester_StartTest/" + totaldata;
+        }
+    });
+
+
+
+
+    $(document).on('click', 'input[name=radio_Retest]', function () {
+        public_TestDate = $('input[name=radio_Retest]:checked').val();
+ 
+        $.ajax({
+            url: '/QuesterSharing/Quester_TestSharedWithMeCreateNewTest',
+            type: "POST",
+            data: { "createOn": public_TestDate },
+            dataType: 'JSON',
+            success: function (data) {
+                        //var aa = data;
+                
+                //$.each(data, function (key, value) {
+                    // alert(value.WordId);
+                wordList = data.TestID;
+                public_TestTime = data.TestTime;
+                public_TimePerWord = data.TimePerWord;
+                //});
+
+            }
+        });
+        
+    });
+
+</script>

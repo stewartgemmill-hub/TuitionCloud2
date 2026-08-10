@@ -1,0 +1,192 @@
+﻿
+@model TutionCloudWeb.Models.PostModel.OnlineCommunity.WordList
+@using TutionCloudWeb.Manager.Wordutopia;
+@{
+    SharingManager SharingManager = new SharingManager();
+    string values = Model.userId.ToString();
+    var wordList = SharingManager.Quester_GetAllWordListSharedwithMe_Dates_Test(values);
+    var wordList2 = SharingManager.Quester_GetAllWordListSharedwithMe_DatesChecks_Test(values);
+
+    
+
+}
+
+
+@if (wordList.Count > 0)
+{
+    int i = 0;
+    foreach (var word in wordList)
+    {
+         var diusplayName = SharingManager.Quester_GetDisplayNameSingle(wordList[i]);
+
+        DateTime resrulst = Convert.ToDateTime(wordList[i]);
+        string dd = resrulst.ToString("dd");
+        string MM = resrulst.ToString("MM");
+        string yyyy = resrulst.ToString("yyyy");
+
+        string hh = resrulst.ToString("hh");
+        string mm = resrulst.ToString("mm");
+        string ss = resrulst.ToString("ss");
+        string tt = resrulst.ToString("tt");
+        string dataeTotals = dd + "/" + MM + "/" + yyyy + " " + hh + ":" + mm + " " + tt;
+
+        //string dataeTotals = dd +"/"+ MM +"/"+ yyyy;
+        var a2 = wordList2.Where(x => x.CreatedOn == word).FirstOrDefault();
+        if (a2.Retrieve == true)
+        {
+    <tr class="tr-word-row" style="cursor:pointer;" trvalues="@wordList[i]">
+        <td>
+            <input type="radio" class="Commen-Radio-Button-Unselect" name="radio_Retest" value="@wordList[i]" />
+
+        </td>
+        <td class="td-word-col" tdvalues="@wordList[i]"><strong pointe-evend-enable-strong="@dataeTotals" style="color: red; font-weight:bold;">@diusplayName</strong></td>
+
+        <td class="td-word-col" tdvalues="@wordList[i]"><strong pointe-evend-enable-strong="@dataeTotals" style="color: red; font-weight:bold;">@dataeTotals</strong></td>
+        <td class="toggle_dropdown_cust td_View_Delete" pointe-evend-enable="@dataeTotals" style="color: red; font-weight:bold;">
+
+            @*<td class="toggle_dropdown_cust td_View_Delete" style="pointer-events:none;" pointe-evend-enable="@dataeTotals">*@
+            <div class="web-dsp div_View_Delete" disabled="true">
+
+                <span class="edts"><a pointe-evend-enable-a="@dataeTotals" href="@Url.Action("Quester_WordListSharedwithMeWords_Test", "QuesterSharing", new { CreatedOn = wordList[i] })"> <span id="a_@wordList[i]" style="color: red; font-weight:bold;">View</span></a></span>
+                <span class="ck_brd">|</span>
+                <span class="edts class_Deletes" span-id-values="@wordList[i]"><a><i class="fas fa-trash-alt"></i> Delete</a></span>
+            </div>
+
+            <div class="togButns attachmts">
+                <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-v"></i>
+                </button>
+                <div class="web-dsp div_View_Delete dropdown-menu labes" disabled="true" aria-labelledby="dropdownMenuButton">
+                    <span class="edts"><a href="@Url.Action("Quester_WordListSharedwithMeWords_Test", "QuesterSharing", new { CreatedOn = wordList[i] })" style="color: red; font-weight:bold;">View</a></span>
+                    <span class="ck_brd">|</span>
+                    <span class="edts class_Deletes" span-id-values="@wordList[i]"><a><i class="fas fa-trash-alt"></i> Delete</a></span>
+                </div>
+            </div>
+
+        </td>
+    </tr>
+
+        }
+        else
+        {
+<tr class="tr-word-row" style="cursor:pointer;" trvalues="@wordList[i]">
+    @*<td>
+            <input class="ckb-word-item" type="checkbox" />
+
+        </td>*@
+    <td>
+    </td>
+    <td class="td-word-col" tdvalues="@wordList[i]"><strong pointe-evend-enable-strong="@dataeTotals">@diusplayName</strong></td>
+
+    <td class="td-word-col" tdvalues="@wordList[i]"><strong pointe-evend-enable-strong="@dataeTotals">@dataeTotals</strong></td>
+    <td class="toggle_dropdown_cust td_View_Delete" pointe-evend-enable="@dataeTotals" style="pointer-events:none;">
+
+        @*<td class="toggle_dropdown_cust td_View_Delete" style="pointer-events:none;" pointe-evend-enable="@dataeTotals">*@
+        <div class="web-dsp div_View_Delete" disabled="true">
+            <span class="edts"><a pointe-evend-enable-a="@dataeTotals" href="@Url.Action("Quester_WordListSharedwithMeWords", "QuesterSharing", new { CreatedOn = wordList[i] })"> <span id="a_@wordList[i]">View</span></a></span>
+            <span class="ck_brd">|</span>
+            <span class="edts class_Deletes" span-id-values="@wordList[i]"><a><i class="fas fa-trash-alt"></i> Delete</a></span>
+        </div>
+
+        <div class="togButns attachmts">
+            <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v"></i>
+            </button>
+            <div class="web-dsp div_View_Delete dropdown-menu labes" disabled="true" aria-labelledby="dropdownMenuButton">
+                <span class="edts"><a href="@Url.Action("Quester_WordListSharedwithMeWords", "QuesterSharing", new { CreatedOn = wordList[i] })">View</a></span>
+                <span class="ck_brd">|</span>
+                <span class="edts class_Deletes" span-id-values="@wordList[i]"><a><i class="fas fa-trash-alt"></i> Delete</a></span>
+            </div>
+        </div>
+
+    </td>
+</tr>
+
+        }
+        
+      
+
+
+
+
+        i++;
+
+    }
+}
+else
+{
+    <tr>
+        <td colspan="3">No Questions found</td>
+    </tr>
+}
+
+
+
+<script>
+    //$(document).ready(function () {
+    var public_CreatedOn;
+    //$(".td_View_Delete *").attr("disabled", "disabled").off('click');
+
+    //$(".tr-word-row > .td-word-col").click(function () {
+    ////alert($(this).attr('trvalues'));
+    //var obj = new Object();
+    //obj.CreatedOn = $(this).attr('tdvalues');
+    //public_CreatedOn = $(this).attr('tdvalues');
+    //$.ajax({
+    //    url: '/Sharing/GetCurrendItemWordListSharedwithMe',
+    //    type: "POST",
+    //    data: obj,
+    //    dataType: 'json',
+    //    success: function (value) {
+    //        if (value.Password == null)
+    //        {
+    //            $("#txt_Password").attr("disabled", "disabled");
+    //        }
+    //        else if (value.Password != null) {
+    //            $("#txt_Password").removeAttr("disabled");
+    //        }
+    //        $("#txt_Password").val(value.Password);
+    //        $("#txt_TestID").val(value.TestID);
+    //        $("#txt_WordListName").val(value.LastName);
+
+    //               }
+    //});
+
+    //});
+
+    $(".tr-word-row > .td_View_Delete > .div_View_Delete > .class_Deletes").click(function () {
+        var CreatedOn = $(this).attr('span-id-values');
+
+        swal({
+            title: "Are you sure?",
+            text: "Your will not be able to recover this file!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: false
+        },
+           function () {
+               $.ajax({
+                   url: '/QuesterSharing/Quester_DeleteWordListTestSharedWithMeSS?CreatedOn=' + CreatedOn,
+                   type: "GET",
+                   dataType: 'JSON',
+                   success: function (data) {
+                       if (data == 1) {
+                           //toastrSuccess("Deleted successfully");
+                           swal("Deleted!", "Your file has been deleted.", "success");
+
+                       }
+                       else {
+                           toastrError("Failed");
+                       }
+                       location.reload();
+                   }
+               });
+
+           });
+
+    });
+
+    //});
+</script>
