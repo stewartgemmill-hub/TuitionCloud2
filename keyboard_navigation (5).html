@@ -43,7 +43,7 @@
 			var element = "#treeDemo";
 			var zTree = $.fn.zTree.init($(element), setting, zNodes);
 			// Initialize keyboard navigation
-			$.fn.zTreeKeyboardNavigation(zTree, element);
+			$.fn.zTreeKeyboardNavigation(zTree, document.body);
 		});
 
 	</SCRIPT>
@@ -71,7 +71,7 @@
 
 <BODY>
 <h1>Keyboard navigation</h1>
-<h6>[ File Path: core/custom_keyboard_navigation.html ]</h6>
+<h6>[ File Path: super/keyboard_navigation.html ]</h6>
 <div class="content_wrap">
 	<div class="zTreeDemoBackground left">
 		<ul id="treeDemo" class="ztree"></ul>
@@ -93,11 +93,6 @@
 					<li>Up: up cursor key (keycode 37)		Goes to the prior visible node at the same level</li>
 					<li>Previous: left cursor key (keycode 38)	Goes to the prior visible node following the hierarchy</li>
 					<li>Toggle: space key (keycode 32)	Toggles the expand/collapse state of a parent node</li>
-				</ul>
-			</li>
-			<li class="title"><h2>3.Other explanation</h2>
-				<ul class="list">
-				<li>No other explanation.</li>
 				</ul>
 			</li>
 		</ul>
