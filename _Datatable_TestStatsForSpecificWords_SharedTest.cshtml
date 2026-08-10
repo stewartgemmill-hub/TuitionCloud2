@@ -1,0 +1,115 @@
+﻿@model TutionCloudWeb.Model.Wordutopia.ShareAnArchivedTestModel
+
+
+@*<table class="table table-hover newTable table-bordered" id="DatatatableBind1">*@
+@*<table id="DatatatableBind1" class="display nowrap" style="width:100%">*@
+
+@*<table id="DatatatableBind1" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%">*@
+<table id="DatatatableBind1" class="display nowrap" cellspacing="0" width="100%">
+
+    <thead>
+        <tr>
+
+            @*<th class="tabhead">Exam</th>*@
+            <th class="tabhead">Sent</th>
+            <th class="tabhead">Receve</th>
+            <th class="tabhead">Test ID</th>
+            <th class="tabhead">Password</th>
+            <th class="tabhead">Test Name</th>
+            <th class="tabhead">Date</th>
+            @*<th class="tabhead">Options</th>*@
+
+
+
+        </tr>
+    </thead>
+
+
+    <tbody>
+        @if (Model.ShareAnArchivedTestModel_Lists != null)
+        {
+
+            foreach (var a1 in Model.ShareAnArchivedTestModel_Lists)
+            {
+
+                DateTime resrulst = Convert.ToDateTime(a1.CreatedDate);
+                string dd = resrulst.ToString("dd");
+                string MM = resrulst.ToString("MM");
+                string yyyy = resrulst.ToString("yyyy");
+                string hh = resrulst.ToString("hh");
+                string HH = resrulst.ToString("hh");
+                string mm = resrulst.ToString("mm");
+                string ss = resrulst.ToString("ss");
+                string tt = resrulst.ToString("tt");
+                string dataeTotals = dd + "/" + MM + "/" + yyyy + " " + hh + ":" + mm + " " + tt;
+
+
+                <tr>
+                    @*<td style="text-align: center !important; vertical-align: middle;">@a1.ExamName</td>*@
+                    <td style="text-align: left !important; vertical-align: middle; ">@a1.SentUserName</td>
+                    <td style="text-align: left !important; vertical-align: middle; ">@a1.ReceivedUserName</td>
+                    <td style="text-align: center !important; vertical-align: middle; ">@a1.TestID</td>
+                    <td style="text-align: center !important; vertical-align: middle; ">@a1.Password</td>
+                    <td style="text-align: right !important; vertical-align: middle; ">@a1.LastName</td>
+                    <td style="text-align: right !important; vertical-align: middle; ">@dataeTotals</td>
+
+                    @*<td class="toggle_dropdown_cust ">
+                        <div class="togButns attachmts archive">
+                            <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                            <div class="dropdown-menu labes" aria-labelledby="dropdownMenuButton">
+
+                                <span class="edts"><a href="@Url.Action("TestStatsForSpecificUsers_Views", "Sharing", new { CreatedOn = resrulst.ToString("yyyy-MM-dd HH:mm:ss tt") })" viewitem="@resrulst.ToString("yyyy-MM-dd HH:mm:ss tt")">View Details</a></span>
+
+                            </div>
+                        </div>
+                    </td>*@
+                </tr>
+
+
+            }
+        }
+    </tbody>
+
+
+
+</table>
+
+
+
+
+
+<script>
+    var table = $("#DatatatableBind1").dataTable({
+        "order": [[1, "desc"]],
+
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+        },
+        responsive: true,
+        "columns": [
+            //{ "width": "0%" },
+            //{ "width": "0%" },
+            { "width": "0%" },
+            { "width": "0%" },
+            { "width": "0%" },
+            { "width": "0%" },
+            { "width": "0%" },
+            { "width": "0%" }
+        ]
+
+    });
+
+
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        $($.fn.dataTable.tables(true)).DataTable()
+           .columns.adjust();
+    });
+
+</script>
+
+
+
+
+

@@ -1,0 +1,581 @@
+﻿
+@model TutionCloudWeb.Models.PostModel.Exam.WordClass
+@{
+    ViewBag.Title = "CreateaNewTesttoShare";
+    Layout = "~/Views/Shared/_Layout_Wordutopia_Home.cshtml";
+    var totalWordCount = Model.totalWordCount;
+}
+
+@Html.HiddenFor(z => z.userId, new { Value = Model.userId })
+@Html.HiddenFor(z => z.totalWordCount, new { Value = Model.totalWordCount })
+<input type="hidden" id="hfn-index" value="0" />
+<input type="hidden" id="hfn-sortby" value="" />
+<input type="hidden" id="hfn-sortorder" value="" />
+
+
+
+<section class="viewing-lst">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-3 col-sm-12">
+                <div class="my-share">
+                    <h6>Create a New Test to Share</h6>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-5 col-sm-12">
+                <div class="form-group Srch1  ">
+                    <label for="Name">Search By Word Name:</label>
+                    <div class="Srchbx">
+                        <input type="text" class="form-control" id="ipt-word-search">
+                        <button style="cursor:pointer;" id="btn-search-word">SEARCH</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="newdrpn newtest">
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-primary " data-toggle="dropdown">Task Dropdown List <img class="png_rightarrow" src="~/Content/img/rightarrow.png" /></button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" style="cursor:pointer;" onclick="history.back()">Back</a>
+                            @*<a style="cursor:pointer;" class="dropdown-item" id="SelectAll">Select All</a>*@
+                            <a class="dropdown-item" style="cursor:pointer;" id="a-create-testformat">Set Test Format</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 offset-lg-2 col-md-12 col-sm-12">
+                <div class="test_table">
+                    <div class="SelectAll">
+                        <p>Number of words selected: <span id="selected-item-count"> 0</span></p>
+                    </div>
+                    <div class="testtable">
+                        <div class="Table FAVTAB">
+                            <table class="table table-hover newTable table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="tabhead">Select</th>
+                                        @*<th class="tabhead"> Word</th>*@
+                                        @*<th class="tabhead">Overall % Score</th>*@
+                                        <th class="tabhead">Words <div class="Ryt"> <span class="uppsort" id="word-desc"></span><span id="word-asc" class="downsort"></span></div></th>
+                                        <th class="tabhead"> Overall % Score <div class="Ryt"> <span id="score-desc" class="uppsort"></span><span id="score-asc" class="downsort"></span></div></th>
+
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-wordlist">
+                                    @{
+                                        var postModel = new TutionCloudWeb.Models.PostModel.Exam.WordList();
+                                        postModel.userId = Model.userId;
+                                        postModel.index = 0;
+                                        postModel.totalWordCount = totalWordCount;
+                                        postModel.searchText = string.Empty;
+                                        postModel.sortBy = string.Empty;
+                                        postModel.sortOrder = string.Empty;
+                                        postModel.wordIds = "";
+                                    }
+                                    @Html.Partial("~/Views/Wordutopia/_pv_Wordutopia_Exam_Word_List.cshtml", postModel)
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="Indctor" id="div-page-count">
+                            <p>Page 1 of @Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalWordCount) / Convert.ToDouble(10))))</p>
+                        </div>
+                        <div class="Pgntation">
+                            <nav aria-label="Page navigation example" id="nav-pagination">
+                                @{
+                                    var postModelPagination = new TutionCloudWeb.Models.PostModel.Exam.WordListPagination();
+                                    postModelPagination.userId = Model.userId;
+                                    postModelPagination.index = 1;
+                                    postModelPagination.totalWordCount = totalWordCount;
+                                    postModelPagination.searchText = string.Empty;
+                                    postModelPagination.sortBy = string.Empty;
+                                    postModelPagination.sortOrder = string.Empty;
+                                }
+                                @Html.Partial("~/Views/Wordutopia/_pv_Wordutopia_Exam_Word_List_Pagination.cshtml", postModelPagination)
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 new-test">
+                <div class="outAccordtn fav_out">
+                    <div id="accordion">
+                        <div class="card">
+                            <div class="accordhead">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Database Word
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                <div class="card-body" id="div-databaseword">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="accordhead">
+                                <div class="card-header" id="headingTwo">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Pronounced
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                <div class="card-body" id="div-Pronounced">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="accordhead">
+                                <div class="card-header" id="headingThree">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            Phrase
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                <div class="card-body" id="div-Phrase">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="accordhead">
+                                <div class="card-header" id="headingfour">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsefour" aria-expanded="false" aria-controls="collapseThree">
+                                            Hint
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div id="collapsefour" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                <div class="card-body" id="div-Hint">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="accordhead">
+                                <div class="card-header" id="headingfive">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsefive" aria-expanded="false" aria-controls="collapseThree">
+                                            Definition
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div id="collapsefive" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                <div class="card-body lastAccord" id="div-Definition">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="lowerNav">
+            <nav class="navbar navbar-expand-sm  justify-content-center">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="https://en.wikipedia.org/wiki/Main.page" target="_blank">Wikipedia</a>
+                    </li>
+                    <li class="nav-item">
+                        @*<a href="http://www.xnumber.com/xnumber/windows_calc.htm" target="_blank">Calculator</a>*@
+                        <a href="https://www.google.com/search?q=calculator" target="_blank">Calculator</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.google.com/maps/" target="_blank">Maps</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="http://www.xe.com/currencyconverter/" target="_blank">Currency Converter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.timeanddate.com/worldclock/full.html" target="_blank">World Clocks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://translate.google.com" target="_blank">Translator</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+    $("#a_ClickSharing").css({ "color": "#98aaff" });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*01-02-2019*@
+
+
+
+
+
+
+
+
+<script>
+    //$("#SelectAll").click(function () {
+    //    $("#selected-item-count").text("0");
+    //    $('.ckb-word-item').each(function () {
+    //        this.checked = true;
+    //        $('#selected-item-count').text(" " + parseInt(parseInt($('#selected-item-count').text()) + parseInt(1)));
+
+    //        var wordId = $(this).attr('data-wordid');
+    //        if ($(this).prop("checked") == true) {
+    //            wordList.push(wordId);
+
+    //        }
+    //        else {
+    //            wordList.splice($.inArray(wordId, wordList), 1);
+
+    //        }
+
+
+    //    });
+
+    //});
+
+    $('#ipt-word-search').keypress(function (e) {
+
+        var key = e.which;
+        if (key == 13)  // the enter key code
+        {
+            $('#btn-search-word').click();
+            //return false;
+        }
+    });
+
+    $("#SelectAll").click(function () {
+        $("#selected-item-count").text("0");
+
+        if ($('.ckb-word-item').prop("checked") == false) {
+            $('.ckb-word-item').each(function () {
+                this.checked = true;
+                $('#selected-item-count').text(" " + parseInt(parseInt($('#selected-item-count').text()) + parseInt(1)));
+                var wordId = $(this).attr('data-wordid');
+                if ($(this).prop("checked") == true) {
+                    wordList.push(wordId);
+                }
+                else {
+                    wordList.splice($.inArray(wordId, wordList), 1);
+                }
+            });
+        }
+        else {
+            $('.ckb-word-item').each(function () {
+                this.checked = false;
+                $('#selected-item-count').text(" " + parseInt(parseInt($('#selected-item-count').text()) + parseInt(1)));
+                var wordId = $(this).attr('data-wordid');
+                if ($(this).prop("checked") == false) {
+                    wordList.push(wordId);
+                }
+                else {
+                    wordList.splice($.inArray(wordId, wordList), 1);
+                }
+            });
+
+        }
+
+    });
+
+    //toastrError(data.message);
+    $(document).on('click', '.tr-word-row', function () {
+        var source = $(this);
+        var word = $(source).attr('data-word');
+        var pronounciation = $(source).attr('data-pronounciation');
+        var phrase = $(source).attr('data-phrase');
+        var hint = $(source).attr('data-hint');
+        var definition = $(source).attr('data-definition');
+
+        $('#div-databaseword').html(word);
+        $('#div-Pronounced').html(pronounciation);
+        $('#div-Phrase').html(phrase);
+        $('#div-Hint').html(hint);
+        $('#div-Definition').html(definition);
+    });
+
+
+    $(document).ready(function () {
+        var tr = $(document).find('.tr-word-row').first();
+        if (tr.length > 0) {
+            var word = $(tr).attr('data-word');
+            var pronounciation = $(tr).attr('data-pronounciation');
+            var phrase = $(tr).attr('data-phrase');
+            var hint = $(tr).attr('data-hint');
+            var definition = $(tr).attr('data-definition');
+            $('#div-databaseword').html(word);
+            $('#div-Pronounced').html(pronounciation);
+            $('#div-Phrase').html(phrase);
+            $('#div-Hint').html(hint);
+            $('#div-Definition').html(definition);
+        }
+    });
+
+    var wordList = [];
+    //wordList.push("dsfds");
+    //// ADD BY SIBI 03/03/2019........
+    $(document).on('click', '#word-asc', function () {
+        $('#hfn-sortby').val('WORD');
+        $('#hfn-sortorder').val('ASC');
+        sortList();
+        $(this).css('opacity', '1');
+        $('#word-desc').css('opacity', '.3');
+    });
+
+    $(document).on('click', '#word-desc', function () {
+        $('#hfn-sortby').val('WORD');
+        $('#hfn-sortorder').val('DESC');
+        sortList();
+        $(this).css('opacity', '1');
+        $('#word-asc').css('opacity', '.3');
+    });
+    $(document).on('click', '#score-asc', function () {
+        $('#hfn-sortby').val('SCORE');
+        $('#hfn-sortorder').val('ASC');
+        sortList();
+        $(this).css('opacity', '1');
+        $('#score-desc').css('opacity', '.3');
+    });
+
+    $(document).on('click', '#score-desc', function () {
+        $('#hfn-sortby').val('SCORE');
+        $('#hfn-sortorder').val('DESC');
+        sortList();
+        $(this).css('opacity', '1');
+        $('#score-asc').css('opacity', '.3');
+    });
+    ///END..........
+
+</script>
+
+<script>
+    $(document).on('click', '#btn-search-word', function () {
+        var searchText = $('#ipt-word-search').val();
+        searchText = $.trim(searchText);
+        $.ajax({
+            url: '/Wordutopia/ExamWordCount?userId=' + parseInt($('#userId').val()) + '&searchText=' + searchText,
+            type: "GET",
+            dataType: 'JSON',
+            success: function (data) {
+                $('#totalWordCount').val(data);
+                var obj = new Object();
+                obj.userId = $('#userId').val();
+                obj.totalWordCount = $('#totalWordCount').val();
+                obj.index = parseInt($('#hfn-index').val());
+                obj.searchText = searchText;
+                obj.sortBy = $('#hfn-sortby').val();
+                obj.sortOrder = $('#hfn-sortorder').val();
+                if (wordList.length == 0) {
+                    obj.wordIds = "";
+                }
+                else {
+                    obj.wordIds = wordList.join(',');
+                }
+                $.ajax({
+                    url: '/Wordutopia/refreshUserExamWordList',
+                    type: "POST",
+                    data: obj,
+                    dataType: 'html',
+                    success: function (data) {
+                        $('#tbody-wordlist').html(data);
+                        var tr = $(document).find('.tr-word-row').first();
+                        if (tr.length > 0) {
+                            var word = $(tr).attr('data-word');
+                            var pronounciation = $(tr).attr('data-pronounciation');
+                            var phrase = $(tr).attr('data-phrase');
+                            var hint = $(tr).attr('data-hint');
+                            var definition = $(tr).attr('data-definition');
+                            $('#div-databaseword').html(word);
+                            $('#div-Pronounced').html(pronounciation);
+                            $('#div-Phrase').html(phrase);
+                            $('#div-Hint').html(hint);
+                            $('#div-Definition').html(definition);
+                        }
+                        //$('#wordlist-pagination').data("current", page);
+                        var obj1 = new Object();
+                        obj1.userId = $('#userId').val();
+                        obj1.totalWordCount = $('#totalWordCount').val();
+                        obj1.index = parseInt(parseInt($('#hfn-index').val()) + 1);
+                        obj1.searchText = $('#ipt-word-search').val();
+                        obj1.sortBy = $('#hfn-sortby').val();
+                        obj1.sortOrder = $('#hfn-sortorder').val();
+                        $.ajax({
+                            url: '/Wordutopia/refreshUserExamWordListPagination',
+                            type: "POST",
+                            data: obj1,
+                            dataType: 'html',
+                            success: function (data) {
+                                $('#nav-pagination').html(data);
+                                $('#div-page-count').html('<p>Page ' + parseInt(parseInt($('#hfn-index').val()) + 1) + ' of ' + Math.ceil(parseFloat($('#totalWordCount').val()) / parseFloat(10)) + '</p>')
+                                //$('#div-page-count').html('<p>Page ' + parseInt(parseInt($('#hfn-index').val()) + 1) + ' of Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalWordCount) / Convert.ToDouble(10))))</p>')
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    });
+
+    $(document).on('click', '.ckb-word-item', function () {
+        var wordId = $(this).attr('data-wordid');
+        if ($(this).prop("checked") == true) {
+            wordList.push(wordId);
+            $('#selected-item-count').text(" " + parseInt(parseInt($('#selected-item-count').text()) + parseInt(1)));
+        }
+        else {
+            wordList.splice($.inArray(wordId, wordList), 1);
+            $('#selected-item-count').text(" " + parseInt(parseInt($('#selected-item-count').text()) - parseInt(1)));
+        }
+        //console.log(wordList);
+    });
+
+</script>
+
+<script>
+
+    $(document).on('click', '#a-create-testformat', function () {
+        if (wordList.length == 0) {
+            toastrError('Please select a word');
+        }
+        else {
+            var encodedString = btoa(wordList.join(','));
+            window.location.href = "/Sharing/SetTestFormat/" + encodedString;
+        }
+    });
+
+</script>
+
+
+<script>
+    function sortList() {
+        var searchText = $('#ipt-word-search').val();
+        $('#hfn-index').val(0);
+        var obj = new Object();
+        obj.userId = $('#userId').val();
+        obj.totalWordCount = $('#totalWordCount').val();
+        obj.index = parseInt($('#hfn-index').val());
+        obj.searchText = searchText;
+        obj.sortBy = $('#hfn-sortby').val();
+        obj.sortOrder = $('#hfn-sortorder').val();
+        if (wordList.length == 0) {
+            obj.wordIds = "";
+        }
+        else {
+            obj.wordIds = wordList.join(',');
+        }
+        $.ajax({
+            url: '/Wordutopia/refreshUserExamWordList',
+            type: "POST",
+            data: obj,
+            dataType: 'html',
+            success: function (data) {
+                $('#tbody-wordlist').html(data);
+                var tr = $(document).find('.tr-word-row').first();
+                if (tr.length > 0) {
+                    var word = $(tr).attr('data-word');
+                    var pronounciation = $(tr).attr('data-pronounciation');
+                    var phrase = $(tr).attr('data-phrase');
+                    var hint = $(tr).attr('data-hint');
+                    var definition = $(tr).attr('data-definition');
+                    $('#div-databaseword').html(word);
+                    $('#div-Pronounced').html(pronounciation);
+                    $('#div-Phrase').html(phrase);
+                    $('#div-Hint').html(hint);
+                    $('#div-Definition').html(definition);
+                }
+                //$('#wordlist-pagination').data("current", page);
+                var obj1 = new Object();
+                obj1.userId = $('#userId').val();
+                obj1.totalWordCount = $('#totalWordCount').val();
+                obj1.index = parseInt(parseInt($('#hfn-index').val()) + 1);
+                obj1.searchText = $('#ipt-word-search').val();
+                obj1.sortBy = $('#hfn-sortby').val();
+                obj1.sortOrder = $('#hfn-sortorder').val();
+                console.log(obj1);
+                $.ajax({
+                    url: '/Wordutopia/refreshUserExamWordListPagination',
+                    type: "POST",
+                    data: obj1,
+                    dataType: 'html',
+                    success: function (data) {
+                        $('#nav-pagination').html(data);
+                        $('#div-page-count').html('<p>Page ' + parseInt(parseInt($('#hfn-index').val()) + 1) + ' of ' + Math.ceil(parseFloat($('#totalWordCount').val()) / parseFloat(10)) + '</p>')
+                        //Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalWordCount) / Convert.ToDouble(10))))</p>')
+                    }
+                });
+            }
+        });
+    }
+
+
+    $(document).on('click', '#word-asc', function () {
+        $('#hfn-sortby').val('WORD');
+        $('#hfn-sortorder').val('ASC');
+        sortList();
+        $(this).css('opacity', '1');
+        $('#word-desc').css('opacity', '.3');
+    });
+
+    $(document).on('click', '#word-desc', function () {
+        $('#hfn-sortby').val('WORD');
+        $('#hfn-sortorder').val('DESC');
+        sortList();
+        $(this).css('opacity', '1');
+        $('#word-asc').css('opacity', '.3');
+    });
+
+    $(document).on('click', '#score-asc', function () {
+        $('#hfn-sortby').val('SCORE');
+        $('#hfn-sortorder').val('ASC');
+        sortList();
+        $(this).css('opacity', '1');
+        $('#score-desc').css('opacity', '.3');
+    });
+
+    $(document).on('click', '#score-desc', function () {
+        $('#hfn-sortby').val('SCORE');
+        $('#hfn-sortorder').val('DESC');
+        sortList();
+        $(this).css('opacity', '1');
+        $('#score-asc').css('opacity', '.3');
+    });
+
+
+</script>
+
+
+

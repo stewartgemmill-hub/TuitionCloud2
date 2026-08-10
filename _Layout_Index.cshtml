@@ -1,0 +1,159 @@
+﻿@{
+    var assemblyVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().ToString();
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+    <!--Favicon-->
+    <link rel="shortcut icon" href="~/Content/img/favicon.png">
+    <title>Tution Cloud</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="~/Content/img/favicon.ico" type="image/favicon">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href=@Url.Content("/Content/css/bootstrap.min.css")>
+    <!-- Main CSS -->
+    <link rel="stylesheet" href=@Url.Content("/Content/css/style.css?v=" + assemblyVersion)>
+    <!-- Raleway Font-->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+  
+    <!-- Bootstrap core JavaScript -->
+    @*<script src="/Content/js/jquery.min.js"></script>*@
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"></script>
+    <script src="/Content/js/bootstrap.bundle.min.js"></script>
+    <!--Toatsr-->
+    <link href="~/Content/Plugins/toastr/toastr.min.css" rel="stylesheet" />
+    <script src="~/Content/Plugins/toastr/toastr.min.js"></script>
+    <script src="~/Content/Plugins/toastr/toastrConfig.js"></script>
+
+    <!--Sweet alert-->
+    <link href="~/Content/Plugins/SweetAlert/sweetalert.css" rel="stylesheet" />
+    <script src="~/Content/Plugins/SweetAlert/sweetalert.min.js"></script>
+
+</head>
+<body>
+
+    <!-- HEADER START -->
+    <header>
+        <div class="wraper headerPost">
+            <div class="container">
+                <div class="row ">
+                    <div class="col-lg-5 col-md-4 col-sm-12 ">
+                        <div class="logo">
+                            <div class="Lgo">
+                                <a href="/Home/Index">
+                                    <img src="~/Content/img/logo.png" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-8 col-sm-12">
+                        <!-- Navigation -->
+                        <nav class="navbar navbar-expand-md">
+                            <button class="navbar-toggler Toggbtn" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                                <i class="fas fa-bars"></i>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarResponsive">
+                                <ul class="topLinks-header text-center">
+                                    <li><a href="/Home/Index">HOME</a></li>
+                                    <li><a href="/Home/About">ABOUT</a></li>
+                                    <li><a href="/Home/News">NEWS</a></li>
+                                    <li><a href="/Home/Contact">CONTACT</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <div>
+        @RenderBody()
+    </div>
+
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-5">
+                    <h5 class="footerTitle">Call Us Now</h5>
+                    <p class="ftrConts">+613124566</p>
+                    <p class="ftrConts">+613124566</p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-7">
+                    <h5 class="footerTitle">Connect with Us</h5>
+                    <ul class="socialLink">
+                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-skype"></i></a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 col-md-5 col-sm-12">
+                    <div class="form-group">
+                        <label>Subscribe with us</label>
+                        <input type="email" class="subscribeInpt" placeholder="Your Email" />
+                        <input type="button" class="subscribeBtn" value="Subscribe" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wraper footerBottom">
+            <div class="container">
+                <div class="row">
+                    <p class="col-md-6">© @DateTime.Now.Year - Stewart Gemmill, All rights reserved</p>
+                    <div class="col-md-6">
+                        <ul class="ftrLink">
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Help Desk</a></li>
+                            <li><a href="#">Support</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+    @*<script src="/Scripts/jquery.validate.js"></script>*@
+    @*<script src="/Scripts/jquery.validate.unobtrusive.js"></script>*@
+    @*<script src="/Scripts/jquery.unobtrusive-ajax.js"></script>*@
+    @*<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
+    @*<script type="text/javascript">
+        $(function () {
+            $('#scrollToBottom').bind("click", function () {
+                //$('html, body').animate({ scrollTop: $('.bannerTxt').offset().top }, 1200);
+                $('html, body').animate({ scrollTop: 1100 }, 1200);
+                return false;
+            });
+            $('#scrollToTop').bind("click", function () {
+                $('html, body').animate({ scrollTop: 0 }, 1200);
+                return false;
+            });
+        });
+    </script>*@
+    <script type = "text/javascript">
+    $(function () {
+    $('#scrollToBottom').on('click', function(e) {
+    e.preventDefault();
+    $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top}, 500, 'linear');
+    });
+    $("#scrollToTop").click(function() {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+    return false;
+    });
+    });
+    </script>
+    @Scripts.Render("~/bundles/jqueryval")
+</body>
+</html>

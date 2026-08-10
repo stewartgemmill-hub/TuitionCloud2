@@ -1,0 +1,211 @@
+﻿@{
+    var assemblyVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().ToString();
+
+    var _UserDetails = new TutionCloudWeb.Models.Database.tUser();
+
+    try
+    {
+        _UserDetails = (TutionCloudWeb.Models.Database.tUser)Session["User"];
+    }
+    catch (Exception ex)
+    {
+        _UserDetails = null;
+    }
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+    <!--Favicon-->
+    <link rel="shortcut icon" href="~/Content/img/favicon.png">
+
+    <title>Wordutopia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="~/Content/img/favicon.png" type="image/favicon">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href=@Url.Content("/Content/css/bootstrap.min.css")>
+
+    <!-- Raleway Font-->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+
+    <!-- Bootstrap core JavaScript -->
+    @*<script src="/Content/js/jquery.min.js"></script>*@
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"></script>
+    <script src="/Content/js/bootstrap.bundle.min.js"></script>
+
+    <!-- tiny bootstrap pagination-->
+    <link href="~/Content/Plugins/TimyBootstrapPagination/blade-pagination.css" rel="stylesheet" />
+    <script src="~/Content/Plugins/TimyBootstrapPagination/jquery.blade-pagination.js"></script>
+
+    <!--Toatsr-->
+    <link href="~/Content/Plugins/toastr/toastr.min.css" rel="stylesheet" />
+    <script src="~/Content/Plugins/toastr/toastr.min.js"></script>
+    <script src="~/Content/Plugins/toastr/toastrConfig.js"></script>
+
+    <!--Sweet alert-->
+    <link href="~/Content/Plugins/SweetAlert/sweetalert.css" rel="stylesheet" />
+    <script src="~/Content/Plugins/SweetAlert/sweetalert.min.js"></script>
+
+    <!--Data table-->
+    <link href="~/Content/Datatable/datatables.min.css" rel="stylesheet" />
+    <script src="~/Content/Datatable/datatables.min.js"></script>
+
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href=@Url.Content("/Content/css/style.css?v=" + assemblyVersion)>
+
+</head>
+<body>
+    <!-- HEADER START -->
+    @{
+        var action = ViewContext.RouteData.Values["action"].ToString().ToLower();
+        var controller = ViewContext.RouteData.Values["controller"].ToString().ToLower();
+
+
+        byte[] byt = System.Text.Encoding.UTF8.GetBytes("1");
+
+        // convert the byte array to a Base64 string
+
+        var mainPanelIndex = Convert.ToBase64String(byt);
+
+    }
+    <header>
+        <div class="wraper headerPost">
+            <div class="container">
+                <div class="logo">
+                    <div class="Lgo Lgo1">
+                        <a href="/Home/Index">
+                            <img src="~/Content/img/logo.png" />
+                        </a>
+                    </div>
+                </div>
+                <div class=" midHead ">
+                    <ul class="topLinks-header text-center">
+                        @*<li><a href="/Wordutopia/Home"><i class="fas fa-user-alt"></i>Wordutopia</a></li>*@
+                        @*<li><a href="/Wordutopia/Home"><i class="fas fa-user-alt"></i>@_UserDetails.Forename @_UserDetails.Surname</a></li>*@
+                        <li><a href="/Wordutopia/Home"><i class="fas fa-user-alt"></i>@_UserDetails.Username</a></li>
+
+                        <li><a href="/User/Logout">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="wraper header-topbar">
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-md">
+                    <button class="navbar-toggler Toggbtn" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="topLinks-head text-center">
+                            <li class="@(controller == "wordutopia" && action == "home"?"active":"")"><a href="/Home/Wordutopia">HOME</a></li>
+                            <li class="@(controller == "wordutopia" && action == "words" ? "active" : "")"><a href="/Wordutopia/Words">WORDS</a></li>
+                            <li class="@(controller == "wordutopia" && action == "notes" ? "active" : "")"><a href="/Wordutopia/Notes">NOTES</a></li>
+                            <li class="@(controller == "wordutopia" && action == "favourites" ? "active" : "")"><a href="/Wordutopia/Favourites">FAVOURITES</a></li>
+                            <li class="@(controller == "wordutopia" && action == "skiplist" ? "active" : "")"><a href="/Wordutopia/SkipList">SKIP LIST</a></li>
+                            <li class="@(controller == "wordutopia" && action == "ReverceTestsNew" ? "active" : "")"><a href="/Wordutopia/ReverceTestsNew/@mainPanelIndex" id="a_ReverceTests">REVERSE TEST</a></li>
+
+                            @*@if (controller == "wordutopia" && (action == "reversetest" || action == "generatecrossword" || action == "crossword" || action == "crosswordarchives"))
+                                {
+                                    <li class="active"><a href="/Wordutopia/ReverseTest/@mainPanelIndex">REVERSE TEST</a></li>
+                                }
+                                else
+                                {
+                                    <li class=""><a href="/Wordutopia/ReverseTest/@mainPanelIndex">REVERSE TEST</a></li>
+                                }*@
+                            <li class="@(controller == "wordutopia" && action == "reviewwords" ? "active" : "")"><a href="/Wordutopia/ReviewWords">REVIEW WORDS</a></li>
+                            <li class="@(controller == "wordutopia" && action == "exams" ? "active" : "")"><a href="/Wordutopia/Exams">EXAMS</a></li>
+
+
+                            <li class="@(controller == "Sharing" && action == "Sharings" ? "active" : "")"><a href="/Sharing/Sharings" id="a_ClickSharing">SHARING</a></li>
+                            <li class="@(controller == "wordutopia" && action == "OnlineCommunity" ? "active" : "")"><a href="/Wordutopia/OnlineCommunity" id="a_ClickOnlineCommunitys">ONLINE COMMUNITY</a></li>
+
+
+                            <li class="@(controller == "wordutopia" && action == "mainpanel" ? "active" : "")"><a href="/Wordutopia/MainPanel/@mainPanelIndex">MAIN PANEL</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div>
+        @RenderBody()
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-5">
+                    <h5 class="footerTitle">Call Us Now</h5>
+                    <p class="ftrConts">+613124566</p>
+                    <p class="ftrConts">+613124566</p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-7">
+                    <h5 class="footerTitle">Connect with Us</h5>
+                    <ul class="socialLink">
+                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-skype"></i></a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 col-md-5 col-sm-12">
+                    <div class="form-group">
+                        <label>Subscribe with us</label>
+                        <input type="email" class="subscribeInpt" placeholder="Your Email" />
+                        <input type="button" class="subscribeBtn" value="Subscribe" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wraper footerBottom">
+            <div class="container">
+                <div class="row">
+                    <p class="col-md-6">© @DateTime.Now.Year - Stewart Gemmill, All rights reserved</p>
+                    <div class="col-md-6">
+                        <ul class="ftrLink">
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Help Desk</a></li>
+                            <li><a href="#">Support</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+    <script type="text/javascript">
+        $(function () {
+            $('#scrollToBottom').bind("click", function () {
+                $('html, body').animate({ scrollTop: $('.bannerTxt').offset().top }, 1200);
+                return false;
+            });
+            $('#scrollToTop').bind("click", function () {
+                $('html, body').animate({ scrollTop: 0 }, 1200);
+                return false;
+            });
+        });
+
+        $("#navbarResponsive > ul > li").click(function () {
+            //alert($(this).text());
+            //var values = $(this).text();
+            //if (values == "SHARING") {
+            //    $(this).attr("class", "active");
+            //    //$("#a_ClickSharing").css({ "color": "red" });
+            //}
+
+        });
+
+    </script>
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+</body>
+</html>

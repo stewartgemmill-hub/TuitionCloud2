@@ -1,0 +1,176 @@
+﻿@{ 
+    var assemblyVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().ToString();
+
+}
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Required meta tags -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="icon" href="~/Quester/img/favicon.ico" type="image/favicon" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Quester/css/bootstrap.min.css" />
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Quester/css/style.css" />
+
+    @*........................................................................*@
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"></script>
+    <script src="/Content/js/bootstrap.bundle.min.js"></script>
+
+
+
+    <!-- tiny bootstrap pagination-->
+    <link href="~/Quester/Content/Plugins/TimyBootstrapPagination/blade-pagination.css" rel="stylesheet" />
+    <script src="~/Quester/Content/Plugins/TimyBootstrapPagination/jquery.blade-pagination.js"></script>
+
+    <!--Toatsr-->
+    <link href="~/Quester/Content/Plugins/toastr/toastr.min.css" rel="stylesheet" />
+    <script src="~/Quester/Content/Plugins/toastr/toastr.min.js"></script>
+    <script src="~/Quester/Content/Plugins/toastr/toastrConfig.js"></script>
+
+    <!--Sweet alert-->
+    <link href="~/Quester/Content/Plugins/SweetAlert/sweetalert.css" rel="stylesheet" />
+    <script src="~/Quester/Content/Plugins/SweetAlert/sweetalert.min.js"></script>
+
+    <!--Data table-->
+    <link href="~/Quester/Content/Datatable/datatables.min.css" rel="stylesheet" />
+    <script src="~/Quester/Content/Datatable/datatables.min.js"></script>
+
+    @*..................this to start...................*@
+    <!-- Main CSS -->
+    <link rel="stylesheet" href=@Url.Content("/Content/css/style.css?v=" + assemblyVersion) />
+
+
+
+
+
+    @*................................................................................*@
+
+    <!-- Raleway Font-->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
+    <!-- lato Font-->
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous" />
+
+
+    <title>Quester</title>
+</head>
+
+<body>
+    <!-- HEADER START -->
+    <header>
+        <div class="wraper headerPost">
+            <div class="container">
+                <div class="logo">
+                    <div class="Lgo Lgo1">
+                        <a href="index.html">
+                            <img src="~/Quester/img/logo.png" />
+                        </a>
+                    </div>
+                </div>
+                <div class=" midHead ">
+                    <ul class="topLinks-header text-center">
+                        <li><a href="#"><i class="fas fa-user-alt"></i>Quester</a></li>
+                        <li><a href="#">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="wraper header-topbar">
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-md">
+                    <button class="navbar-toggler Toggbtn" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="topLinks-head text-center">
+                            <li class="active"><a href="">HOME</a></li>
+                            <li><a href="/Quester/Quester_Words">QUESTIONS</a></li>
+                            <li><a href="">NOTES</a></li>
+                            <li><a href="">FAVOURITES</a></li>
+                            <li><a href="">SKIP LIST</a></li>
+                            <li><a href="">REVERSE TEST</a></li>
+                            <li><a href="">EXAMS</a></li>
+                            <li><a href="">SHARING</a></li>
+                            <li><a href="">REVIEW QUESTIONS</a></li>
+                            <li><a href="">MAIN PANEL</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+  
+    @RenderBody()
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-5">
+                    <h5 class="footerTitle">Call Us Now</h5>
+                    <p class="ftrConts">+613124566</p>
+                    <p class="ftrConts">+613124566</p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-7">
+                    <h5 class="footerTitle">Connect with Us</h5>
+                    <ul class="socialLink">
+                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-skype"></i></a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 col-md-5 col-sm-12">
+                    <div class="form-group">
+                        <label>Subscribe with us</label>
+                        <input type="email" class="subscribeInpt" placeholder="Your Email" />
+                        <input type="button" class="subscribeBtn" value="Subscribe" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wraper footerBottom">
+            <div class="container">
+                <div class="row">
+                    <p class="col-md-6">2019 - Stewart Gemmill, All rights reserved</p>
+                    <div class="col-md-6">
+                        <ul class="ftrLink">
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Help Desk</a></li>
+                            <li><a href="#">Support</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/Quester/js/jquery.min.js"></script>
+    <script src="~/Quester/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#scrollToBottom1').bind("click", function () {
+                $('html, body').animate({ scrollTop: ($('.Slider').offset().top +$('.Slider').height() ) }, 1200);
+                return false;
+            });
+            //$('#scrollToTop').bind("click", function () {
+//                $('html, body').animate({ scrollTop: 0 }, 1200);
+//                return false;
+//            });
+        });
+    </script>
+</body>
+</html>
+

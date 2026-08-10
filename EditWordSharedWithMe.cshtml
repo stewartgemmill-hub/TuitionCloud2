@@ -1,0 +1,352 @@
+﻿@model TutionCloudWeb.Models.PostModel.Word.EditWord
+@{
+    ViewBag.Title = "EditWord";
+    Layout = "~/Views/Shared/_Layout_Wordutopia_Home.cshtml";
+}
+
+<style>
+    .field-validation-error {
+        color: red;
+    }
+</style>
+
+<section>
+    <div class="container">
+
+        <div class="tstsec2" style="padding:25px 0;">
+            <h5 class=" text-left" style="border-bottom: 1px solid #dddddd85; padding: 0 0 10px;">Wordutopia- Edit Word</h5>
+        </div>
+
+        @Html.HiddenFor(z => z.word, new { Value = Model.word, id = "Existword" })
+        <div class="createNotes-div">
+            <span id="error-invalid-details" style="display:none;color:red;"></span>
+            @using (Ajax.BeginForm("EditWordSharedWithMe", "Sharing", null, new AjaxOptions
+        {
+            HttpMethod = "POST",
+            OnSuccess = "editwordSuccess",
+            OnFailure = "editwordFailure",
+        }, new { id = "tutioncloud-editword" }))
+            {
+                @Html.ValidationSummary(true)
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(z => z.userId, new { Value = Model.userId })
+                @Html.HiddenFor(z => z.wordId, new { Value = Model.wordId, id = "Wordid" })
+                @Html.HiddenFor(z => z.redirectTo, new { Value = Model.redirectTo })
+                @Html.HiddenFor(z => z.mainPanelIndex, new { Value = Model.mainPanelIndex })
+                //basheer on 03/1/2019 to store oldword
+
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4">
+                            <label class="text-left">Word</label>
+                        </div>
+                        <div class="col-lg-9 col-md-8">
+                            @*<input type="text" class="form-control">*@
+                            @Html.TextBoxFor(m => m.word, new { id = "wording", autocomplete = "off", @class = "form-control", onfocusout = "Checkshare()" })
+                            @Html.ValidationMessageFor(model => model.word)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4">
+                            <label class="text-left">Pronounciation</label>
+                        </div>
+                        <div class="col-lg-9 col-md-8">
+                            @*<input type="text" class="form-control">*@
+                            @Html.TextBoxFor(m => m.pronounciation, new { autocomplete = "off", @class = "form-control", onfocusout = "Enableupdate()" })
+                            @Html.ValidationMessageFor(model => model.pronounciation)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4">
+                            <label class="text-left">Phrase</label>
+                        </div>
+                        <div class="col-lg-9 col-md-8">
+                            @*<input type="text" class="form-control">*@
+                            @Html.TextAreaFor(m => m.phrase, new { autocomplete = "off", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.phrase)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4">
+                            <label class="text-left">Hint</label>
+                        </div>
+                        <div class="col-lg-9 col-md-8">
+                            @*<input type="text" class="form-control">*@
+                            @Html.TextAreaFor(m => m.hint, new { autocomplete = "off", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.hint)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4">
+                            <label class="text-left">Definition</label>
+                        </div>
+                        <div class="col-lg-9 col-md-8">
+                            @*<textarea style="min-height: 100px;" class="form-control"></textarea>*@
+                            @Html.TextAreaFor(m => m.definition, new { autocomplete = "off", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.definition)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4"> </div>
+                        <div class="col-lg-9 col-md-8">
+                            @*<input type="checkbox"> Share Online*@
+                            @Html.CheckBoxFor(z => z.sharOnline, new { id = "chkOnlineshare" })  Share Online
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4"> </div>
+                        <div class="col-lg-9 col-md-8">
+                            <button type="submit" style="cursor:pointer;" class="button_sty" id="btnupdate">UPDATE</button>
+                            <a id="btn-editword-cancel" style="cursor:pointer;margin-left:10px;" class="button_sty">CANCEL</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="lowerNav">
+            <nav class="navbar navbar-expand-sm  justify-content-center">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="https://en.wikipedia.org/wiki/Main.page" target="_blank">Wikipedia</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.google.com/search?q=calculator" target="_blank">Calculator</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.google.com/maps/" target="_blank">Maps</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.google.com/search?ei=DyM3XNbMEdH6kwW-lpLgCA&q=google+currency+converter&oq=google+currency+converter&gs_l=psy-ab.3..35i39j0i7i30l2j0j0i7i30j0j0i7i30j0l3.211.5629..6378...0.0..0.282.1593.0j6j3......0....1..gws-wiz.......0i71j0i30j0i131i67j35i304i39.BbyIqE0P5UY" target="_blank">Currency Converter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.timeanddate.com/worldclock/full.html" target="_blank">World Clocks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://translate.google.com/" target="_blank">Translator</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+</section>
+
+<script>
+    function editwordFailure(data) {
+        toastrError(data.message);
+    }
+
+    function editwordSuccess(data) {
+        if (data.status) {
+            toastrSuccess("Word edited")
+            setTimeout(function () {
+
+                var redirectTo = $('#redirectTo').val();
+                var mainPanelIndex = $('#mainPanelIndex').val();
+                var result = btoa(mainPanelIndex)
+                if (redirectTo == "MainPanel") {
+                    window.location.href = "/Wordutopia/MainPanel/" + result;
+                }
+                else if (redirectTo == "Words") {
+                    window.location.href = "/Sharing/WordListSharedwithMe";
+                }
+                else if (redirectTo == "Favourites") {
+                    window.location.href = "/Wordutopia/Favourites";
+                }
+                else if (redirectTo == "SkipList") {
+                    window.location.href = "/Wordutopia/SkipList";
+                }
+                else if (redirectTo == "GenerateCrossword") {
+                    window.location.href = "/Wordutopia/GenerateCrossword";
+                }
+                else if (redirectTo == "ReviewWords") {
+                    window.location.href = "/Wordutopia/ReviewWords";
+                }
+                else if (redirectTo == "TestSummary") {
+                    window.location.href = "/Wordutopia/TestSummary/" + result;
+                }
+                else {
+                    window.location.href = "/Sharing/WordListSharedwithMe";
+                }
+                //history.back(1);
+            }, 400);
+        }
+        else {
+            $('#error-invalid-details').text(data.message);
+            $('#error-invalid-details').show();
+        }
+    }
+
+
+    $(document).ready(function () {
+        var redirectTo = $('#redirectTo').val();
+        var mainPanelIndex = $('#mainPanelIndex').val();
+        var result = btoa(mainPanelIndex)
+        if (redirectTo == "MainPanel") {
+            //window.location.href = "/Wordutopia/MainPanel/" + result;
+            $('#btn-editword-cancel').attr("href", "/Wordutopia/MainPanel/" + result);
+        }
+        else if (redirectTo == "Words") {
+            //window.location.href = "/Wordutopia/Words";
+            $('#btn-editword-cancel').attr("href", "/Sharing/WordListSharedwithMe");
+        }
+        else if (redirectTo == "Favourites") {
+            //window.location.href = "/Wordutopia/Favourites";
+            $('#btn-editword-cancel').attr("href", "/Wordutopia/Favourites");
+        }
+        else if (redirectTo == "SkipList") {
+            $('#btn-editword-cancel').attr("href", "/Wordutopia/SkipList");
+        }
+        else if (redirectTo == "GenerateCrossword") {
+            $('#btn-editword-cancel').attr("href", "/Wordutopia/GenerateCrossword");
+        }
+        else if (redirectTo == "ReviewWords") {
+            $('#btn-editword-cancel').attr("href", "/Wordutopia/ReviewWords");
+        }
+        else if (redirectTo == "TestSummary") {
+            $('#btn-editword-cancel').attr("href", "/Wordutopia/TestSummary/" + result);
+        }
+        else {
+            //window.location.href = "/Wordutopia/Words";
+            $('#btn-editword-cancel').attr("href", "/Sharing/WordListSharedwithMe");
+        }
+    });
+
+</script>
+
+@* Basheer on 02/01/2019 to check if its already shared or not *@
+<script>
+
+    //function Enableupdate() {
+    //    $("#btnupdate").prop('disabled', false);
+    //}
+
+    function Checkshare() {
+
+        var word = $("#wording").val();
+        var existword = $("#Existword").val();
+        if (word !== "") {
+            if (word.trim() !== existword.trim()) {
+                $.ajax({
+                    url: '/Wordutopia/Sharecheck?word=' + word,
+                    type: "GET",
+                    dataType: 'JSON',
+                    success: function (data) {
+                        if (data > 0) {
+                            //toastrError("Sorry, that word already exists in the Online Community Database Of Words.");
+                            swal({
+                                type: "error",
+                                title: "Sorry!",
+                                text: "This word has already been added to your Database.",
+                                showCloseButton: true,
+                                // icon: "error",
+                                //showCancelButton: true,
+                                //showConfirmButton: false,
+                                confirmButtonText: 'Cancel',
+
+                                //  confirmButtonColor: "#ff1a1a",
+
+                            },
+                          function (isConfirm) {
+                              window.location.href = "/Wordutopia/Words";
+                          })
+                            $("#btnupdate").prop('disabled', true);
+
+                        }
+                        else {
+                            $("#btnupdate").prop('disabled', false);
+                        }
+                    }
+                });
+            }
+            else {
+                $("#btnupdate").prop('disabled', false);
+            }
+
+        }
+    }
+    $("#chkOnlineshare").change(function () {
+        $("#btnupdate").prop('disabled', false);
+        if ($(this).prop("checked") == true) {
+            //if (chkwordid > 0) {
+            //var word = $("#word").val();
+            //if (word !== "") {
+            //    $.ajax({
+            //        url: '/Wordutopia/Sharecheck?word=' + word,
+            //        type: "GET",
+            //        dataType: 'JSON',
+            //        success: function (data) {
+            //            if (data > 0) {
+            //                toastrError("Sorry, that word already exists in the Online Community Database Of Words.");
+            //                $("#btnupdate").prop('disabled', true);
+
+            //            }
+            //            else {
+            //                $("#btnupdate").prop('disabled', false);
+            //            }
+            //        }
+            //    });
+
+            //}
+            //}
+            //else
+            //{
+            var word = $("#wording").val();
+            if (word !== "") {
+                $.ajax({
+                    url: '/Wordutopia/Sharecheck?word=' + word,
+                    type: "GET",
+                    dataType: 'JSON',
+                    success: function (data) {
+                        if (data > 0) {
+                            //toastrError("Sorry, that word already exists in the Online Community Database Of Words.");
+
+                            swal({
+                                type: "error",
+                                title: "Sorry!",
+                                text: "Sorry, that word already exists in the ONLINE COMMUNITY database.",
+                                showCloseButton: true,
+                                // icon: "error",
+                                //showCancelButton: true,
+                                //showConfirmButton: false,
+                                confirmButtonText: 'Cancel',
+
+                                //  confirmButtonColor: "#ff1a1a",
+
+                            },
+                          function (isConfirm) {
+                              window.location.href = "/Wordutopia/Words";
+                          })
+                            $("#btnupdate").prop('disabled', true);
+
+                        }
+                        else {
+                            $("#btnupdate").prop('disabled', false);
+                        }
+                    }
+                });
+            }
+            chkwordid = 0;
+
+            //}
+        }
+        else {
+            $("#btnupdate").prop('disabled', false);
+        }
+    });
+
+</script>
+

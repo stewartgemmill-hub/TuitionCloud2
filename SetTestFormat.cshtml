@@ -1,0 +1,211 @@
+﻿
+@model TutionCloudWeb.Models.PostModel.Exam.CreateTest
+@{
+    ViewBag.Title = "CreateTest";
+    Layout = "~/Views/Shared/_Layout_Wordutopia_Home.cshtml";
+}
+<style>
+    .field-validation-error {
+        color: red;
+    }
+</style>
+<section class="Crt_formt">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="Tst_head">
+                    <h6>Share a New Test</h6>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="Crt_tst_fomt">
+                    <div class="newdrpn">
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-primary " data-toggle="dropdown">Task Dropdown List <img src="~/Content/img/rightarrow.png" /></button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" onclick="history.back()">Back</a>
+                                <a class="dropdown-item" id="A_AddSharedTestUsers">Add Shared Test Users</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Avg_scr">
+                        <p>Average score to date: 87.2%</p>
+                    </div>
+                    <div class="outer_tst">
+                        @using (Ajax.BeginForm("createtest", "Sharing", null, new AjaxOptions
+        {
+            HttpMethod = "POST",
+            OnSuccess = "createtestSuccess",
+            OnFailure = "createtestFailure",
+        }, new { id = "tutioncloud-createtest" }))
+                        {
+                            @Html.ValidationSummary(true)
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(z => z.userId, new { Value = Model.userId })
+                            @Html.HiddenFor(z => z.wordIds, new { Value = Model.wordIds })
+                            <div class="test_form">
+                                <h6>Test Details</h6>
+                                <div class="form-group">
+                                    <div class="form_al">
+                                        <label>Test Title:</label>
+                                        @*<input type="text" class="form-control" />*@
+                                        @Html.TextBoxFor(m => m.title, new { autocomplete = "off", @class = "form-control" })
+                                        @*@Html.ValidationMessageFor(model => model.title)*@
+                                        <span id="error-title" style="display:none;" class="field-validation-error">required</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="test_frm">
+                                <h6>Choose Test Format</h6>
+                                <div class="form-group">
+                                    <div class="form_al">
+                                        <label>Overall Test Time (In Minutes):</label>
+                                        @*<input type="text" class="form-control" />*@
+                                        @Html.TextBoxFor(m => m.testTime, new { autocomplete = "off", @class = "form-control" })
+                                        @*@Html.ValidationMessageFor(model => model.testTime)*@
+                                        <span id="error-testTime" style="display:none;" class="field-validation-error">required</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form_al" style="text-align:center;font-weight:600;">
+                                        OR
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form_al">
+                                        <label>Time per Word (In seconds):</label>
+                                        @*<input type="text" class="form-control" />*@
+                                        @Html.TextBoxFor(m => m.timePerWord, new { autocomplete = "off", @class = "form-control" })
+                                        @*@Html.ValidationMessageFor(model => model.timePerWord)*@
+                                        <span id="error-timePerWord" style="display:none;" class="field-validation-error">required</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                           
+                            <div class="Bttn" style="display:none;">
+                                <button type="submit" style="display:none;" id="btn-create-test_Second" class="btn tst_btn">Start Test</button>
+
+                                <button type="submit" style="display:none;" id="btn-create-test" class="btn tst_btn">Start Test</button>
+                                <button type="button" id="btn-dummy-create-test" class="btn tst_btn">Start Test</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="lowerNav">
+                    <nav class="navbar navbar-expand-sm  justify-content-center">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a href="https://en.wikipedia.org/wiki/Main.page" target="_blank">Wikipedia</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href=" https://www.google.com/search?q=calculator" target="_blank">Calculator</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://www.google.com/maps/" target="_blank">Maps</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://www.google.com/search?ei=DyM3XNbMEdH6kwW-lpLgCA&q=google+currency+converter&oq=google+currency+converter&gs_l=psy-ab.3..35i39j0i7i30l2j0j0i7i30j0j0i7i30j0l3.211.5629..6378...0.0..0.282.1593.0j6j3......0....1..gws-wiz.......0i71j0i30j0i131i67j35i304i39.BbyIqE0P5UY" target="_blank">Currency Converter</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://www.timeanddate.com/worldclock/full.html" target="_blank">World Clocks</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://translate.google.com/" target="_blank">Translator</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    //$("#btn-create-test_Second").click(function () {
+    //    var encodedString = btoa(data.id);
+    //    window.location.href = "/Wordutopia/StartTest/" + encodedString;
+    //});
+</script>
+
+
+<script>
+    $("#a_ClickSharing").css({ "color": "#98aaff" });
+    $(document).on('click', '#btn-dummy-create-test', function () {
+        var title = $('#title').val();
+        var testTime = $('#testTime').val();
+        var timePerWord = $('#timePerWord').val();
+        if (title != "" && title != null) {
+            $('#error-title').hide();
+            if ((testTime != "" && testTime != null) || (timePerWord != "" && timePerWord != null)) {
+                $('#error-timePerWord').hide();
+                $('#error-testTime').hide();
+                $('#btn-create-test').trigger('click');
+            }
+            else {
+                if ((testTime == "" || testTime == null) && (timePerWord == "" || timePerWord == null)) {
+                    $('#error-timePerWord').show();
+                    $('#error-testTime').show();
+                }
+            }
+        }
+        else {
+            $('#error-title').show();
+            if ((testTime != "" && testTime != null) || (timePerWord != "" && timePerWord != null)) {
+                $('#error-timePerWord').hide();
+                $('#error-testTime').hide();
+            }
+            else {
+                if ((testTime == "" || testTime == null) && (timePerWord == "" || timePerWord == null)) {
+                    $('#error-timePerWord').show();
+                    $('#error-testTime').show();
+                }
+            }
+        }
+    });
+
+</script>
+
+
+<script>
+    $(document).on('keypress', "#testTime , #timePerWord", function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            //display error message
+            //$("#errmsg").html("Digits Only").show().fadeOut("slow");
+            return false;
+        }
+    });
+</script>
+
+<script>
+    $("#A_AddSharedTestUsers").click(function () {
+
+        var titles = $("#title").val();
+        sessionStorage.setItem("title_Data_settestFormat",titles);
+
+        $("#btn-create-test").click();
+    });
+
+
+    function createtestFailure(data) {
+        toastrError(data.message);
+    }
+
+    function createtestSuccess(data) {
+        if (data.status) {
+            toastrSuccess("Exam created")
+            setTimeout(function () {
+                var encodedString = btoa(data.id);
+                window.location.href = "/Sharing/AddSharedTestUsers/" + encodedString;
+            }, 400);
+        }
+        else {
+            toastrError(data.message);
+        }
+    }
+
+</script>
+

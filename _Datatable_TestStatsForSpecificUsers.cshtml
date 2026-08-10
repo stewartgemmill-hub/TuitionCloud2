@@ -1,0 +1,79 @@
+﻿@model TutionCloudWeb.Model.Wordutopia.ShareAnArchivedTestModel
+
+
+<table class="table table-hover newTable table-bordered" id="DatatatableBind" style="border:none;">
+    <thead>
+        <tr>
+            <th class="tabhead">Select</th>
+            <th class="tabhead">Name</th>
+            <th class="tabhead">User Name</th>
+            <th class="tabhead">Test Name</th>
+            <th class="tabhead">Test ID</th>
+            <th class="tabhead">Test date</th>
+            <th class="tabhead">Score %</th>
+            <th class="tabhead">Options</th>
+        </tr>
+    </thead>
+    <tbody style="min-height:200px;">
+        @if (Model.ShareAnArchivedTestModel_Lists != null)
+        {
+            int a2 = 54;
+            int a3 = 1;
+            foreach (var a1 in Model.ShareAnArchivedTestModel_Lists)
+            {
+
+                DateTime resrulst = Convert.ToDateTime(a1.CreatedDate);
+                string dd = resrulst.ToString("dd");
+                string MM = resrulst.ToString("MM");
+                string yyyy = resrulst.ToString("yyyy");
+                string hh = resrulst.ToString("hh");
+                string HH = resrulst.ToString("hh");
+                string mm = resrulst.ToString("mm");
+                string ss = resrulst.ToString("ss");
+                string tt = resrulst.ToString("tt");
+                string dataeTotals = dd + "/" + MM + "/" + yyyy + " " + hh + ":" + mm + " " + tt;
+                
+
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>@a1.SurName</td>
+                    <td>@a1.SearchName</td>
+                    <td>@a1.Exam_TestTitle</td>
+                    <td>@a1.TestID</td>
+                    <td>@dataeTotals</td>
+                    @if (a3 == 3)
+                    {
+                        <td>58</td>
+                    }
+                    else
+                    {
+                        <td>62</td>
+                    }
+                    
+                    <td class="toggle_dropdown_cust ">
+                        <div class="togButns attachmts archive">
+                            <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                            <div class="dropdown-menu labes" aria-labelledby="dropdownMenuButton">@*.ToString("yyyy-MM-dd HH:mm:ss tt")*@
+                                <span class="edts" style="cursor:pointer"><a class="class_Delete" Delete-Test-ID="@a1.TestID" Delete-UserId ="@a1.SentUserID" Delete-Date-item="@resrulst.ToString("yyyy-MM-dd HH:mm:ss tt")">Delete</a></span>
+                                <span class="edts"><a href="@Url.Action("TestStatsForSpecificUsers_Views", "Sharing", new { CreatedOn = resrulst.ToString("yyyy-MM-dd HH:mm:ss tt") })" viewitem="@resrulst.ToString("yyyy-MM-dd HH:mm:ss tt")">View Details</a></span>                                
+                                @*<span class="edts"><a href="#"> View Details</a></span>*@
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            
+            a3 = a3 + 1;
+            }
+        }
+    </tbody>
+</table>
+
+<script>
+    $("#DatatatableBind").dataTable({
+        "order": [[4, "desc"]]
+    });
+
+  
+</script>

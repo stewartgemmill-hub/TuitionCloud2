@@ -1,0 +1,823 @@
+﻿@model TutionCloudWeb.Models.PostModel.OnlineCommunity.WordClass
+    @{
+        ViewBag.Title = "CreateaWordListToShare";
+        Layout = "~/Views/Shared/_Layout_Wordutopia_Home.cshtml";
+        var totalWordCount = Model.totalWordCount;
+         
+    }
+    @Html.HiddenFor(z => z.userId, new { Value = Model.userId })
+    @Html.HiddenFor(z => z.totalWordCount, new { Value = Model.totalWordCount })
+   <input type="hidden" id="hfn-index" value="0" />
+<input type="hidden" id="hfn-sortby" value="" />
+<input type="hidden" id="hfn-sortorder" value="" />
+    <section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8 col-md-12 col-sm-12">
+                    <div class="ShareHead">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-12">
+                                <div class="shareList">
+                                    <h6>Create a Word List to Share</h6>
+                                </div>
+                            </div>
+                            <div class="col-lg-9 col-md-9 col-sm-12">
+                                <div class="form-group Srch1 ">
+                                    <label for="Name">Search By Word Name:</label>
+                                    <div class="Srchbx share-srch srbox">
+                                        <input type="text" id="ipt-word-search" class="form-control">
+                                        <button style="cursor:pointer;" id="btn-search-word">SEARCH</button>
+                                        <button style="cursor:pointer;" id="btn-search-CLEAR">CLEAR</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ShareTab">
+                        <div class="SelectAll">
+                            <span class="all">Select All</span><input type="checkbox" id="SelectAll">
+                        </div>
+                        <div class="OutTab">
+                            <input type="hidden" id="selected-item-count" value="0" />                              
+                            <div class="Table">
+                                <div class="table-responsive Tble">
+                                    <table class="table table-hover newTable table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th class="tabhead">Select</th>
+                                                <th class="tabhead">Words <div class="Ryt"> <span class="uppsort" id="word-desc"></span><span id="word-asc" class="downsort"></span></div></th>
+                                                <th class="tabhead"> Overall % Score <div class="Ryt"> <span id="score-desc" class="uppsort"></span><span id="score-asc" class="downsort"></span></div></th>
+                                                <th class="tabhead">Options</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbody-wordlist">
+                                            @{
+                                                var postModel = new TutionCloudWeb.Models.PostModel.Word.WordList();
+                                                postModel.userId = Model.userId;
+                                                postModel.index = 0;
+                                                postModel.totalWordCount = totalWordCount;
+                                                postModel.searchText = string.Empty;
+                                                postModel.sortBy = string.Empty;
+                                                postModel.sortOrder = string.Empty;
+                                            }
+                                            @Html.Partial("~/Views/Wordutopia/_pv_Wordutopia_Word_List.cshtml", postModel)
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+                                <div class="Indctor" id="div-page-count">
+                                    <p>Page 1 of @Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalWordCount) / Convert.ToDouble(10))))</p>
+                                </div>
+                                <div class="Pgntation">
+                                    <nav aria-label="Page navigation example" id="nav-pagination">
+                                       
+                                        @{
+                                            var postModelPagination = new TutionCloudWeb.Models.PostModel.Word.WordListPagination();
+                                            postModelPagination.userId = Model.userId;
+                                            postModelPagination.index = 1;
+                                            postModelPagination.totalWordCount = totalWordCount;
+                                            postModelPagination.searchText = string.Empty;
+                                            postModelPagination.sortBy = string.Empty;
+                                            postModelPagination.sortOrder = string.Empty;
+                                        }
+                                        @Html.Partial("~/Views/Wordutopia/_pv_Wordutopia_Word_List_Pagination.cshtml", postModelPagination)                                       
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="newdrpn lstdrpn wrd_sharedrpn">
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-primary " data-toggle="dropdown">Task Dropdown List <img src="~/Content/img/rightarrow.png" /></button>
+                            <div class="dropdown-menu">
+                                <a style="cursor:pointer;" class="dropdown-item" onclick="history.back()">Back</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wraper outer_form wrd_shareform">
+                        <p>Select Users To Send Words List To</p>
+                        <div class="ShareForm wraper">
+                            <form>
+                                <div class="form-group wraper">
+                                    <label class="checkbox-inline Label">
+                                        <input type="checkbox" id="checkbox_PasswordNo" value="">Select If Password Required of Shared User(s)
+                                    </label>
+                                </div>
+                                <div class="form-group wraper">
+                                    <input type="text" id="txt_Password" class="form-control Input">
+                                    <label for="password" class="Inputlabel">Password</label>
+                                </div>
+                                <div class="form-group wraper">
+                                    <input type="text" id="txt_TestID" value="@Model.TestId" readonly class="form-control Input">
+                                    <label class="Inputlabel">List ID</label>
+                                </div>
+                                <div class="form-group wraper">
+                                    <input type="text" id="txt_ListName" class="form-control Input">
+                                    <label class="Inputlabel"> List Name</label>
+                                </div>
+                                @*<div class="form-group wraper">
+                                    <label class="wraper">Search for Users to share with</label>
+                                    <input type="text" id="txt_SearchUser" class="form-control txtSrch ui-widget" placeholder="Search User" />
+                                    <label class="InputSrch"><i class="fa fa-search" aria-hidden="true"></i></label>
+                                </div>*@
+
+                                <div class="form-group wraper select_prnt">
+                                    <select class=" add_slt form-control" id="select_AddUsers"> 
+                                        <option value="" disabled selected>Enter Users Names here</option>                                
+                                    </select>
+                                    <input type="button" id="btn_AddUsers" class="add_btn" value="Add User" />
+                                </div>                    
+                                <div class="form-group wraper Send select_prnt" style="align-items:flex-end;">                                  
+                                    <select class="add_slt form-control" size="5" multiple id="select_AddList"></select>
+                                    <div class="btn_prt">
+                                        <input type="button" id="btn_RemoveList" class="add_btn rmove" value="Remove" style="height:40px;" />
+                                        <input type="button" id="btn_SendList" class="add_btn" value="Send List" style="height:40px;" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-md-12 col-sm-12">
+                    <div class="lowerNav">
+                        <nav class="navbar navbar-expand-sm  justify-content-center">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a href="https://en.wikipedia.org/wiki/Main.page" target="_blank">Wikipedia</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="https://www.google.com/search?q=calculator" target="_blank">Calculator</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="https://www.google.com/maps/" target="_blank">Maps</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="http://www.xe.com/currencyconverter/" target="_blank">Currency Converter</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="https://www.timeanddate.com/worldclock/full.html" target="_blank">World Clocks</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="https://translate.google.com" target="_blank">Translator</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+
+    //$(document).ready(function () { 
+    $("#a_ClickSharing").css({ "color": "#98aaff" });
+    var wordList = [];
+    $(document).on('click', '.ckb-word-item', function () {
+        var wordId = $(this).attr('data-wordid');
+        if ($(this).prop("checked") == true) {
+            wordList.push(wordId);
+            $('#selected-item-count').text(" " + parseInt(parseInt($('#selected-item-count').text()) + parseInt(1)));
+        }
+        else {
+            wordList.splice($.inArray(wordId, wordList), 1);
+            $('#selected-item-count').text(" " + parseInt(parseInt($('#selected-item-count').text()) - parseInt(1)));
+        }
+        console.log(wordList);
+    });
+    
+
+    $('#ipt-word-search').keypress(function (e) {
+
+        var key = e.which;
+        if (key == 13)  // the enter key code
+        {
+            $('#btn-search-word').click();
+            //return false;
+        }
+    });
+
+    $("#btn-search-CLEAR").click(function () {
+        $("#ipt-word-search").val("");
+        $('#btn-search-word').click();
+    });
+
+    var public_SearchItem = [];
+    var public_UserId = $('#userId').val();
+    $.ajax({
+        url: '/Sharing/GetAllUserLists',
+        dataType: "json",
+        type: "GET",
+        contentType: 'application/json; charset=utf-8',
+        async: true,
+        processData: false,
+        cache: false,
+        success: function (data) {
+            $.each(data, function (key, value) {                 
+                public_SearchItem.push({ "User": [{ "UserId": value.UserId, "Username": value.Username }] });
+                if (public_UserId != value.UserId) {
+                    $('#select_AddUsers').append($("<option></option>").attr("value", value.UserId).text(value.Username));
+                }
+
+            });
+            
+        },
+        error: function (xhr) {
+            alert(xhr);
+        }
+    });
+
+    $("#btn_AddUsers").click(function () {
+        
+        var value = $('#select_AddUsers option:selected').val();
+        var textBox = $('#select_AddUsers option:selected').text();
+        if (textBox !== '') {
+            $('#select_AddList').append($("<option></option>").attr("value", value).text(textBox));
+            $("#select_AddUsers option[value='" + value + "']").remove();
+            $("#select_AddList option[value='" + value + "']").attr('selected', true);
+        }
+        
+
+    });
+
+    $(document).on('click', '.word-delete', function () {
+        var source = $(this);
+        var wordId = $(this).attr('data-wordid');
+
+        swal({
+            title: "Are you sure?",
+            text: "Permanently delete this word from your database?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#004b8d",
+            confirmButtonText: "Yes, delete!",
+            closeOnConfirm: true
+        },
+     function (isConfirm) {
+         if (isConfirm) {
+             $.ajax({
+                 url: '/Wordutopia/deletWord?wordId=' + wordId,
+                 type: "GET",
+                 dataType: 'JSON',
+                 success: function (data) {
+                     if (data.status) {
+                         toastrSuccess("Word deleted");
+
+                         $('#totalWordCount').val(parseInt($('#totalWordCount').val() - 1));
+
+                         var islasttr = $(document).find('.tr-word-row');
+                         if (islasttr.length <= 1) {
+                             if (parseInt($('#hfn-index').val()) != 0)
+                                 $('#hfn-index').val(parseInt($('#hfn-index').val()) - 1)
+                         }
+
+
+                         var obj = new Object();
+                         obj.userId = $('#userId').val();
+                         obj.totalWordCount = $('#totalWordCount').val();
+                         obj.index = parseInt($('#hfn-index').val());
+                         obj.searchText = $('#ipt-word-search').val();
+                         obj.sortBy = $('#hfn-sortby').val();
+                         obj.sortOrder = $('#hfn-sortorder').val();
+                         $.ajax({
+                             url: '/Wordutopia/refreshUserWordList',
+                             type: "POST",
+                             data: obj,
+                             dataType: 'html',
+                             success: function (data) {
+                                 $('#tbody-wordlist').html(data);
+                                 var tr = $(document).find('.tr-word-row').first();
+                                 if (tr.length > 0) {
+                                     var word = $(tr).attr('data-word');
+                                     var pronounciation = $(tr).attr('data-pronounciation');
+                                     var phrase = $(tr).attr('data-phrase');
+                                     var hint = $(tr).attr('data-hint');
+                                     var definition = $(tr).attr('data-definition');
+                                     $('#div-databaseword').html(word);
+                                     $('#div-Pronounced').html(pronounciation);
+                                     $('#div-Phrase').html(phrase);
+                                     $('#div-Hint').html(hint);
+                                     $('#div-Definition').html(definition);
+                                 }
+                                 //$('#wordlist-pagination').data("current", page);
+                                 var obj1 = new Object();
+                                 obj1.userId = $('#userId').val();
+                                 obj1.totalWordCount = $('#totalWordCount').val();
+                                 obj1.index = parseInt(parseInt($('#hfn-index').val()) + 1);
+                                 obj1.searchText = $('#ipt-word-search').val();
+                                 obj1.sortBy = $('#hfn-sortby').val();
+                                 obj1.sortOrder = $('#hfn-sortorder').val();
+                                 $.ajax({
+                                     url: '/Wordutopia/refreshUserWordListPagination',
+                                     type: "POST",
+                                     data: obj1,
+                                     dataType: 'html',
+                                     success: function (data) {
+                                         $('#nav-pagination').html(data);
+                                         $('#div-page-count').html('<p>Page ' + parseInt(parseInt($('#hfn-index').val()) + 1) + ' of ' + Math.ceil(parseFloat($('#totalWordCount').val()) / parseFloat(10)) + '</p>')
+                                         //Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalWordCount) / Convert.ToDouble(10))))</p>')
+                                     }
+                                 });
+                             }
+                         });
+
+                     }
+                     else {
+                         toastrError(data.message);
+                     }
+                 }
+             });
+         }
+     });
+    });
+
+
+    $(document).on('click', '#delete-selected-words', function () {
+        var cbkStatus = false;
+        var wordIds = "";
+        var count = 0;
+        $(document).find('.ckb-word-item').each(function (index, value) {
+            if ($(this).prop("checked") == true) {
+                count = count + 1;
+                cbkStatus = true;
+                if (wordIds == "")
+                    wordIds = wordIds + $(this).attr('data-wordid');
+                else
+                    wordIds = wordIds + "," + $(this).attr('data-wordid');
+            }
+        });
+        if (cbkStatus == false && wordList.length <= 0) {
+            toastrError('Please select a word');
+        }
+        else {
+            swal({
+                title: "Are you sure?",
+                text: "You are about to delete the selected words!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#004b8d",
+                confirmButtonText: "Yes, delete!",
+                closeOnConfirm: true
+            },
+  function (isConfirm) {
+      if (isConfirm) {
+
+          var userId = $('#userId').val();
+          var objs = new Object();
+          objs.userId = userId;
+          objs.wordIds = wordList.join(',')
+
+          $.ajax({
+              url: '/Wordutopia/deletSelectedWords',
+              type: "POST",
+              data: objs,
+              dataType: 'JSON',
+              success: function (data) {
+                  if (data.status) {
+                      toastrSuccess("Words deleted");
+
+                      $('#selected-item-count').text("0");
+
+                      $('#totalWordCount').val(parseInt($('#totalWordCount').val() - 1));
+
+                      var islasttr = $(document).find('.tr-word-row');
+                      if (islasttr.length <= 1) {
+                          if (parseInt($('#hfn-index').val()) != 0)
+                              $('#hfn-index').val(parseInt($('#hfn-index').val()) - 1)
+                      }
+
+
+                      var obj = new Object();
+                      obj.userId = $('#userId').val();
+                      obj.totalWordCount = $('#totalWordCount').val();
+                      obj.index = parseInt($('#hfn-index').val());
+                      obj.searchText = $('#ipt-word-search').val();
+                      obj.sortBy = $('#hfn-sortby').val();
+                      obj.sortOrder = $('#hfn-sortorder').val();
+                      $.ajax({
+                          url: '/Wordutopia/refreshUserWordList',
+                          type: "POST",
+                          data: obj,
+                          dataType: 'html',
+                          success: function (data) {
+                              $('#tbody-wordlist').html(data);
+                              var tr = $(document).find('.tr-word-row').first();
+                              if (tr.length > 0) {
+                                  var word = $(tr).attr('data-word');
+                                  var pronounciation = $(tr).attr('data-pronounciation');
+                                  var phrase = $(tr).attr('data-phrase');
+                                  var hint = $(tr).attr('data-hint');
+                                  var definition = $(tr).attr('data-definition');
+                                  $('#div-databaseword').html(word);
+                                  $('#div-Pronounced').html(pronounciation);
+                                  $('#div-Phrase').html(phrase);
+                                  $('#div-Hint').html(hint);
+                                  $('#div-Definition').html(definition);
+                              }
+                              //$('#wordlist-pagination').data("current", page);
+                              var obj1 = new Object();
+                              obj1.userId = $('#userId').val();
+                              obj1.totalWordCount = $('#totalWordCount').val();
+                              obj1.index = parseInt(parseInt($('#hfn-index').val()) + 1);
+                              obj1.searchText = $('#ipt-word-search').val();
+                              obj1.sortBy = $('#hfn-sortby').val();
+                              obj1.sortOrder = $('#hfn-sortorder').val();
+                              $.ajax({
+                                  url: '/Wordutopia/refreshUserWordListPagination',
+                                  type: "POST",
+                                  data: obj1,
+                                  dataType: 'html',
+                                  success: function (data) {
+                                      $('#nav-pagination').html(data);
+                                      $('#div-page-count').html('<p>Page ' + parseInt(parseInt($('#hfn-index').val()) + 1) + ' of ' + Math.ceil(parseFloat($('#totalWordCount').val()) / parseFloat(10)) + '</p>')
+                                      //Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalWordCount) / Convert.ToDouble(10))))</p>')
+                                  }
+                              });
+                          }
+                      });
+
+                  }
+                  else {
+                      toastrError(data.message);
+                  }
+              }
+          });
+      }
+  });
+        }
+    });
+
+    $(document).on('click', '#btn-search-word', function () {
+        var searchText = $('#ipt-word-search').val();
+        searchText = $.trim(searchText);
+        $.ajax({
+            url: '/Wordutopia/WordCount?userId=' + parseInt($('#userId').val()) + '&searchText=' + searchText,
+            type: "GET",
+            dataType: 'JSON',
+            success: function (data) {
+                $('#totalWordCount').val(data);
+                var obj = new Object();
+                obj.userId = $('#userId').val();
+                obj.totalWordCount = $('#totalWordCount').val();
+                obj.index = parseInt($('#hfn-index').val());
+                obj.searchText = searchText;
+                obj.sortBy = $('#hfn-sortby').val();
+                obj.sortOrder = $('#hfn-sortorder').val();
+                if (wordList.length == 0) {
+                    obj.wordIds = "";
+                }
+                else {
+                    obj.wordIds = wordList.join(',');
+                }
+                $.ajax({
+                    url: '/Wordutopia/refreshUserWordList',
+                    type: "POST",
+                    data: obj,
+                    dataType: 'html',
+                    success: function (data) {
+                        $('#tbody-wordlist').html(data);
+                        var tr = $(document).find('.tr-word-row').first();
+                        if (tr.length > 0) {
+                            var word = $(tr).attr('data-word');
+                            var pronounciation = $(tr).attr('data-pronounciation');
+                            var phrase = $(tr).attr('data-phrase');
+                            var hint = $(tr).attr('data-hint');
+                            var definition = $(tr).attr('data-definition');
+                            $('#div-databaseword').html(word);
+                            $('#div-Pronounced').html(pronounciation);
+                            $('#div-Phrase').html(phrase);
+                            $('#div-Hint').html(hint);
+                            $('#div-Definition').html(definition);
+                        }
+                        //$('#wordlist-pagination').data("current", page);
+                        var obj1 = new Object();
+                        obj1.userId = $('#userId').val();
+                        obj1.totalWordCount = $('#totalWordCount').val();
+                        obj1.index = parseInt(parseInt($('#hfn-index').val()) + 1);
+                        obj1.searchText = $('#ipt-word-search').val();
+                        obj1.sortBy = $('#hfn-sortby').val();
+                        obj1.sortOrder = $('#hfn-sortorder').val();
+                        $.ajax({
+                            url: '/Wordutopia/refreshUserWordListPagination',
+                            type: "POST",
+                            data: obj1,
+                            dataType: 'html',
+                            success: function (data) {
+                                $('#nav-pagination').html(data);
+                                $('#div-page-count').html('<p>Page ' + parseInt(parseInt($('#hfn-index').val()) + 1) + ' of ' + Math.ceil(parseFloat($('#totalWordCount').val()) / parseFloat(10)) + '</p>')
+                                //$('#div-page-count').html('<p>Page ' + parseInt(parseInt($('#hfn-index').val()) + 1) + ' of Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalWordCount) / Convert.ToDouble(10))))</p>')
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    });
+   
+    //$('#btn_SendList').click(function () {
+    $(document).on('click', '#btn_SendList', function () {
+        //$('#btn_SendList').prop('disabled', false);
+        var cbkStatus = false;
+        var wordIds = wordList;
+        console.log(wordList);
+        var count = 0;
+        if (wordIds != "") {
+            cbkStatus = true;
+        }
+        //$(document).find('.ckb-word-item').each(function (index, value) {
+        //    if ($(this).prop("checked") == true) {
+        //        count = count + 1;
+        //        cbkStatus = true;
+        //        if (wordIds == "")
+        //            wordIds = wordIds + $(this).attr('data-wordid');
+        //        else
+        //            wordIds = wordIds + "," + $(this).attr('data-wordid');
+        //    }
+        //});
+        if (cbkStatus == false) {
+            toastrError('Please select a word');
+        }
+        else {
+            var userId = $('#userId').val();
+            //add sibi
+            
+            var SendUserId = "";
+            var Password = "";
+            var TestID = "";
+            var ListName = "";
+
+             Password = $('#txt_Password').val();
+             TestID = $('#txt_TestID').val();
+             ListName = $('#txt_ListName').val();
+            
+            $('#select_AddList').find('option').each(function () {
+                
+                if (SendUserId == "")
+                    SendUserId = $(this).val();
+                else
+                    SendUserId = SendUserId + "," + $(this).val();
+            });
+            
+            // End Add
+            var objs = new Object();
+            objs.userId = userId;            
+            objs.wordIds = wordIds.toString();            
+            //addsibi
+            objs.Password = Password;
+            objs.TestID = TestID;
+            objs.ListName = ListName;
+            objs.SendUserId = SendUserId;
+            //End sibi
+            var datas = false;
+            datas = checkValidationAllfeeelsd(SendUserId, Password, TestID, ListName);
+
+            function checkValidationAllfeeelsd(SendUserId, Password, TestID, ListName) {
+                if (Password == "") {
+                    if ($('#checkbox_PasswordNo').prop("checked") == true) {
+                        toastrError('Please enter password.');
+                        return false;
+                    }
+                    //else if ($('#checkbox_PasswordNo').prop("checked") == false) {
+                    //    return true;
+                    //}
+                   
+                }
+                 if (TestID == "") {
+                    
+                     toastrError('Please enter Test Id.');
+                     return false;
+                }
+                if (ListName == "") {
+                    
+                    toastrError('Please enter ListName.');
+                    return false;
+                }
+                if (SendUserId == "") {
+                    
+                    toastrError('Please enter SendUser Id.');
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            }
+
+            /////
+            if (datas == true) {               
+                $.ajax({
+                    url: '/Sharing/CreateaWordListToShareSendList',
+                    type: "GET",
+                    data: objs,
+                    dataType: 'JSON',
+                    success: function (data) {
+                        toastrSuccess(data.message);
+                        setInterval(function () {
+                            location.reload();
+                        }, 3000);
+                        //location.reload();
+                    }
+                });
+            }
+            ///////
+        }
+        //$('#btn_SendList').prop('disabled', true);
+    });
+
+    
+    
+</script>
+
+
+<script>
+    $("#btn_AddUsers").attr("disabled", "disabled");
+    $("#txt_Password").attr("disabled", "disabled");
+
+    $("#select_AddUsers").hover(function () {
+        
+        
+    });
+
+    $("#select_AddUsers").change(function () {
+        $("#btn_AddUsers").removeAttr("disabled");
+    });
+
+    $('#checkbox_PasswordNo').click(function () {
+        if ($(this).prop("checked") == true) {           
+            $("#txt_Password").removeAttr("disabled");
+        }
+        else if ($(this).prop("checked") == false) {            
+            
+            $("#txt_Password").attr("disabled", "disabled");
+        }
+    });
+
+    //$(document).on('click', '.ckb-word-item', function () {
+    //    var wordId = $(this).attr('data-wordid');
+    //    if ($(this).prop("checked") == true) {
+    //        wordList.push(wordId);
+
+
+    $("#SelectAll").click(function () {
+        //$("#selected-item-count").text("0");
+        if ($(this).prop("checked") == true) {
+            $('.ckb-word-item').each(function () {                
+                this.checked = true;
+                var wordId = $(this).attr('data-wordid');
+                wordList.push(wordId);
+            });
+        }
+        else if ($(this).prop("checked") == false) {
+            $('.ckb-word-item').each(function () {
+                this.checked = false;
+
+            });
+        }
+        
+
+    });
+    
+    $("#btn_RemoveList").click(function () {
+        var model = new Array();
+
+        var value = $('option:selected', '#select_AddList').val();
+        var textBox = $('option:selected', '#select_AddList').text();
+
+        if (textBox !== '') {       
+        $('#select_AddUsers').append($("<option></option>").attr("value", value).text(textBox));
+        $('option:selected', '#select_AddList' ).remove();
+        }
+
+        
+        Itemarry = $('#select_AddUsers > option');
+
+        $.each(Itemarry, function (key, values) {
+            var items = {};
+            if (values.value !== '')
+            {
+                items.UserID = values.value;
+                items.UserName = values.text;
+                model.push(items);
+            }
+        });
+               
+        $('#select_AddUsers').empty();
+
+        $.ajax({
+            url: '/Sharing/SortDropdownListBYCreateaWordListToShare',
+            dataType: "json",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            async: true,
+            data: JSON.stringify(model),
+            processData: false,
+            cache: false,
+            success: function (data) {
+                $('#select_AddUsers').html('');
+                $.each(data, function (key, value) {                   
+                    $('#select_AddUsers').append($("<option></option>").attr("value", value.UserID).text(value.UserName)); 
+                });
+                
+            },
+            error: function (xhr) {
+                alert(xhr);
+            }
+        });
+        
+
+    });
+
+    function sortList() {
+        
+        $('#hfn-index').val(0);
+        var obj = new Object();
+        obj.userId = $('#userId').val();
+        obj.totalWordCount = $('#totalWordCount').val();
+        obj.index = parseInt($('#hfn-index').val());
+        obj.searchText = $('#ipt-word-search').val();
+        obj.sortBy = $('#hfn-sortby').val();
+        obj.sortOrder = $('#hfn-sortorder').val();
+        $.ajax({
+            url: '/Wordutopia/refreshUserWordList',
+            type: "POST",
+            data: obj,
+            dataType: 'html',
+            success: function (data) {
+                $('#tbody-wordlist').html(data);
+                var tr = $(document).find('.tr-word-row').first();
+                if (tr.length > 0) {
+                    var word = $(tr).attr('data-word');
+                    var pronounciation = $(tr).attr('data-pronounciation');
+                    var phrase = $(tr).attr('data-phrase');
+                    var hint = $(tr).attr('data-hint');
+                    var definition = $(tr).attr('data-definition');
+                    $('#div-databaseword').html(word);
+                    $('#div-Pronounced').html(pronounciation);
+                    $('#div-Phrase').html(phrase);
+                    $('#div-Hint').html(hint);
+                    $('#div-Definition').html(definition);
+                }
+                //$('#wordlist-pagination').data("current", page);
+                var obj1 = new Object();
+                obj1.userId = $('#userId').val();
+                obj1.totalWordCount = $('#totalWordCount').val();
+                obj1.index = parseInt(parseInt($('#hfn-index').val()) + 1);
+                obj1.searchText = $('#ipt-word-search').val();
+                obj1.sortBy = $('#hfn-sortby').val();
+                obj1.sortOrder = $('#hfn-sortorder').val();
+                $.ajax({
+                    url: '/Wordutopia/refreshUserWordListPagination',
+                    type: "POST",
+                    data: obj1,
+                    dataType: 'html',
+                    success: function (data) {
+                        $('#nav-pagination').html(data);
+                        $('#div-page-count').html('<p>Page ' + parseInt(parseInt($('#hfn-index').val()) + 1) + ' of ' + Math.ceil(parseFloat($('#totalWordCount').val()) / parseFloat(10)) + '</p>')
+                        //Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalWordCount) / Convert.ToDouble(10))))</p>')
+                    }
+                });
+            }
+        });
+    }
+
+    $(document).on('click', '#word-asc', function () {
+        $('#hfn-sortby').val('WORD');
+        $('#hfn-sortorder').val('ASC');
+        sortList();
+        $(this).css('opacity', '1');
+        $('#word-desc').css('opacity', '.3');
+    });
+
+    $(document).on('click', '#word-desc', function () {
+        $('#hfn-sortby').val('WORD');
+        $('#hfn-sortorder').val('DESC');
+        sortList();
+        $(this).css('opacity', '1');
+        $('#word-asc').css('opacity', '.3');
+    });
+
+    $(document).on('click', '#score-asc', function () {
+        $('#hfn-sortby').val('SCORE');
+        $('#hfn-sortorder').val('ASC');
+        sortList();
+        $(this).css('opacity', '1');
+        $('#score-desc').css('opacity', '.3');
+    });
+
+    $(document).on('click', '#score-desc', function () {
+        $('#hfn-sortby').val('SCORE');
+        $('#hfn-sortorder').val('DESC');
+        sortList();
+        $(this).css('opacity', '1');
+        $('#score-asc').css('opacity', '.3');
+    });
+
+
+    
+
+</script>
+
