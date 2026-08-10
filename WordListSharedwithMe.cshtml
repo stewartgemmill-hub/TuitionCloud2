@@ -20,20 +20,27 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="my-share">
-                                <h6>Word Lists Shared with Me</h6>
+                                <h6>Word List Shared with Me</h6>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
-                            
+                            <div class="newdrpn">
+                                <div class="dropdown">
+                                    <button type="button" class="btn btn-primary " data-toggle="dropdown">Task Dropdown List <img src="~/Content/img/rightarrow.png" /></button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Back</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="ShareTab">
-                    <div class="with-me new-kp">
+                    <div class="with-me">
                         <table class="table table-hover newTable table-bordered">
                                                           
                             <thead>
-                            @*<th class="tabhead">Select</th>*@
+                            <th class="tabhead">Select</th>
                             <th class="tabhead"> Date & Time of Tests</th>
                             <th class="tabhead">Options</th>
                             </thead>
@@ -48,7 +55,7 @@
                                     postModel.sortOrder = string.Empty;
                                     postModel.wordIds = "";
                                 }
-                                @Html.Partial("~/Views/Sharing/_pv_Sharing_WordListSharedwithMe.cshtml", postModel)
+                                @Html.Partial("~/Views/OnlineCommunity/_pv_OnlineCommunity_WordListSharedwithMe.cshtml", postModel)
                             </tbody>
                         </table>
 
@@ -58,7 +65,7 @@
                         <div class="Pgntation">
                             <nav aria-label="Page navigation example" id="nav-pagination">
                                 @{
-                                    var postModelPagination = new TutionCloudWeb.Models.PostModel.OnlineCommunity.WordList();
+                                    var postModelPagination = new TutionCloudWeb.Models.PostModel.OnlineCommunity.WordListPagination();
                                     postModelPagination.userId = Model.userId;
                                     postModelPagination.index = 1;
                                     postModelPagination.totalWordCount = totalWordCount;
@@ -66,7 +73,7 @@
                                     postModelPagination.sortBy = string.Empty;
                                     postModelPagination.sortOrder = string.Empty;
                                 }
-                                @Html.Partial("~/Views/Sharing/_pv_Sharing_Word_List_Pagination.cshtml", postModelPagination)
+                                @Html.Partial("~/Views/Wordutopia/_pv_OnlineCommunity_Word_List_Pagination.cshtml", postModelPagination)
                             </nav>
                         </div>
 
@@ -74,16 +81,7 @@
                 </div>
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12">
-                <div class="newdrpn share-with-me_drpn">
-                    <div class="dropdown">
-                        <button type="button" class="btn btn-primary " data-toggle="dropdown">Task Dropdown List <img src="~/Content/img/rightarrow.png" /></button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" onclick="history.back()">Back</a>
-                            <a class="dropdown-item" id="a_DeleteAll">Delete All</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="wraper ">
+                <div class="wraper sharing-me ">
                     <div class="ShareForm wraper share-with-me">
                         <form>
                             <div class="form-group wraper">
@@ -92,20 +90,20 @@
                                 </label>
                             </div>
                             <div class="form-group wraper">
-                                <input type="text" id="txt_Password" class="form-control Input">
+                                <input type="password" class="form-control Input" placeholder="a820a7de-c">
                                 <label for="password" class="Inputlabel">Password</label>
                             </div>
                             <div class="form-group wraper">
-                                <input type="text" class="form-control Input" id="txt_TestID">
-                                <label class="Inputlabel">List ID</label>
+                                <input type="text" class="form-control Input" placeholder="126">
+                                <label class="Inputlabel">Test ID</label>
                             </div>
                             <div class="form-group wraper">
-                                <input type="text" class="form-control Input" id="txt_WordListName">
+                                <input type="text" class="form-control Input" placeholder="List i told you about yesterday">
                                 <label class="Inputlabel">Word List Name</label>
                             </div>
                             <div class="form-group wraper Send">
                                 <div class="Srchbx">
-                                    <input type="button" class="button_blue" id="btn_Activate" value="RETRIEVE" />
+                                    <button>Activate</button>
                                 </div>
                             </div>
                         </form>
@@ -120,7 +118,7 @@
                         <a href="https://en.wikipedia.org/wiki/Main.page" target="_blank">Wikipedia</a>
                     </li>
                     <li class="nav-item">
-                        <a href="https://www.google.com/search?q=calculator" target="_blank">Calculator</a>
+                        <a href="http://www.xnumber.com/xnumber/windows_calc.htm" target="_blank">Calculator</a>
                     </li>
                     <li class="nav-item">
                         <a href="https://www.google.com/maps/" target="_blank">Maps</a>
@@ -140,108 +138,4 @@
     </div>
 </section>
 
-<script>
-    //Retrieveddatas();
-    //function Retrieveddatas() {
-    //    alert(public_CreatedOn);
-    //}
 
-    $("#a_ClickSharing").css({ "color": "#98aaff" });
-    
-    $("#btn_Activate").click(function () {
-
-        var Password = $("#txt_Password").val();
-        var TestId = $("#txt_TestID").val();
-        var LastName = $("#txt_WordListName").val();
-        var userId = $("#userId").val();
-
-        if (TestId == "" || LastName == "") {
-            swal("Warning!", "Please enter the details in the fields for Retrieval")
-        }
-        else {
-            var obj = new Object();
-
-            obj.Password = Password;
-            obj.TestId = TestId;
-            obj.LastName = LastName;
-            obj.userId = userId;
-
-            $.ajax({
-                url: '/Sharing/ShareActivateCheck',
-                type: "POST",
-                data: obj,
-                dataType: 'JSON',
-                success: function (data) {
-                    //alert(data.datestring + " = 09/05/2019 11:50 AM");
-                    public_CreatedOn = data.datestring;
-                    if (public_CreatedOn != null) {
-                        if (public_CreatedOn == 0) {
-                            swal("Warning!", "The Shared List details you have entered are incorrect. Please try again.")
-
-                        }
-                        else {
-                            $('td[pointe-evend-enable="' + public_CreatedOn + '"]').css({
-                                'pointer-events': 'auto',
-                                'color': 'red',
-                                'font-weight': 'bold'
-
-                            });
-                            $('strong[pointe-evend-enable-strong="' + public_CreatedOn + '"]').css({
-                                'pointer-events': 'auto',
-                                'color': 'red',
-                                'font-weight': 'bold'
-                            });
-                            $('a[pointe-evend-enable-A="' + public_CreatedOn + '"]').css({
-                                'pointer-events': 'auto',
-                                'color': 'red',
-                                'font-weight': 'bold'
-                            });
-                            swal("Retrieval of this Word List was successful.", "Please now click on " + public_CreatedOn + " and VIEW link to see your shared Word List.", "success")
-
-                        }
-
-                    }
-
-
-                }
-            });
-
-        }
-    });
-
-    $("#a_DeleteAll").click(function () {
-        var userId = $("#userId").val();
-        swal({
-            title: "Are you sure?",
-            text: "Your will not be able to recover this imaginary all files!",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonClass: "btn-danger",
-            confirmButtonText: "Yes, delete it!",
-            closeOnConfirm: false
-        },
-        function () {
-
-            $.ajax({
-                url: '/Sharing/DeleteALLWordListSharedwithMe?userId=' + userId,
-                type: "GET",
-                dataType: 'JSON',
-                success: function (data) {
-                    if (data == 1) {
-                        //toastrSuccess("Deleted successfully");
-                        swal("Deleted!", "Your all file has been deleted.", "success");
-
-                    }
-                    else {
-                        toastrError("Failed");
-                    }
-                    location.reload();
-                }
-            });
-
-            
-        });
-
-    });
-   
-</script>

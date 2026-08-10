@@ -3,7 +3,6 @@
         ViewBag.Title = "CreateaWordListToShare";
         Layout = "~/Views/Shared/_Layout_Wordutopia_Home.cshtml";
         var totalWordCount = Model.totalWordCount;
-         
     }
     @Html.HiddenFor(z => z.userId, new { Value = Model.userId })
     @Html.HiddenFor(z => z.totalWordCount, new { Value = Model.totalWordCount })
@@ -18,16 +17,25 @@
                         <div class="row">
                             <div class="col-lg-3 col-md-3 col-sm-12">
                                 <div class="shareList">
-                                    <h6>Create a Word List to Share</h6>
+                                    <h6>Create a WordList to Share</h6>
                                 </div>
                             </div>
-                            <div class="col-lg-9 col-md-9 col-sm-12">
+                            <div class="col-lg-5 col-md-5 col-sm-12">
                                 <div class="form-group Srch1 ">
                                     <label for="Name">Search By Word Name:</label>
-                                    <div class="Srchbx share-srch srbox">
+                                    <div class="Srchbx share-srch">
                                         <input type="text" id="ipt-word-search" class="form-control">
                                         <button style="cursor:pointer;" id="btn-search-word">SEARCH</button>
-                                        <button style="cursor:pointer;" id="btn-search-CLEAR">CLEAR</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <div class="newdrpn lstdrpn">
+                                    <div class="dropdown">
+                                        <button type="button" class="btn btn-primary " data-toggle="dropdown">Task Dropdown List <img src="~/Content/img/rightarrow.png" /></button>
+                                        <div class="dropdown-menu">
+                                            <a style="cursor:pointer;" class="dropdown-item" onclick="history.back()">Back</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -35,10 +43,9 @@
                     </div>
                     <div class="ShareTab">
                         <div class="SelectAll">
-                            <span class="all">Select All</span><input type="checkbox" id="SelectAll">
+                            <span class="all">Select All</span><input type="checkbox">
                         </div>
                         <div class="OutTab">
-                            <input type="hidden" id="selected-item-count" value="0" />                              
                             <div class="Table">
                                 <div class="table-responsive Tble">
                                     <table class="table table-hover newTable table-bordered">
@@ -71,7 +78,27 @@
                                 </div>
                                 <div class="Pgntation">
                                     <nav aria-label="Page navigation example" id="nav-pagination">
-                                       
+                                        @*<ul class="pagination">
+                                            <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                            <span class="sr-only">Previous</span>
+                                            </a>
+                                            </li>
+                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                            <span class="sr-only">Next</span>
+                                            </a>
+                                            </li>
+                                            </ul>*@
+                                        @*@{
+                                            var res = Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalWordCount) / Convert.ToDouble(10))));
+                                            }
+                                            <ul id="wordlist-pagination" class="blade-pagination" data-current="1" data-total="@(res)"></ul>*@
                                         @{
                                             var postModelPagination = new TutionCloudWeb.Models.PostModel.Word.WordListPagination();
                                             postModelPagination.userId = Model.userId;
@@ -81,7 +108,14 @@
                                             postModelPagination.sortBy = string.Empty;
                                             postModelPagination.sortOrder = string.Empty;
                                         }
-                                        @Html.Partial("~/Views/Wordutopia/_pv_Wordutopia_Word_List_Pagination.cshtml", postModelPagination)                                       
+                                        @Html.Partial("~/Views/Wordutopia/_pv_Wordutopia_Word_List_Pagination.cshtml", postModelPagination)
+                                        @*@{
+                                            var res = Convert.ToInt64(totalWordCount) / 10;
+                                            if (Convert.ToDecimal(res))
+                                            }
+                                            if(
+                                            )*@
+                                        @*<ul id="wordlist-pagination" class="blade-pagination" data-current="1" data-total="@(10/Convert.ToInt64(totalWordCount))"></ul>*@
                                     </nav>
                                 </div>
                             </div>
@@ -89,21 +123,13 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12">
-                    <div class="newdrpn lstdrpn wrd_sharedrpn">
-                        <div class="dropdown">
-                            <button type="button" class="btn btn-primary " data-toggle="dropdown">Task Dropdown List <img src="~/Content/img/rightarrow.png" /></button>
-                            <div class="dropdown-menu">
-                                <a style="cursor:pointer;" class="dropdown-item" onclick="history.back()">Back</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="wraper outer_form wrd_shareform">
+                    <div class="wraper outer_form">
                         <p>Select Users To Send Words List To</p>
                         <div class="ShareForm wraper">
                             <form>
                                 <div class="form-group wraper">
                                     <label class="checkbox-inline Label">
-                                        <input type="checkbox" id="checkbox_PasswordNo" value="">Select If Password Required of Shared User(s)
+                                        <input type="checkbox" value="">Select If Password Required of Shared User(s)
                                     </label>
                                 </div>
                                 <div class="form-group wraper">
@@ -111,8 +137,8 @@
                                     <label for="password" class="Inputlabel">Password</label>
                                 </div>
                                 <div class="form-group wraper">
-                                    <input type="text" id="txt_TestID" value="@Model.TestId" readonly class="form-control Input">
-                                    <label class="Inputlabel">List ID</label>
+                                    <input type="text" id="txt_TestID" class="form-control Input">
+                                    <label class="Inputlabel">Test ID</label>
                                 </div>
                                 <div class="form-group wraper">
                                     <input type="text" id="txt_ListName" class="form-control Input">
@@ -125,17 +151,14 @@
                                 </div>*@
 
                                 <div class="form-group wraper select_prnt">
-                                    <select class=" add_slt form-control" id="select_AddUsers"> 
-                                        <option value="" disabled selected>Enter Users Names here</option>                                
+                                    <select class=" add_slt form-control" id="select_AddUsers">                                 
                                     </select>
                                     <input type="button" id="btn_AddUsers" class="add_btn" value="Add User" />
-                                </div>                    
+                                </div>
+                                                                
                                 <div class="form-group wraper Send select_prnt" style="align-items:flex-end;">                                  
                                     <select class="add_slt form-control" size="5" multiple id="select_AddList"></select>
-                                    <div class="btn_prt">
-                                        <input type="button" id="btn_RemoveList" class="add_btn rmove" value="Remove" style="height:40px;" />
-                                        <input type="button" id="btn_SendList" class="add_btn" value="Send List" style="height:40px;" />
-                                    </div>
+                                    <input type="button" id="btn_SendList" class="add_btn" value="Send List" style="height:40px;" />
                                 </div>
                             </form>
                         </div>
@@ -151,7 +174,7 @@
                                     <a href="https://en.wikipedia.org/wiki/Main.page" target="_blank">Wikipedia</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="https://www.google.com/search?q=calculator" target="_blank">Calculator</a>
+                                    <a href="http://www.xnumber.com/xnumber/windows_calc.htm" target="_blank">Calculator</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="https://www.google.com/maps/" target="_blank">Maps</a>
@@ -176,41 +199,11 @@
 <script>
 
     //$(document).ready(function () { 
-    $("#a_ClickSharing").css({ "color": "#98aaff" });
-    var wordList = [];
-    $(document).on('click', '.ckb-word-item', function () {
-        var wordId = $(this).attr('data-wordid');
-        if ($(this).prop("checked") == true) {
-            wordList.push(wordId);
-            $('#selected-item-count').text(" " + parseInt(parseInt($('#selected-item-count').text()) + parseInt(1)));
-        }
-        else {
-            wordList.splice($.inArray(wordId, wordList), 1);
-            $('#selected-item-count').text(" " + parseInt(parseInt($('#selected-item-count').text()) - parseInt(1)));
-        }
-        console.log(wordList);
-    });
-    
-
-    $('#ipt-word-search').keypress(function (e) {
-
-        var key = e.which;
-        if (key == 13)  // the enter key code
-        {
-            $('#btn-search-word').click();
-            //return false;
-        }
-    });
-
-    $("#btn-search-CLEAR").click(function () {
-        $("#ipt-word-search").val("");
-        $('#btn-search-word').click();
-    });
 
     var public_SearchItem = [];
     var public_UserId = $('#userId').val();
     $.ajax({
-        url: '/Sharing/GetAllUserLists',
+        url: '/OnlineCommunity/GetAllUserLists',
         dataType: "json",
         type: "GET",
         contentType: 'application/json; charset=utf-8',
@@ -236,12 +229,10 @@
         
         var value = $('#select_AddUsers option:selected').val();
         var textBox = $('#select_AddUsers option:selected').text();
-        if (textBox !== '') {
-            $('#select_AddList').append($("<option></option>").attr("value", value).text(textBox));
-            $("#select_AddUsers option[value='" + value + "']").remove();
-            $("#select_AddList option[value='" + value + "']").attr('selected', true);
-        }
         
+        $('#select_AddList').append($("<option></option>").attr("value", value).text(textBox));
+
+        $("#select_AddUsers option[value='" + value + "']").remove();
 
     });
 
@@ -468,12 +459,6 @@
                 obj.searchText = searchText;
                 obj.sortBy = $('#hfn-sortby').val();
                 obj.sortOrder = $('#hfn-sortorder').val();
-                if (wordList.length == 0) {
-                    obj.wordIds = "";
-                }
-                else {
-                    obj.wordIds = wordList.join(',');
-                }
                 $.ajax({
                     url: '/Wordutopia/refreshUserWordList',
                     type: "POST",
@@ -519,26 +504,21 @@
         });
     });
    
-    //$('#btn_SendList').click(function () {
     $(document).on('click', '#btn_SendList', function () {
         //$('#btn_SendList').prop('disabled', false);
         var cbkStatus = false;
-        var wordIds = wordList;
-        console.log(wordList);
+        var wordIds = "";
         var count = 0;
-        if (wordIds != "") {
-            cbkStatus = true;
-        }
-        //$(document).find('.ckb-word-item').each(function (index, value) {
-        //    if ($(this).prop("checked") == true) {
-        //        count = count + 1;
-        //        cbkStatus = true;
-        //        if (wordIds == "")
-        //            wordIds = wordIds + $(this).attr('data-wordid');
-        //        else
-        //            wordIds = wordIds + "," + $(this).attr('data-wordid');
-        //    }
-        //});
+        $(document).find('.ckb-word-item').each(function (index, value) {
+            if ($(this).prop("checked") == true) {
+                count = count + 1;
+                cbkStatus = true;
+                if (wordIds == "")
+                    wordIds = wordIds + $(this).attr('data-wordid');
+                else
+                    wordIds = wordIds + "," + $(this).attr('data-wordid');
+            }
+        });
         if (cbkStatus == false) {
             toastrError('Please select a word');
         }
@@ -565,8 +545,9 @@
             
             // End Add
             var objs = new Object();
-            objs.userId = userId;            
-            objs.wordIds = wordIds.toString();            
+            objs.userId = userId;
+            objs.wordIds = wordIds;
+
             //addsibi
             objs.Password = Password;
             objs.TestID = TestID;
@@ -578,14 +559,9 @@
 
             function checkValidationAllfeeelsd(SendUserId, Password, TestID, ListName) {
                 if (Password == "") {
-                    if ($('#checkbox_PasswordNo').prop("checked") == true) {
-                        toastrError('Please enter password.');
-                        return false;
-                    }
-                    //else if ($('#checkbox_PasswordNo').prop("checked") == false) {
-                    //    return true;
-                    //}
-                   
+                    
+                    toastrError('Please enter password.');
+                    return false;
                 }
                  if (TestID == "") {
                     
@@ -608,18 +584,16 @@
             }
 
             /////
-            if (datas == true) {               
+            if (datas == true) {
                 $.ajax({
-                    url: '/Sharing/CreateaWordListToShareSendList',
+                    url: '/OnlineCommunity/CreateaWordListToShareSendList',
                     type: "GET",
                     data: objs,
                     dataType: 'JSON',
                     success: function (data) {
                         toastrSuccess(data.message);
-                        setInterval(function () {
-                            location.reload();
-                        }, 3000);
-                        //location.reload();
+
+                       
                     }
                 });
             }
@@ -634,102 +608,6 @@
 
 
 <script>
-    $("#btn_AddUsers").attr("disabled", "disabled");
-    $("#txt_Password").attr("disabled", "disabled");
-
-    $("#select_AddUsers").hover(function () {
-        
-        
-    });
-
-    $("#select_AddUsers").change(function () {
-        $("#btn_AddUsers").removeAttr("disabled");
-    });
-
-    $('#checkbox_PasswordNo').click(function () {
-        if ($(this).prop("checked") == true) {           
-            $("#txt_Password").removeAttr("disabled");
-        }
-        else if ($(this).prop("checked") == false) {            
-            
-            $("#txt_Password").attr("disabled", "disabled");
-        }
-    });
-
-    //$(document).on('click', '.ckb-word-item', function () {
-    //    var wordId = $(this).attr('data-wordid');
-    //    if ($(this).prop("checked") == true) {
-    //        wordList.push(wordId);
-
-
-    $("#SelectAll").click(function () {
-        //$("#selected-item-count").text("0");
-        if ($(this).prop("checked") == true) {
-            $('.ckb-word-item').each(function () {                
-                this.checked = true;
-                var wordId = $(this).attr('data-wordid');
-                wordList.push(wordId);
-            });
-        }
-        else if ($(this).prop("checked") == false) {
-            $('.ckb-word-item').each(function () {
-                this.checked = false;
-
-            });
-        }
-        
-
-    });
-    
-    $("#btn_RemoveList").click(function () {
-        var model = new Array();
-
-        var value = $('option:selected', '#select_AddList').val();
-        var textBox = $('option:selected', '#select_AddList').text();
-
-        if (textBox !== '') {       
-        $('#select_AddUsers').append($("<option></option>").attr("value", value).text(textBox));
-        $('option:selected', '#select_AddList' ).remove();
-        }
-
-        
-        Itemarry = $('#select_AddUsers > option');
-
-        $.each(Itemarry, function (key, values) {
-            var items = {};
-            if (values.value !== '')
-            {
-                items.UserID = values.value;
-                items.UserName = values.text;
-                model.push(items);
-            }
-        });
-               
-        $('#select_AddUsers').empty();
-
-        $.ajax({
-            url: '/Sharing/SortDropdownListBYCreateaWordListToShare',
-            dataType: "json",
-            type: "POST",
-            contentType: 'application/json; charset=utf-8',
-            async: true,
-            data: JSON.stringify(model),
-            processData: false,
-            cache: false,
-            success: function (data) {
-                $('#select_AddUsers').html('');
-                $.each(data, function (key, value) {                   
-                    $('#select_AddUsers').append($("<option></option>").attr("value", value.UserID).text(value.UserName)); 
-                });
-                
-            },
-            error: function (xhr) {
-                alert(xhr);
-            }
-        });
-        
-
-    });
 
     function sortList() {
         
@@ -816,8 +694,6 @@
         $('#score-asc').css('opacity', '.3');
     });
 
-
-    
 
 </script>
 

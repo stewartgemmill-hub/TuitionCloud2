@@ -1,0 +1,63 @@
+﻿@model TutionCloudWeb.Models.PostModel.OnlineCommunity.WordList
+@{
+    var wordList = new TutionCloudWeb.Models.DataClass.WebService().getOnlineCommunityWordList(Model.userId, Model.index, Model.searchText, Model.sortBy, Model.sortOrder);
+}
+
+
+@if (wordList.Count > 0)
+{
+    foreach (var word in wordList)
+    {
+        var Synonym = "https://www.thesaurus.com/browse/" + word.WORD + "?s=t";
+
+      
+        <tr class="tr-word-row" style="cursor:pointer;" data-duplicate="@word.DUPLICATECHECK" data-wordid="@word.WORDID" data-word="@word.WORD" data-pronounciation="@word.PRONOUNCIATION" data-phrase="@word.PHRASE" data-hint="@word.HINT" data-definition="@word.DEFINITION">
+            <td>
+                @if (Model.wordIds != null && Model.wordIds != string.Empty)
+                {
+                    List<string> result = Model.wordIds.Split(',').ToList();
+                    <input class="ckb-word-item" @(result.Contains(word.WORDID.ToString()) == true ? "checked" : "") data-wordid="@word.WORDID" type="checkbox" />
+                }
+                else
+                {
+                    <input class="ckb-word-item" data-wordid="@word.WORDID" type="checkbox" />
+                }
+            </td>
+            <td><strong>@word.WORD</strong></td>
+            <td class="toggle_dropdown_cust">
+                <div class="web-dsp">
+                    <span class="edts"><a target="_blank" href="@Synonym"><img style="width: 17px;" src="~/Content/img/utilities/ser.png" /> Synonym</a></span>
+                    <span class="ck_brd"></span>
+                    <span class="edts"><i class="fas fa-download"></i><a class="add-to-database" data-duplicate="@word.DUPLICATECHECK" data-wordid="@word.WORDID">Add to My Database</a></span>
+                </div>
+                <div class="togButns attachmts ">
+                    <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    <div class="dropdown-menu labes" aria-labelledby="dropdownMenuButton">
+                        <span class="edts"><a target="_blank" href="@Synonym">Synonym</a></span>
+                        <span class="ck_brd"></span>
+                        <span class="edts"><a class="add-to-database" data-duplicate="@word.DUPLICATECHECK" data-wordid="@word.WORDID">Add to My Database</a></span>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+
+
+
+
+
+
+    }
+}
+else
+{
+    <tr>
+        <td colspan="3">No words found</td>
+    </tr>
+}
+
+
+
+

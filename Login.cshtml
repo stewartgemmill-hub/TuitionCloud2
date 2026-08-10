@@ -1,242 +1,58 @@
-﻿@model TutionCloudWeb.Models.PostModel.User.Login
+﻿@model TutionCloudWeb.Models.LoginViewModel
+
 @{
-    ViewBag.Title = "Login";
-    Layout = "~/Views/Shared/_Layout_Index.cshtml";
+    ViewBag.Title = "Log in";
 }
 
-<style>
-    .field-validation-error {
-        color: red;
-    }
-</style>
-
-<!--Login Section-->
-<section>
-    <div class="container">
-        <div class="Loginpg">
-            <div class="Lg">
-                <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-12">
-                        <div class="outerLg">
-                            <div class="InnerLg">
-                                <img src="~/Content/img/homeicons/login.png" />
-                                <p>Not a member? </p>
-                                <a href="/User/Register">REGISTER NOW</a>
-                            </div>
-                        </div>
+<h2>@ViewBag.Title.</h2>
+<div class="row">
+    <div class="col-md-8">
+        <section id="loginForm">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <h4>Use a local account to log in.</h4>
+                <hr />
+                @Html.ValidationSummary(true)
+                <div class="form-group">
+                    @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.UserName)
                     </div>
-                    <div class="colo-lg-8 col-md-8 col-sm-12">
-                        <div class="InnerLgrt">
-                            <h5>USER LOGIN</h5>
-                            <span id="error-invalid-details" style="display:none;color:red;"></span>
-                            @*<form action="">*@
-                            @using (Ajax.BeginForm("login", "User", null, new AjaxOptions
-        {
-            HttpMethod = "POST",
-            OnSuccess = "loginSuccess",
-            OnFailure = "loginFailure",
-        }, new { id = "tutioncloud-login" }))
-                            {
-                                @Html.ValidationSummary(true)
-                                @Html.AntiForgeryToken()
-                                <div class="form-group">
-                                    <label for="Name">USERNAME</label>
-                                    @* <input type="email" class="form-control" id="N1" name="name" placeholder="e.g. lorum Ipsum">*@
-                                    @Html.TextBoxFor(m => m.username, new { autocomplete = "off", @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.username)
-                                </div>
-                                <div class="form-group">
-                                    <label>PASSWORD *</label>
-                                    @*<input type="password" class="form-control">*@
-                                    @Html.PasswordFor(m => m.password, new { autocomplete = "off", @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.password)
-                                </div>
-                                <div class="form-group">
-                                    <label for="webname">WEB NAME</label>
-                                    @*<select class="form-control location_slct">
-                                            <option>Wordutopia</option>
-                                            <option>Choicer</option>
-                                            <option>Quester</option>
-                                        </select>*@
-                                    @Html.DropDownListFor(m => m.webname, new List<SelectListItem>
-                   { new SelectListItem{Text="Wordutopia", Value=TutionCloudWeb.Models.Enum.webname.Wordutopia.ToString()},
-                     new SelectListItem{Text="Choicer", Value=TutionCloudWeb.Models.Enum.webname.Choicer.ToString() },
-                   new SelectListItem{Text="Quester", Value=TutionCloudWeb.Models.Enum.webname.Quester.ToString()}}, new { @class = "form-control location_slct" })
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" style="cursor: pointer; width: 100%;" class="Lgbtn">LOGIN</button>
-                                </div>
-                                <div class="form-group">
-                                    <a href="#" class="Fgpwd" data-toggle="modal" data-target="#myModal">Forgot password?</a>
-
-                                   
-
-                                </div>
-                                @*</form>*@
-                            }
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Password)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe)
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Log in" class="btn btn-default" />
+                    </div>
+                </div>
+                <p>
+                    @Html.ActionLink("Register", "Register") if you don't have a local account.
+                </p>
+            }
+        </section>
     </div>
-</section>
-<div class="parent-div">
-    <div id="change-password">
-        @Html.Partial("~/Views/User/_pv_ChangePassemail.cshtml", Model)
+    <div class="col-md-4">
+        <section id="socialLoginForm">
+            @Html.Partial("_ExternalLoginsListPartial", new { Action = "ExternalLogin", ReturnUrl = ViewBag.ReturnUrl })
+        </section>
     </div>
 </div>
-<!-- Modal -->
-
-
-
-
-
-
-<script>
-
-    function loginSuccess(data) {
-
-        debugger;
-        
-        if (data.status == "Wordutopia") {
-            
-            var userid = parseInt(data.userid);
-
-
-            //$.ajax({
-            //    url: '/Wordutopia/UserWordCountTesDatas',
-            //    type: "GET",
-            //    //data: obj,
-            //    dataType: 'JSON',
-            //    success: function (data) {
-
-                    
-            //    }
-            //});
-
-            $.ajax({
-                url: '/Wordutopia/UserWordCount?userid=' + userid,
-                type: "GET",
-                dataType: 'JSON',
-                success: function (data) {
-                    debugger;
-                    if (data > 0) {
-                        var mainPanelIndex = 1;
-                        var result = btoa(mainPanelIndex)
-                        window.location.href = "/Wordutopia/MainPanel/" + result;
-                    }
-                    else {
-                        window.location.href = "/Wordutopia/Home";
-                    }
-                },
-                error: function (data) {
-                    //console.log(data.);
-                    
-                   // alert(data);
-                }
-
-            });
-
-        }
-        else if (data.status == "Quester") {
-            var userid = data.userid;
-            var islogged = data.islogged;
-           
-            $.ajax({
-                url: '/Quester/Quester_UserWordCount?userid=' + userid,
-                type: "GET",
-                dataType: 'JSON',
-                success: function (data) {
-                    debugger;                
-                    if (data > 0) {
-                        var mainPanelIndex = 1;
-                        var result = btoa(mainPanelIndex)
-                        window.location.href = "/Quester/Quester_MainPanel/" + result;
-                    }
-                    
-                    else if (islogged == true)
-                    {
-                        if (data == 0) {
-                            window.location.href = "/Quester/Quester_Home";
-                        }
-                        else {
-                            var mainPanelIndex = 1;
-                            var result = btoa(mainPanelIndex)
-                            window.location.href = "/Quester/Quester_MainPanel/" + result;
-                        }
-                      
-                        
-                    }
-                    else {
-                        
-                        window.location.href = "/Quester/Quester_Home";
-                    }
-                }
-            });
-        }
-
-
-        else {
-            $('#error-invalid-details').text(data.message);
-            $('#error-invalid-details').show();
-        }
-    }
-
-    function loginFailure() {
-
-    }
-
-    //$('#email').focusout(function () {
-    //    debugger
-    //    var email = $('#email').val();
-    //    $.ajax({
-    //        url: '/Wordutopia/checkemail?id=' + esmail,
-    //        //url: '/Wordutopia/checkemail/' + email,
-    //        type: "GET",
-    //        dataType: 'JSON',
-    //        success: function (data) {
-
-    //            if (data > 0) {
-    //                $('#userid').val(data.id);
-    //            }
-    //            else
-    //            {
-    //                $('#error-invalid-details').text(data.message);
-    //                $('#error-invalid-details').show();
-    //            }
-    //            //if (data > 0) {
-    //            //    var mainPanelIndex = 1;
-    //            //    var result = btoa(mainPanelIndex)
-    //            //    window.location.href = "/Wordutopia/MainPanel/" + result;
-    //            //}
-    //            //else {
-    //            //    window.location.href = "/Wordutopia/Home";
-    //            //}
-    //        }
-    //    });
-    //});
-
-    function SendEmailSuccess(data) {
-        //debugger
-        if (data.status) {
-           
-                toastrSuccess("Check Your Email")
-                //swal("Deleted!", "", "success");
-           
-            setTimeout(function () {
-                window.location.href = '/User/Login';
-            }, 600);
-        }
-        else {
-            toastrError(data.message);
-        }
-    }
-
-    function SendEmailFailure(data) {
-        //debugger
-        toastrError(data.message);
-    }
-
-
-</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

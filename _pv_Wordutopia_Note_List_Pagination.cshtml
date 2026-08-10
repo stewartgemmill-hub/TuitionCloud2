@@ -35,7 +35,7 @@
                 obj.sortOrder = $('#hfn-sortorder').val();
                 obj.searchText = searchText;
                 $.ajax({
-                    url: '/Wordutopia/refreshUserNoteList',
+                    url: '/Notes/refreshUserNoteList',
                     type: "POST",
                     data: obj,
                     dataType: 'html',
@@ -63,7 +63,7 @@
 
                         console.log(obj1);
                         $.ajax({
-                            url: '/Wordutopia/refreshUserNoteListPagination',
+                            url: '/Notes/refreshUserNoteListPagination',
                             type: "POST",
                             data: obj1,
                             dataType: 'html',
