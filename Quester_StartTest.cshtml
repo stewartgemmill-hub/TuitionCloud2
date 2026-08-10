@@ -1,0 +1,497 @@
+﻿@model TutionCloudWeb.Model.Quester.Quester_StartTest
+@{
+    ViewBag.Title = "StartTest";
+    Layout = "~/Views/Shared/_Layout_Quester_Home.cshtml";
+    var wordList = new TutionCloudWeb.Repository.Quester.Quester_WebService_Repository().Quester_getExamWords(Model.userId, Convert.ToInt64(Model.examId));
+}
+
+
+@Html.HiddenFor(z => z.timePerWord, new { Value = Model.timePerWord })
+@Html.HiddenFor(z => z.testTime, new { Value = Model.testTime })
+@Html.HiddenFor(z => z.userId, new { Value = Model.userId })
+@Html.HiddenFor(z => z.examId, new { Value = Model.examId })
+<input type="hidden" id="hfn-count" value="@wordList.Count" />
+<input type="hidden" id="hfn-index" value="0" />
+
+<section class="Crt_formt">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="Tst_head">
+                    <h6>Create Test</h6>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="Crt_tst_fomt tst_drpn">
+                    <div class="newdrpn">
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-primary " data-toggle="dropdown">Task Dropdown List <img src="~/Content/img/rightarrow.png" /></button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Back</a>
+                                <a class="dropdown-item" href="#">Create a Test Format </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testStart">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <div class="counter_img">
+                                    <img src="~/Content/img/timer.png" />
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-12">
+                                <div class="timein">
+                                    @if (Model.timePerWord != null && Model.timePerWord != "0")
+                                    {
+                                        <span class="Time_remains ">Time Remaining:</span>
+                                        <div id="div-timer-main-div">
+                                            <div class='timer timeout' id="div-timer " data-seconds-left=@Model.timePerWord></div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <span class="Time_remains ">Time Remaining:</span><div class='timer-overall-minute timeout' id="div-timer-overall-minute" data-minutes-left=@Model.testTime></div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="test_accord">
+                            <div class="outAccordtn fav_out ">
+                                @if (wordList.Count > 0)
+                                {
+                                    var count = 0;
+                                    var count1 = 0;
+                                    foreach (var word in wordList)
+                                    {
+                                        var headerId = "heading" + count;
+                                        var target = "#collapse" + count;
+                                        var targetDiv = "collapse" + count;
+                                        var controls = "collapse" + count;
+
+
+                                        var headerId1 = "heading" + (count + 1);
+                                        var target1 = "#collapse" + (count + 1);
+                                        var targetDiv1 = "collapse" + (count + 1);
+                                        var controls1 = "collapse" + (count + 1);
+
+                                        var classname = "hfn-isviewed" + count1;
+
+                                        <input class="@classname hfn-view-question" type="hidden" value="false" data-wordid="@word.WORDID" />
+
+                                        <div id="accordion" class="cls-test-div" style="display:none;">
+                                            <div class="card">
+                                                <div class="accordhead">
+
+                                                    <div class="card-header" id="@headerId">
+                                                        <h5 class="mb-0">
+                                                            <button class="btn btn-link" data-toggle="collapse" data-target="@target" aria-expanded="true" aria-controls="@controls">
+                                                                Do you know the meaning of this word?
+                                                            </button>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <div id="@targetDiv" class="collapse show" aria-labelledby="@headerId" data-parent="#accordion">
+                                                    <div class="card-body">
+                                                        @word.WORD
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="accordhead">
+                                                    <div class="card-header" id="@headerId1">
+                                                        <h5 class="mb-0">
+                                                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="@target1" aria-expanded="false" aria-controls="@controls1">
+                                                                Hint
+                                                            </button>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <div id="@targetDiv1" class="collapse" aria-labelledby="@headerId1" data-parent="#accordion">
+                                                    <div class="card-body">
+                                                        @word.HINT
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        count = count + 2;
+                                        count1 = count1 + 1;
+                                    }
+                                }
+                            </div>
+                        </div>
+                        <div class="Submt">
+                            <a id="btn-yes" class="btn Yes_btn">Yes</a>
+                            <a id="btn-no" class="btn No_Btn">No</a>
+                            <a id="btn-next" style="display:none;" class="btn No_Btn">Next</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="lowerNav">
+                <nav class="navbar navbar-expand-sm  justify-content-center">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="https://en.wikipedia.org/wiki/Main.page" target="_blank">Wikipedia</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="https://www.google.com/search?q=calculator" target="_blank">Calculator</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="https://www.google.com/maps/" target="_blank">Maps</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="https://www.google.com/search?ei=DyM3XNbMEdH6kwW-lpLgCA&q=google+currency+converter&oq=google+currency+converter&gs_l=psy-ab.3..35i39j0i7i30l2j0j0i7i30j0j0i7i30j0l3.211.5629..6378...0.0..0.282.1593.0j6j3......0....1..gws-wiz.......0i71j0i30j0i131i67j35i304i39.BbyIqE0P5UY" target="_blank">Currency Converter</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="https://www.timeanddate.com/worldclock/full.html" target="_blank">World Clocks</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="https://translate.google.com/" target="_blank">Translator</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="~/Content/js/jquery.simple.timer.js"></script>
+
+
+<script>
+    var wordList = [];
+    $(document).ready(function () {
+
+        $('.cls-test-div').eq($('#hfn-index').val()).show();
+
+        if ($('#timePerWord').val() != null && $('#timePerWord').val() != "0") {
+            $('.hfn-isviewed' + $('#hfn-index').val()).val('true');
+            var timer = $(document).find('.timer').startTimer({
+                 
+                onComplete: function (element) {
+                    $('html, body').addClass('bodyTimeoutBackground');
+                    var count = parseInt(parseInt($('#hfn-index').val()) + parseInt(1));
+                    if (parseInt(count) < parseInt($('#hfn-count').val())) {
+
+                        $('.hfn-isviewed' + $('#hfn-index').val()).val('true');
+
+
+                        $('.cls-test-div').eq($('#hfn-index').val()).hide();
+                        $('#hfn-index').val(parseInt(parseInt($('#hfn-index').val()) + parseInt(1)))
+                        $('.cls-test-div').eq($('#hfn-index').val()).show();
+                       
+
+                        $('#btn-next').trigger('click');
+                    }
+                    else {
+                        
+                        $('.timer').stop();
+                        $('.hfn-isviewed' + $('#hfn-index').val()).val('true');
+
+                        $(".hfn-view-question").each(function (index) {
+                            
+                            if ($(this).val() == "false") {
+                                wordList.push($(this).attr('data-wordid'));
+                            }
+                        });
+
+
+                        setTimeout(function () {
+                            var encodedString = btoa($('#examId').val() + "," + wordList.join(','));
+                            window.location.href = "/Quester/Quester_ViewAnswer/" + encodedString;
+                            
+                        }, 300);
+                    }
+                }
+            });
+        }
+        else {
+            $('.hfn-isviewed' + $('#hfn-index').val()).val('true');
+            var timer = $(document).find('.timer-overall-minute').startTimer({
+                
+                onComplete: function (element) {
+                    $('html, body').addClass('bodyTimeoutBackground');
+                    $('.hfn-isviewed' + $('#hfn-index').val()).val('true');
+                    $(".hfn-view-question").each(function (index) {
+                        
+                        if ($(this).val() == "false") {
+                            wordList.push($(this).attr('data-wordid'));
+                        }
+                    });
+
+
+                    setTimeout(function () {
+                        var encodedString = btoa($('#examId').val() + "," + wordList.join(','));
+                        window.location.href = "/Quester/Quester_ViewAnswer/" + encodedString;
+                         
+                    }, 300);
+
+                     
+                }
+            });
+        }
+
+
+        
+    });
+
+
+    $(document).on('click', '#btn-yes , #btn-no', function () {
+
+        if ($('#timePerWord').val() != null && $('#timePerWord').val() != "0") {
+
+            var elementNew = $(document).find('#div-timer-main-div');
+            $(elementNew).html("<div class='timer timeout' id='div-timer' data-seconds-left= " + $('#timePerWord').val() + "></div>");
+
+            var element = $(document).find('#div-timer');
+
+          
+            var count = parseInt(parseInt($('#hfn-index').val()) + parseInt(1));
+            if (parseInt(count) < parseInt($('#hfn-count').val())) {
+                $('.cls-test-div').eq($('#hfn-index').val()).hide();
+                $('#hfn-index').val(parseInt(parseInt($('#hfn-index').val()) + parseInt(1)))
+
+                $('.hfn-isviewed' + $('#hfn-index').val()).val('true');
+
+                $('.cls-test-div').eq($('#hfn-index').val()).show();
+                var timer = $(document).find('.timer').startTimer({
+                     
+                    onComplete: function (element) {
+                        $('html, body').addClass('bodyTimeoutBackground');
+                        if (parseInt(parseInt($('#hfn-index').val()) + parseInt(1)) < parseInt($('#hfn-count').val())) {
+
+                            $('.hfn-isviewed' + $('#hfn-index').val()).val('true');
+
+
+                            $('.cls-test-div').eq($('#hfn-index').val()).hide();
+                            $('#hfn-index').val(parseInt(parseInt($('#hfn-index').val()) + parseInt(1)))
+                            $('.cls-test-div').eq($('#hfn-index').val()).show();
+                             
+                            $('#btn-next').trigger('click');
+                        }
+                        else {
+                            $('.hfn-isviewed' + $('#hfn-index').val()).val('true');
+
+
+                            var elementNew = $(document).find('#div-timer-main-div');
+                            $(elementNew).html("<div class='timer timeout' id='div-timer' data-seconds-left=0></div>");
+
+                            var element = $(document).find('#div-timer');
+                             
+
+                            $(".hfn-view-question").each(function (index) {
+                                 
+                                if ($(this).val() == "false") {
+                                    wordList.push($(this).attr('data-wordid'));
+                                }
+                            });
+
+
+                            setTimeout(function () {
+                                var encodedString = btoa($('#examId').val() + "," + wordList.join(','));
+                                window.location.href = "/Quester/Quester_ViewAnswer/" + encodedString;
+                                 
+                            }, 300);
+
+                        }
+                    }
+                });
+            }
+            else {
+                var element = $(document).find('#div-timer');
+                var elementNew = $(document).find('#div-timer-main-div');
+                $(elementNew).html("<div class='timer timeout' id='div-timer' data-seconds-left=0></div>");
+                
+                $('.hfn-isviewed' + $('#hfn-index').val()).val('true');
+
+                var timer = $(document).find('.timer').startTimer({
+                    
+                    onComplete: function (element) {
+                        $('html, body').addClass('bodyTimeoutBackground');
+                        if (parseInt(count) < parseInt($('#hfn-count').val())) {
+
+                            $('.hfn-isviewed' + $('#hfn-index').val()).val('true');
+
+
+                            $('.cls-test-div').eq($('#hfn-index').val()).hide();
+                            $('#hfn-index').val(parseInt(parseInt($('#hfn-index').val()) + parseInt(1)))
+                            $('.cls-test-div').eq($('#hfn-index').val()).show();
+                            
+                        }
+                        else {
+
+                            $('.hfn-isviewed' + $('#hfn-index').val()).val('true');
+
+                            $('.timer').stop();
+
+
+                            $(".hfn-view-question").each(function (index) {
+                                
+                                if ($(this).val() == "false") {
+                                    wordList.push($(this).attr('data-wordid'));
+                                }
+                            });
+
+
+                            setTimeout(function () {
+                                var encodedString = btoa($('#examId').val() + "," + wordList.join(','));
+                                window.location.href = "/Quester/Quester_ViewAnswer/" + encodedString;
+                                
+                            }, 300);
+                                                        
+                        }
+                    }
+                });
+            }
+
+        }
+        else {
+
+            var count = parseInt(parseInt($('#hfn-index').val()) + parseInt(1));
+            if (parseInt(count) < parseInt($('#hfn-count').val())) {
+                $('.cls-test-div').eq($('#hfn-index').val()).hide();
+
+                $('.hfn-isviewed' + $('#hfn-index').val()).val('true');
+
+                $('#hfn-index').val(parseInt(parseInt($('#hfn-index').val()) + parseInt(1)))
+                $('.cls-test-div').eq($('#hfn-index').val()).show();
+
+                                
+
+            }
+            else {
+
+
+                if (parseInt(count) < parseInt($('#hfn-count').val())) {
+
+                    $('.hfn-isviewed' + $('#hfn-index').val()).val('true');
+
+
+                    $('.cls-test-div').eq($('#hfn-index').val()).hide();
+                    $('#hfn-index').val(parseInt(parseInt($('#hfn-index').val()) + parseInt(1)))
+                    $('.cls-test-div').eq($('#hfn-index').val()).show();
+                    
+                }
+                else {
+
+                    $('.hfn-isviewed' + $('#hfn-index').val()).val('true');
+
+
+                    $(".hfn-view-question").each(function (index) {
+                        
+                        if ($(this).val() == "false") {
+                            wordList.push($(this).attr('data-wordid'));
+                        }
+                    });
+
+
+                    setTimeout(function () {
+                        var encodedString = btoa($('#examId').val() + "," + wordList.join(','));
+                        window.location.href = "/Quester/Quester_ViewAnswer/" + encodedString;
+                        
+                    }, 300);
+                                       
+                }
+            }
+
+
+        }
+
+
+
+    });
+
+
+    $(document).on('click', '#btn-next', function () {
+        
+        if ($('#timePerWord').val() != null && $('#timePerWord').val() != "0") {
+            
+            var elementNew = $(document).find('#div-timer-main-div');
+            $(elementNew).html("<div class='timer timeout' id='div-timer' data-seconds-left= " + $('#timePerWord').val() + "></div>");
+
+            var element = $(document).find('#div-timer');
+            
+            var count = parseInt(parseInt($('#hfn-index').val()));
+            if (parseInt(count) < parseInt($('#hfn-count').val())) {
+                var timer = $(document).find('.timer').startTimer({
+                   
+                    onComplete: function (element) {
+                        
+                        $('html, body').addClass('bodyTimeoutBackground');
+                        var count = parseInt(parseInt($('#hfn-index').val()) + parseInt(1));
+                        if (parseInt(count) < parseInt($('#hfn-count').val())) {
+
+                            $('.hfn-isviewed' + $('#hfn-index').val()).val('true');
+
+
+                            $('.cls-test-div').eq($('#hfn-index').val()).hide();
+                            $('#hfn-index').val(parseInt(parseInt($('#hfn-index').val()) + parseInt(1)))
+                            $('.cls-test-div').eq($('#hfn-index').val()).show();
+                            
+                            $('#btn-next').trigger('click');
+                        }
+                        else {
+                           
+                            $('.hfn-isviewed' + $('#hfn-index').val()).val('true');
+                            $(".hfn-view-question").each(function (index) {
+                                
+                                if ($(this).val() == "false") {
+                                    wordList.push($(this).attr('data-wordid'));
+                                }
+                            });
+
+                            setTimeout(function () {
+                                var encodedString = btoa($('#examId').val() + "," + wordList.join(','));
+                                window.location.href = "/Quester/Quester_ViewAnswer/" + encodedString;
+                                
+                            }, 300);
+
+
+                        }
+                    }
+                });
+            }
+        }
+        else {
+            var count = parseInt(parseInt($('#hfn-index').val()));
+            if (parseInt(count) < parseInt($('#hfn-count').val())) {
+
+                $('html, body').addClass('bodyTimeoutBackground');
+                var count = parseInt(parseInt($('#hfn-index').val()) + parseInt(1));
+                if (parseInt(count) < parseInt($('#hfn-count').val())) {
+
+                    $('.hfn-isviewed' + $('#hfn-index').val()).val('true');
+
+
+                    $('.cls-test-div').eq($('#hfn-index').val()).hide();
+                    $('#hfn-index').val(parseInt(parseInt($('#hfn-index').val()) + parseInt(1)))
+                    $('.cls-test-div').eq($('#hfn-index').val()).show();
+                    
+                    $('#btn-next').trigger('click');
+                }
+                else {
+                   
+                    $('.hfn-isviewed' + $('#hfn-index').val()).val('true');
+                    $(".hfn-view-question").each(function (index) {
+                        
+                        if ($(this).val() == "false") {
+                            wordList.push($(this).attr('data-wordid'));
+                        }
+                    });
+
+
+                    setTimeout(function () {
+                        var encodedString = btoa($('#examId').val() + "," + wordList.join(','));
+                        window.location.href = "/Quester/Quester_ViewAnswer/" + encodedString;
+                        
+                    }, 300);
+
+
+                }
+            }
+        }
+    });
+
+</script>

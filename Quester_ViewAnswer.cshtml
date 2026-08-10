@@ -1,0 +1,231 @@
+﻿@model TutionCloudWeb.Model.Quester.Quester_ViewTestAnswer
+@{
+    ViewBag.Title = "ViewAnswer";
+    Layout = "~/Views/Shared/_Layout_Quester_Home.cshtml";
+    var wordListz = new TutionCloudWeb.Repository.Quester.Quester_WebService_Repository().Quester_getExamWords(Model.userId, Convert.ToInt64(Model.examId));
+    var newwordlist = wordListz.Where(z => !Model.wordIds.Contains(z.WORDID)).ToList();
+}
+
+@Html.HiddenFor(z => z.userId, new { Value = Model.userId })
+@Html.HiddenFor(z => z.examId, new { Value = Model.examId })
+<input type="hidden" id="hfn-count" value="@newwordlist.Count" />
+<input type="hidden" id="hfn-index" value="0" />
+<input type="hidden" id="hfn-not-viewed-wordids" value="@Model.notviewedwordIds" />
+
+<section class="Crt_formt">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="Tst_head">
+                    <h6>Your Latest Question Test</h6>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="Crt_tst_fomt tst_drpn">
+                    <div class="newdrpn">
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-primary " data-toggle="dropdown">Task Dropdown List <img src="~/Content/img/rightarrow.png" /></button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Back</a>
+                                <a class="dropdown-item" href="#">Create a Test Format </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testStart">
+                        <div class="Tst_head">
+                            @*<h6>The Test Timer has suspended. Please indicate by means of the YES or NO buttons whetheryou are right or wrong</h6>*@
+                            @*<h6>Your test has concluded. After clicking the Definition button below, please indicate your score for each test word by means of the YES and NO buttons provided</h6>*@
+                            <h6>Your test has concluded. Please indicate by means of the YES or NO buttons whether you were correct in your understanding of this word.</h6>
+                        </div>
+                        <div class="test_accord">
+                            <div class="outAccordtn fav_out ">
+                                @if (newwordlist.Count > 0)
+                                {
+                                    var count = 0;
+                                    var count1 = 0;
+                                    foreach (var word in newwordlist)
+                                    {
+                                        var headerId = "heading" + count;
+                                        var target = "#collapse" + count;
+                                        var targetDiv = "collapse" + count;
+                                        var controls = "collapse" + count;
+
+                                        var id = "#accordion" + count;
+                                        var idparent = "accordion" + count;
+
+                                        var headerId1 = "heading" + (count + 1);
+                                        var target1 = "#collapse" + (count + 1);
+                                        var targetDiv1 = "collapse" + (count + 1);
+                                        var controls1 = "collapse" + (count + 1);
+
+                                        var wordId = "hfn-wordid-" + count1;
+
+                                        <div id="accordion" class="cls-test-div" style="display:none;">
+                                            <input type="hidden" id="@wordId" value="@word.WORDID" />
+                                            <div class="card">
+                                                <div class="accordhead">
+
+                                                    <div class="card-header" id="@headerId">
+                                                        <h5 class="mb-0">
+                                                            <button class="btn btn-link" data-toggle="collapse" data-target="@target" aria-expanded="true" aria-controls="@controls">
+                                                                Questions
+                                                            </button>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <div id="@targetDiv" class="collapse show" aria-labelledby="@headerId" data-parent="#accordion">
+                                                    <div class="card-body">                                                       
+                                                            @word.WORD
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="accordhead">
+                                                    <div class="card-header" id="@headerId1">
+                                                        <h5 class="mb-0">
+                                                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="@target1" aria-expanded="false" aria-controls="@controls1">
+                                                                HINT
+                                                            </button>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <div id="@targetDiv1" class="collapse show" aria-labelledby="@headerId1" data-parent="#accordion">
+                                                    <div class="card-body">
+                                                        @word.HINT
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        count = count + 2;
+                                        count1 = count1 + 1;
+                                    }
+                                }
+                            </div>
+                        </div>
+                        <div class="Submt">
+                            <a id="btn-yes" class="btn Yes_btn">Yes</a>
+                            <a id="btn-no" class="btn No_Btn">No</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="lowerNav">
+                    <nav class="navbar navbar-expand-sm  justify-content-center">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a href="https://en.wikipedia.org/wiki/Main.page" target="_blank">Wikipedia</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://www.google.com/search?q=calculator" target="_blank">Calculator</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://www.google.com/maps/" target="_blank">Maps</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://www.google.com/search?ei=DyM3XNbMEdH6kwW-lpLgCA&q=google+currency+converter&oq=google+currency+converter&gs_l=psy-ab.3..35i39j0i7i30l2j0j0i7i30j0j0i7i30j0l3.211.5629..6378...0.0..0.282.1593.0j6j3......0....1..gws-wiz.......0i71j0i30j0i131i67j35i304i39.BbyIqE0P5UY" target="_blank">Currency Converter</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://www.timeanddate.com/worldclock/full.html" target="_blank">World Clocks</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://translate.google.com/" target="_blank">Translator</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+
+    var result = [];
+    $(document).ready(function () {
+
+
+        $('.cls-test-div').eq($('#hfn-index').val()).show();
+
+
+        var value = $('#hfn-not-viewed-wordids').val();
+        if (value != "") {
+            var array = value.split(',');
+            console.log(array);
+            
+            $.each(array, function (index, item) {
+                console.log(item);
+                var obj = new Object();
+                obj.wordId = item;
+                obj.isCorrect = false;
+                result.push(obj);
+                // do something with `item` (or `this` is also `item` if you like)
+            });
+        }
+         
+        console.log(result);
+
+    });
+
+
+    $(document).on('click', '#btn-yes', function () {
+        var wordId = $('#hfn-wordid-' + $('#hfn-index').val()).val();
+        var obj = new Object();
+        obj.wordId = wordId;
+        obj.isCorrect = true;
+        result.push(obj);
+        var count = parseInt(parseInt($('#hfn-index').val()) + parseInt(1));
+        if (parseInt(count) >= parseInt($('#hfn-count').val())) {
+            SaveResult();
+        }
+        else {
+            $('.cls-test-div').eq($('#hfn-index').val()).hide();
+            $('#hfn-index').val(parseInt(parseInt($('#hfn-index').val()) + parseInt(1)))
+            $('.cls-test-div').eq($('#hfn-index').val()).show();
+        }
+    });
+
+    $(document).on('click', '#btn-no', function () {
+        var wordId = $('#hfn-wordid-' + $('#hfn-index').val()).val();
+        var obj = new Object();
+        obj.wordId = wordId;
+        obj.isCorrect = false;
+        result.push(obj);
+        var count = parseInt(parseInt($('#hfn-index').val()) + parseInt(1));
+        if (parseInt(count) >= parseInt($('#hfn-count').val())) {
+            SaveResult();
+        }
+        else {
+            $('.cls-test-div').eq($('#hfn-index').val()).hide();
+            $('#hfn-index').val(parseInt(parseInt($('#hfn-index').val()) + parseInt(1)))
+            $('.cls-test-div').eq($('#hfn-index').val()).show();
+        }
+    });
+
+    function SaveResult() {
+        var obj1 = new Object();
+        obj1.userId = $('#userId').val();
+        obj1.examId = $('#examId').val();
+        obj1.resultData = JSON.stringify(result);
+        console.log(obj1.resultData);
+
+        $.ajax({
+            url: '/Quester/Quester_SaveResultToDb',
+            type: "POST",
+            data: obj1,
+            dataType: 'json',
+            success: function (data) {
+                if (data.status == true) {
+                    var encodedString = btoa(data.id);
+                    window.location.href = "/Quester/Quester_TestSummary/" + encodedString;
+                }
+                else {
+                    toastrError(data.message);
+                }
+            }
+        });
+
+    }
+
+
+</script>

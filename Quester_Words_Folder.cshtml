@@ -1,0 +1,1305 @@
+﻿
+@model TutionCloudWeb.Model.Quester.Quester_Commen_Model
+
+@{
+    ViewBag.Title = "Quester_Words";
+    Layout = "~/Views/Shared/_Layout_Quester_Home.cshtml";
+    var totalWordCount = Model.totalWordCount;
+    byte[] byt = System.Text.Encoding.UTF8.GetBytes("00");
+    var strModified = Convert.ToBase64String(byt);
+    var a2 = 0;
+}
+
+@Html.HiddenFor(z => z.userId, new { Value = Model.userId })
+@Html.HiddenFor(z => z.totalWordCount, new { Value = Model.totalWordCount })
+<input type="hidden" id="hfn-index" value="0" />
+<input type="hidden" id="hfn-sortby" value="" />
+<input type="hidden" id="hfn-sortorder" value="" />
+
+<link href="~/Content/TreeView/10.9.2020/css/tree.css" rel="stylesheet" />
+
+<link href="~/zTree_v3/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
+
+
+<script src="~/Content/TreeView/10.9.2020/js/treeitemClick.js"></script>
+<script src="~/Content/TreeView/10.9.2020/js/treeitem.js"></script>
+<script src="~/Content/TreeView/10.9.2020/js/tree.js"></script>
+
+<script src="~/zTree_v3/js/jquery.ztree.all.js"></script>
+<script src="~/zTree_v3/js/jquery.ztree.core.js"></script>
+<script src="~/zTree_v3/js/jquery.ztree.excheck.js"></script>
+<script src="~/zTree_v3/js/jquery.ztree.exedit.js"></script>
+<script src="~/zTree_v3/js/jquery.ztree.exhide.js"></script>
+
+
+
+
+<section class="favSecn">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-lg-2 col-md-12 col-sm-12">
+
+                <div style="margin-top: 117px;">
+                    <ul id="treeView" class="ztree">
+                    </ul>
+
+                    <h6 style="display:none" id="FolderNotCreated">Folder not created</h6>
+
+
+                </div>
+                
+
+            </div>
+
+
+            <div class="col-lg-7 col-md-12 col-sm-12">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        @*<div class="favsection">
+                            <a href="/Quester/Quester_CreateWord"><img src="~/Content/img/utilities/folder.png" /><span class="test">ADD Question</span></a>
+                        </div>*@
+
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group Srch1 ">
+                            <label for="Name">Search By Question Name:</label>
+                            <div class="Srchbx">
+                                <input type="text" class="form-control" id="ipt-word-search">
+                                <button style="cursor:pointer;" id="btn-search-word">SEARCH</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p>Number of Questions selected:<span id="selected-item-count"> 0</span></p>
+                <div class="OutTab">
+                    <div class="Table">
+                        <div class="table-responsive Tble">
+                            <table class="table table-hover newTable table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="tabhead">Select</th>
+                                        <th class="tabhead">Questions<div class="Ryt"> @*<span class="uppsort" id="word-desc"></span>*@@*<span id="word-asc" class="downsort"></span>*@</div></th>
+                                        <th class="tabhead"> Overall % Score <div class="Ryt"> @*<span id="score-desc" class="uppsort"></span>*@@*<span id="score-asc" class="downsort"></span>*@</div></th>
+                                        <th class="tabhead">Options</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-wordlist">
+                                    @{
+                                        var postModel = new TutionCloudWeb.Model.Quester.Quester_WordList_Model();
+                                        postModel.userId = Model.userId;
+                                        postModel.index = 0;
+                                        postModel.totalWordCount = totalWordCount;
+                                        postModel.searchText = string.Empty;
+                                        postModel.sortBy = string.Empty;
+                                        postModel.sortOrder = string.Empty;
+                                    }
+                                    @*@Html.Partial("~/Views/Quester/_pv_Quester_Word_List_Folder.cshtml", postModel)*@
+                                    
+                                    @Html.Partial("~/Views/Quester/_pv_Quester_Word_Folder_List.cshtml", postModel)
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                        <div class="Indctor" id="div-page-count">
+                            <p>Page 1 of @Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalWordCount) / Convert.ToDouble(10))))</p>
+                        </div>
+                        <div class="Pgntation">
+                            <nav aria-label="Page navigation example" id="nav-pagination">
+                                @{
+                                    var postModelPagination = new TutionCloudWeb.Model.Quester.Quester_WordListPagination_Model();
+                                    postModelPagination.userId = Model.userId;
+                                    postModelPagination.index = 1;
+                                    postModelPagination.totalWordCount = totalWordCount;
+                                    postModelPagination.searchText = string.Empty;
+                                    postModelPagination.sortBy = string.Empty;
+                                    postModelPagination.sortOrder = string.Empty;
+                                }
+                                @Html.Partial("~/Views/Quester/_pv_Quester_Word_List_Pagination.cshtml", postModelPagination)
+
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-12 col-sm-12">
+                <div class="newdrpn">
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-primary " data-toggle="dropdown">Task Dropdown List <img class="png_rightarrow" src="~/Content/img/rightarrow.png" /></button>
+                        <div class="dropdown-menu">
+                            <a style="cursor:pointer;" class="dropdown-item" onclick="history.back()">BACK</a>
+                            <a href="/Quester/Quester_CreateWord" style="cursor:pointer;" class="dropdown-item">CREATE A QUESTION</a>
+                            <a style="cursor:pointer;" class="dropdown-item" id="SelectAll">SELECT ALL</a>
+                            <a style="cursor:pointer;" class="dropdown-item" id="a-add-word-fav">ADD TO FAVOURITES</a>
+                            <a style="cursor:pointer;" class="dropdown-item" id="a-add-word-skiplist">ADD TO SKIPPED LIST</a>
+                            <a style="cursor:pointer;" class="dropdown-item" id="delete-selected-words">DELETE SELECTION</a>
+                            <a style="cursor:pointer;" class="dropdown-item" id="delete-all-words">DELETE ALL</a>
+                            @*<a style="cursor:pointer;" class="dropdown-item" id="create-test">Create a Test </a>*@
+                            @*<a style="cursor:pointer;" class="dropdown-item" target="_blank" href="https://www.thesaurus.com/browse/ ?s=t">Find Synonym</a>*@
+                            @*<a style="cursor:pointer;" class="dropdown-item" href="#">Go To Test Archive </a>*@
+                        </div>
+                    </div>
+                </div>
+
+                <div class="outAccordtn fav_out">
+                    <div id="accordion">
+                        <div class="card">
+                            <div class="accordhead">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Questions
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                <div class="card-body" id="div-databaseword">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="accordhead">
+                                <div class="card-header" id="headingfour">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsefour" aria-expanded="false" aria-controls="collapseThree">
+                                            Show Hint
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div id="collapsefour" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                <div class="card-body" id="div-Hint">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="accordhead">
+                                <div class="card-header" id="headingTwo">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Show Answer
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                <div class="card-body" id="div-Pronounced">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="accordhead">
+                                <div class="card-header" id="headingThree">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            Show Additional Information
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                <div class="card-body" id="div-Phrase">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card" style="display:none;">
+                            <div class="accordhead">
+                                <div class="card-header" id="headingfive">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsefive" aria-expanded="false" aria-controls="collapseThree">
+                                            Definition
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div id="collapsefive" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                <div class="card-body lastAccord" id="div-Definition">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="accordhead">
+                                <div class="card-header" id="headingfour">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseThree">
+                                            Category Name
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div id="collapseSix" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                <div class="card-body" id="div-CategoryName">
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        @*var CategoryName = $(tr).attr('data-CategoryName');
+                            $('#div-CategoryName').html(CategoryName);*@
+
+
+
+
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="lowerNav">
+            <nav class="navbar navbar-expand-sm  justify-content-center">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="https://en.wikipedia.org/wiki/Main.page" target="_blank">Wikipedia</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.google.com/search?q=calculator" target="_blank">Calculator</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.google.com/maps/" target="_blank">Maps</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.google.com/search?ei=DyM3XNbMEdH6kwW-lpLgCA&q=google+currency+converter&oq=google+currency+converter&gs_l=psy-ab.3..35i39j0i7i30l2j0j0i7i30j0j0i7i30j0l3.211.5629..6378...0.0..0.282.1593.0j6j3......0....1..gws-wiz.......0i71j0i30j0i131i67j35i304i39.BbyIqE0P5UY" target="_blank">Currency Converter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.timeanddate.com/worldclock/full.html" target="_blank">World Clocks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://translate.google.com/" target="_blank">Translator</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<script>
+
+
+    /////tree start................
+
+    var OBJ = new Object();
+    var binding_ObJ = [];
+    var zNodes = [];
+    var setting = {
+
+        data: {
+            simpleData: {
+
+                enable: true
+            }
+        },
+        edit: {
+            enable: false,
+            // showRemoveBtn: setRemoveBtn
+        },
+        callback: {
+
+            onClick: zTreeOnClick,
+            //beforeRemove: zTreeBeforeRemove,
+            //onRemove: zTreeOnRemove,
+            //onRename: zTreeOnRename
+
+
+        }
+    };
+
+
+
+    function zTreeOnClick(event, treeId, treeNode) {
+        //debugger;
+        var searchText = "";
+        
+        if (treeNode.isParent == true) {
+        
+            $.each(zNodes, function (key, items) {
+                
+         
+                if (items.pId == treeNode.id) {
+                   
+                    if (searchText == "") {
+                        searchText = items.tId;
+                       
+                    }
+                    else {
+                       
+                        searchText = searchText + "," +items.tId;
+                    }
+                }
+                
+
+            });
+
+            if (searchText != "" || searchText != null) {
+                
+                
+                $.ajax({
+                    url: '/Quester/Quester_WordCount_Folder?userId=' + parseInt($('#userId').val()) + '&searchText=' + searchText,
+                    type: "GET",
+                    dataType: 'JSON',
+                    success: function (data) {
+                        $('#totalWordCount').val(data);
+                        var obj = new Object();
+                        obj.userId = $('#userId').val();
+                        obj.totalWordCount = $('#totalWordCount').val();
+                        obj.index = parseInt($('#hfn-index').val());
+                        obj.searchText = searchText;
+                        obj.sortBy = $('#hfn-sortby').val();
+                        obj.sortOrder = $('#hfn-sortorder').val();
+                        $.ajax({
+                            url: '/Quester/Quester_refreshUserWordList_Folder',
+                            type: "POST",
+                            data: obj,
+                            dataType: 'html',
+                            success: function (data) {
+                               
+                                $('#tbody-wordlist').html(data);
+                                var tr = $(document).find('.tr-word-row').first();
+                                if (tr.length > 0) {
+                                    var word = $(tr).attr('data-word');
+                                    var pronounciation = $(tr).attr('data-pronounciation');
+                                    var phrase = $(tr).attr('data-phrase');
+                                    var hint = $(tr).attr('data-hint');
+                                    var definition = $(tr).attr('data-definition');
+
+                                    var CategoryName = $(tr).attr('data-categoryname');
+                                    $('#div-CategoryName').html(CategoryName);
+
+                                    $('#div-databaseword').html(word);
+                                    $('#div-Pronounced').html(pronounciation);
+                                    $('#div-Phrase').html(phrase);
+                                    $('#div-Hint').html(hint);
+                                    $('#div-Definition').html(definition);
+                                }
+                                var obj1 = new Object();
+                                obj1.userId = $('#userId').val();
+                                obj1.totalWordCount = $('#totalWordCount').val();
+                                obj1.index = parseInt(parseInt($('#hfn-index').val()) + 1);
+                                obj1.searchText = $('#ipt-word-search').val();
+                                obj1.sortBy = $('#hfn-sortby').val();
+                                obj1.sortOrder = $('#hfn-sortorder').val();
+                                $.ajax({
+                                    url: '/Quester/Quester_refreshUserWordListPagination_Folder',
+                                    type: "POST",
+                                    data: obj1,
+                                    dataType: 'html',
+                                    success: function (data) {
+                                        $('#nav-pagination').html(data);
+                                        $('#div-page-count').html('<p>Page ' + parseInt(parseInt($('#hfn-index').val()) + 1) + ' of ' + Math.ceil(parseFloat($('#totalWordCount').val()) / parseFloat(10)) + '</p>')
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+
+
+
+            }
+            else {
+
+                $('#tbody-wordlist').html('<tr><td colspan = "4"> No Questions found</td></tr >');
+
+                 $('#nav-pagination').html("");
+                $('#div-page-count').html("")
+
+
+                toastrInfo("No data found");
+            }
+
+
+
+        }
+
+    };
+
+
+    
+
+
+    
+
+
+
+    $(document).ready(function () {
+
+        foarmLoad();
+
+        function foarmLoad() {
+
+            $.ajax({
+                url: '/Quester/Quester_GetAll_SelectId_Tree',
+                type: "POST",
+                dataType: 'json',
+                success: function (data) {
+                    if (data.status == true) {
+
+                        binding_ObJ = JSON.parse(data.message);
+
+                        zNodes = binding_ObJ;
+
+                        var tempBinding_Obj = [];
+
+                        $.each(binding_ObJ, function (key, value) {
+
+                            if (value.isParent == true) {
+                                var OBJ = new Object();
+
+                                OBJ.halfCheck = value.halfCheck
+                                OBJ.id = value.id
+                                OBJ.isAjaxing = value.isAjaxing
+                                OBJ.isFirstNode = value.isFirstNode
+                                OBJ.isHidden = value.isHidden
+                                OBJ.isHover = value.isHover
+                                OBJ.isLastNode = value.isLastNode
+                                OBJ.isParent = value.isParent
+                                OBJ.level = value.level
+                                OBJ.name = value.name
+                                OBJ.nocheck = value.nocheck
+                                OBJ.open = value.open
+                                OBJ.pId = value.pId
+                                OBJ.parentTId = value.parentTId
+                                OBJ.tId = value.tId
+                                OBJ.zAsync = value.zAsync
+
+                                tempBinding_Obj.push(OBJ);
+
+                            }
+
+
+                        });
+
+                        
+
+                        $.fn.zTree.init($("#treeView"), setting, tempBinding_Obj);
+
+
+                    }
+                    else {
+
+                        var zNodesTemp = [{ id: 1, pId: 0, name: "Temp 1", open: true }];
+
+                        $.fn.zTree.init($("#treeView"), setting, zNodesTemp);
+
+                        $("#FolderNotCreated").show();
+                        $("#treeView").hide();
+
+                    }
+
+
+                }
+            });
+
+        }
+
+
+
+        
+
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+    //////////tree end.....................
+
+
+
+    $(document).on('click', '#create-test', function () {
+        if (wordList.length <= 0) {
+            window.location.href = "/Quester/Quester_Exams";
+        }
+        else {
+            var encodedString = btoa(wordList.join(','));
+            window.location.href = "/Quester/Quester_CreateTest/" + encodedString;
+        }
+    });
+
+</script>
+
+
+<script>
+
+    $('#ipt-word-search').keypress(function (e) {
+
+        var key = e.which;
+        if (key == 13)  // the enter key code
+        {
+            $('#btn-search-word').click();
+            //return false;
+        }
+    });
+
+    $("#SelectAll").click(function () {
+        $("#selected-item-count").text("0");
+
+        if ($('.ckb-word-item').prop("checked") == false) {
+            $('.ckb-word-item').each(function () {
+                this.checked = true;
+                $('#selected-item-count').text(" " + parseInt(parseInt($('#selected-item-count').text()) + parseInt(1)));
+                var wordId = $(this).attr('data-wordid');
+                if ($(this).prop("checked") == true) {
+                    wordList.push(wordId);
+                }
+                else {
+                    wordList.splice($.inArray(wordId, wordList), 1);
+                }
+            });
+        }
+        else {
+            $('.ckb-word-item').each(function () {
+                this.checked = false;
+                $('#selected-item-count').text(" " + parseInt(parseInt($('#selected-item-count').text()) + parseInt(1)));
+                var wordId = $(this).attr('data-wordid');
+                if ($(this).prop("checked") == false) {
+                    wordList.push(wordId);
+                }
+                else {
+                    wordList.splice($.inArray(wordId, wordList), 1);
+                }
+            });
+
+        }
+
+    });
+
+
+    $(document).on('click', '.tr-word-row', function () {
+        var source = $(this);
+        var word = $(source).attr('data-word');
+        var pronounciation = $(source).attr('data-pronounciation');
+        var phrase = $(source).attr('data-phrase');
+        var hint = $(source).attr('data-hint');
+        var definition = $(source).attr('data-definition');
+
+        var CategoryName = $(source).attr('data-categoryname');
+        $('#div-CategoryName').html(CategoryName);
+
+
+        $('#div-databaseword').html(word);
+        $('#div-Pronounced').html(pronounciation);
+        $('#div-Phrase').html(phrase);
+        $('#div-Hint').html(hint);
+        $('#div-Definition').html(definition);
+    });
+
+
+
+    $(document).ready(function () {
+        var tr = $(document).find('.tr-word-row').first();
+
+        if (tr.length > 0) {
+            var word = $(tr).attr('data-word');
+            var pronounciation = $(tr).attr('data-pronounciation');
+            var phrase = $(tr).attr('data-phrase');
+            var hint = $(tr).attr('data-hint');
+            var definition = $(tr).attr('data-definition');
+
+            var CategoryName = $(tr).attr('data-categoryname');
+            $('#div-CategoryName').html(CategoryName);
+
+
+            $('#div-databaseword').html(word);
+            $('#div-Pronounced').html(pronounciation);
+            $('#div-Phrase').html(phrase);
+            $('#div-Hint').html(hint);
+            $('#div-Definition').html(definition);
+        }
+
+
+    });
+    var wordList = [];
+
+
+
+
+    $(document).on('click', '.ckb-word-item', function () {
+        var wordId = $(this).attr('data-wordid');
+        if ($(this).prop("checked") == true) {
+            wordList.push(wordId);
+            $('#selected-item-count').text(" " + parseInt(parseInt($('#selected-item-count').text()) + parseInt(1)));
+        }
+        else {
+            wordList.splice($.inArray(wordId, wordList), 1);
+            $('#selected-item-count').text(" " + parseInt(parseInt($('#selected-item-count').text()) - parseInt(1)));
+        }
+        console.log(wordList);
+    });
+
+
+</script>
+
+<script>
+
+    $(document).on('click', '.word-delete', function () {
+        var source = $(this);
+        var wordId = $(this).attr('data-wordid');
+
+        swal({
+            title: "Are you sure?",
+            text: "Permanently delete this word from your database?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#004b8d",
+            confirmButtonText: "Yes, delete!",
+            closeOnConfirm: true
+        },
+            function (isConfirm) {
+                if (isConfirm) {
+                    $.ajax({
+                        url: '/Quester/Quester_deletWord?wordId=' + wordId,
+                        type: "GET",
+                        dataType: 'JSON',
+                        success: function (data) {
+                            if (data.status) {
+                                toastrSuccess("Word deleted");
+
+                                $('#totalWordCount').val(parseInt($('#totalWordCount').val() - 1));
+
+                                var islasttr = $(document).find('.tr-word-row');
+                                if (islasttr.length <= 1) {
+                                    if (parseInt($('#hfn-index').val()) != 0)
+                                        $('#hfn-index').val(parseInt($('#hfn-index').val()) - 1)
+                                }
+
+
+                                var obj = new Object();
+                                obj.userId = $('#userId').val();
+                                obj.totalWordCount = $('#totalWordCount').val();
+                                obj.index = parseInt($('#hfn-index').val());
+                                obj.searchText = $('#ipt-word-search').val();
+                                obj.sortBy = $('#hfn-sortby').val();
+                                obj.sortOrder = $('#hfn-sortorder').val();
+                                $.ajax({
+                                    url: '/Quester/Quester_refreshUserWordList',
+                                    type: "POST",
+                                    data: obj,
+                                    dataType: 'html',
+                                    success: function (data) {
+                                       
+                                        $('#tbody-wordlist').html(data);
+                                        var tr = $(document).find('.tr-word-row').first();
+                                        if (tr.length > 0) {
+                                            var word = $(tr).attr('data-word');
+                                            var pronounciation = $(tr).attr('data-pronounciation');
+                                            var phrase = $(tr).attr('data-phrase');
+                                            var hint = $(tr).attr('data-hint');
+                                            var definition = $(tr).attr('data-definition');
+
+                                            var CategoryName = $(tr).attr('data-categoryname');
+                                            $('#div-CategoryName').html(CategoryName);
+
+                                            $('#div-databaseword').html(word);
+                                            $('#div-Pronounced').html(pronounciation);
+                                            $('#div-Phrase').html(phrase);
+                                            $('#div-Hint').html(hint);
+                                            $('#div-Definition').html(definition);
+
+
+
+                                        }
+                                        var obj1 = new Object();
+                                        obj1.userId = $('#userId').val();
+                                        obj1.totalWordCount = $('#totalWordCount').val();
+                                        obj1.index = parseInt(parseInt($('#hfn-index').val()) + 1);
+                                        obj1.searchText = $('#ipt-word-search').val();
+                                        obj1.sortBy = $('#hfn-sortby').val();
+                                        obj1.sortOrder = $('#hfn-sortorder').val();
+                                        $.ajax({
+                                            url: '/Quester/Quester_refreshUserWordListPagination',
+                                            type: "POST",
+                                            data: obj1,
+                                            dataType: 'html',
+                                            success: function (data) {
+                                                $('#nav-pagination').html(data);
+                                                $('#div-page-count').html('<p>Page ' + parseInt(parseInt($('#hfn-index').val()) + 1) + ' of ' + Math.ceil(parseFloat($('#totalWordCount').val()) / parseFloat(10)) + '</p>')
+                                            }
+                                        });
+                                    }
+                                });
+
+                            }
+                            else {
+                                toastrError(data.message);
+                            }
+                        }
+                    });
+                }
+            });
+    });
+
+
+    $(document).on('click', '#delete-selected-words', function () {
+        var cbkStatus = false;
+        var wordIds = "";
+        var count = 0;
+        $(document).find('.ckb-word-item').each(function (index, value) {
+            if ($(this).prop("checked") == true) {
+                count = count + 1;
+                cbkStatus = true;
+                if (wordIds == "")
+                    wordIds = wordIds + $(this).attr('data-wordid');
+                else
+                    wordIds = wordIds + "," + $(this).attr('data-wordid');
+            }
+        });
+        if (cbkStatus == false && wordList.length <= 0) {
+            toastrError('Please select a word');
+        }
+        else {
+            swal({
+                title: "Are you sure?",
+                text: "You are about to delete the selected words!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#004b8d",
+                confirmButtonText: "Yes, delete!",
+                closeOnConfirm: true
+            },
+                function (isConfirm) {
+                    if (isConfirm) {
+
+                        var userId = $('#userId').val();
+                        var objs = new Object();
+                        objs.userId = userId;
+                        objs.wordIds = wordList.join(',')
+
+                        $.ajax({
+                            url: '/Quester/Quester_deletSelectedWords',
+                            type: "POST",
+                            data: objs,
+                            dataType: 'JSON',
+                            success: function (data) {
+                                if (data.status) {
+                                    toastrSuccess("Words deleted");
+
+                                    $('#selected-item-count').text("0");
+
+                                    $('#totalWordCount').val(parseInt($('#totalWordCount').val() - 1));
+
+                                    var islasttr = $(document).find('.tr-word-row');
+                                    if (islasttr.length <= 1) {
+                                        if (parseInt($('#hfn-index').val()) != 0)
+                                            $('#hfn-index').val(parseInt($('#hfn-index').val()) - 1)
+                                    }
+
+
+                                    var obj = new Object();
+                                    obj.userId = $('#userId').val();
+                                    obj.totalWordCount = $('#totalWordCount').val();
+                                    obj.index = parseInt($('#hfn-index').val());
+                                    obj.searchText = $('#ipt-word-search').val();
+                                    obj.sortBy = $('#hfn-sortby').val();
+                                    obj.sortOrder = $('#hfn-sortorder').val();
+                                    $.ajax({
+                                        url: '/Quester/Quester_refreshUserWordList',
+                                        type: "POST",
+                                        data: obj,
+                                        dataType: 'html',
+                                        success: function (data) {
+                                            
+                                            $('#tbody-wordlist').html(data);
+                                            var tr = $(document).find('.tr-word-row').first();
+                                            if (tr.length > 0) {
+                                                var word = $(tr).attr('data-word');
+                                                var pronounciation = $(tr).attr('data-pronounciation');
+                                                var phrase = $(tr).attr('data-phrase');
+                                                var hint = $(tr).attr('data-hint');
+                                                var definition = $(tr).attr('data-definition');
+
+                                                var CategoryName = $(tr).attr('data-categoryname');
+                                                $('#div-CategoryName').html(CategoryName);
+
+                                                $('#div-databaseword').html(word);
+                                                $('#div-Pronounced').html(pronounciation);
+                                                $('#div-Phrase').html(phrase);
+                                                $('#div-Hint').html(hint);
+                                                $('#div-Definition').html(definition);
+                                            }
+                                            var obj1 = new Object();
+                                            obj1.userId = $('#userId').val();
+                                            obj1.totalWordCount = $('#totalWordCount').val();
+                                            obj1.index = parseInt(parseInt($('#hfn-index').val()) + 1);
+                                            obj1.searchText = $('#ipt-word-search').val();
+                                            obj1.sortBy = $('#hfn-sortby').val();
+                                            obj1.sortOrder = $('#hfn-sortorder').val();
+                                            $.ajax({
+                                                url: '/Quester/Quester_refreshUserWordListPagination',
+                                                type: "POST",
+                                                data: obj1,
+                                                dataType: 'html',
+                                                success: function (data) {
+                                                    $('#nav-pagination').html(data);
+                                                    $('#div-page-count').html('<p>Page ' + parseInt(parseInt($('#hfn-index').val()) + 1) + ' of ' + Math.ceil(parseFloat($('#totalWordCount').val()) / parseFloat(10)) + '</p>')
+                                                }
+                                            });
+                                        }
+                                    });
+
+                                }
+                                else {
+                                    toastrError(data.message);
+                                }
+                            }
+                        });
+                    }
+                });
+        }
+    });
+
+
+    $(document).on('click', '#delete-all-words', function () {
+
+        if ($('.tr-word-row').length > 0) {
+
+
+            swal({
+                title: "Are you sure?",
+                text: "You are about to delete all words!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#004b8d",
+                confirmButtonText: "Yes, delete!",
+                closeOnConfirm: true
+            },
+                function (isConfirm) {
+                    if (isConfirm) {
+
+                        var userId = $('#userId').val();
+                        var objs = new Object();
+                        objs.userId = userId;
+
+                        $.ajax({
+                            url: '/Quester/Quester_deleteAllWords',
+                            type: "POST",
+                            data: objs,
+                            dataType: 'JSON',
+                            success: function (data) {
+                                if (data.status) {
+                                    toastrSuccess("Words deleted");
+                                    location.reload();
+                                }
+                                else {
+                                    toastrError(data.message);
+                                }
+                            }
+                        });
+                    }
+                });
+        }
+        else {
+            toastrError("No words to delete");
+        }
+    });
+
+
+</script>
+
+
+<script>
+    $(document).on('click', '#btn-search-word', function () {
+        var searchText = $('#ipt-word-search').val();
+        searchText = $.trim(searchText);
+        $.ajax({
+            url: '/Quester/Quester_WordCount?userId=' + parseInt($('#userId').val()) + '&searchText=' + searchText,
+            type: "GET",
+            dataType: 'JSON',
+            success: function (data) {
+                $('#totalWordCount').val(data);
+                var obj = new Object();
+                obj.userId = $('#userId').val();
+                obj.totalWordCount = $('#totalWordCount').val();
+                obj.index = parseInt($('#hfn-index').val());
+                obj.searchText = searchText;
+                obj.sortBy = $('#hfn-sortby').val();
+                obj.sortOrder = $('#hfn-sortorder').val();
+                $.ajax({
+                    url: '/Quester/Quester_refreshUserWordList',
+                    type: "POST",
+                    data: obj,
+                    dataType: 'html',
+                    success: function (data) {
+                        
+                        $('#tbody-wordlist').html(data);
+                        var tr = $(document).find('.tr-word-row').first();
+                        if (tr.length > 0) {
+                            var word = $(tr).attr('data-word');
+                            var pronounciation = $(tr).attr('data-pronounciation');
+                            var phrase = $(tr).attr('data-phrase');
+                            var hint = $(tr).attr('data-hint');
+                            var definition = $(tr).attr('data-definition');
+
+                            var CategoryName = $(tr).attr('data-categoryname');
+                            $('#div-CategoryName').html(CategoryName);
+
+                            $('#div-databaseword').html(word);
+                            $('#div-Pronounced').html(pronounciation);
+                            $('#div-Phrase').html(phrase);
+                            $('#div-Hint').html(hint);
+                            $('#div-Definition').html(definition);
+                        }
+                        var obj1 = new Object();
+                        obj1.userId = $('#userId').val();
+                        obj1.totalWordCount = $('#totalWordCount').val();
+                        obj1.index = parseInt(parseInt($('#hfn-index').val()) + 1);
+                        obj1.searchText = $('#ipt-word-search').val();
+                        obj1.sortBy = $('#hfn-sortby').val();
+                        obj1.sortOrder = $('#hfn-sortorder').val();
+                        $.ajax({
+                            url: '/Quester/Quester_refreshUserWordListPagination',
+                            type: "POST",
+                            data: obj1,
+                            dataType: 'html',
+                            success: function (data) {
+                                $('#nav-pagination').html(data);
+                                $('#div-page-count').html('<p>Page ' + parseInt(parseInt($('#hfn-index').val()) + 1) + ' of ' + Math.ceil(parseFloat($('#totalWordCount').val()) / parseFloat(10)) + '</p>')
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+<script>
+
+
+    $(document).on('click', '#a-add-word-fav', function () {
+        var cbkStatus = false;
+        var wordIds = "";
+        var count = 0;
+        $(document).find('.ckb-word-item').each(function (index, value) {
+            if ($(this).prop("checked") == true) {
+                count = count + 1;
+                cbkStatus = true;
+                if (wordIds == "")
+                    wordIds = wordIds + $(this).attr('data-wordid');
+                else
+                    wordIds = wordIds + "," + $(this).attr('data-wordid');
+            }
+        });
+        if (cbkStatus == false) {
+            toastrError('Please select a word');
+        }
+        else {
+            var userId = $('#userId').val();
+            var objs = new Object();
+            objs.userId = userId;
+            objs.wordIds = wordIds;
+
+            $.ajax({
+                url: '/Quester/Quester_addfavouriteword',
+                type: "POST",
+                data: objs,
+                dataType: 'JSON',
+                success: function (data) {
+                    if (data.status) {
+                        toastrSuccess("Word added to favourites");
+
+
+                        $('#totalWordCount').val(parseInt($('#totalWordCount').val() - count));
+
+
+                        var islasttr = $(document).find('.tr-word-row');
+                        if (islasttr.length == count) {
+                            if (parseInt($('#hfn-index').val()) != 0)
+                                $('#hfn-index').val(parseInt($('#hfn-index').val()) - 1)
+                        }
+
+
+                        var obj = new Object();
+                        obj.userId = $('#userId').val();
+                        obj.totalWordCount = $('#totalWordCount').val();
+                        obj.index = parseInt($('#hfn-index').val());
+                        obj.searchText = $('#ipt-word-search').val();
+                        obj.sortBy = $('#hfn-sortby').val();
+                        obj.sortOrder = $('#hfn-sortorder').val();
+                        $.ajax({
+                            url: '/Quester/Quester_refreshUserWordList',
+                            type: "POST",
+                            data: obj,
+                            dataType: 'html',
+                            success: function (data) {
+                              
+                                $('#tbody-wordlist').html(data);
+                                var tr = $(document).find('.tr-word-row').first();
+                                if (tr.length > 0) {
+                                    var word = $(tr).attr('data-word');
+                                    var pronounciation = $(tr).attr('data-pronounciation');
+                                    var phrase = $(tr).attr('data-phrase');
+                                    var hint = $(tr).attr('data-hint');
+                                    var definition = $(tr).attr('data-definition');
+
+                                    var CategoryName = $(tr).attr('data-categoryname');
+                                    $('#div-CategoryName').html(CategoryName);
+
+                                    $('#div-databaseword').html(word);
+                                    $('#div-Pronounced').html(pronounciation);
+                                    $('#div-Phrase').html(phrase);
+                                    $('#div-Hint').html(hint);
+                                    $('#div-Definition').html(definition);
+                                }
+                                var obj1 = new Object();
+                                obj1.userId = $('#userId').val();
+                                obj1.totalWordCount = $('#totalWordCount').val();
+                                obj1.index = parseInt(parseInt($('#hfn-index').val()) + 1);
+                                obj1.searchText = $('#ipt-word-search').val();
+                                obj1.sortBy = $('#hfn-sortby').val();
+                                obj1.sortOrder = $('#hfn-sortorder').val();
+                                $.ajax({
+                                    url: '/Quester/Quester_refreshUserWordListPagination',
+                                    type: "POST",
+                                    data: obj1,
+                                    dataType: 'html',
+                                    success: function (data) {
+                                        $('#nav-pagination').html(data);
+                                        $('#div-page-count').html('<p>Page ' + parseInt(parseInt($('#hfn-index').val()) + 1) + ' of ' + Math.ceil(parseFloat($('#totalWordCount').val()) / parseFloat(10)) + '</p>')
+                                    }
+                                });
+                            }
+                        });
+
+
+                    }
+                    else {
+                        toastrError(data.message);
+                    }
+                }
+            });
+        }
+    });
+
+
+    $(document).on('click', '#a-add-word-skiplist', function () {
+        var cbkStatus = false;
+        var wordIds = "";
+        var count = 0;
+        $(document).find('.ckb-word-item').each(function (index, value) {
+            if ($(this).prop("checked") == true) {
+                count = count + 1;
+                cbkStatus = true;
+                if (wordIds == "")
+                    wordIds = wordIds + $(this).attr('data-wordid');
+                else
+                    wordIds = wordIds + "," + $(this).attr('data-wordid');
+            }
+        });
+        if (cbkStatus == false && wordList.length <= 0) {
+            toastrError('Please select a word');
+        }
+        else {
+            var userId = $('#userId').val();
+            var objs = new Object();
+            objs.userId = userId;
+            objs.wordIds = wordList.join(',')
+            $.ajax({
+                url: '/Quester/Quester_addskippedword',
+                type: "POST",
+                data: objs,
+                dataType: 'JSON',
+                success: function (data) {
+                    if (data.status) {
+                        toastrSuccess("Word added to skip list");
+                        wordList = [];
+
+
+                        $('#totalWordCount').val(parseInt($('#totalWordCount').val() - count));
+
+
+                        var islasttr = $(document).find('.tr-word-row');
+                        if (islasttr.length == count) {
+                            if (parseInt($('#hfn-index').val()) != 0)
+                                $('#hfn-index').val(parseInt($('#hfn-index').val()) - 1)
+                        }
+
+
+                        var obj = new Object();
+                        obj.userId = $('#userId').val();
+                        obj.totalWordCount = $('#totalWordCount').val();
+                        obj.index = parseInt($('#hfn-index').val());
+                        obj.searchText = $('#ipt-word-search').val();
+                        obj.sortBy = $('#hfn-sortby').val();
+                        obj.sortOrder = $('#hfn-sortorder').val();
+                        $.ajax({
+                            url: '/Quester/Quester_refreshUserWordList',
+                            type: "POST",
+                            data: obj,
+                            dataType: 'html',
+                            success: function (data) {
+                                
+                                $('#tbody-wordlist').html(data);
+                                var tr = $(document).find('.tr-word-row').first();
+                                if (tr.length > 0) {
+                                    var word = $(tr).attr('data-word');
+                                    var pronounciation = $(tr).attr('data-pronounciation');
+                                    var phrase = $(tr).attr('data-phrase');
+                                    var hint = $(tr).attr('data-hint');
+                                    var definition = $(tr).attr('data-definition');
+
+                                    var CategoryName = $(tr).attr('data-categoryname');
+                                    $('#div-CategoryName').html(CategoryName);
+
+
+                                    $('#div-databaseword').html(word);
+                                    $('#div-Pronounced').html(pronounciation);
+                                    $('#div-Phrase').html(phrase);
+                                    $('#div-Hint').html(hint);
+                                    $('#div-Definition').html(definition);
+                                }
+                                var obj1 = new Object();
+                                obj1.userId = $('#userId').val();
+                                obj1.totalWordCount = $('#totalWordCount').val();
+                                obj1.index = parseInt(parseInt($('#hfn-index').val()) + 1);
+                                obj1.searchText = $('#ipt-word-search').val();
+                                obj1.sortBy = $('#hfn-sortby').val();
+                                obj1.sortOrder = $('#hfn-sortorder').val();
+                                $.ajax({
+                                    url: '/Quester/Quester_refreshUserWordListPagination',
+                                    type: "POST",
+                                    data: obj1,
+                                    dataType: 'html',
+                                    success: function (data) {
+                                        $('#nav-pagination').html(data);
+                                        $('#div-page-count').html('<p>Page ' + parseInt(parseInt($('#hfn-index').val()) + 1) + ' of ' + Math.ceil(parseFloat($('#totalWordCount').val()) / parseFloat(10)) + '</p>')
+                                    }
+                                });
+                            }
+                        });
+
+
+                    }
+                    else {
+                        toastrError(data.message);
+                    }
+                }
+            });
+        }
+    });
+
+
+</script>
+
+
+<script>
+    function sortList() {
+        $('#hfn-index').val(0);
+        var obj = new Object();
+        obj.userId = $('#userId').val();
+        obj.totalWordCount = $('#totalWordCount').val();
+        obj.index = parseInt($('#hfn-index').val());
+        obj.searchText = $('#ipt-word-search').val();
+        obj.sortBy = $('#hfn-sortby').val();
+        obj.sortOrder = $('#hfn-sortorder').val();
+        $.ajax({
+            url: '/Quester/Quester_refreshUserWordList',
+            type: "POST",
+            data: obj,
+            dataType: 'html',
+            success: function (data) {
+                
+                $('#tbody-wordlist').html(data);
+                var tr = $(document).find('.tr-word-row').first();
+                if (tr.length > 0) {
+                    var word = $(tr).attr('data-word');
+                    var pronounciation = $(tr).attr('data-pronounciation');
+                    var phrase = $(tr).attr('data-phrase');
+                    var hint = $(tr).attr('data-hint');
+                    var definition = $(tr).attr('data-definition');
+
+                    var CategoryName = $(tr).attr('data-categoryname');
+                    $('#div-CategoryName').html(CategoryName);
+
+                    $('#div-databaseword').html(word);
+                    $('#div-Pronounced').html(pronounciation);
+                    $('#div-Phrase').html(phrase);
+                    $('#div-Hint').html(hint);
+                    $('#div-Definition').html(definition);
+                }
+                var obj1 = new Object();
+                obj1.userId = $('#userId').val();
+                obj1.totalWordCount = $('#totalWordCount').val();
+                obj1.index = parseInt(parseInt($('#hfn-index').val()) + 1);
+                obj1.searchText = $('#ipt-word-search').val();
+                obj1.sortBy = $('#hfn-sortby').val();
+                obj1.sortOrder = $('#hfn-sortorder').val();
+                $.ajax({
+                    url: '/Quester/Quester_refreshUserWordListPagination',
+                    type: "POST",
+                    data: obj1,
+                    dataType: 'html',
+                    success: function (data) {
+                        $('#nav-pagination').html(data);
+                        $('#div-page-count').html('<p>Page ' + parseInt(parseInt($('#hfn-index').val()) + 1) + ' of ' + Math.ceil(parseFloat($('#totalWordCount').val()) / parseFloat(10)) + '</p>')
+                    }
+                });
+            }
+        });
+    }
+
+
+    $(document).on('click', '#word-asc', function () {
+        $('#hfn-sortby').val('WORD');
+        $('#hfn-sortorder').val('ASC');
+        sortList();
+        $(this).css('opacity', '1');
+        $('#word-desc').css('opacity', '.3');
+    });
+
+    $(document).on('click', '#word-desc', function () {
+        $('#hfn-sortby').val('WORD');
+        $('#hfn-sortorder').val('DESC');
+        sortList();
+        $(this).css('opacity', '1');
+        $('#word-asc').css('opacity', '.3');
+    });
+
+    $(document).on('click', '#score-asc', function () {
+        $('#hfn-sortby').val('SCORE');
+        $('#hfn-sortorder').val('ASC');
+        sortList();
+        $(this).css('opacity', '1');
+        $('#score-desc').css('opacity', '.3');
+    });
+
+    $(document).on('click', '#score-desc', function () {
+        $('#hfn-sortby').val('SCORE');
+        $('#hfn-sortorder').val('DESC');
+        sortList();
+        $(this).css('opacity', '1');
+        $('#score-asc').css('opacity', '.3');
+    });
+
+
+</script>
+
+
+
+
+
+

@@ -1,0 +1,86 @@
+﻿@model TutionCloudWeb.Model.Quester.Quester_WordList_Model
+@{
+    var totalNoteCount = Model.totalNoteCount;
+}
+@{
+    var res = Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalNoteCount) / Convert.ToDouble(10))));
+}
+<ul id="notelist-pagination" class="blade-pagination" data-current="@(Model.index)" data-total="@(res)"></ul>
+
+
+
+<script>
+
+    $(document).ready(function () {
+
+        $('#notelist-pagination').bladePagination({
+            // max number of pages
+            maxPageNum: 5,
+            // label text
+            firstLabel: '|&lt;', // |<
+            prevLabel: '&lt;',   // <
+            nextLabel: '&gt;',   // >
+            lastLabel: '&gt;|',  // >|
+            moreLabel: '...',
+            // callback
+            clickPage: function (page) {
+                $('#hfn-index').val(parseInt(parseInt(page) - 1));
+                var searchText = $('#ipt-note-search').val();
+
+                var obj = new Object();
+                obj.userId = $('#userId').val();
+                obj.totalNoteCount = $('#totalNoteCount').val();
+                obj.index = parseInt(parseInt(page) - 1);
+                obj.sortBy = $('#hfn-sortby').val();
+                obj.sortOrder = $('#hfn-sortorder').val();
+                obj.searchText = searchText;
+                $.ajax({
+                    url: '/Quester/Quester_refreshUserNoteList',
+                    type: "POST",
+                    data: obj,
+                    dataType: 'html',
+                    success: function (data) {
+                        $('#tbody-notelist').html(data);
+                        $(document).find('.spn-utcdate').each(function () {
+                            try {
+                                var date = $(this).attr('data-utctime');
+                                var serverDate = moment.utc(date).local().format('LLL');
+                                $(this).html(serverDate);
+                            }
+                            catch (ex) {
+                                console.warn("Error converting date time", ex);
+                            }
+                        });
+
+                       
+                        var obj1 = new Object();
+                        obj1.userId = $('#userId').val();
+                        obj1.totalNoteCount = $('#totalNoteCount').val();
+                        obj1.index = parseInt(parseInt(page));
+                        obj1.sortBy = $('#hfn-sortby').val();
+                        obj1.sortOrder = $('#hfn-sortorder').val();
+                        obj1.searchText = searchText;
+
+                        console.log(obj1);
+                        $.ajax({
+                            url: '/Quester/Quester_refreshUserNoteListPagination',
+                            type: "POST",
+                            data: obj1,
+                            dataType: 'html',
+                            success: function (data) {
+                                $('#nav-pagination').html(data);
+                                $('#div-page-count').html('<p>Page ' + parseInt(page) + ' of @Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalNoteCount) / Convert.ToDouble(10))))</p>')
+                            }
+                        });
+                    }
+                });
+            }
+        });
+
+
+
+
+    });
+
+</script>
+

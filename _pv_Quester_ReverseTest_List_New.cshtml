@@ -1,0 +1,320 @@
+﻿@using Newtonsoft;
+@model TutionCloudWeb.Model.Quester.Quester_ReverceTests
+@{
+    Random rnd = new Random();
+
+
+    if (Model.isNewRandom)
+    {
+        int r = Model.prevIndex;
+        if (Model.index <= 0)
+        {
+            while ((r == Model.prevIndex) || (r == Model.index))
+            {
+                r = rnd.Next(1, Convert.ToInt32(Model.totalWordCount));
+            }
+        }
+        else
+        {
+            if (r == Model.index)
+            {
+                while ((r == Model.index) || (r == Model.prevIndex))
+                {
+                    r = rnd.Next(1, Convert.ToInt32(Model.totalWordCount));
+                }
+            }
+            else
+            {
+                //while ((r == Model.prevIndex) || (r == Model.index))
+                //{
+                //    r = rnd.Next(1, Convert.ToInt32(Model.totalWordCount));
+                //}
+            }
+        }
+        Model.index = r;
+    }
+    var word = new TutionCloudWeb.Repository.Quester.Quester_WebService_Repository().Quester_getUserWordByRowNumber(Model.userId, Model.index);
+
+    dynamic MyDynamic = new System.Dynamic.ExpandoObject();
+    MyDynamic.isNew = true;
+    MyDynamic.RandomCrossword = true;
+    MyDynamic.crosswordId = Convert.ToInt64(0);
+    MyDynamic.wordList = "";
+    MyDynamic.completeStatus = false;
+    var json = Newtonsoft.Json.JsonConvert.SerializeObject(MyDynamic);
+    byte[] byt = System.Text.Encoding.UTF8.GetBytes(json);
+    var strModified = Convert.ToBase64String(byt);
+
+}
+
+@if (word != null)
+{
+    var value = word.WORDID.ToString() + "-MainPanel-" + Model.index.ToString();
+    byte[] byt1 = System.Text.Encoding.UTF8.GetBytes(value);
+
+
+    var strModified1 = Convert.ToBase64String(byt1);
+
+    var Synonym = "https://www.thesaurus.com/browse/" + word.WORD + "?s=t";
+
+    <input type="hidden" id="hfn-toupdate-index" value="@Model.index" />
+
+    <div class="prv_nxt">
+        <div class="innerprv">
+            <img src="~/Content/img/leftarrow.png" /><span><a id="a-previous-reversetest" style="cursor:pointer;color: #ce1414; @(Convert.ToInt32(Model.totalWordCount) <= 1 ? "pointer-events: none" : "")">Previous</a></span>
+            <div class="innernxt" style="">
+                <a id="a-next-reversetest" style="cursor:pointer;color: #159623;@(Convert.ToInt32(Model.totalWordCount)<=1?"pointer-events: none":"")">Next</a><span><img src="~/Content/img/rightarrow.png" /></span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="newdrpn">
+        <div class="dropdown">
+            <button type="button" class="btn btn-primary " data-toggle="dropdown">Task Dropdown List <img class="png_rightarrow" src="~/Content/img/rightarrow.png" /></button>
+            <div class="dropdown-menu">
+
+                <a class="dropdown-item" style="cursor:pointer;" onclick="history.back()">Back</a>
+                @if (word.ISFAVOURITE)
+                {
+                    <a class="dropdown-item a-remove-word-fav" style="cursor:pointer;" data-wordid="@word.WORDID">Remove From Favourite </a>
+                }
+                else
+                {
+                    <a class="dropdown-item a-add-word-fav" style="cursor:pointer;" data-wordid="@word.WORDID">Add To Favourites </a>
+                }
+                @if (word.ISSKIPPED)
+                {
+                    <a class="dropdown-item a-remove-word-SkippedList" style="cursor:pointer;" data-wordid="@word.WORDID">Remove From Skipped List</a>
+                }
+                else
+                {
+                    <a class="dropdown-item a-add-word-SkippedList" style="cursor:pointer;" data-wordid="@word.WORDID">Add To Skipped List</a>
+                }
+
+               
+               @* <a class="dropdown-item" style="cursor:pointer;" href="/Wordutopia/Exams">Create a Test </a>*@
+               @* <a class="dropdown-item" style="cursor:pointer;" target="_blank" href="@Synonym">Find Synonym</a>*@
+               @* <a class="dropdown-item" style="cursor:pointer;" href="/Wordutopia/TestArchives">Go To Test Archive </a>*@
+               @* <a class="dropdown-item" style="cursor:pointer;" href="/Wordutopia/GenerateCrossword">Create My Own Crossword </a>*@
+                @*<a class="dropdown-item" style="cursor:pointer;" href="/Wordutopia/Crossword/@strModified">Create a Random Crossword </a>*@
+               @* <a class="dropdown-item" style="cursor:pointer;" href="/Wordutopia/CrosswordArchives">Crossword Archives </a>*@
+                @*<a class="dropdown-item" id="ddl-editword" style="cursor:pointer;" href="/Quester/Quester_EditWord/@strModified1">Edit Word </a>*@
+            </div>
+        </div>
+    </div>
+
+
+    <div class="outAccordtn fav_out">
+        <div id="accordion">
+            @*<div class="card">
+            <div class="accordhead">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Definition
+                        </button>
+                    </h5>
+                </div>
+            </div>
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    @word.DEFINITION
+                </div>
+            </div>
+        </div>*@
+
+            <div class="card">
+                <div class="accordhead">
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Show Answer
+                            </button>
+                        </h5>
+                    </div>
+                </div>
+                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        @word.PRONOUNCIATION
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="accordhead">
+                    <div class="card-header" id="headingfive">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsefive" aria-expanded="true" aria-controls="collapseThree">
+                                Question
+                            </button>
+                        </h5>
+                    </div>
+                </div>
+                <div id="collapsefive" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body lastAccord">
+                        @word.WORD
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="accordhead">
+                    <div class="card-header" id="headingThree">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Show Additional Information
+                            </button>
+                        </h5>
+                    </div>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+                        @word.PHRASE
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="card">
+                <div class="accordhead">
+                    <div class="card-header" id="headingfour">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsefour" aria-expanded="false" aria-controls="collapseThree">
+                                Show Hint
+                            </button>
+                        </h5>
+                    </div>
+                </div>
+                <div id="collapsefour" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+                        @word.HINT
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+}
+else
+{
+    <div class="newdrpn">
+        <div class="dropdown">
+            <button type="button" class="btn btn-primary " data-toggle="dropdown">Task Dropdown List <img src="~/Content/img/rightarrow.png" /></button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" style="cursor:pointer;" onclick="history.back()">Back</a>
+                <a class="dropdown-item" style="cursor:pointer;" href="#">Add To Favourites</a>
+                <a class="dropdown-item" style="cursor:pointer;" href="#">Add To Skipped List</a>
+               @* <a class="dropdown-item" style="cursor:pointer;" href="/Wordutopia/Exams">Create a Test </a>*@
+                <a class="dropdown-item" style="cursor:pointer;" target="_blank" href="https://www.thesaurus.com/browse/hospitality?s=t">Find Synonym</a>
+                <a class="dropdown-item" style="cursor:pointer;" href="#">Go To Test Archive </a>
+            </div>
+        </div>
+    </div>
+    <div class="prv_nxt">
+        <div class="innerprv">
+            <img src="~/Content/img/leftarrow.png" /><span><a id="a-previous-reversetest" style="color: #ce1414;">Previous</a></span>
+            <div class="innernxt">
+                <a id="a-next-reversetest" style="color: #159623;@(Convert.ToInt32(Model.totalWordCount)<=1?"pointer-events: none":"")">Next</a><span><img src="~/Content/img/rightarrow.png" /></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="outAccordtn fav_out">
+        <div id="accordion">
+            <div class="card">
+                <div class="accordhead">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Show Definition
+                            </button>
+                        </h5>
+                    </div>
+                </div>
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="accordhead">
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Pronounced
+                            </button>
+                        </h5>
+                    </div>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="accordhead">
+                    <div class="card-header" id="headingThree">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Show Phrase
+                            </button>
+                        </h5>
+                    </div>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="accordhead">
+                    <div class="card-header" id="headingfour">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsefour" aria-expanded="false" aria-controls="collapseThree">
+                                Show Hint
+                            </button>
+                        </h5>
+                    </div>
+                </div>
+                <div id="collapsefour" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="accordhead">
+                    <div class="card-header" id="headingfive">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsefive" aria-expanded="false" aria-controls="collapseThree">
+                                Database Word
+                            </button>
+                        </h5>
+                    </div>
+                </div>
+                <div id="collapsefive" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body lastAccord">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+<script>
+
+
+
+
+</script>
+
+

@@ -1,0 +1,81 @@
+﻿@model TutionCloudWeb.Model.Quester.Quester_TestArchives
+@{
+    var totalTestCount = Model.totalTestCount;
+}
+@{
+    var res = Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalTestCount) / Convert.ToDouble(10))));
+}
+<ul id="testlist-pagination" class="blade-pagination" data-current="@(Model.index)" data-total="@(res)"></ul>
+
+
+<script>
+
+    $(document).ready(function () {
+
+        $('#testlist-pagination').bladePagination({
+            // max number of pages
+            maxPageNum: 5,
+            // label text
+            firstLabel: '|&lt;', // |<
+            prevLabel: '&lt;',   // <
+            nextLabel: '&gt;',   // >
+            lastLabel: '&gt;|',  // >|
+            moreLabel: '...',
+            // callback
+            clickPage: function (page) {
+                $('#hfn-index').val(parseInt(parseInt(page) - 1));
+                var obj = new Object();
+                obj.userId = $('#userId').val();
+                obj.totalTestCount = $('#totalTestCount').val();
+                obj.index = parseInt(parseInt(page) - 1);
+                $.ajax({
+                    url: '/Quester/Quester_refreshUserTestList',
+                    type: "POST",
+                    data: obj,
+                    dataType: 'html',
+                    success: function (data) {
+                        $('#tbody-testlist').html(data);
+
+
+                        $(document).find('.spn-utcdate').each(function () {
+                            try {
+                                var date = $(this).attr('data-utctime');
+                               
+                                var serverDate = moment.utc(date).local().format('DD/MM/YY');
+                                var serverTime = moment.utc(date).local().format('hh:mm a');
+                                
+                                $(this).parent().find('.spn-date').text(serverDate);
+                                $(this).parent().find('.spn-time').text(serverTime);
+                            }
+                            catch (ex) {
+                                console.warn("Error converting date time", ex);
+                            }
+                        });
+
+
+                        
+                        var obj1 = new Object();
+                        obj1.userId = $('#userId').val();
+                        obj1.totalTestCount = $('#totalTestCount').val();
+                        obj1.index = parseInt(parseInt(page));
+                        $.ajax({
+                            url: '/Quester/Quester_refreshUserTestListPagination',
+                            type: "POST",
+                            data: obj1,
+                            dataType: 'html',
+                            success: function (data) {
+                                $('#nav-pagination').html(data);
+                                $('#div-page-count').html('<p>Page ' + parseInt(page) + ' of @Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalTestCount) / Convert.ToDouble(10))))</p>')
+                            }
+                        });
+                    }
+                });
+            }
+        });
+
+
+
+
+    });
+
+</script>

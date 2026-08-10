@@ -1,0 +1,1055 @@
+﻿@model TutionCloudWeb.Model.Quester.Quester_AddWord
+@{
+    var a1 = 0;
+    ViewBag.Title = "Quester_CreateWord";
+    Layout = "~/Views/Shared/_Layout_Quester_Home.cshtml";
+
+
+
+}
+
+<link href="~/Content/TreeView/10.9.2020/css/tree.css" rel="stylesheet" />
+
+<link href="~/zTree_v3/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
+
+<style>
+    .field-validation-error {
+        color: red;
+    }
+</style>
+
+<section>
+    <div class="container">
+
+        <div class="tstsec2" style="padding:25px 0;">
+            <h5 class=" text-left" style="border-bottom: 1px solid #dddddd85; padding: 0 0 10px;">Quester- Create Question</h5>
+        </div>
+
+        <div class="createNotes-div">
+            <span id="error-invalid-details" style="display:none;color:red;"></span>
+            @using (Ajax.BeginForm("Quester_addword", "Quester", null, new AjaxOptions
+            {
+                HttpMethod = "POST",
+                OnSuccess = "addwordSuccess",
+                OnFailure = "addwordFailure",
+            }, new { id = "tutioncloud-addword" }))
+            {
+                @Html.ValidationSummary(true)
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(z => z.userId, new { Value = Model.userId })
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4">
+                            <label class="text-left">Question</label>
+                        </div>
+                        <div class="col-lg-9 col-md-8">
+                            @Html.TextBoxFor(m => m.word, new { id = "word", autocomplete = "off", @class = "form-control", onfocusout = "Checkshare()" })
+                            @Html.ValidationMessageFor(model => model.word)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4">
+                            <label class="text-left">Show Answer</label>
+                        </div>
+                        <div class="col-lg-9 col-md-8">
+                            @Html.TextBoxFor(m => m.pronounciation, new { autocomplete = "off", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.pronounciation)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4">
+                            <label class="text-left">Existing Category</label>
+                        </div>
+                        <div class="col-lg-9 col-md-8">
+                            @Html.DropDownListFor(m => m.CategoryName, TutionCloudWeb.Repository.Quester.Quester_DropDownRepository.Quester_Category_UserBase(Model.userId), "--Choose--", new { @class = "form-control " })
+
+                            @Html.ValidationMessageFor(model => model.phrase)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4">
+                            <label class="text-left"></label>
+                        </div>
+                        <div class="col-lg-9 col-md-8">
+                            <label class="text-left">OR</label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4">
+                            <label class="text-left">New Category</label>
+                        </div>
+                        <div class="col-lg-9 col-md-8">
+                            @Html.TextBoxFor(m => m.CategoryName_TextBox, new { autocomplete = "off", @class = "form-control" })
+
+                            @Html.ValidationMessageFor(model => model.CategoryName_TextBox)
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4">
+                            <label class="text-left">Show Additional Information</label>
+                        </div>
+                        <div class="col-lg-9 col-md-8">
+                            @Html.TextBoxFor(m => m.phrase, new { autocomplete = "off", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.phrase)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4">
+                            <label class="text-left">Hint</label>
+                        </div>
+                        <div class="col-lg-9 col-md-8">
+                            @Html.TextBoxFor(m => m.hint, new { autocomplete = "off", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.hint)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" style="display:none;">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4">
+                            <label class="text-left">Definition</label>
+                        </div>
+                        <div class="col-lg-9 col-md-8">
+                            @Html.TextAreaFor(m => m.definition, new { autocomplete = "off", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.definition)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4"> </div>
+                        <div class="col-lg-9 col-md-8">
+                            @Html.CheckBoxFor(z => z.sharOnline, new { id = "chkOnlineshare" })  Share Online
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4"> </div>
+                        <div class="col-lg-9 col-md-4">
+                            <button type="submit" style="cursor:pointer;" class="button_sty" id="btnsave">SAVE</button>
+                            @*<a href="~/Quester/SaveFolder" class="button_sty">SAVE FOLDER</a  >*@
+
+                            <button type="button" id="btn_Save_tree_Model" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="margin-left: 5px;display: none;">
+                            Save tree Model
+                        </button>
+
+                            <a href="/Quester/Quester_CreateWord" class="btn btn-danger" id="btn_Cancel_tree_Model" style="margin-left:5px; display:none;">Cancel</a>
+
+                            @*<button type="button" id="btn_Cancel_tree_Model" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" style="margin-left:5px; display:none;">
+                            Cancel
+                        </button>*@
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+            }
+        </div>
+
+
+
+
+
+        <div class="lowerNav">
+            <nav class="navbar navbar-expand-sm  justify-content-center">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="https://en.wikipedia.org/wiki/Main.page" target="_blank">Wikipedia</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.google.com/search?q=calculator" target="_blank">Calculator</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.google.com/maps/" target="_blank">Maps</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.google.com/search?ei=DyM3XNbMEdH6kwW-lpLgCA&q=google+currency+converter&oq=google+currency+converter&gs_l=psy-ab.3..35i39j0i7i30l2j0j0i7i30j0j0i7i30j0l3.211.5629..6378...0.0..0.282.1593.0j6j3......0....1..gws-wiz.......0i71j0i30j0i131i67j35i304i39.BbyIqE0P5UY" target="_blank">Currency Converter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.timeanddate.com/worldclock/full.html" target="_blank">World Clocks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://translate.google.com/" target="_blank">Translator</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+
+    @*.............................ADD FOLDER*@
+
+    @*<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="Model-new-bd" id="model_new_bd">
+                        <div class="D--flex">
+                            <div>
+                                <button type="button" id="addParent" class="btn btn-dark folder-btn">Create Folder</button>
+                                <button type="button" id="addLeaf" class="btn btn-warning folder-btn">Create Sub Folder</button>
+                            </div>
+                            <div>
+                                <div class="folder">
+
+
+                                    <ul id="treeView" class="ztree">
+                                    </ul>
+
+
+                                </div>
+
+                            </div>
+                            <div>
+
+                                <button type="button" id="getAllData_Save" class="btn btn-success">Save</button>
+                            </div>
+                        </div>
+                      
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+
+
+    @*.............................End*@
+
+</section>
+
+<script src="~/Content/TreeView/10.9.2020/js/treeitemClick.js"></script>
+<script src="~/Content/TreeView/10.9.2020/js/treeitem.js"></script>
+<script src="~/Content/TreeView/10.9.2020/js/tree.js"></script>
+
+<script src="~/zTree_v3/js/jquery.ztree.all.js"></script>
+<script src="~/zTree_v3/js/jquery.ztree.core.js"></script>
+<script src="~/zTree_v3/js/jquery.ztree.excheck.js"></script>
+<script src="~/zTree_v3/js/jquery.ztree.exedit.js"></script>
+<script src="~/zTree_v3/js/jquery.ztree.exhide.js"></script>
+
+
+<SCRIPT type="text/javascript">
+
+    // var OBJ = new Object();
+    var binding_ObJ = [];
+    var newCount = 0;
+    var zNodes = [];
+
+    var setting = {
+        data: {
+            simpleData: {
+                enable: true
+            }
+        },
+        edit: {
+            enable: true,
+        },
+        callback: {
+            onClick: zTreeOnClick,
+            beforeRemove: zTreeBeforeRemove,
+            onRemove: zTreeOnRemove,
+            onRename: zTreeOnRename
+
+
+        }
+    };
+
+    function zTreeOnClick(event, treeId, treeNode) {
+
+    };
+
+
+    function zTreeBeforeRemove(treeId, treeNode) {
+        if (confirm("Do you want to confirm deletion"))
+            return true;
+        return false;
+    }
+
+    function zTreeOnRemove(event, treeId, treeNode) {
+
+        var realArray = $.makeArray(binding_ObJ);
+
+        binding_ObJ = [];
+
+        $.map(realArray, function (val, i) {
+            if (treeNode.id == val.id || treeNode.id == val.pId) {
+            }
+            else {
+                var OBJ = new Object();
+
+                OBJ.halfCheck = val.halfCheck;
+                OBJ.id = val.id;
+                OBJ.isAjaxing = val.isAjaxing;
+                OBJ.isFirstNode = val.isFirstNode;
+                OBJ.isHidden = val.isHidden;
+                OBJ.isHover = val.isHover;
+                OBJ.isLastNode = val.isLastNode;
+                OBJ.isParent = val.isParent;
+                OBJ.level = val.level;
+                OBJ.name = val.name;
+                OBJ.nocheck = val.nocheck;
+                OBJ.open = val.open;
+                OBJ.pId = val.pId;
+                OBJ.parentTId = val.parentTId;
+                OBJ.tId = val.tId;
+                OBJ.zAsync = val.zAsync;
+
+                binding_ObJ.push(OBJ);
+                alert( JSON.stringify(binding_ObJ))
+            }
+
+        });
+
+    }
+
+    function zTreeOnRename(event, treeId, treeNode) {
+        var realArray = $.makeArray(binding_ObJ);
+        binding_ObJ = [];
+        $.map(realArray, function (val, i) {
+            if (treeNode.id == val.id) {
+
+                var OBJ = new Object();
+
+                OBJ.halfCheck = val.halfCheck;
+                OBJ.id = val.id;
+                OBJ.isAjaxing = val.isAjaxing;
+                OBJ.isFirstNode = val.isFirstNode;
+                OBJ.isHidden = val.isHidden;
+                OBJ.isHover = val.isHover;
+                OBJ.isLastNode = val.isLastNode;
+                OBJ.isParent = val.isParent;
+                OBJ.level = val.level;
+                OBJ.name = treeNode.name;
+                OBJ.nocheck = val.nocheck;
+                OBJ.open = val.open;
+                OBJ.pId = val.pId;
+                OBJ.parentTId = val.parentTId;
+                OBJ.tId = val.tId;
+                OBJ.zAsync = val.zAsync;
+
+                binding_ObJ.push(OBJ);
+                 alert( JSON.stringify(binding_ObJ))
+            }
+            else {
+                var OBJ = new Object();
+
+                OBJ.halfCheck = val.halfCheck;
+                OBJ.id = val.id;
+                OBJ.isAjaxing = val.isAjaxing;
+                OBJ.isFirstNode = val.isFirstNode;
+                OBJ.isHidden = val.isHidden;
+                OBJ.isHover = val.isHover;
+                OBJ.isLastNode = val.isLastNode;
+                OBJ.isParent = val.isParent;
+                OBJ.level = val.level;
+                OBJ.name = val.name;
+                OBJ.nocheck = val.nocheck;
+                OBJ.open = val.open;
+                OBJ.pId = val.pId;
+                OBJ.parentTId = val.parentTId;
+                OBJ.tId = val.tId;
+                OBJ.zAsync = val.zAsync;
+
+                binding_ObJ.push(OBJ);
+            }
+        });
+
+    }
+
+    function randLetter_Small() {
+        var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+        var letter = letters[Math.floor(Math.random() * letters.length)];
+        return letter;
+    }
+
+    function randLetter_Capital() {
+        var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+        var letter = letters[Math.floor(Math.random() * letters.length)];
+        return letter;
+    }
+
+    function DynamicId() {
+
+        var min = 1000;
+        var max = 9999999;
+
+        var newCount = Math.floor(Math.random() * (max - min + 1) + min);
+        var randomText = randLetter_Capital() + "" + randLetter_Small() + "" + randLetter_Small() + "" + randLetter_Capital();
+
+        var alignes = newCount + "" + randomText;
+        return alignes;
+
+    }
+
+
+    function add(e) {
+
+
+
+        var dynamicId = DynamicId();
+        newCount = newCount + 1;
+
+        var treedata = sessionStorage.getItem("wordGuid");
+        if (treedata.length <= 0) {
+            treedata = null;
+        }
+
+        var zTree = $.fn.zTree.getZTreeObj("treeView"),
+            isParent = e.data.isParent,
+            nodes = zTree.getSelectedNodes(),
+            treeNode = nodes[0];
+
+        if (treeNode) {
+
+
+            var OBJ = new Object();
+
+            OBJ.halfCheck = false;
+            OBJ.id = dynamicId;
+            OBJ.isAjaxing = false;
+            OBJ.isFirstNode = false;
+            OBJ.isHidden = false;
+            OBJ.isHover = false;
+            OBJ.isLastNode = false;
+            OBJ.isParent = isParent;
+            OBJ.level = 0;
+            OBJ.name = "new node" + newCount;
+            OBJ.nocheck = false;
+            OBJ.open = false;
+            OBJ.pId = treeNode.id;
+            OBJ.parentTId = null;
+            OBJ.tId = treedata//"treeView_" + newCount;
+            OBJ.zAsync = false;
+
+            binding_ObJ.push(OBJ);
+
+            treeNode = zTree.addNodes(treeNode, { id: dynamicId, pId: treeNode.id, isParent: isParent, name: "new node" + newCount });
+
+        } else {
+
+
+            //toastrSuccess("save success");
+
+            //  toastrInfo("Please select folder");
+
+            //var OBJ = new Object();
+
+            //OBJ.halfCheck = false;
+            //OBJ.id = dynamicId;
+            //OBJ.isAjaxing = false;
+            //OBJ.isFirstNode = false;
+            //OBJ.isHidden = false;
+            //OBJ.isHover = false;
+            //OBJ.isLastNode = false;
+            //OBJ.isParent = isParent;
+            //OBJ.level = 0;
+            //OBJ.name = "new node" + newCount;
+            //OBJ.nocheck = false;
+            //OBJ.open = false;
+            //OBJ.pId = 0;
+            //OBJ.parentTId = null;
+            //OBJ.tId = treedata;//"treeView_" + newCount;
+            //OBJ.zAsync = false;
+
+            //binding_ObJ.push(OBJ);
+
+            //treeNode = zTree.addNodes(null, { id: dynamicId, pId: '0', isParent: isParent, name: "new node" + newCount });
+
+        }
+
+        if (treeNode) {
+
+            zTree.editName(treeNode[0]);
+        } else {
+
+            toastrInfo("Please select folder");
+
+            //alert("Leaf node is locked and can not add child node.");
+        }
+
+    };
+
+    function Binding_Tree() {
+
+        $.ajax({
+            url: '/Quester/Quester_GetAll_SelectId_Tree',
+            type: "POST",
+            dataType: 'json',
+            success: function (data) {
+                if (data.status == true) {
+
+                    binding_ObJ = [];
+
+                    var tempBinding_Obj = [];
+
+                    binding_ObJ = JSON.parse(data.message);
+
+                    $.each(binding_ObJ, function (key, value) {
+
+                        if (value.isParent == true) {
+                            var OBJ = new Object();
+
+                            OBJ.halfCheck = value.halfCheck
+                            OBJ.id = value.id
+                            OBJ.isAjaxing = value.isAjaxing
+                            OBJ.isFirstNode = value.isFirstNode
+                            OBJ.isHidden = value.isHidden
+                            OBJ.isHover = value.isHover
+                            OBJ.isLastNode = value.isLastNode
+                            OBJ.isParent = value.isParent
+                            OBJ.level = value.level
+                            OBJ.name = value.name
+                            OBJ.nocheck = value.nocheck
+                            OBJ.open = value.open
+                            OBJ.pId = value.pId
+                            OBJ.parentTId = value.parentTId
+                            OBJ.tId = value.tId
+                            OBJ.zAsync = value.zAsync
+
+                            tempBinding_Obj.push(OBJ);
+
+                        }
+
+
+                    });
+
+
+                    $.fn.zTree.init($("#treeView"), setting, tempBinding_Obj);
+
+
+                }
+                else {
+                    //toastrError("error");
+                }
+
+
+            }
+        });
+
+    }
+
+    $(document).ready(function () {
+
+        foarmLoad();
+
+        function foarmLoad() {
+
+            $.ajax({
+                url: '/Quester/Quester_GetAll_SelectId_Tree',
+                type: "POST",
+                dataType: 'json',
+                success: function (data) {
+                    if (data.status == true) {
+
+                        var tempBinding_Obj = [];
+
+                        binding_ObJ = JSON.parse(data.message);
+
+                        $.each(binding_ObJ, function (key, value) {
+
+                            if (value.isParent == true) {
+                                var OBJ = new Object();
+
+                                OBJ.halfCheck = value.halfCheck
+                                OBJ.id = value.id
+                                OBJ.isAjaxing = value.isAjaxing
+                                OBJ.isFirstNode = value.isFirstNode
+                                OBJ.isHidden = value.isHidden
+                                OBJ.isHover = value.isHover
+                                OBJ.isLastNode = value.isLastNode
+                                OBJ.isParent = value.isParent
+                                OBJ.level = value.level
+                                OBJ.name = value.name
+                                OBJ.nocheck = value.nocheck
+                                OBJ.open = value.open
+                                OBJ.pId = value.pId
+                                OBJ.parentTId = value.parentTId
+                                OBJ.tId = value.tId
+                                OBJ.zAsync = value.zAsync
+
+                                tempBinding_Obj.push(OBJ);
+
+                            }
+
+
+                        });
+
+
+                       // $.fn.zTree.init($("#treeView"), setting, tempBinding_Obj);
+
+
+                    }
+                    else {
+
+                        var zNodesTemp = [{ id: 1, pId: 0, name: "Temp 1", open: true }];
+
+                      //  $.fn.zTree.init($("#treeView"), setting, zNodesTemp);
+                    }
+
+
+                }
+            });
+
+        }
+
+        // $.fn.zTree.init($("#treeView"), setting, zNodes);
+
+        $("#addParent").bind("click", { isParent: true }, mainFolder_Add);
+
+        $("#addLeaf").bind("click", { isParent: true }, add);
+
+
+        // $("#addLeaf").bind("click", { isParent: false }, add);
+
+    });
+
+
+   
+
+     function add_Automaticaly() {
+
+        var dynamicId = DynamicId();
+        newCount = newCount + 1;
+
+        var treedata = sessionStorage.getItem("wordGuid");
+       
+
+
+        var zTree = $.fn.zTree.getZTreeObj("treeView"),
+            nodes = zTree.getSelectedNodes(),
+            treeNode = nodes[0];
+
+        var OBJ = new Object();
+
+        OBJ.halfCheck = false;
+        OBJ.id = dynamicId;
+        OBJ.isAjaxing = false;
+        OBJ.isFirstNode = false;
+        OBJ.isHidden = false;
+        OBJ.isHover = false;
+        OBJ.isLastNode = false;
+        OBJ.isParent = false;
+        OBJ.level = 0;
+        OBJ.name = "new node";
+        OBJ.nocheck = false;
+        OBJ.open = false;
+        OBJ.pId = treeNode.id;
+        OBJ.parentTId = null;
+        OBJ.tId = treedata;//"treeView_" + newCount;
+        OBJ.zAsync = false;
+
+
+   
+        binding_ObJ.push(OBJ);
+
+    };
+
+
+
+
+
+
+    $("#btn_Save_tree_Model").click(function () {  // getAllData_Save
+
+       
+         var temp_tree = [];
+             
+        var fullnode = [];
+        var temp_tree = JSON.parse(sessionStorage.getItem('SessiontreeNode_SelectItems'))
+              
+        var fullnode = JSON.parse(sessionStorage.getItem('SessionfullNodes'))
+      
+        var FolderId = temp_tree[0].id;
+        var Pid_node = temp_tree[0].pId;
+       
+        var tempBinding_Obj1 = [];
+
+       //// tempBinding_Obj1 = fullnode;
+       
+       
+     var treedatanew = sessionStorage.getItem("wordGuidnew");
+       
+        $.each( fullnode, function (key, value) {
+      
+           
+   
+            if (value.pId == Pid_node) {
+
+                
+
+                if (value.tId == null) {
+                    var OBJ1 = new Object();
+
+                    OBJ1.halfCheck = value.halfCheck
+                    OBJ1.id = value.id;
+                    OBJ1.isAjaxing = value.isAjaxing
+                    OBJ1.isFirstNode = value.isFirstNode
+                    OBJ1.isHidden = value.isHidden
+                    OBJ1.isHover = value.isHover
+                    OBJ1.isLastNode = value.isLastNode
+                    OBJ1.isParent = value.isParent
+                    OBJ1.level = value.level
+                    OBJ1.name = value.name
+
+                    OBJ1.nocheck = value.nocheck
+                    OBJ1.open = value.open
+                    OBJ1.pId = Pid_node;
+
+                    OBJ1.parentTId = value.parentTId
+
+                    OBJ1.tId = treedatanew;
+
+
+                    OBJ1.zAsync = value.zAsync
+
+
+
+                    tempBinding_Obj1.push(OBJ1);
+                }
+                else {
+                    var OBJ1 = new Object();
+
+                    OBJ1.halfCheck = value.halfCheck
+                    OBJ1.id = value.id;
+                    OBJ1.isAjaxing = value.isAjaxing
+                    OBJ1.isFirstNode = value.isFirstNode
+                    OBJ1.isHidden = value.isHidden
+                    OBJ1.isHover = value.isHover
+                    OBJ1.isLastNode = value.isLastNode
+                    OBJ1.isParent = value.isParent
+                    OBJ1.level = value.level
+                    OBJ1.name = value.name
+
+                    OBJ1.nocheck = value.nocheck
+                    OBJ1.open = value.open
+                    OBJ1.pId = value.pId;
+
+                    OBJ1.parentTId = value.parentTId
+
+                    OBJ1.tId = value.tId;
+
+
+                    OBJ1.zAsync = value.zAsync
+
+
+
+                    tempBinding_Obj1.push(OBJ1);
+                }
+
+                
+
+
+            }
+
+            else {
+                var OBJ1 = new Object();
+
+                OBJ1.halfCheck = value.halfCheck
+                OBJ1.id = value.id;
+                OBJ1.isAjaxing = value.isAjaxing
+                OBJ1.isFirstNode = value.isFirstNode
+                OBJ1.isHidden = value.isHidden
+                OBJ1.isHover = value.isHover
+                OBJ1.isLastNode = value.isLastNode
+                OBJ1.isParent = value.isParent
+                OBJ1.level = value.level
+                OBJ1.name = value.name
+
+                OBJ1.nocheck = value.nocheck
+                OBJ1.open = value.open
+                OBJ1.pId = value.pId;
+
+                OBJ1.parentTId = value.parentTId
+
+                OBJ1.tId = value.tId;
+
+
+                OBJ1.zAsync = value.zAsync
+
+
+
+                tempBinding_Obj1.push(OBJ1);
+
+
+
+
+            }
+
+           
+        });
+
+   
+       var convertJsonData = JSON.stringify(tempBinding_Obj1);
+      
+
+
+        $.ajax({
+            url: '/Quester/Quester_CreateWord_Add_TreeTest',
+            type: "POST",
+            data: { jsondatas: convertJsonData},
+            dataType: 'json',
+            success: function (data) {
+                if (data.status == true) {
+                    toastrSuccess("save success");
+                    $("#btn_Save_tree_Model").hide();
+                    setTimeout(function () {
+                        window.location.href = "/Quester/Quester_Words";
+                    }, 400);
+        
+                }
+                else {
+                    toastrError("error");
+                }
+
+
+            }
+        });
+
+    });
+
+
+    function mainFolder_Add(e) {
+
+
+
+        var dynamicId = DynamicId();
+        newCount = newCount + 1;
+
+        var treedata = sessionStorage.getItem("wordGuid");
+        //if (treedata.length <= 0) {
+        //    treedata = null;
+        //}
+
+        var zTree = $.fn.zTree.getZTreeObj("treeView"),
+            isParent = e.data.isParent,
+            nodes = zTree.getSelectedNodes(),
+            treeNode = false; //nodes[0];
+
+        if (treeNode == true) {
+
+
+            //var OBJ = new Object();
+
+            //OBJ.halfCheck = false;
+            //OBJ.id = dynamicId;
+            //OBJ.isAjaxing = false;
+            //OBJ.isFirstNode = false;
+            //OBJ.isHidden = false;
+            //OBJ.isHover = false;
+            //OBJ.isLastNode = false;
+            //OBJ.isParent = isParent;
+            //OBJ.level = 0;
+            //OBJ.name = "new node" + newCount;
+            //OBJ.nocheck = false;
+            //OBJ.open = false;
+            //OBJ.pId = treeNode.id;
+            //OBJ.parentTId = null;
+            //OBJ.tId = treedata//"treeView_" + newCount;
+            //OBJ.zAsync = false;
+
+            //binding_ObJ.push(OBJ);
+
+            //treeNode = zTree.addNodes(treeNode, { id: dynamicId, pId: treeNode.id, isParent: isParent, name: "new node" + newCount });
+
+        } else {
+            var OBJ = new Object();
+
+            OBJ.halfCheck = false;
+            OBJ.id = dynamicId;
+            OBJ.isAjaxing = false;
+            OBJ.isFirstNode = false;
+            OBJ.isHidden = false;
+            OBJ.isHover = false;
+            OBJ.isLastNode = false;
+            OBJ.isParent = isParent;
+            OBJ.level = 0;
+            OBJ.name = "new node" + newCount;
+            OBJ.nocheck = false;
+            OBJ.open = false;
+            OBJ.pId = 0;
+            OBJ.parentTId = null;
+            OBJ.tId = treedata;//"treeView_" + newCount;
+            OBJ.zAsync = false;
+
+            binding_ObJ.push(OBJ);
+
+            treeNode = zTree.addNodes(null, { id: dynamicId, pId: '0', isParent: isParent, name: "new node" + newCount });
+
+        }
+
+        if (treeNode) {
+
+            zTree.editName(treeNode[0]);
+        } else {
+            alert("Leaf node is locked and can not add child node.");
+        }
+
+    };
+
+
+
+
+    $("#model_new_bd").click(function () {
+
+        //var zTree = $.fn.zTree.getZTreeObj("treeView"),
+        //debugger;
+        //var treeObj = $.fn.zTree.getZTreeObj("treeView");
+        //var nodes = treeObj.getNodes();
+        //if (nodes.length > 0) {
+
+        //    treeObj.selectNode(null);
+
+
+        //    //treeObj.selectNode(nodes[0]);
+
+        //}
+
+    });
+
+
+
+
+    function addwordFailure(data) {
+        toastrError(data.message);
+    }
+
+    function addwordSuccess(data) {
+
+
+        if (data.status) {
+            toastrSuccess("Question added");
+           // sessionStorage.setItem("wordGuid", data.message);
+            sessionStorage.setItem("wordGuidnew", data.message);
+          
+
+            $("#btnsave").css("display", "none");
+
+            $("#btn_Save_tree_Model").click();
+
+            //$("#btn_Save_tree_Model").show();
+
+            $("#btn_Cancel_tree_Model").show();
+
+
+            //setTimeout(function () {
+            //    window.location.href = "/Quester/Quester_CreateWord";
+            //}, 400);
+        }
+        else {
+            $('#error-invalid-details').text(data.message);
+            $('#error-invalid-details').show();
+        }
+    }
+
+    //$("#btn_Cancel_tree_Model").click(function () {
+
+    //    window.location.href = "/Quester/Quester_CreateWord";
+
+    //});
+
+
+    function Checkshare() {
+        var word = $("#word").val();
+
+        if (word !== "") {
+            if ($("#chkOnlineshare").prop('checked') == true) {
+
+                $.ajax({
+                    url: '/Quester/Quester_Sharecheck?word=' + word,
+                    type: "GET",
+                    dataType: 'JSON',
+                    success: function (data) {
+                        if (data > 0) {
+                            swal({
+                                type: "error",
+                                title: "Sorry!",
+                                text: "This Question has already been added to your Database.",
+                                showCloseButton: true,
+
+                                confirmButtonText: 'Cancel',
+
+
+                            },
+                                function (isConfirm) {
+                                    window.location.href = "/Quester/Quester_Words";
+                                })
+
+
+                            $("#btnsave").prop('disabled', true);
+
+                        }
+                        else {
+                            $("#btnsave").prop('disabled', false);
+                        }
+                    }
+                });
+            }
+
+        }
+    }
+
+    $("#chkOnlineshare").change(function () {
+        if (this.checked) {
+            var word = $("#word").val();
+
+            if (word !== "") {
+                $.ajax({
+                    url: '/Quester/Quester_Sharecheck?word=' + word,
+                    type: "GET",
+                    dataType: 'JSON',
+                    success: function (data) {
+                        if (data > 0) {
+                            swal({
+                                type: "error",
+                                title: "Sorry!",
+                                text: "This word has already been added to your Database.",
+                                showCloseButton: true,
+
+                                confirmButtonText: 'Cancel',
+
+
+
+                            },
+                                function (isConfirm) {
+                                    window.location.href = "/Quester/Quester_Words";
+                                })
+                            $("#btnsave").prop('disabled', true);
+
+                        }
+                        else {
+                            $("#btnsave").prop('disabled', false);
+                        }
+                    }
+                });
+
+            }
+        }
+        else {
+            $("#btnsave").prop('disabled', false);
+        }
+    });
+</SCRIPT>

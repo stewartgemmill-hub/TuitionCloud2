@@ -1,0 +1,87 @@
+﻿@model TutionCloudWeb.Model.Quester.Quester_Commen_Model
+@{
+    var totalWordCount = Model.totalWordCount;
+}
+@{
+    var res = Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalWordCount) / Convert.ToDouble(10))));
+}
+<ul id="wordlist-pagination" class="blade-pagination" data-current="@(Model.index)" data-total="@(res)"></ul>
+
+
+<script>
+
+    $(document).ready(function () {
+
+        $('#wordlist-pagination').bladePagination({
+            // max number of pages
+            maxPageNum: 5,
+            // label text
+            firstLabel: '|&lt;', // |<
+            prevLabel: '&lt;',   // <
+            nextLabel: '&gt;',   // >
+            lastLabel: '&gt;|',  // >|
+            moreLabel: '...',
+            // callback
+            clickPage: function (page) {
+                $('#hfn-index').val(parseInt(parseInt(page) - 1));
+                var obj = new Object();
+                obj.userId = $('#userId').val();
+                obj.totalWordCount = $('#totalWordCount').val();
+                obj.index = parseInt(parseInt(page) - 1);
+                obj.sortBy = $('#hfn-sortby').val();
+                obj.sortOrder = $('#hfn-sortorder').val();
+                if (wordList.length == 0) {
+                    obj.wordIds = "";
+                }
+                else {
+                    obj.wordIds = wordList.join(',');
+                }
+                console.log(obj);
+                $.ajax({
+                    url: '/Quester/Quester_refreshOnlineCommunityWordList',
+                    type: "POST",
+                    data: obj,
+                    dataType: 'html',
+                    success: function (data) {
+                        $('#tbody-wordlist').html(data);
+                        var tr = $(document).find('.tr-word-row').first();
+                        if (tr.length > 0) {
+                            var word = $(tr).attr('data-word');
+                            var pronounciation = $(tr).attr('data-pronounciation');
+                            var phrase = $(tr).attr('data-phrase');
+                            var hint = $(tr).attr('data-hint');
+                            var definition = $(tr).attr('data-definition');
+                            $('#div-databaseword').html(word);
+                            $('#div-Pronounced').html(pronounciation);
+                            $('#div-Phrase').html(phrase);
+                            $('#div-Hint').html(hint);
+                            $('#div-Definition').html(definition);
+                        }
+                        //$('#wordlist-pagination').data("current", page);
+                        var obj1 = new Object();
+                        obj1.userId = $('#userId').val();
+                        obj1.totalWordCount = $('#totalWordCount').val();
+                        obj1.index = parseInt(parseInt(page));
+                        obj1.sortBy = $('#hfn-sortby').val();
+                        obj1.sortOrder = $('#hfn-sortorder').val();
+                        $.ajax({
+                            url: '/Quester/Quester_refreshOnlineCommunityWordListPagination',
+                            type: "POST",
+                            data: obj1,
+                            dataType: 'html',
+                            success: function (data) {
+                                $('#nav-pagination').html(data);
+                                $('#div-page-count').html('<p>Page ' + parseInt(page) + ' of @Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalWordCount) / Convert.ToDouble(10))))</p>')
+                            }
+                        });
+                    }
+                });
+            }
+        });
+
+
+
+
+    });
+
+</script>

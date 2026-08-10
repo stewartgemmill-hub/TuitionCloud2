@@ -1,0 +1,350 @@
+﻿
+@model TutionCloudWeb.Model.Quester.Quester_MainPanel_WordLists
+@{
+    ViewBag.Title = "MainPanel";
+    Layout = "~/Views/Shared/_Layout_Quester_Home.cshtml";
+    var totalWordCount = Model.totalWordCount;
+}
+<input type="hidden" id="hfn-index" value="@Model.index" />
+<input type="hidden" id="hfn-prevIndex" value="@Model.prevIndex" />
+@Html.HiddenFor(z => z.totalWordCount, new { Value = Model.totalWordCount })
+<input type="hidden" id="hfn-userId" value="@Model.userId" />
+<section>
+    <div class="container">
+        <div class="row">
+
+            <div class="main_head">
+                <h6>Quester - Mainpanel</h6>
+            </div>
+        </div>
+        <div class="outAccordtn Mainpanel">
+            <div class=" upperAccor  wraper">
+                <div class="float-left">
+                    <div class="innerprv" style="cursor: pointer;">
+                        <a id="a-previous-mainpanel" style="color: #ce1414;"><img src="~/Content/img/leftarrow.png" /><span>Previous</span></a>
+                    </div>
+                </div>
+                <div class="float-right">
+                    <div class="innernxt" style="cursor: pointer;">
+                        <a id="a-next-mainpanel" style="color: #159623;@(Convert.ToInt32(totalWordCount)<=1?"pointer-events: none":"")">Next<span><img src="~/Content/img/rightarrow.png" /></span></a>
+                    </div>
+                </div>
+            </div>
+            <div id="div-mainpanel">
+                @Html.Partial("~/Views/Quester/_pv_Quester_Mainpanel_List.cshtml", Model)
+            </div>
+           
+        </div>
+        <div class="lowerNav">
+            <nav class="navbar navbar-expand-sm  justify-content-center">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="https://en.wikipedia.org/wiki/Main.page" target="_blank">Wikipedia</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.google.com/search?q=calculator" target="_blank">Calculator</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.google.com/maps/" target="_blank">Maps</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.google.com/search?ei=DyM3XNbMEdH6kwW-lpLgCA&q=google+currency+converter&oq=google+currency+converter&gs_l=psy-ab.3..35i39j0i7i30l2j0j0i7i30j0j0i7i30j0l3.211.5629..6378...0.0..0.282.1593.0j6j3......0....1..gws-wiz.......0i71j0i30j0i131i67j35i304i39.BbyIqE0P5UY" target="_blank">Currency Converter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.timeanddate.com/worldclock/full.html" target="_blank">World Clocks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://translate.google.com/" target="_blank">Translator</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<script>
+
+    $(document).on('click', '#a-previous-mainpanel', function () {
+        var source = $(this);
+        var userId = $('#hfn-userId').val();
+        var index = $('#hfn-index').val();
+        var prevIndex = $('#hfn-prevIndex').val(); //13-02-2019
+        var obj = new Object();
+        obj.userId = userId;
+
+        if (previousWordIndex.length > 0) {
+            obj.index = parseInt(previousWordIndex.pop());
+            obj.prevIndex = parseInt(prevIndex); //18-02-2019
+            obj.isNewRandom = false;
+        }
+        else {
+            obj.index = parseInt(parseInt(index) - parseInt(1));
+            obj.prevIndex = parseInt(index); //13-02-2019
+            obj.isNewRandom = true;
+        }
+        obj.totalWordCount = $('#totalWordCount').val();
+        $.ajax({
+            url: '/Quester/Quester_refreshUserMainPanelList',
+            type: "POST",
+            data: obj,
+            dataType: 'HTML',
+            success: function (data) {
+                
+                $('#hfn-index').val(obj.index);
+                $('#hfn-prevIndex').val(obj.prevIndex); //13-02-2019
+                
+                $('#div-mainpanel').html(data);
+                $('#hfn-index').val($('#hfn-toupdate-index').val()); //13-02-2019
+
+
+                var wordId = $('#hfn-wordid').val();
+                
+                if (previousWordIndex.length <= 0) {
+                    $('#a-previous-mainpanel').css('pointer-events', 'none');//13-02-2019
+                }
+                console.log(previousWordIndex);
+
+            }
+        });
+    });
+
+    $(document).on('click', '#a-next-mainpanel', function () {
+        var source = $(this);
+        var userId = $('#hfn-userId').val();
+        var index = $('#hfn-index').val();
+        var prevIndex = $('#hfn-prevIndex').val(); //13-02-2019
+        var randumNumberAdd = $("#randumNumberAdd").val();
+        previousWordIndex.push(index);
+
+        var obj = new Object();
+        obj.userId = userId;
+        obj.index = parseInt(parseInt(index) + parseInt(1));
+        obj.prevIndex = parseInt(index); //13-02-2019
+        obj.isNewRandom = true;
+        if (randumNumberAdd != "") {
+            obj.randumNumberAdd = randumNumberAdd;
+        }
+
+        obj.totalWordCount = $('#totalWordCount').val();
+        $.ajax({
+            url: '/Quester/Quester_refreshUserMainPanelList',
+            type: "POST",
+            data: obj,
+            dataType: 'HTML',
+            success: function (data) {
+                $('#hfn-index').val(obj.index);
+                $('#hfn-prevIndex').val(obj.prevIndex);//13-02-2019
+                $('#div-mainpanel').html(data);
+                $('#hfn-index').val($('#hfn-toupdate-index').val());//13-02-2019
+                //$('#accordion').html(data);
+                var wordId = $('#hfn-wordid').val();
+
+
+                if (previousWordIndex.length > 0) {
+                    $('#a-previous-mainpanel').css('pointer-events', 'auto');//13-02-2019
+                }
+                console.log(previousWordIndex);
+
+            }
+        });
+    });
+
+
+    $(document).ready(function () {
+        var wordId = $('#hfn-wordid').val();
+        var index = $('#hfn-index').val();
+        $('#hfn-index').val($('#hfn-toupdate-index').val());
+        if (parseInt(index) <= 1) {
+            
+        }
+        $('#a-previous-mainpanel').css('pointer-events', 'none');//13-02-2019
+
+        if (previousWordIndex.length > 0) {
+            $('#a-previous-mainpanel').css('pointer-events', 'auto');//13-02-2019
+        }
+
+       
+    });
+
+    var previousWordIndex = [];
+
+    $(document).on('click', '.a-add-word-SkippedList', function () {
+        var source = $(this);
+        var wordId = $(source).attr('data-wordid');
+        var userId = $('#hfn-userId').val();
+        var objs = new Object();
+        objs.userId = userId;
+        objs.wordIds = wordId;
+        $.ajax({
+            url: '/Quester/Quester_addskippedword',
+            type: "POST",
+            data: objs,
+            dataType: 'JSON',
+            success: function (data) {
+                if (data.status) {
+                    toastrSuccess("Word added to skip list");
+                    var index = $('#hfn-index').val();
+                    var obj = new Object();
+                    obj.userId = userId;
+                    obj.index = parseInt(parseInt(index));
+                    var prevIndex = $('#hfn-prevIndex').val();//13-02-2019
+                    obj.prevIndex = parseInt(parseInt(prevIndex));//13-02-2019
+                    obj.totalWordCount = $('#totalWordCount').val();
+                    $.ajax({
+                        url: '/Quester/Quester_refreshUserMainPanelList',
+                        type: "POST",
+                        data: obj,
+                        dataType: 'HTML',
+                        success: function (data) {
+                            $('#hfn-index').val(obj.index);
+                            //$('#accordion').html(data);
+                            $('#hfn-prevIndex').val(obj.prevIndex);//13-02-2019
+                            $('#div-mainpanel').html(data);
+                            $('#hfn-index').val($('#hfn-toupdate-index').val());//13-02-2019
+                            var wordId = $('#hfn-wordid').val();
+                            
+
+
+                        }
+                    });
+                }
+                else {
+                    toastrError(data.message);
+                }
+            }
+        });
+    });
+
+    $(document).on('click', '.a-add-word-fav', function () {
+        var source = $(this);
+        var wordId = $(source).attr('data-wordid');
+        var userId = $('#hfn-userId').val();
+        var objs = new Object();
+        objs.userId = userId;
+        objs.wordIds = wordId;
+        $.ajax({
+            url: '/Quester/Quester_addfavouriteword',
+            type: "POST",
+            data: objs,
+            dataType: 'JSON',
+            success: function (data) {
+                if (data.status) {
+                    toastrSuccess("Word added to favourites");
+                    var index = $('#hfn-index').val();
+                    var obj = new Object();
+                    obj.userId = userId;
+                    obj.index = parseInt(parseInt(index));
+                    var prevIndex = $('#hfn-prevIndex').val();//13-02-2019
+                    obj.prevIndex = parseInt(parseInt(prevIndex));//13-02-2019
+                    obj.totalWordCount = $('#totalWordCount').val();
+                    $.ajax({
+                        url: '/Quester/Quester_refreshUserMainPanelList',
+                        type: "POST",
+                        data: obj,
+                        dataType: 'HTML',
+                        success: function (data) {
+                            $('#hfn-index').val(obj.index);
+                            
+                            $('#hfn-prevIndex').val(obj.prevIndex);//13-02-2019
+                            $('#div-mainpanel').html(data);
+                            $('#hfn-index').val($('#hfn-toupdate-index').val());//13-02-2019
+                            var wordId = $('#hfn-wordid').val();
+                           
+
+
+                        }
+                    });
+                }
+                else {
+                    toastrError(data.message);
+                }
+            }
+        });
+    });
+
+    $(document).on('click', '.a-remove-word-fav', function () {
+        var source = $(this);
+        var wordId = $(source).attr('data-wordid');
+        var userId = $('#hfn-userId').val();
+        
+        $.ajax({
+            url: '/Quester/Quester_deletWordFromFavourites?wordId=' + wordId,
+            type: "GET",
+            dataType: 'JSON',
+            success: function (data) {
+                if (data.status) {
+                    toastrSuccess("Word removed from favourites");
+                    var index = $('#hfn-index').val();
+                    var obj = new Object();
+                    obj.userId = userId;
+                    obj.index = parseInt(parseInt(index));
+                    var prevIndex = $('#hfn-prevIndex').val();//13-02-2019
+                    obj.prevIndex = parseInt(parseInt(prevIndex));//13-02-2019
+                    obj.totalWordCount = $('#totalWordCount').val();
+                    $.ajax({
+                        url: '/Quester/Quester_refreshUserMainPanelList',
+                        type: "POST",
+                        data: obj,
+                        dataType: 'HTML',
+                        success: function (data) {
+                            $('#hfn-index').val(obj.index);                            
+                            $('#hfn-prevIndex').val(obj.prevIndex);//13-02-2019
+                            $('#div-mainpanel').html(data);
+                            $('#hfn-index').val($('#hfn-toupdate-index').val());//13-02-2019
+                            var wordId = $('#hfn-wordid').val();
+                            
+
+                        }
+                    });
+                }
+                else {
+                    toastrError(data.message);
+                }
+            }
+        });
+    });
+
+    $(document).on('click', '.a-remove-word-SkippedList', function () {
+        var source = $(this);
+        var wordId = $(source).attr('data-wordid');
+        var userId = $('#hfn-userId').val();
+        
+        $.ajax({
+            url: '/Quester/Quester_deletWordFromSkipList?wordId=' + wordId,
+            type: "GET",
+            dataType: 'JSON',
+            success: function (data) {
+                if (data.status) {
+                    toastrSuccess("Word removed from Skip List");
+                    var index = $('#hfn-index').val();
+                    var obj = new Object();
+                    obj.userId = userId;
+                    obj.index = parseInt(parseInt(index));
+                    var prevIndex = $('#hfn-prevIndex').val();//13-02-2019
+                    obj.prevIndex = parseInt(parseInt(prevIndex));//13-02-2019
+                    obj.totalWordCount = $('#totalWordCount').val();
+                    $.ajax({
+                        url: '/Quester/Quester_refreshUserMainPanelList',
+                        type: "POST",
+                        data: obj,
+                        dataType: 'HTML',
+                        success: function (data) {
+                            $('#hfn-index').val(obj.index);
+                            //$('#accordion').html(data);
+                            $('#hfn-prevIndex').val(obj.prevIndex);//13-02-2019
+                            $('#div-mainpanel').html(data);
+                            $('#hfn-index').val($('#hfn-toupdate-index').val());//13-02-2019
+                            var wordId = $('#hfn-wordid').val();
+                            
+
+                        }
+                    });
+                }
+                else {
+                    toastrError(data.message);
+                }
+            }
+        });
+    });
+
+</script>

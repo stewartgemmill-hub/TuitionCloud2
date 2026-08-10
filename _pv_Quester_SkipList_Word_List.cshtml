@@ -1,0 +1,70 @@
+﻿@model TutionCloudWeb.Model.Quester.Quester_SkipList
+@{
+    var wordList = new TutionCloudWeb.Repository.Quester.Quester_WebService_Repository().Quester_getUserSkiplistWordList(Model.userId, Model.index, Model.searchText, Model.sortBy, Model.sortOrder);
+
+    
+
+}
+
+@if (wordList.Count > 0)
+{
+    foreach (var item in wordList)
+    {
+
+        var value = item.WORDID.ToString() + "-SkipList-1";
+        byte[] byt = System.Text.Encoding.UTF8.GetBytes(value);
+
+        // convert the byte array to a Base64 string
+
+        var strModified = Convert.ToBase64String(byt);
+
+        //var Synonym = "https://www.thesaurus.com/browse/" + item.WORD + "?s=t";
+
+        var timeOftested = new TutionCloudWeb.Repository.Quester.Quester_CommenFuntion_Repository().Quester_Questions_Tested_Count(Model.userId, item.WORDID);
+
+
+
+<tr class="tr-word-row" style="cursor:pointer;" data-word="@item.WORD" data-pronounciation="@item.PRONOUNCIATION" data-phrase="@item.PHRASE" data-hint="@item.HINT" data-definition="@item.DEFINITION">
+    <td><input class="ckb-word-item" data-wordid="@item.WORDID" type="checkbox"></td>
+    <td><strong>@item.WORD</strong></td>
+    <td><strong>@item.CATEGORYNAME</strong></td>
+    <td><strong>@timeOftested</strong></td>
+    <td>@item.OVERALLSCORE %</td>
+
+
+    @*<td class="toggle_dropdown_cust">
+        <div class="web-dsp">
+           
+            <span class="edts">
+                <a style="cursor:pointer;" href="/Quester/Quester_EditWord/@strModified">
+                    <i class="fas fa-pencil-alt"></i> Edit
+                </a>
+            </span> <span class="ck_brd">|</span>
+            <span class="edts"><a class="word-remove-SkipList" data-wordid="@item.WORDID"><i class="fas fa-trash-alt"></i> Delete</a></span>
+        </div>
+        <div class="togButns attachmts">
+            <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v"></i>
+            </button>
+            <div class="dropdown-menu labes" aria-labelledby="dropdownMenuButton">
+               
+                <span class="edts">
+                    <a style="cursor:pointer;" href="/Quester/Quester_EditWord/@strModified">
+                        <i class="fas fa-pencil-alt"></i> Edit
+                    </a>
+                </span> <span class="ck_brd">|</span>
+                <span class="edts"><a class="word-remove-SkipList" data-wordid="@item.WORDID"><i class="fas fa-trash-alt"></i> Delete</a></span>
+            </div>
+        </div>
+
+    </td>*@
+
+</tr>
+    }
+}
+else
+{
+    <tr>
+        <td colspan="4">No Question found</td>
+    </tr>
+}

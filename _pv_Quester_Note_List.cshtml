@@ -1,0 +1,48 @@
+﻿@model TutionCloudWeb.Model.Quester.Quester_WordList_Model
+@{
+    var noteList = new TutionCloudWeb.Repository.Quester.Quester_WebService_Repository().Quester_getUserNoteList(Model.userId, Model.index, Model.searchText, Model.sortBy, Model.sortOrder);
+
+}
+
+@if (noteList.Count > 0)
+{
+    foreach (var item in noteList)
+    {
+       
+        <tr class="tr-note-row" style="cursor:pointer;">
+            <td><a href="/Quester/Quester_NoteDescription/@item.NOTEID.ToString()">@item.TITLE</a></td>
+            <td>
+                <span class="spn-utcdate" style="display:none;" data-utctime="@item.CREATEDDATE.ToString()"></span>
+                <span class="spn-date"></span>
+                <span class="spc-Date"></span>
+                <span class="spn-time"></span>
+            </td>
+            <td class="toggle_dropdown_cust">
+                <div class="web-dsp">
+                    <span class="edts"><a href="/Quester/Quester_EditNote/@item.NOTEID.ToString()"><i class="fas fa-pencil-alt"></i>Edit</a></span>
+                    <span class="ck_brd">|</span>
+                    <span class="edts"><a class="note-delete" data-noteid="@item.NOTEID.ToString()">><i class="fas fa-trash-alt"></i> Delete</a></span> @*basheer on 28/02/2019*@
+                </div>
+                <div class="togButns attachmts">
+                    <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    <div class="dropdown-menu labes" aria-labelledby="dropdownMenuButton">
+                        <span class="edts"><a href="/Quester/Quester_EditNote/@item.NOTEID.ToString()"><i class="fas fa-pencil-alt"></i>Edit</a></span>
+                        <span class="ck_brd">|</span>
+                        <span class="edts"><a class="note-delete"><i class="fas fa-trash-alt"></i> Delete</a></span>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+
+    }
+}
+else
+{
+    <tr>
+        <td colspan="3">No notes found</td>
+    </tr>
+}
+
