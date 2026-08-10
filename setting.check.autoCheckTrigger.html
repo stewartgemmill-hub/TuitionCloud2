@@ -1,22 +1,23 @@
 <div class="apiDetail">
 <div>
 	<h2><span>Boolean</span><span class="path">setting.check.</span>autoCheckTrigger</h2>
-	<h3>概述<span class="h3_info">[ 依赖 <span class="highlight_green">jquery.ztree.excheck</span> 扩展 js ]</span></h3>
+	<h3>Overview<span class="h3_info">[ depends on <span class="highlight_green">jquery.ztree.excheck</span> js ]</span></h3>
 	<div class="desc">
 		<p></p>
 		<div class="longdesc">
-			<p>设置自动关联勾选时是否触发 beforeCheck / onCheck 事件回调函数。<span class="highlight_red">[setting.check.enable = true 且 setting.check.chkStyle = "checkbox" 时生效]</span></p>
-			<p class="highlight_red">1、如果设置 setting.check.chkboxType = { "Y": "", "N": "" }，将不会有任何自动关联勾选的操作。</p>
-			<p class="highlight_red">2、如果开启触发，对于节点较多的树将会影响性能，因为所有被联动勾选的操作都会触发事件回调函数，请根据需要决定是否使用此功能。</p>
-			<p>默认值: false</p>
+			<p>When node is automatically checked or unchecked, this parameter used to set to trigger 'beforeCheck / onCheck' callback. It is valid when <span class="highlight_red">[setting.check.enable = true & setting.check.chkStyle = "checkbox"]</span></p>
+			<p class="highlight_red">1. If you set 'setting.check.chkboxType' to { "Y": "", "N": "" }, will not automatically checked or unchecked.</p>
+			<p class="highlight_red">2. If you turn on the trigger and there are many more nodes, will affect the performance, because the check or uncheck node can cause many nodes to be automatically checked or unchecked, it will trigger a lot of callbacks, according to the need to decide whether to use this feature.</p>
+			<p>Default: false</p>
 		</div>
 	</div>
-	<h3>Boolean 格式说明</h3>
+	<h3>Boolean Format</h3>
 	<div class="desc">
-	<p> true / false 分别表示 触发 / 不触发 事件回调函数</p>
+	<p> true means: trigger callback</p>
+	<p> false means: don't trigger callback</p>
 	</div>
-	<h3>setting 举例</h3>
-	<h4>1. 需要触发自动关联勾选操作</h4>
+	<h3>Examples of setting</h3>
+	<h4>1. When node is automatically checked or unchecked, zTree trigger 'beforeCheck / onCheck' callback.</h4>
 	<pre xmlns=""><code>var setting = {
 	check: {
 		enable: true,
