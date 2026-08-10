@@ -1,0 +1,2168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TutionCloudEntitiesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <ComplexType Name="Quester_SplitList_Result">
+    <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </ComplexType>
+  <ComplexType Name="SplitList_Result">
+    <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </ComplexType>
+  <EntityType Name="CreateAWordListTestID">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TestID" Type="Int64" />
+  </EntityType>
+  <EntityType Name="CreateAWordListToShare">
+    <Key>
+      <PropertyRef Name="CreateAWordListToShareID" />
+    </Key>
+    <Property Name="CreateAWordListToShareID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SentUserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="WordId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TestID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CreatedOn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Pronounciation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Phrase" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Hint" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Definition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ShareOnline" Type="Boolean" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="Guid" Type="Guid" />
+    <Property Name="Word" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Retrieve" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Quester_Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int64" Nullable="false" />
+    <Property Name="CategoryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Quester_User" Relationship="Self.FK_Quester_Category_Quester_User" FromRole="Quester_Category" ToRole="Quester_User" />
+    <NavigationProperty Name="Quester_Word" Relationship="Self.FK_Quester_Word_Quester_Category" FromRole="Quester_Category" ToRole="Quester_Word" />
+  </EntityType>
+  <EntityType Name="Quester_CreateAWordListTestID">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TestID" Type="Int64" />
+  </EntityType>
+  <EntityType Name="Quester_CreateAWordListToShare">
+    <Key>
+      <PropertyRef Name="CreateAWordListToShareID" />
+    </Key>
+    <Property Name="CreateAWordListToShareID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SentUserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="WordId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TestID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CreatedOn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Pronounciation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Phrase" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Hint" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Definition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ShareOnline" Type="Boolean" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="Guid" Type="Guid" />
+    <Property Name="Word" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Retrieve" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Quester_Crossword">
+    <Key>
+      <PropertyRef Name="CrosswordId" />
+    </Key>
+    <Property Name="CrosswordId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int64" Nullable="false" />
+    <Property Name="CreatedTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CrosswordSaveString" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsCompleted" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Quester_Exam">
+    <Key>
+      <PropertyRef Name="ExamId" />
+    </Key>
+    <Property Name="ExamId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExamGuid" Type="Guid" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TestTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TimePerWord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UserId" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Quester_ExamWord" Relationship="Self.FK_Quester_ExamWord_Quester_Exam" FromRole="Quester_Exam" ToRole="Quester_ExamWord" />
+  </EntityType>
+  <EntityType Name="Quester_ExamResult">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Guid" Type="Guid" Nullable="false" />
+    <Property Name="ExamId" Type="Int64" Nullable="false" />
+    <Property Name="WordId" Type="Int64" Nullable="false" />
+    <Property Name="IsCorrect" Type="Boolean" Nullable="false" />
+    <Property Name="Timestamp" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Quester_ExamWord">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExamId" Type="Int64" Nullable="false" />
+    <Property Name="WordId" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Quester_Exam" Relationship="Self.FK_Quester_ExamWord_Quester_Exam" FromRole="Quester_ExamWord" ToRole="Quester_Exam" />
+    <NavigationProperty Name="Quester_Word" Relationship="Self.FK_Quester_ExamWord_Quester_Word" FromRole="Quester_ExamWord" ToRole="Quester_Word" />
+  </EntityType>
+  <EntityType Name="Quester_Exception">
+    <Key>
+      <PropertyRef Name="ExceptionID" />
+    </Key>
+    <Property Name="ExceptionID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClassName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FunctionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Quester_ForgotPassword">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userid" Type="Int64" Nullable="false" />
+    <Property Name="passwordguid" Type="Guid" Nullable="false" />
+    <Property Name="timestamp" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="status" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Quester_Note">
+    <Key>
+      <PropertyRef Name="NoteId" />
+    </Key>
+    <Property Name="NoteId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NotGuid" Type="Guid" Nullable="false" />
+    <Property Name="UserId" Type="Int64" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="ExamId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Quester_TestShared">
+    <Key>
+      <PropertyRef Name="TestSharedID" />
+    </Key>
+    <Property Name="TestSharedID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SentUserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="WordId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TestID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CreatedOn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Pronounciation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Phrase" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Hint" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Definition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ShareOnline" Type="Boolean" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="Guid" Type="Guid" />
+    <Property Name="Word" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Retrieve" Type="Boolean" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TestTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TimePerWord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Quester_TreeView">
+    <Key>
+      <PropertyRef Name="TreeID" />
+    </Key>
+    <Property Name="TreeID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int64" Nullable="false" />
+    <Property Name="TreeData" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Guid" Type="Guid" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Quester_User" Relationship="Self.FK_Quester_TreeView_Quester_User" FromRole="Quester_TreeView" ToRole="Quester_User" />
+  </EntityType>
+  <EntityType Name="Quester_User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserGuid" Type="Guid" Nullable="false" />
+    <Property Name="Forename" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Webname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AccountCreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="IsSuspended" Type="Boolean" Nullable="false" />
+    <Property Name="PushStatus" Type="Boolean" Nullable="false" />
+    <Property Name="ProfileLastEditedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ProfileImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Islogged" Type="Boolean" />
+    <NavigationProperty Name="Quester_Category" Relationship="Self.FK_Quester_Category_Quester_User" FromRole="Quester_User" ToRole="Quester_Category" />
+    <NavigationProperty Name="Quester_TreeView" Relationship="Self.FK_Quester_TreeView_Quester_User" FromRole="Quester_User" ToRole="Quester_TreeView" />
+  </EntityType>
+  <EntityType Name="Quester_UserFavouriteWord">
+    <Key>
+      <PropertyRef Name="FavouriteId" />
+    </Key>
+    <Property Name="FavouriteId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int64" Nullable="false" />
+    <Property Name="WordId" Type="Int64" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Quester_UserSkippedWord">
+    <Key>
+      <PropertyRef Name="SkippedId" />
+    </Key>
+    <Property Name="SkippedId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int64" Nullable="false" />
+    <Property Name="WordId" Type="Int64" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Quester_Word">
+    <Key>
+      <PropertyRef Name="WordId" />
+    </Key>
+    <Property Name="WordId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Guid" Type="Guid" Nullable="false" />
+    <Property Name="UserId" Type="Int64" Nullable="false" />
+    <Property Name="Word" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Pronounciation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phrase" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Hint" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Definition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="ShareOnline" Type="Boolean" Nullable="false" />
+    <Property Name="CategoryId" Type="Int64" />
+    <Property Name="CategoryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Quester_Category" Relationship="Self.FK_Quester_Word_Quester_Category" FromRole="Quester_Word" ToRole="Quester_Category" />
+    <NavigationProperty Name="Quester_ExamWord" Relationship="Self.FK_Quester_ExamWord_Quester_Word" FromRole="Quester_Word" ToRole="Quester_ExamWord" />
+  </EntityType>
+  <EntityType Name="ShareAnArchivedTest">
+    <Key>
+      <PropertyRef Name="ShareAnArchivedTestId" />
+    </Key>
+    <Property Name="ShareAnArchivedTestId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WordId" Type="Int64" />
+    <Property Name="ExamId" Type="Int64" />
+    <Property Name="Guid" Type="Guid" />
+    <Property Name="UserId" Type="Int64" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TestID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SentUserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Word" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Pronounciation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Phrase" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Hint" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Definition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="ShareOnline" Type="Boolean" />
+    <Property Name="CreatedDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ShareAnArchivedTestID">
+    <Key>
+      <PropertyRef Name="ShareAnArchivedTest_TestId" />
+    </Key>
+    <Property Name="ShareAnArchivedTest_TestId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TestID" Type="Int64" />
+  </EntityType>
+  <EntityType Name="ShareExamResult">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Guid" Type="Guid" />
+    <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ExamId" Type="Int64" />
+    <Property Name="WordId" Type="Int64" />
+    <Property Name="IsCorrect" Type="Boolean" />
+    <Property Name="Timestamp" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tCrossword">
+    <Key>
+      <PropertyRef Name="CrosswordId" />
+    </Key>
+    <Property Name="CrosswordId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int64" Nullable="false" />
+    <Property Name="CreatedTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CrosswordSaveString" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsCompleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tUser" Relationship="Self.FK_tCrossword_tUser" FromRole="tCrossword" ToRole="tUser" />
+    <NavigationProperty Name="tCrosswordWords" Relationship="Self.FK_tCrosswordWord_tCrossword" FromRole="tCrossword" ToRole="tCrosswordWord" />
+  </EntityType>
+  <EntityType Name="tCrosswordWord">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WordId" Type="Int64" Nullable="false" />
+    <Property Name="CrosswordId" Type="Int64" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tCrossword" Relationship="Self.FK_tCrosswordWord_tCrossword" FromRole="tCrosswordWord" ToRole="tCrossword" />
+    <NavigationProperty Name="tWord" Relationship="Self.FK_tCrosswordWord_tWord" FromRole="tCrosswordWord" ToRole="tWord" />
+  </EntityType>
+  <EntityType Name="TestShared">
+    <Key>
+      <PropertyRef Name="TestSharedID" />
+    </Key>
+    <Property Name="TestSharedID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SentUserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="WordId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TestID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CreatedOn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Pronounciation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Phrase" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Hint" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Definition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ShareOnline" Type="Boolean" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="Guid" Type="Guid" />
+    <Property Name="Word" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Retrieve" Type="Boolean" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TestTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TimePerWord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tExam">
+    <Key>
+      <PropertyRef Name="ExamId" />
+    </Key>
+    <Property Name="ExamId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExamGuid" Type="Guid" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TestTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TimePerWord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UserId" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="tUser" Relationship="Self.FK_tExam_tUser" FromRole="tExam" ToRole="tUser" />
+    <NavigationProperty Name="tExamResults" Relationship="Self.FK_tExamResult_tExam" FromRole="tExam" ToRole="tExamResult" />
+    <NavigationProperty Name="tExamWords" Relationship="Self.FK_tExamWord_tExam" FromRole="tExam" ToRole="tExamWord" />
+  </EntityType>
+  <EntityType Name="tExamResult">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Guid" Type="Guid" Nullable="false" />
+    <Property Name="ExamId" Type="Int64" Nullable="false" />
+    <Property Name="WordId" Type="Int64" Nullable="false" />
+    <Property Name="IsCorrect" Type="Boolean" Nullable="false" />
+    <Property Name="Timestamp" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tExam" Relationship="Self.FK_tExamResult_tExam" FromRole="tExamResult" ToRole="tExam" />
+    <NavigationProperty Name="tWord" Relationship="Self.FK_tExamResult_tWord" FromRole="tExamResult" ToRole="tWord" />
+  </EntityType>
+  <EntityType Name="tExamWord">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExamId" Type="Int64" Nullable="false" />
+    <Property Name="WordId" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="tExam" Relationship="Self.FK_tExamWord_tExam" FromRole="tExamWord" ToRole="tExam" />
+    <NavigationProperty Name="tWord" Relationship="Self.FK_tExamWord_tWord" FromRole="tExamWord" ToRole="tWord" />
+  </EntityType>
+  <EntityType Name="tForgotPassword">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userid" Type="Int64" Nullable="false" />
+    <Property Name="passwordguid" Type="Guid" Nullable="false" />
+    <Property Name="timestamp" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="status" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tNote">
+    <Key>
+      <PropertyRef Name="NoteId" />
+    </Key>
+    <Property Name="NoteId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NotGuid" Type="Guid" Nullable="false" />
+    <Property Name="UserId" Type="Int64" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="ExamId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tUser" Relationship="Self.FK_tNote_tUser" FromRole="tNote" ToRole="tUser" />
+  </EntityType>
+  <EntityType Name="tUser">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserGuid" Type="Guid" Nullable="false" />
+    <Property Name="Forename" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Webname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AccountCreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="IsSuspended" Type="Boolean" Nullable="false" />
+    <Property Name="PushStatus" Type="Boolean" Nullable="false" />
+    <Property Name="ProfileLastEditedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ProfileImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tCrosswords" Relationship="Self.FK_tCrossword_tUser" FromRole="tUser" ToRole="tCrossword" />
+    <NavigationProperty Name="tExams" Relationship="Self.FK_tExam_tUser" FromRole="tUser" ToRole="tExam" />
+    <NavigationProperty Name="tNotes" Relationship="Self.FK_tNote_tUser" FromRole="tUser" ToRole="tNote" />
+    <NavigationProperty Name="tUserFavouriteWords" Relationship="Self.FK_tUserFavouriteWord_tUser" FromRole="tUser" ToRole="tUserFavouriteWord" />
+    <NavigationProperty Name="tUserSkippedWords" Relationship="Self.FK_tUserSkippedWord_tUser" FromRole="tUser" ToRole="tUserSkippedWord" />
+    <NavigationProperty Name="tWords" Relationship="Self.FK_tWord_tUser" FromRole="tUser" ToRole="tWord" />
+  </EntityType>
+  <EntityType Name="tUserFavouriteWord">
+    <Key>
+      <PropertyRef Name="FavouriteId" />
+    </Key>
+    <Property Name="FavouriteId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int64" Nullable="false" />
+    <Property Name="WordId" Type="Int64" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tUser" Relationship="Self.FK_tUserFavouriteWord_tUser" FromRole="tUserFavouriteWord" ToRole="tUser" />
+    <NavigationProperty Name="tWord" Relationship="Self.FK_tUserFavouriteWord_tWord" FromRole="tUserFavouriteWord" ToRole="tWord" />
+  </EntityType>
+  <EntityType Name="tUserSkippedWord">
+    <Key>
+      <PropertyRef Name="SkippedId" />
+    </Key>
+    <Property Name="SkippedId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int64" Nullable="false" />
+    <Property Name="WordId" Type="Int64" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tUser" Relationship="Self.FK_tUserSkippedWord_tUser" FromRole="tUserSkippedWord" ToRole="tUser" />
+    <NavigationProperty Name="tWord" Relationship="Self.FK_tUserSkippedWord_tWord" FromRole="tUserSkippedWord" ToRole="tWord" />
+  </EntityType>
+  <EntityType Name="tWord">
+    <Key>
+      <PropertyRef Name="WordId" />
+    </Key>
+    <Property Name="WordId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Guid" Type="Guid" Nullable="false" />
+    <Property Name="UserId" Type="Int64" Nullable="false" />
+    <Property Name="Word" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Pronounciation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phrase" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Hint" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Definition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="ShareOnline" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tCrosswordWords" Relationship="Self.FK_tCrosswordWord_tWord" FromRole="tWord" ToRole="tCrosswordWord" />
+    <NavigationProperty Name="tExamResults" Relationship="Self.FK_tExamResult_tWord" FromRole="tWord" ToRole="tExamResult" />
+    <NavigationProperty Name="tExamWords" Relationship="Self.FK_tExamWord_tWord" FromRole="tWord" ToRole="tExamWord" />
+    <NavigationProperty Name="tUser" Relationship="Self.FK_tWord_tUser" FromRole="tWord" ToRole="tUser" />
+    <NavigationProperty Name="tUserFavouriteWords" Relationship="Self.FK_tUserFavouriteWord_tWord" FromRole="tWord" ToRole="tUserFavouriteWord" />
+    <NavigationProperty Name="tUserSkippedWords" Relationship="Self.FK_tUserSkippedWord_tWord" FromRole="tWord" ToRole="tUserSkippedWord" />
+  </EntityType>
+  <EntityType Name="VerifyEmail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Code" Type="Int32" />
+    <Property Name="Active" Type="Byte" />
+  </EntityType>
+  <Association Name="FK_Quester_Category_Quester_User">
+    <End Role="Quester_User" Type="Self.Quester_User" Multiplicity="1" />
+    <End Role="Quester_Category" Type="Self.Quester_Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quester_User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Quester_Category">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Quester_Word_Quester_Category">
+    <End Role="Quester_Category" Type="Self.Quester_Category" Multiplicity="0..1" />
+    <End Role="Quester_Word" Type="Self.Quester_Word" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quester_Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Quester_Word">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Quester_ExamWord_Quester_Exam">
+    <End Role="Quester_Exam" Type="Self.Quester_Exam" Multiplicity="1" />
+    <End Role="Quester_ExamWord" Type="Self.Quester_ExamWord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quester_Exam">
+        <PropertyRef Name="ExamId" />
+      </Principal>
+      <Dependent Role="Quester_ExamWord">
+        <PropertyRef Name="ExamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Quester_ExamWord_Quester_Word">
+    <End Role="Quester_Word" Type="Self.Quester_Word" Multiplicity="1" />
+    <End Role="Quester_ExamWord" Type="Self.Quester_ExamWord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quester_Word">
+        <PropertyRef Name="WordId" />
+      </Principal>
+      <Dependent Role="Quester_ExamWord">
+        <PropertyRef Name="WordId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Quester_TreeView_Quester_User">
+    <End Role="Quester_User" Type="Self.Quester_User" Multiplicity="1" />
+    <End Role="Quester_TreeView" Type="Self.Quester_TreeView" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quester_User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Quester_TreeView">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tCrossword_tUser">
+    <End Role="tUser" Type="Self.tUser" Multiplicity="1" />
+    <End Role="tCrossword" Type="Self.tCrossword" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tCrossword">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tCrosswordWord_tCrossword">
+    <End Role="tCrossword" Type="Self.tCrossword" Multiplicity="1" />
+    <End Role="tCrosswordWord" Type="Self.tCrosswordWord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tCrossword">
+        <PropertyRef Name="CrosswordId" />
+      </Principal>
+      <Dependent Role="tCrosswordWord">
+        <PropertyRef Name="CrosswordId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tCrosswordWord_tWord">
+    <End Role="tWord" Type="Self.tWord" Multiplicity="1" />
+    <End Role="tCrosswordWord" Type="Self.tCrosswordWord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tWord">
+        <PropertyRef Name="WordId" />
+      </Principal>
+      <Dependent Role="tCrosswordWord">
+        <PropertyRef Name="WordId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tExam_tUser">
+    <End Role="tUser" Type="Self.tUser" Multiplicity="1" />
+    <End Role="tExam" Type="Self.tExam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tExam">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tExamResult_tExam">
+    <End Role="tExam" Type="Self.tExam" Multiplicity="1" />
+    <End Role="tExamResult" Type="Self.tExamResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tExam">
+        <PropertyRef Name="ExamId" />
+      </Principal>
+      <Dependent Role="tExamResult">
+        <PropertyRef Name="ExamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tExamWord_tExam">
+    <End Role="tExam" Type="Self.tExam" Multiplicity="1" />
+    <End Role="tExamWord" Type="Self.tExamWord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tExam">
+        <PropertyRef Name="ExamId" />
+      </Principal>
+      <Dependent Role="tExamWord">
+        <PropertyRef Name="ExamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tExamResult_tWord">
+    <End Role="tWord" Type="Self.tWord" Multiplicity="1" />
+    <End Role="tExamResult" Type="Self.tExamResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tWord">
+        <PropertyRef Name="WordId" />
+      </Principal>
+      <Dependent Role="tExamResult">
+        <PropertyRef Name="WordId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tExamWord_tWord">
+    <End Role="tWord" Type="Self.tWord" Multiplicity="1" />
+    <End Role="tExamWord" Type="Self.tExamWord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tWord">
+        <PropertyRef Name="WordId" />
+      </Principal>
+      <Dependent Role="tExamWord">
+        <PropertyRef Name="WordId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tNote_tUser">
+    <End Role="tUser" Type="Self.tUser" Multiplicity="1" />
+    <End Role="tNote" Type="Self.tNote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tNote">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tUserFavouriteWord_tUser">
+    <End Role="tUser" Type="Self.tUser" Multiplicity="1" />
+    <End Role="tUserFavouriteWord" Type="Self.tUserFavouriteWord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tUserFavouriteWord">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tUserSkippedWord_tUser">
+    <End Role="tUser" Type="Self.tUser" Multiplicity="1" />
+    <End Role="tUserSkippedWord" Type="Self.tUserSkippedWord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tUserSkippedWord">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tWord_tUser">
+    <End Role="tUser" Type="Self.tUser" Multiplicity="1" />
+    <End Role="tWord" Type="Self.tWord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tWord">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tUserFavouriteWord_tWord">
+    <End Role="tWord" Type="Self.tWord" Multiplicity="1" />
+    <End Role="tUserFavouriteWord" Type="Self.tUserFavouriteWord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tWord">
+        <PropertyRef Name="WordId" />
+      </Principal>
+      <Dependent Role="tUserFavouriteWord">
+        <PropertyRef Name="WordId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tUserSkippedWord_tWord">
+    <End Role="tWord" Type="Self.tWord" Multiplicity="1" />
+    <End Role="tUserSkippedWord" Type="Self.tUserSkippedWord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tWord">
+        <PropertyRef Name="WordId" />
+      </Principal>
+      <Dependent Role="tUserSkippedWord">
+        <PropertyRef Name="WordId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TutionCloudEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CreateAWordListTestIDs" EntityType="Self.CreateAWordListTestID" />
+    <EntitySet Name="CreateAWordListToShares" EntityType="Self.CreateAWordListToShare" />
+    <EntitySet Name="Quester_Category" EntityType="Self.Quester_Category" />
+    <EntitySet Name="Quester_CreateAWordListTestID" EntityType="Self.Quester_CreateAWordListTestID" />
+    <EntitySet Name="Quester_CreateAWordListToShare" EntityType="Self.Quester_CreateAWordListToShare" />
+    <EntitySet Name="Quester_Crossword" EntityType="Self.Quester_Crossword" />
+    <EntitySet Name="Quester_Exam" EntityType="Self.Quester_Exam" />
+    <EntitySet Name="Quester_ExamResult" EntityType="Self.Quester_ExamResult" />
+    <EntitySet Name="Quester_ExamWord" EntityType="Self.Quester_ExamWord" />
+    <EntitySet Name="Quester_Exception" EntityType="Self.Quester_Exception" />
+    <EntitySet Name="Quester_ForgotPassword" EntityType="Self.Quester_ForgotPassword" />
+    <EntitySet Name="Quester_Note" EntityType="Self.Quester_Note" />
+    <EntitySet Name="Quester_TestShared" EntityType="Self.Quester_TestShared" />
+    <EntitySet Name="Quester_TreeView" EntityType="Self.Quester_TreeView" />
+    <EntitySet Name="Quester_User" EntityType="Self.Quester_User" />
+    <EntitySet Name="Quester_UserFavouriteWord" EntityType="Self.Quester_UserFavouriteWord" />
+    <EntitySet Name="Quester_UserSkippedWord" EntityType="Self.Quester_UserSkippedWord" />
+    <EntitySet Name="Quester_Word" EntityType="Self.Quester_Word" />
+    <EntitySet Name="ShareAnArchivedTests" EntityType="Self.ShareAnArchivedTest" />
+    <EntitySet Name="ShareAnArchivedTestIDs" EntityType="Self.ShareAnArchivedTestID" />
+    <EntitySet Name="ShareExamResults" EntityType="Self.ShareExamResult" />
+    <EntitySet Name="tCrosswords" EntityType="Self.tCrossword" />
+    <EntitySet Name="tCrosswordWords" EntityType="Self.tCrosswordWord" />
+    <EntitySet Name="TestShareds" EntityType="Self.TestShared" />
+    <EntitySet Name="tExams" EntityType="Self.tExam" />
+    <EntitySet Name="tExamResults" EntityType="Self.tExamResult" />
+    <EntitySet Name="tExamWords" EntityType="Self.tExamWord" />
+    <EntitySet Name="tForgotPasswords" EntityType="Self.tForgotPassword" />
+    <EntitySet Name="tNotes" EntityType="Self.tNote" />
+    <EntitySet Name="tUsers" EntityType="Self.tUser" />
+    <EntitySet Name="tUserFavouriteWords" EntityType="Self.tUserFavouriteWord" />
+    <EntitySet Name="tUserSkippedWords" EntityType="Self.tUserSkippedWord" />
+    <EntitySet Name="tWords" EntityType="Self.tWord" />
+    <EntitySet Name="VerifyEmails" EntityType="Self.VerifyEmail" />
+    <AssociationSet Name="FK_Quester_Category_Quester_User" Association="Self.FK_Quester_Category_Quester_User">
+      <End Role="Quester_User" EntitySet="Quester_User" />
+      <End Role="Quester_Category" EntitySet="Quester_Category" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Quester_Word_Quester_Category" Association="Self.FK_Quester_Word_Quester_Category">
+      <End Role="Quester_Category" EntitySet="Quester_Category" />
+      <End Role="Quester_Word" EntitySet="Quester_Word" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Quester_ExamWord_Quester_Exam" Association="Self.FK_Quester_ExamWord_Quester_Exam">
+      <End Role="Quester_Exam" EntitySet="Quester_Exam" />
+      <End Role="Quester_ExamWord" EntitySet="Quester_ExamWord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Quester_ExamWord_Quester_Word" Association="Self.FK_Quester_ExamWord_Quester_Word">
+      <End Role="Quester_Word" EntitySet="Quester_Word" />
+      <End Role="Quester_ExamWord" EntitySet="Quester_ExamWord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Quester_TreeView_Quester_User" Association="Self.FK_Quester_TreeView_Quester_User">
+      <End Role="Quester_User" EntitySet="Quester_User" />
+      <End Role="Quester_TreeView" EntitySet="Quester_TreeView" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tCrossword_tUser" Association="Self.FK_tCrossword_tUser">
+      <End Role="tUser" EntitySet="tUsers" />
+      <End Role="tCrossword" EntitySet="tCrosswords" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tCrosswordWord_tCrossword" Association="Self.FK_tCrosswordWord_tCrossword">
+      <End Role="tCrossword" EntitySet="tCrosswords" />
+      <End Role="tCrosswordWord" EntitySet="tCrosswordWords" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tCrosswordWord_tWord" Association="Self.FK_tCrosswordWord_tWord">
+      <End Role="tWord" EntitySet="tWords" />
+      <End Role="tCrosswordWord" EntitySet="tCrosswordWords" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tExam_tUser" Association="Self.FK_tExam_tUser">
+      <End Role="tUser" EntitySet="tUsers" />
+      <End Role="tExam" EntitySet="tExams" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tExamResult_tExam" Association="Self.FK_tExamResult_tExam">
+      <End Role="tExam" EntitySet="tExams" />
+      <End Role="tExamResult" EntitySet="tExamResults" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tExamWord_tExam" Association="Self.FK_tExamWord_tExam">
+      <End Role="tExam" EntitySet="tExams" />
+      <End Role="tExamWord" EntitySet="tExamWords" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tExamResult_tWord" Association="Self.FK_tExamResult_tWord">
+      <End Role="tWord" EntitySet="tWords" />
+      <End Role="tExamResult" EntitySet="tExamResults" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tExamWord_tWord" Association="Self.FK_tExamWord_tWord">
+      <End Role="tWord" EntitySet="tWords" />
+      <End Role="tExamWord" EntitySet="tExamWords" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tNote_tUser" Association="Self.FK_tNote_tUser">
+      <End Role="tUser" EntitySet="tUsers" />
+      <End Role="tNote" EntitySet="tNotes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tUserFavouriteWord_tUser" Association="Self.FK_tUserFavouriteWord_tUser">
+      <End Role="tUser" EntitySet="tUsers" />
+      <End Role="tUserFavouriteWord" EntitySet="tUserFavouriteWords" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tUserSkippedWord_tUser" Association="Self.FK_tUserSkippedWord_tUser">
+      <End Role="tUser" EntitySet="tUsers" />
+      <End Role="tUserSkippedWord" EntitySet="tUserSkippedWords" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tWord_tUser" Association="Self.FK_tWord_tUser">
+      <End Role="tUser" EntitySet="tUsers" />
+      <End Role="tWord" EntitySet="tWords" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tUserFavouriteWord_tWord" Association="Self.FK_tUserFavouriteWord_tWord">
+      <End Role="tWord" EntitySet="tWords" />
+      <End Role="tUserFavouriteWord" EntitySet="tUserFavouriteWords" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tUserSkippedWord_tWord" Association="Self.FK_tUserSkippedWord_tWord">
+      <End Role="tWord" EntitySet="tWords" />
+      <End Role="tUserSkippedWord" EntitySet="tUserSkippedWords" />
+    </AssociationSet>
+    <FunctionImport Name="Quester_SplitList" IsComposable="true" ReturnType="Collection(TutionCloudEntitiesModel.Quester_SplitList_Result)">
+      <Parameter Name="list" Mode="In" Type="String" />
+      <Parameter Name="separator" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SplitList" IsComposable="true" ReturnType="Collection(TutionCloudEntitiesModel.SplitList_Result)">
+      <Parameter Name="list" Mode="In" Type="String" />
+      <Parameter Name="separator" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteALLWordListSharedwithMe">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteALLWordListTestSharedWithMe">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteCreateAWordLIstShare">
+      <Parameter Name="CreateOn" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteTestSharedbyMe">
+      <Parameter Name="CreateOn" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteTestSharedWithMeTestSharedWithMe">
+      <Parameter Name="CreateOn" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteWordListAchivedTest_Delete">
+      <Parameter Name="CreateOn" Mode="In" Type="String" />
+      <Parameter Name="UserId" Mode="In" Type="Int64" />
+      <Parameter Name="TestID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ManageSharedTestStats_Delete">
+      <Parameter Name="CreateOn" Mode="In" Type="String" />
+      <Parameter Name="UserId" Mode="In" Type="Int64" />
+      <Parameter Name="TestID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_DeleteALLWordListSharedwithMe">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_DeleteCreateAWordLIstShare">
+      <Parameter Name="CreateOn" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_CHECK_FAVOURITE_WORD_ALREADY_ADDED" ReturnType="Collection(Int32)">
+      <Parameter Name="WORDID" Mode="In" Type="Int64" />
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_CHECK_SKIPLIST_WORD_ALREADY_ADDED" ReturnType="Collection(Int32)">
+      <Parameter Name="WORDID" Mode="In" Type="Int64" />
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_CHECK_WORDSHARED" ReturnType="Collection(Int32)">
+      <Parameter Name="WORD" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_CREATEAWORDLISTMAXID" ReturnType="Collection(Int64)">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_CreateAWordListToShare_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_DELETE_ALL_USER_TEST">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_DELETE_ALL_WORDS">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_DELETE_ALL_WORDS_FROM_FAVOURITES">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_DELETE_ALL_WORDS_FROM_SKIPLIST">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_DELETE_SELECTED_TEST">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="TESTIDS" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_DELETE_SELECTED_WORDS">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="WORDIDS" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_DELETE_SELECTED_WORDS_FROM_FAVOURITES">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="WORDIDS" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_DELETE_SELECTED_WORDS_FROM_SKIPLIST">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="WORDIDS" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_DELETETABLE_FROM_ROW_WordListSharedbyMe">
+      <Parameter Name="testId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_FECTH_ONLINE_COMMUNITY_WORDS" ReturnType="Collection(TutionCloudEntitiesModel.Quester_SP_FECTH_ONLINE_COMMUNITY_WORDS_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="SORTBY" Mode="In" Type="String" />
+      <Parameter Name="SORTORDER" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_FECTH_ONLINE_COMMUNITY_WORDS_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_FETCH_EXAM_WORDS" ReturnType="Collection(TutionCloudEntitiesModel.Quester_SP_FETCH_EXAM_WORDS_Result)">
+      <Parameter Name="EXAMID" Mode="In" Type="Int64" />
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_FETCH_NOTE_BY_ID" ReturnType="Collection(TutionCloudEntitiesModel.Quester_SP_FETCH_NOTE_BY_ID_Result)">
+      <Parameter Name="NOTEID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_FETCH_RESULTS_BY_EXAMID" ReturnType="Collection(TutionCloudEntitiesModel.Quester_SP_FETCH_RESULTS_BY_EXAMID_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="EXAMID" Mode="In" Type="Int64" />
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="SORTBY" Mode="In" Type="String" />
+      <Parameter Name="SORTORDER" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_FETCH_TOTAL_WORDLIST" ReturnType="Collection(TutionCloudEntitiesModel.Quester_SP_FETCH_TOTAL_WORDLIST_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+      <Parameter Name="LISTCOUNT" Mode="In" Type="Int32" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="SORTBY" Mode="In" Type="String" />
+      <Parameter Name="SORTORDER" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_FETCH_TOTAL_WORDLIST_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_FETCH_USER_FAVOURITE_WORDLIST" ReturnType="Collection(TutionCloudEntitiesModel.Quester_SP_FETCH_USER_FAVOURITE_WORDLIST_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="SORTBY" Mode="In" Type="String" />
+      <Parameter Name="SORTORDER" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_FETCH_USER_NOTELIST" ReturnType="Collection(TutionCloudEntitiesModel.Quester_SP_FETCH_USER_NOTELIST_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="SORTBY" Mode="In" Type="String" />
+      <Parameter Name="SORTORDER" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_FETCH_USER_SKIPPED_WORDLIST" ReturnType="Collection(TutionCloudEntitiesModel.Quester_SP_FETCH_USER_SKIPPED_WORDLIST_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="SORTBY" Mode="In" Type="String" />
+      <Parameter Name="SORTORDER" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_FETCH_USER_TEST" ReturnType="Collection(TutionCloudEntitiesModel.Quester_SP_FETCH_USER_TEST_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_FETCH_USER_TOTAL_FAVOURITE_WORD_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_FETCH_USER_TOTAL_MAINPANEL_WORD_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_FETCH_USER_TOTAL_NOTE_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_FETCH_USER_TOTAL_SKIPPED_WORD_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_FETCH_USER_TOTAL_TEST_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_FETCH_USER_TOTAL_WORD_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_FETCH_USER_TOTAL_WORD_COUNT_Folder" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_FETCH_USER_WORDLIST" ReturnType="Collection(TutionCloudEntitiesModel.Quester_SP_FETCH_USER_WORDLIST_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+      <Parameter Name="LISTCOUNT" Mode="In" Type="Int32" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="SORTBY" Mode="In" Type="String" />
+      <Parameter Name="SORTORDER" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_FETCH_USER_WORDLIST_Folder_Search" ReturnType="Collection(TutionCloudEntitiesModel.Quester_SP_FETCH_USER_WORDLIST_Folder_Search_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+      <Parameter Name="LISTCOUNT" Mode="In" Type="Int32" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="SORTBY" Mode="In" Type="String" />
+      <Parameter Name="SORTORDER" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_FETCH_WORD_BY_ID" ReturnType="Collection(TutionCloudEntitiesModel.Quester_SP_FETCH_WORD_BY_ID_Result)">
+      <Parameter Name="WORDID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_FETCH_WORD_ROWNUMBER" ReturnType="Collection(TutionCloudEntitiesModel.Quester_SP_FETCH_WORD_ROWNUMBER_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_GET_DISTINCT_CreateAWordListToShare" ReturnType="Collection(String)">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_GET_DISTINCT_WordListSharedbyMe" ReturnType="Collection(String)">
+      <Parameter Name="SentUserID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_INSERT_ONLINECOMMUNITY_WORDS">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="WORDIDS" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_PV_SHARING_SharedwithMeWords_List" ReturnType="Collection(TutionCloudEntitiesModel.Quester_SP_PV_SHARING_SharedwithMeWords_List_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+      <Parameter Name="LISTCOUNT" Mode="In" Type="Int32" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="SORTBY" Mode="In" Type="String" />
+      <Parameter Name="SORTORDER" Mode="In" Type="String" />
+      <Parameter Name="CreatedOn" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_PV_SHARING_WordListSharedwithbyWords_List" ReturnType="Collection(TutionCloudEntitiesModel.Quester_SP_PV_SHARING_WordListSharedwithbyWords_List_Result)">
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+      <Parameter Name="LISTCOUNT" Mode="In" Type="Int32" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="SORTBY" Mode="In" Type="String" />
+      <Parameter Name="SORTORDER" Mode="In" Type="String" />
+      <Parameter Name="CreatedOn" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_SharedWithMeWord_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="CreatedOn" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_UPDATE_CROSSWORD_STATUS">
+      <Parameter Name="WORDID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_WordListSharedwithbyWords_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="CreatedOn" Mode="In" Type="String" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_TimeOfTested_Word" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="WORDID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="Search_SHARING_SharedwithMeWords_List" ReturnType="Collection(TutionCloudEntitiesModel.Search_SHARING_SharedwithMeWords_List_Result)">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="CreatedOn" Mode="In" Type="String" />
+      <Parameter Name="Search" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ShareAnArchivedTest_Dupremove_Get" ReturnType="Collection(String)">
+      <Parameter Name="userId" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="ShareAnArchivedTest_SentUserID_Dupremove_Get" ReturnType="Collection(String)">
+      <Parameter Name="SentUserID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="SP_CHECK_FAVOURITE_WORD_ALREADY_ADDED" ReturnType="Collection(Int32)">
+      <Parameter Name="WORDID" Mode="In" Type="Int64" />
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="SP_CHECK_SKIPLIST_WORD_ALREADY_ADDED" ReturnType="Collection(Int32)">
+      <Parameter Name="WORDID" Mode="In" Type="Int64" />
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="SP_CHECK_WORDSHARED" ReturnType="Collection(Int32)">
+      <Parameter Name="WORD" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_CHECK_WORDSHARED_EDITWORD" ReturnType="Collection(Int32)">
+      <Parameter Name="WORDID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_CHECK_WORDSHAREDUSER" ReturnType="Collection(Int32)">
+      <Parameter Name="WORD" Mode="In" Type="String" />
+      <Parameter Name="UserId" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="SP_CREATEAWORDLISTMAXID" ReturnType="Collection(Int64)">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_CreateAWordListToShare_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_CreateAWordListToShare_COUNT_Test" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_CreateAWordTestSharedWithMe_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_DELETE_ALL_USER_CROSSWORDS">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="SP_DELETE_ALL_USER_TEST">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="SP_DELETE_ALL_WORDS">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="SP_DELETE_ALL_WORDS_FROM_FAVOURITES">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="SP_DELETE_ALL_WORDS_FROM_SKIPLIST">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="SP_DELETE_SELECTED_TEST">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="TESTIDS" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_DELETE_SELECTED_WORDS">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="WORDIDS" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_DELETE_SELECTED_WORDS_FROM_FAVOURITES">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="WORDIDS" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_DELETE_SELECTED_WORDS_FROM_SKIPLIST">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="WORDIDS" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_DELETETABLE_FROM_ROW_WordListSharedbyMe">
+      <Parameter Name="testId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_DELETETABLE_FROM_ROW_WordListTestSharedbyMe">
+      <Parameter Name="testId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_deletWordSharedTestSharedbyMeWords">
+      <Parameter Name="WordId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_deletWordSharedWithMeWords">
+      <Parameter Name="WordId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FECTH_ONLINE_COMMUNITY_WORDS" ReturnType="Collection(TutionCloudEntitiesModel.SP_FECTH_ONLINE_COMMUNITY_WORDS_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="SORTBY" Mode="In" Type="String" />
+      <Parameter Name="SORTORDER" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FECTH_ONLINE_COMMUNITY_WORDS_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FECTH_SHARING_WordListSharedwithMe_COUNT">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FETCH_EXAM_WORDS" ReturnType="Collection(TutionCloudEntitiesModel.SP_FETCH_EXAM_WORDS_Result)">
+      <Parameter Name="EXAMID" Mode="In" Type="Int64" />
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FETCH_EXAM_WORDS_Share" ReturnType="Collection(TutionCloudEntitiesModel.SP_FETCH_EXAM_WORDS_Share_Result)">
+      <Parameter Name="EXAMID" Mode="In" Type="Int64" />
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FETCH_NOTE_BY_ID" ReturnType="Collection(TutionCloudEntitiesModel.SP_FETCH_NOTE_BY_ID_Result)">
+      <Parameter Name="NOTEID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FETCH_RANDOM_SELECTED_WORD_DETAILS" ReturnType="Collection(TutionCloudEntitiesModel.SP_FETCH_RANDOM_SELECTED_WORD_DETAILS_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="WORDID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FETCH_RANDOM_WORDS" ReturnType="Collection(TutionCloudEntitiesModel.SP_FETCH_RANDOM_WORDS_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FETCH_RESULTS_BY_EXAMID" ReturnType="Collection(TutionCloudEntitiesModel.SP_FETCH_RESULTS_BY_EXAMID_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="EXAMID" Mode="In" Type="Int64" />
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="SORTBY" Mode="In" Type="String" />
+      <Parameter Name="SORTORDER" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FETCH_RESULTS_BY_EXAMID_Share" ReturnType="Collection(TutionCloudEntitiesModel.SP_FETCH_RESULTS_BY_EXAMID_Share_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="EXAMID" Mode="In" Type="Int64" />
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="SORTBY" Mode="In" Type="String" />
+      <Parameter Name="SORTORDER" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FETCH_RESULTS_BY_EXAMID001" ReturnType="Collection(TutionCloudEntitiesModel.SP_FETCH_RESULTS_BY_EXAMID001_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="EXAMID" Mode="In" Type="Int64" />
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="SORTBY" Mode="In" Type="String" />
+      <Parameter Name="SORTORDER" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FETCH_SELECTED_CROSSWORD_WORD_DETAILS" ReturnType="Collection(TutionCloudEntitiesModel.SP_FETCH_SELECTED_CROSSWORD_WORD_DETAILS_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="WORDIDS" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FETCH_TOTAL_WORDLIST" ReturnType="Collection(TutionCloudEntitiesModel.SP_FETCH_TOTAL_WORDLIST_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+      <Parameter Name="LISTCOUNT" Mode="In" Type="Int32" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="SORTBY" Mode="In" Type="String" />
+      <Parameter Name="SORTORDER" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FETCH_TOTAL_WORDLIST_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FETCH_USER_CROSSWORD_LIST" ReturnType="Collection(TutionCloudEntitiesModel.SP_FETCH_USER_CROSSWORD_LIST_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FETCH_USER_CROSSWORD_WORDLIST" ReturnType="Collection(TutionCloudEntitiesModel.SP_FETCH_USER_CROSSWORD_WORDLIST_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="CROSSWORDID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FETCH_USER_FAVOURITE_WORDLIST" ReturnType="Collection(TutionCloudEntitiesModel.SP_FETCH_USER_FAVOURITE_WORDLIST_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="SORTBY" Mode="In" Type="String" />
+      <Parameter Name="SORTORDER" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FETCH_USER_NOTELIST" ReturnType="Collection(TutionCloudEntitiesModel.SP_FETCH_USER_NOTELIST_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="SORTBY" Mode="In" Type="String" />
+      <Parameter Name="SORTORDER" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FETCH_USER_SKIPPED_WORDLIST" ReturnType="Collection(TutionCloudEntitiesModel.SP_FETCH_USER_SKIPPED_WORDLIST_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="SORTBY" Mode="In" Type="String" />
+      <Parameter Name="SORTORDER" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FETCH_USER_TEST" ReturnType="Collection(TutionCloudEntitiesModel.SP_FETCH_USER_TEST_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FETCH_USER_TOTAL_CROSSWORD_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FETCH_USER_TOTAL_FAVOURITE_WORD_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FETCH_USER_TOTAL_MAINPANEL_WORD_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FETCH_USER_TOTAL_NOTE_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FETCH_USER_TOTAL_SKIPPED_WORD_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FETCH_USER_TOTAL_TEST_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FETCH_USER_TOTAL_WORD_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FETCH_USER_WORDLIST" ReturnType="Collection(TutionCloudEntitiesModel.SP_FETCH_USER_WORDLIST_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+      <Parameter Name="LISTCOUNT" Mode="In" Type="Int32" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="SORTBY" Mode="In" Type="String" />
+      <Parameter Name="SORTORDER" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FETCH_WORD_BY_ID" ReturnType="Collection(TutionCloudEntitiesModel.SP_FETCH_WORD_BY_ID_Result)">
+      <Parameter Name="WORDID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FETCH_WORD_ROWNUMBER" ReturnType="Collection(TutionCloudEntitiesModel.SP_FETCH_WORD_ROWNUMBER_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GET_DISTINCT_CreateAWordListToShare" ReturnType="Collection(String)">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GET_DISTINCT_CreateAWordListToShare_Test" ReturnType="Collection(String)">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GET_DISTINCT_WordListSharedbyMe" ReturnType="Collection(String)">
+      <Parameter Name="SentUserID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GET_DISTINCT_WordListTestSharedbyMe" ReturnType="Collection(String)">
+      <Parameter Name="SentUserID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_INSERT_ONLINECOMMUNITY_WORDS">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="WORDIDS" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_PV_SHARING_SharedwithMeWords_List" ReturnType="Collection(TutionCloudEntitiesModel.SP_PV_SHARING_SharedwithMeWords_List_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+      <Parameter Name="LISTCOUNT" Mode="In" Type="Int32" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="SORTBY" Mode="In" Type="String" />
+      <Parameter Name="SORTORDER" Mode="In" Type="String" />
+      <Parameter Name="CreatedOn" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_PV_SHARING_SharedwithMeWords_List_Test_Test" ReturnType="Collection(TutionCloudEntitiesModel.SP_PV_SHARING_SharedwithMeWords_List_Test_Test_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+      <Parameter Name="LISTCOUNT" Mode="In" Type="Int32" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="SORTBY" Mode="In" Type="String" />
+      <Parameter Name="SORTORDER" Mode="In" Type="String" />
+      <Parameter Name="CreatedOn" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_PV_SHARING_WordListShareAnArchivedTest_List" ReturnType="Collection(TutionCloudEntitiesModel.SP_PV_SHARING_WordListShareAnArchivedTest_List_Result)">
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+      <Parameter Name="LISTCOUNT" Mode="In" Type="Int32" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="SORTBY" Mode="In" Type="String" />
+      <Parameter Name="SORTORDER" Mode="In" Type="String" />
+      <Parameter Name="CreatedDate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_PV_SHARING_WordListSharedwithbyWords_List" ReturnType="Collection(TutionCloudEntitiesModel.SP_PV_SHARING_WordListSharedwithbyWords_List_Result)">
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+      <Parameter Name="LISTCOUNT" Mode="In" Type="Int32" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="SORTBY" Mode="In" Type="String" />
+      <Parameter Name="SORTORDER" Mode="In" Type="String" />
+      <Parameter Name="CreatedOn" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_PV_SHARING_WordListTestSharedbyMeWords_List" ReturnType="Collection(TutionCloudEntitiesModel.SP_PV_SHARING_WordListTestSharedbyMeWords_List_Result)">
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+      <Parameter Name="LISTCOUNT" Mode="In" Type="Int32" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="SORTBY" Mode="In" Type="String" />
+      <Parameter Name="SORTORDER" Mode="In" Type="String" />
+      <Parameter Name="CreatedOn" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_PV_WordListSharedbyMe_List" ReturnType="Collection(TutionCloudEntitiesModel.SP_PV_WordListSharedbyMe_List_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+      <Parameter Name="LISTCOUNT" Mode="In" Type="Int32" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="SORTBY" Mode="In" Type="String" />
+      <Parameter Name="SORTORDER" Mode="In" Type="String" />
+      <Parameter Name="CreatedOn" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_ShareAnArchivedTestIDMAXID" ReturnType="Collection(Int64)">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_SharedWithMeWord_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="CreatedOn" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_SHOW_ALL_WORDS" ReturnType="Collection(TutionCloudEntitiesModel.SP_SHOW_ALL_WORDS_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="SP_SHOW_REVIEWED_WORDS" ReturnType="Collection(TutionCloudEntitiesModel.SP_SHOW_REVIEWED_WORDS_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="WORDIDS" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_TestSharedSharedbyMe_WORD_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_UPDATE_CROSSWORD_STATUS">
+      <Parameter Name="WORDID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_WordListShareAnArchivedTest_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="CreatedOn" Mode="In" Type="String" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_WordListSharedbyMe_WORD_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_WordListSharedTestSharedbyMe_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="CreatedOn" Mode="In" Type="String" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_WordListSharedwithbyWords_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="CreatedOn" Mode="In" Type="String" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateQuesterUserByUserId">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_FETCH_EXAM_WORDS_Share" ReturnType="Collection(TutionCloudEntitiesModel.Quester_SP_FETCH_EXAM_WORDS_Share_Result)">
+      <Parameter Name="EXAMID" Mode="In" Type="Int64" />
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <EntitySet Name="Quester_ShareAnArchivedTestID" EntityType="TutionCloudEntitiesModel.Quester_ShareAnArchivedTestID" />
+    <FunctionImport Name="Quester_SP_ShareAnArchivedTestIDMAXID" ReturnType="Collection(Int64)">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_deletWordSharedWithMeWords">
+      <Parameter Name="WordId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_CreateAWordTestSharedWithMe_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_CreateAWordListToShare_COUNT_Test" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_DeleteTestSharedWithMeTestSharedWithMe">
+      <Parameter Name="CreateOn" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_DeleteALLWordListTestSharedWithMe">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_TestSharedSharedbyMe_WORD_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_deletWordSharedTestSharedbyMeWords">
+      <Parameter Name="WordId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_WordListSharedTestSharedbyMe_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="CreatedOn" Mode="In" Type="String" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="Quester_ShareAnArchivedTest" EntityType="TutionCloudEntitiesModel.Quester_ShareAnArchivedTest" />
+    <FunctionImport Name="Quester_SP_GET_DISTINCT_CreateAWordListToShare_Test" ReturnType="Collection(String)">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_GET_DISTINCT_WordListTestSharedbyMe" ReturnType="Collection(String)">
+      <Parameter Name="SentUserID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_PV_SHARING_WordListShareAnArchivedTest_List" ReturnType="Collection(TutionCloudEntitiesModel.Quester_SP_PV_SHARING_WordListShareAnArchivedTest_List_Result)">
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+      <Parameter Name="LISTCOUNT" Mode="In" Type="Int32" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="SORTBY" Mode="In" Type="String" />
+      <Parameter Name="SORTORDER" Mode="In" Type="String" />
+      <Parameter Name="CreatedDate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_PV_SHARING_SharedwithMeWords_List_Test_Test" ReturnType="Collection(TutionCloudEntitiesModel.Quester_SP_PV_SHARING_SharedwithMeWords_List_Test_Test_Result)">
+      <Parameter Name="USERID" Mode="In" Type="Int64" />
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+      <Parameter Name="LISTCOUNT" Mode="In" Type="Int32" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="SORTBY" Mode="In" Type="String" />
+      <Parameter Name="SORTORDER" Mode="In" Type="String" />
+      <Parameter Name="CreatedOn" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_PV_SHARING_WordListTestSharedbyMeWords_List" ReturnType="Collection(TutionCloudEntitiesModel.Quester_SP_PV_SHARING_WordListTestSharedbyMeWords_List_Result)">
+      <Parameter Name="INDEX" Mode="In" Type="Int32" />
+      <Parameter Name="LISTCOUNT" Mode="In" Type="Int32" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+      <Parameter Name="SORTBY" Mode="In" Type="String" />
+      <Parameter Name="SORTORDER" Mode="In" Type="String" />
+      <Parameter Name="CreatedOn" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_DeleteTestSharedbyMe">
+      <Parameter Name="CreateOn" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_DeleteWordListAchivedTest_Delete">
+      <Parameter Name="CreateOn" Mode="In" Type="String" />
+      <Parameter Name="UserId" Mode="In" Type="Int64" />
+      <Parameter Name="TestID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_DELETETABLE_FROM_ROW_WordListTestSharedbyMe">
+      <Parameter Name="testId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_ShareAnArchivedTest_Dupremove_Get" ReturnType="Collection(String)">
+      <Parameter Name="userId" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_ShareAnArchivedTest_SentUserID_Dupremove_Get" ReturnType="Collection(String)">
+      <Parameter Name="SentUserID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_GET_NOTEDETAILS" ReturnType="Collection(TutionCloudEntitiesModel.Quester_SP_GET_NOTEDETAILS_Result)">
+      <Parameter Name="NOTEID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GET_NOTEDETAILS" ReturnType="Collection(TutionCloudEntitiesModel.SP_GET_NOTEDETAILS_Result)">
+      <Parameter Name="NOTEID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Quester_SP_WordListShareAnArchivedTest_COUNT" ReturnType="Collection(Int32)">
+      <Parameter Name="CreatedOn" Mode="In" Type="String" />
+      <Parameter Name="SEARCH" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="Quester_SP_FECTH_ONLINE_COMMUNITY_WORDS_Result">
+    <Property Type="Int64" Name="WORDID" Nullable="false" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="false" />
+    <Property Type="String" Name="WORD" Nullable="false" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="false" />
+    <Property Type="String" Name="PHRASE" Nullable="false" />
+    <Property Type="String" Name="HINT" Nullable="false" />
+    <Property Type="String" Name="DEFINITION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="DUPLICATECHECK" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Quester_SP_FETCH_EXAM_WORDS_Result">
+    <Property Type="Int64" Name="WORDID" Nullable="false" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="false" />
+    <Property Type="String" Name="WORD" Nullable="false" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="false" />
+    <Property Type="String" Name="PHRASE" Nullable="false" />
+    <Property Type="String" Name="HINT" Nullable="false" />
+    <Property Type="String" Name="DEFINITION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="Quester_SP_FETCH_NOTE_BY_ID_Result">
+    <Property Type="Int64" Name="NOTEID" Nullable="false" />
+    <Property Type="Guid" Name="NOTEGUID" Nullable="false" />
+    <Property Type="String" Name="TITLE" Nullable="false" />
+    <Property Type="String" Name="DESCRIPTION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="Int64" Name="USERID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Quester_SP_FETCH_RESULTS_BY_EXAMID_Result">
+    <Property Type="Int64" Name="WORDID" Nullable="false" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="false" />
+    <Property Type="String" Name="WORD" Nullable="false" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="false" />
+    <Property Type="String" Name="PHRASE" Nullable="false" />
+    <Property Type="String" Name="HINT" Nullable="false" />
+    <Property Type="String" Name="DEFINITION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="ISCORRECT" Nullable="true" />
+    <Property Type="Decimal" Name="OVERALLSCORE" Nullable="true" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="Quester_SP_FETCH_TOTAL_WORDLIST_Result">
+    <Property Type="Int64" Name="WORDID" Nullable="false" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="false" />
+    <Property Type="String" Name="WORD" Nullable="false" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="false" />
+    <Property Type="String" Name="PHRASE" Nullable="false" />
+    <Property Type="String" Name="HINT" Nullable="false" />
+    <Property Type="String" Name="DEFINITION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="Decimal" Name="OVERALLSCORE" Nullable="true" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="Quester_SP_FETCH_USER_FAVOURITE_WORDLIST_Result">
+    <Property Type="Int64" Name="WORDID" Nullable="false" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="false" />
+    <Property Type="String" Name="WORD" Nullable="false" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="false" />
+    <Property Type="String" Name="PHRASE" Nullable="false" />
+    <Property Type="String" Name="HINT" Nullable="false" />
+    <Property Type="String" Name="DEFINITION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="SHAREONLINE" Nullable="false" />
+    <Property Type="String" Name="CATEGORYNAME" Nullable="true" />
+    <Property Type="Decimal" Name="OVERALLSCORE" Nullable="true" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="Quester_SP_FETCH_USER_NOTELIST_Result">
+    <Property Type="Int64" Name="NOTEID" Nullable="false" />
+    <Property Type="Guid" Name="NOTEGUID" Nullable="false" />
+    <Property Type="String" Name="TITLE" Nullable="false" />
+    <Property Type="String" Name="DESCRIPTION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="Quester_SP_FETCH_USER_SKIPPED_WORDLIST_Result">
+    <Property Type="Int64" Name="WORDID" Nullable="false" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="false" />
+    <Property Type="String" Name="WORD" Nullable="false" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="false" />
+    <Property Type="String" Name="PHRASE" Nullable="false" />
+    <Property Type="String" Name="HINT" Nullable="false" />
+    <Property Type="String" Name="DEFINITION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="SHAREONLINE" Nullable="false" />
+    <Property Type="String" Name="CATEGORYNAME" Nullable="true" />
+    <Property Type="Decimal" Name="OVERALLSCORE" Nullable="true" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="Quester_SP_FETCH_USER_TEST_Result">
+    <Property Type="Int64" Name="EXAMID" Nullable="false" />
+    <Property Type="String" Name="TITLE" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="Decimal" Name="SCORE" Nullable="true" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="Quester_SP_FETCH_USER_WORDLIST_Result">
+    <Property Type="Int64" Name="WORDID" Nullable="false" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="false" />
+    <Property Type="String" Name="WORD" Nullable="false" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="false" />
+    <Property Type="String" Name="PHRASE" Nullable="false" />
+    <Property Type="String" Name="HINT" Nullable="false" />
+    <Property Type="String" Name="DEFINITION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="Int64" Name="CATEGORYID" Nullable="true" />
+    <Property Type="String" Name="CATEGORYNAME" Nullable="true" />
+    <Property Type="Decimal" Name="OVERALLSCORE" Nullable="true" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="Quester_SP_FETCH_USER_WORDLIST_Folder_Search_Result">
+    <Property Type="Int64" Name="WORDID" Nullable="false" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="false" />
+    <Property Type="String" Name="WORD" Nullable="false" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="false" />
+    <Property Type="String" Name="PHRASE" Nullable="false" />
+    <Property Type="String" Name="HINT" Nullable="false" />
+    <Property Type="String" Name="DEFINITION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="Int64" Name="CATEGORYID" Nullable="true" />
+    <Property Type="String" Name="CATEGORYNAME" Nullable="true" />
+    <Property Type="Decimal" Name="OVERALLSCORE" Nullable="true" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="Quester_SP_FETCH_WORD_BY_ID_Result">
+    <Property Type="Int64" Name="WORDID" Nullable="false" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="false" />
+    <Property Type="String" Name="WORD" Nullable="false" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="false" />
+    <Property Type="String" Name="PHRASE" Nullable="false" />
+    <Property Type="String" Name="HINT" Nullable="false" />
+    <Property Type="String" Name="DEFINITION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="Int64" Name="USERID" Nullable="false" />
+    <Property Type="Boolean" Name="SHAREONLINE" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Quester_SP_FETCH_WORD_ROWNUMBER_Result">
+    <Property Type="Int64" Name="ROWNUMBER" Nullable="true" />
+    <Property Type="Int64" Name="WORDID" Nullable="false" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="false" />
+    <Property Type="String" Name="WORD" Nullable="false" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="false" />
+    <Property Type="String" Name="PHRASE" Nullable="false" />
+    <Property Type="String" Name="HINT" Nullable="false" />
+    <Property Type="String" Name="DEFINITION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="Int64" Name="USERID" Nullable="false" />
+    <Property Type="Boolean" Name="SHAREONLINE" Nullable="false" />
+    <Property Type="Boolean" Name="ISFAVOURITE" Nullable="true" />
+    <Property Type="Boolean" Name="ISSKIPPED" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Quester_SP_PV_SHARING_SharedwithMeWords_List_Result">
+    <Property Type="String" Name="WORDID" Nullable="true" MaxLength="500" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="true" />
+    <Property Type="String" Name="WORD" Nullable="true" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="true" />
+    <Property Type="String" Name="PHRASE" Nullable="true" />
+    <Property Type="String" Name="HINT" Nullable="true" />
+    <Property Type="String" Name="DEFINITION" Nullable="true" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="OVERALLSCORE" Nullable="true" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="Quester_SP_PV_SHARING_WordListSharedwithbyWords_List_Result">
+    <Property Type="String" Name="WORDID" Nullable="true" MaxLength="500" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="true" />
+    <Property Type="String" Name="WORD" Nullable="true" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="true" />
+    <Property Type="String" Name="PHRASE" Nullable="true" />
+    <Property Type="String" Name="HINT" Nullable="true" />
+    <Property Type="String" Name="DEFINITION" Nullable="true" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="OVERALLSCORE" Nullable="true" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="Search_SHARING_SharedwithMeWords_List_Result">
+    <Property Type="Decimal" Name="CreateAWordListToShareID" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="String" Name="SentUserID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="UserID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="WordId" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TestID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LastName" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="IsActive" Nullable="true" />
+    <Property Type="String" Name="CreatedOn" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Pronounciation" Nullable="true" />
+    <Property Type="String" Name="Phrase" Nullable="true" />
+    <Property Type="String" Name="Hint" Nullable="true" />
+    <Property Type="String" Name="Definition" Nullable="true" />
+    <Property Type="Boolean" Name="ShareOnline" Nullable="true" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="UpdatedDate" Nullable="true" Precision="23" />
+    <Property Type="Guid" Name="Guid" Nullable="true" />
+    <Property Type="String" Name="Word" Nullable="true" />
+    <Property Type="Boolean" Name="Retrieve" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_FECTH_ONLINE_COMMUNITY_WORDS_Result">
+    <Property Type="Int64" Name="WORDID" Nullable="false" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="false" />
+    <Property Type="String" Name="WORD" Nullable="false" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="false" />
+    <Property Type="String" Name="PHRASE" Nullable="false" />
+    <Property Type="String" Name="HINT" Nullable="false" />
+    <Property Type="String" Name="DEFINITION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="DUPLICATECHECK" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_FETCH_EXAM_WORDS_Result">
+    <Property Type="Int64" Name="WORDID" Nullable="false" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="false" />
+    <Property Type="String" Name="WORD" Nullable="false" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="false" />
+    <Property Type="String" Name="PHRASE" Nullable="false" />
+    <Property Type="String" Name="HINT" Nullable="false" />
+    <Property Type="String" Name="DEFINITION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="SP_FETCH_EXAM_WORDS_Share_Result">
+    <Property Type="Int64" Name="WORDID" Nullable="false" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="false" />
+    <Property Type="String" Name="WORD" Nullable="false" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="false" />
+    <Property Type="String" Name="PHRASE" Nullable="false" />
+    <Property Type="String" Name="HINT" Nullable="false" />
+    <Property Type="String" Name="DEFINITION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="SP_FETCH_NOTE_BY_ID_Result">
+    <Property Type="Int64" Name="NOTEID" Nullable="false" />
+    <Property Type="Guid" Name="NOTEGUID" Nullable="false" />
+    <Property Type="String" Name="TITLE" Nullable="false" />
+    <Property Type="String" Name="DESCRIPTION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="Int64" Name="USERID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_FETCH_RANDOM_SELECTED_WORD_DETAILS_Result">
+    <Property Type="Int64" Name="ROWNUMBER" Nullable="true" />
+    <Property Type="Int64" Name="WORDID" Nullable="false" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="false" />
+    <Property Type="String" Name="WORD" Nullable="false" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="false" />
+    <Property Type="String" Name="PHRASE" Nullable="false" />
+    <Property Type="String" Name="HINT" Nullable="false" />
+    <Property Type="String" Name="DEFINITION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="Int64" Name="USERID" Nullable="false" />
+    <Property Type="Boolean" Name="SHAREONLINE" Nullable="false" />
+    <Property Type="Boolean" Name="ISFAVOURITE" Nullable="true" />
+    <Property Type="Boolean" Name="ISSKIPPED" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_FETCH_RANDOM_WORDS_Result">
+    <Property Type="Int64" Name="WORDID" Nullable="false" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="false" />
+    <Property Type="String" Name="WORD" Nullable="false" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="false" />
+    <Property Type="String" Name="PHRASE" Nullable="false" />
+    <Property Type="String" Name="HINT" Nullable="false" />
+    <Property Type="String" Name="DEFINITION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="Decimal" Name="OVERALLSCORE" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="Boolean" Name="ISFAVOURITE" Nullable="true" />
+    <Property Type="Boolean" Name="ISSKIPPED" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_FETCH_RESULTS_BY_EXAMID_Result">
+    <Property Type="Int64" Name="WORDID" Nullable="false" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="false" />
+    <Property Type="String" Name="WORD" Nullable="false" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="false" />
+    <Property Type="String" Name="PHRASE" Nullable="false" />
+    <Property Type="String" Name="HINT" Nullable="false" />
+    <Property Type="String" Name="DEFINITION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="ISCORRECT" Nullable="true" />
+    <Property Type="Decimal" Name="OVERALLSCORE" Nullable="true" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="SP_FETCH_RESULTS_BY_EXAMID_Share_Result">
+    <Property Type="Int64" Name="WORDID" Nullable="false" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="false" />
+    <Property Type="String" Name="WORD" Nullable="false" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="false" />
+    <Property Type="String" Name="PHRASE" Nullable="false" />
+    <Property Type="String" Name="HINT" Nullable="false" />
+    <Property Type="String" Name="DEFINITION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="ISCORRECT" Nullable="true" />
+    <Property Type="Decimal" Name="OVERALLSCORE" Nullable="true" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="SP_FETCH_RESULTS_BY_EXAMID001_Result">
+    <Property Type="Int64" Name="WORDID" Nullable="false" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="false" />
+    <Property Type="String" Name="WORD" Nullable="false" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="false" />
+    <Property Type="String" Name="PHRASE" Nullable="false" />
+    <Property Type="String" Name="HINT" Nullable="false" />
+    <Property Type="String" Name="DEFINITION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="ISCORRECT" Nullable="true" />
+    <Property Type="Decimal" Name="OVERALLSCORE" Nullable="true" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="SP_FETCH_SELECTED_CROSSWORD_WORD_DETAILS_Result">
+    <Property Type="Int64" Name="WORDID" Nullable="false" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="false" />
+    <Property Type="String" Name="WORD" Nullable="false" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="false" />
+    <Property Type="String" Name="PHRASE" Nullable="false" />
+    <Property Type="String" Name="HINT" Nullable="false" />
+    <Property Type="String" Name="DEFINITION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="Decimal" Name="OVERALLSCORE" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="Boolean" Name="ISFAVOURITE" Nullable="true" />
+    <Property Type="Boolean" Name="ISSKIPPED" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_FETCH_TOTAL_WORDLIST_Result">
+    <Property Type="Int64" Name="WORDID" Nullable="false" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="false" />
+    <Property Type="String" Name="WORD" Nullable="false" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="false" />
+    <Property Type="String" Name="PHRASE" Nullable="false" />
+    <Property Type="String" Name="HINT" Nullable="false" />
+    <Property Type="String" Name="DEFINITION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="Decimal" Name="OVERALLSCORE" Nullable="true" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="SP_FETCH_USER_CROSSWORD_LIST_Result">
+    <Property Type="Int64" Name="CrosswordId" Nullable="false" />
+    <Property Type="Int64" Name="USERID" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDTIME" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="ISDELETED" Nullable="false" />
+    <Property Type="String" Name="HTML" Nullable="false" />
+    <Property Type="Boolean" Name="ISCOMPLETED" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_FETCH_USER_CROSSWORD_WORDLIST_Result">
+    <Property Type="Int64" Name="WORDID" Nullable="false" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="false" />
+    <Property Type="String" Name="WORD" Nullable="false" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="false" />
+    <Property Type="String" Name="PHRASE" Nullable="false" />
+    <Property Type="String" Name="HINT" Nullable="false" />
+    <Property Type="String" Name="DEFINITION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="Int64" Name="USERID" Nullable="false" />
+    <Property Type="Boolean" Name="SHAREONLINE" Nullable="false" />
+    <Property Type="Boolean" Name="ISFAVOURITE" Nullable="true" />
+    <Property Type="Boolean" Name="ISSKIPPED" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_FETCH_USER_FAVOURITE_WORDLIST_Result">
+    <Property Type="Int64" Name="WORDID" Nullable="false" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="false" />
+    <Property Type="String" Name="WORD" Nullable="false" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="false" />
+    <Property Type="String" Name="PHRASE" Nullable="false" />
+    <Property Type="String" Name="HINT" Nullable="false" />
+    <Property Type="String" Name="DEFINITION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="SHAREONLINE" Nullable="false" />
+    <Property Type="Decimal" Name="OVERALLSCORE" Nullable="true" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="SP_FETCH_USER_NOTELIST_Result">
+    <Property Type="Int64" Name="NOTEID" Nullable="false" />
+    <Property Type="Guid" Name="NOTEGUID" Nullable="false" />
+    <Property Type="String" Name="TITLE" Nullable="false" />
+    <Property Type="String" Name="DESCRIPTION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="SP_FETCH_USER_SKIPPED_WORDLIST_Result">
+    <Property Type="Int64" Name="WORDID" Nullable="false" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="false" />
+    <Property Type="String" Name="WORD" Nullable="false" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="false" />
+    <Property Type="String" Name="PHRASE" Nullable="false" />
+    <Property Type="String" Name="HINT" Nullable="false" />
+    <Property Type="String" Name="DEFINITION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="SHAREONLINE" Nullable="false" />
+    <Property Type="Decimal" Name="OVERALLSCORE" Nullable="true" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="SP_FETCH_USER_TEST_Result">
+    <Property Type="Int64" Name="EXAMID" Nullable="false" />
+    <Property Type="String" Name="TITLE" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="Decimal" Name="SCORE" Nullable="true" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="SP_FETCH_USER_WORDLIST_Result">
+    <Property Type="Int64" Name="WORDID" Nullable="false" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="false" />
+    <Property Type="String" Name="WORD" Nullable="false" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="false" />
+    <Property Type="String" Name="PHRASE" Nullable="false" />
+    <Property Type="String" Name="HINT" Nullable="false" />
+    <Property Type="String" Name="DEFINITION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="Decimal" Name="OVERALLSCORE" Nullable="true" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="SP_FETCH_WORD_BY_ID_Result">
+    <Property Type="Int64" Name="WORDID" Nullable="false" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="false" />
+    <Property Type="String" Name="WORD" Nullable="false" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="false" />
+    <Property Type="String" Name="PHRASE" Nullable="false" />
+    <Property Type="String" Name="HINT" Nullable="false" />
+    <Property Type="String" Name="DEFINITION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="Int64" Name="USERID" Nullable="false" />
+    <Property Type="Boolean" Name="SHAREONLINE" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_FETCH_WORD_ROWNUMBER_Result">
+    <Property Type="Int64" Name="ROWNUMBER" Nullable="true" />
+    <Property Type="Int64" Name="WORDID" Nullable="false" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="false" />
+    <Property Type="String" Name="WORD" Nullable="false" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="false" />
+    <Property Type="String" Name="PHRASE" Nullable="false" />
+    <Property Type="String" Name="HINT" Nullable="false" />
+    <Property Type="String" Name="DEFINITION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="Int64" Name="USERID" Nullable="false" />
+    <Property Type="Boolean" Name="SHAREONLINE" Nullable="false" />
+    <Property Type="Boolean" Name="ISFAVOURITE" Nullable="true" />
+    <Property Type="Boolean" Name="ISSKIPPED" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_PV_SHARING_SharedwithMeWords_List_Result">
+    <Property Type="String" Name="WORDID" Nullable="true" MaxLength="500" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="true" />
+    <Property Type="String" Name="WORD" Nullable="true" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="true" />
+    <Property Type="String" Name="PHRASE" Nullable="true" />
+    <Property Type="String" Name="HINT" Nullable="true" />
+    <Property Type="String" Name="DEFINITION" Nullable="true" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="OVERALLSCORE" Nullable="true" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="SP_PV_SHARING_SharedwithMeWords_List_Test_Test_Result">
+    <Property Type="String" Name="WORDID" Nullable="true" MaxLength="500" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="true" />
+    <Property Type="String" Name="WORD" Nullable="true" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="true" />
+    <Property Type="String" Name="PHRASE" Nullable="true" />
+    <Property Type="String" Name="HINT" Nullable="true" />
+    <Property Type="String" Name="DEFINITION" Nullable="true" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="OVERALLSCORE" Nullable="true" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="SP_PV_SHARING_WordListShareAnArchivedTest_List_Result">
+    <Property Type="Int64" Name="WORDID" Nullable="true" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="true" />
+    <Property Type="String" Name="WORD" Nullable="true" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="true" />
+    <Property Type="String" Name="PHRASE" Nullable="true" />
+    <Property Type="String" Name="HINT" Nullable="true" />
+    <Property Type="String" Name="DEFINITION" Nullable="true" />
+    <Property Type="String" Name="CREATEDDATE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="UPDATEDDATE" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="OVERALLSCORE" Nullable="true" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="SP_PV_SHARING_WordListSharedwithbyWords_List_Result">
+    <Property Type="String" Name="WORDID" Nullable="true" MaxLength="500" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="true" />
+    <Property Type="String" Name="WORD" Nullable="true" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="true" />
+    <Property Type="String" Name="PHRASE" Nullable="true" />
+    <Property Type="String" Name="HINT" Nullable="true" />
+    <Property Type="String" Name="DEFINITION" Nullable="true" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="OVERALLSCORE" Nullable="true" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="SP_PV_SHARING_WordListTestSharedbyMeWords_List_Result">
+    <Property Type="String" Name="WORDID" Nullable="true" MaxLength="500" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="true" />
+    <Property Type="String" Name="WORD" Nullable="true" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="true" />
+    <Property Type="String" Name="PHRASE" Nullable="true" />
+    <Property Type="String" Name="HINT" Nullable="true" />
+    <Property Type="String" Name="DEFINITION" Nullable="true" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="OVERALLSCORE" Nullable="true" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="SP_PV_WordListSharedbyMe_List_Result">
+    <Property Type="String" Name="WORDID" Nullable="true" MaxLength="500" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="true" />
+    <Property Type="String" Name="WORD" Nullable="true" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="true" />
+    <Property Type="String" Name="PHRASE" Nullable="true" />
+    <Property Type="String" Name="HINT" Nullable="true" />
+    <Property Type="String" Name="DEFINITION" Nullable="true" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="OVERALLSCORE" Nullable="true" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="SP_SHOW_ALL_WORDS_Result">
+    <Property Type="Int64" Name="WORDID" Nullable="false" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="false" />
+    <Property Type="String" Name="WORD" Nullable="false" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="false" />
+    <Property Type="String" Name="PHRASE" Nullable="false" />
+    <Property Type="String" Name="HINT" Nullable="false" />
+    <Property Type="String" Name="DEFINITION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="Int64" Name="USERID" Nullable="false" />
+    <Property Type="Boolean" Name="SHAREONLINE" Nullable="false" />
+    <Property Type="Boolean" Name="ISFAVOURITE" Nullable="true" />
+    <Property Type="Boolean" Name="ISSKIPPED" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_SHOW_REVIEWED_WORDS_Result">
+    <Property Type="Int64" Name="WORDID" Nullable="false" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="false" />
+    <Property Type="String" Name="WORD" Nullable="false" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="false" />
+    <Property Type="String" Name="PHRASE" Nullable="false" />
+    <Property Type="String" Name="HINT" Nullable="false" />
+    <Property Type="String" Name="DEFINITION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="Int64" Name="USERID" Nullable="false" />
+    <Property Type="Boolean" Name="SHAREONLINE" Nullable="false" />
+    <Property Type="Boolean" Name="ISFAVOURITE" Nullable="true" />
+    <Property Type="Boolean" Name="ISSKIPPED" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Quester_SP_FETCH_EXAM_WORDS_Share_Result">
+    <Property Type="Int64" Name="WORDID" Nullable="false" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="false" />
+    <Property Type="String" Name="WORD" Nullable="false" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="false" />
+    <Property Type="String" Name="PHRASE" Nullable="false" />
+    <Property Type="String" Name="HINT" Nullable="false" />
+    <Property Type="String" Name="DEFINITION" Nullable="false" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="false" Precision="23" />
+  </ComplexType>
+  <EntityType Name="Quester_ShareAnArchivedTestID">
+    <Key>
+      <PropertyRef Name="ShareAnArchivedTest_TestId" />
+    </Key>
+    <Property Name="ShareAnArchivedTest_TestId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TestID" Type="Int64" />
+  </EntityType>
+  <EntityType Name="Quester_ShareAnArchivedTest">
+    <Key>
+      <PropertyRef Name="ShareAnArchivedTestId" />
+    </Key>
+    <Property Name="ShareAnArchivedTestId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WordId" Type="Int64" />
+    <Property Name="ExamId" Type="Int64" />
+    <Property Name="Guid" Type="Guid" />
+    <Property Name="UserId" Type="Int64" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TestID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SentUserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Word" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Pronounciation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Phrase" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Hint" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Definition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="ShareOnline" Type="Boolean" />
+    <Property Name="CreatedDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="Quester_SP_PV_SHARING_WordListShareAnArchivedTest_List_Result">
+    <Property Type="Int64" Name="WORDID" Nullable="true" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="true" />
+    <Property Type="String" Name="WORD" Nullable="true" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="true" />
+    <Property Type="String" Name="PHRASE" Nullable="true" />
+    <Property Type="String" Name="HINT" Nullable="true" />
+    <Property Type="String" Name="DEFINITION" Nullable="true" />
+    <Property Type="String" Name="CREATEDDATE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="UPDATEDDATE" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="OVERALLSCORE" Nullable="true" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="Quester_SP_PV_SHARING_SharedwithMeWords_List_Test_Test_Result">
+    <Property Type="String" Name="WORDID" Nullable="true" MaxLength="500" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="true" />
+    <Property Type="String" Name="WORD" Nullable="true" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="true" />
+    <Property Type="String" Name="PHRASE" Nullable="true" />
+    <Property Type="String" Name="HINT" Nullable="true" />
+    <Property Type="String" Name="DEFINITION" Nullable="true" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="OVERALLSCORE" Nullable="true" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="Quester_SP_PV_SHARING_WordListTestSharedbyMeWords_List_Result">
+    <Property Type="String" Name="WORDID" Nullable="true" MaxLength="500" />
+    <Property Type="Guid" Name="WORDGUID" Nullable="true" />
+    <Property Type="String" Name="WORD" Nullable="true" />
+    <Property Type="String" Name="PRONOUNCIATION" Nullable="true" />
+    <Property Type="String" Name="PHRASE" Nullable="true" />
+    <Property Type="String" Name="HINT" Nullable="true" />
+    <Property Type="String" Name="DEFINITION" Nullable="true" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="OVERALLSCORE" Nullable="true" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="Quester_SP_GET_NOTEDETAILS_Result">
+    <Property Type="String" Name="TITLE" Nullable="false" />
+    <Property Type="String" Name="DETAILS" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_GET_NOTEDETAILS_Result">
+    <Property Type="String" Name="TITLE" Nullable="false" />
+    <Property Type="String" Name="DETAILS" Nullable="false" />
+  </ComplexType>
+</Schema>

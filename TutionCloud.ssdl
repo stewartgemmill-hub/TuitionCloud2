@@ -1,0 +1,1546 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TutionCloudEntitiesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CreateAWordListTestID">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" />
+    <Property Name="TestID" Type="bigint" />
+  </EntityType>
+  <EntityType Name="CreateAWordListToShare">
+    <Key>
+      <PropertyRef Name="CreateAWordListToShareID" />
+    </Key>
+    <Property Name="CreateAWordListToShareID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SentUserID" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="200" />
+    <Property Name="WordId" Type="nvarchar" MaxLength="500" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="TestID" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedOn" Type="nvarchar" MaxLength="50" />
+    <Property Name="Pronounciation" Type="nvarchar(max)" />
+    <Property Name="Phrase" Type="nvarchar(max)" />
+    <Property Name="Hint" Type="nvarchar(max)" />
+    <Property Name="Definition" Type="nvarchar(max)" />
+    <Property Name="ShareOnline" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="Guid" Type="uniqueidentifier" />
+    <Property Name="Word" Type="nvarchar(max)" />
+    <Property Name="Retrieve" Type="bit" />
+  </EntityType>
+  <EntityType Name="Quester_Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar(max)" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="CreateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Quester_CreateAWordListTestID">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" />
+    <Property Name="TestID" Type="bigint" />
+  </EntityType>
+  <EntityType Name="Quester_CreateAWordListToShare">
+    <Key>
+      <PropertyRef Name="CreateAWordListToShareID" />
+    </Key>
+    <Property Name="CreateAWordListToShareID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SentUserID" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="200" />
+    <Property Name="WordId" Type="nvarchar" MaxLength="500" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="TestID" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedOn" Type="nvarchar" MaxLength="50" />
+    <Property Name="Pronounciation" Type="nvarchar(max)" />
+    <Property Name="Phrase" Type="nvarchar(max)" />
+    <Property Name="Hint" Type="nvarchar(max)" />
+    <Property Name="Definition" Type="nvarchar(max)" />
+    <Property Name="ShareOnline" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="Guid" Type="uniqueidentifier" />
+    <Property Name="Word" Type="nvarchar(max)" />
+    <Property Name="Retrieve" Type="bit" />
+  </EntityType>
+  <EntityType Name="Quester_Crossword">
+    <Key>
+      <PropertyRef Name="CrosswordId" />
+    </Key>
+    <Property Name="CrosswordId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="CreatedTime" Type="datetime" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="CrosswordSaveString" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsCompleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Quester_Exam">
+    <Key>
+      <PropertyRef Name="ExamId" />
+    </Key>
+    <Property Name="ExamId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExamGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TestTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TimePerWord" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Quester_ExamResult">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ExamId" Type="bigint" Nullable="false" />
+    <Property Name="WordId" Type="bigint" Nullable="false" />
+    <Property Name="IsCorrect" Type="bit" Nullable="false" />
+    <Property Name="Timestamp" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Quester_ExamWord">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExamId" Type="bigint" Nullable="false" />
+    <Property Name="WordId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Quester_Exception">
+    <Key>
+      <PropertyRef Name="ExceptionID" />
+    </Key>
+    <Property Name="ExceptionID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Message" Type="nvarchar(max)" />
+    <Property Name="ClassName" Type="nvarchar(max)" />
+    <Property Name="FunctionName" Type="nvarchar(max)" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Quester_ForgotPassword">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userid" Type="bigint" Nullable="false" />
+    <Property Name="passwordguid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="timestamp" Type="datetime" Nullable="false" />
+    <Property Name="status" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Quester_Note">
+    <Key>
+      <PropertyRef Name="NoteId" />
+    </Key>
+    <Property Name="NoteId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NotGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="ExamId" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Quester_ShareAnArchivedTest">
+    <Key>
+      <PropertyRef Name="ShareAnArchivedTestId" />
+    </Key>
+    <Property Name="ShareAnArchivedTestId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WordId" Type="bigint" />
+    <Property Name="ExamId" Type="bigint" />
+    <Property Name="Guid" Type="uniqueidentifier" />
+    <Property Name="UserId" Type="bigint" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="TestID" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="SentUserID" Type="nvarchar" MaxLength="50" />
+    <Property Name="Word" Type="nvarchar(max)" />
+    <Property Name="Pronounciation" Type="nvarchar(max)" />
+    <Property Name="Phrase" Type="nvarchar(max)" />
+    <Property Name="Hint" Type="nvarchar(max)" />
+    <Property Name="Definition" Type="nvarchar(max)" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="ShareOnline" Type="bit" />
+    <Property Name="CreatedDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="UpdatedDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Quester_ShareAnArchivedTestID">
+    <Key>
+      <PropertyRef Name="ShareAnArchivedTest_TestId" />
+    </Key>
+    <Property Name="ShareAnArchivedTest_TestId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" />
+    <Property Name="TestID" Type="bigint" />
+  </EntityType>
+  <EntityType Name="Quester_TestShared">
+    <Key>
+      <PropertyRef Name="TestSharedID" />
+    </Key>
+    <Property Name="TestSharedID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SentUserID" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="200" />
+    <Property Name="WordId" Type="nvarchar" MaxLength="500" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="TestID" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedOn" Type="nvarchar" MaxLength="50" />
+    <Property Name="Pronounciation" Type="nvarchar(max)" />
+    <Property Name="Phrase" Type="nvarchar(max)" />
+    <Property Name="Hint" Type="nvarchar(max)" />
+    <Property Name="Definition" Type="nvarchar(max)" />
+    <Property Name="ShareOnline" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="Guid" Type="uniqueidentifier" />
+    <Property Name="Word" Type="nvarchar(max)" />
+    <Property Name="Retrieve" Type="bit" />
+    <Property Name="Title" Type="nvarchar(max)" />
+    <Property Name="TestTime" Type="nvarchar" MaxLength="50" />
+    <Property Name="TimePerWord" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Quester_TreeView">
+    <Key>
+      <PropertyRef Name="TreeID" />
+    </Key>
+    <Property Name="TreeID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="TreeData" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Quester_User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Forename" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Webname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AccountCreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="IsSuspended" Type="bit" Nullable="false" />
+    <Property Name="PushStatus" Type="bit" Nullable="false" />
+    <Property Name="ProfileLastEditedDate" Type="datetime" Nullable="false" />
+    <Property Name="ProfileImage" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="email" Type="nvarchar(max)" />
+    <Property Name="Islogged" Type="bit" />
+  </EntityType>
+  <EntityType Name="Quester_UserFavouriteWord">
+    <Key>
+      <PropertyRef Name="FavouriteId" />
+    </Key>
+    <Property Name="FavouriteId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="WordId" Type="bigint" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Quester_UserSkippedWord">
+    <Key>
+      <PropertyRef Name="SkippedId" />
+    </Key>
+    <Property Name="SkippedId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="WordId" Type="bigint" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Quester_Word">
+    <Key>
+      <PropertyRef Name="WordId" />
+    </Key>
+    <Property Name="WordId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="Word" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Pronounciation" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Phrase" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Hint" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Definition" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="ShareOnline" Type="bit" Nullable="false" />
+    <Property Name="CategoryId" Type="bigint" />
+    <Property Name="CategoryName" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ShareAnArchivedTest">
+    <Key>
+      <PropertyRef Name="ShareAnArchivedTestId" />
+    </Key>
+    <Property Name="ShareAnArchivedTestId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WordId" Type="bigint" />
+    <Property Name="ExamId" Type="bigint" />
+    <Property Name="Guid" Type="uniqueidentifier" />
+    <Property Name="UserId" Type="bigint" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="TestID" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="SentUserID" Type="nvarchar" MaxLength="50" />
+    <Property Name="Word" Type="nvarchar(max)" />
+    <Property Name="Pronounciation" Type="nvarchar(max)" />
+    <Property Name="Phrase" Type="nvarchar(max)" />
+    <Property Name="Hint" Type="nvarchar(max)" />
+    <Property Name="Definition" Type="nvarchar(max)" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="ShareOnline" Type="bit" />
+    <Property Name="CreatedDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="UpdatedDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ShareAnArchivedTestID">
+    <Key>
+      <PropertyRef Name="ShareAnArchivedTest_TestId" />
+    </Key>
+    <Property Name="ShareAnArchivedTest_TestId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" />
+    <Property Name="TestID" Type="bigint" />
+  </EntityType>
+  <EntityType Name="ShareExamResults">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Guid" Type="uniqueidentifier" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" />
+    <Property Name="ExamId" Type="bigint" />
+    <Property Name="WordId" Type="bigint" />
+    <Property Name="IsCorrect" Type="bit" />
+    <Property Name="Timestamp" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tCrossword">
+    <Key>
+      <PropertyRef Name="CrosswordId" />
+    </Key>
+    <Property Name="CrosswordId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="CreatedTime" Type="datetime" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="CrosswordSaveString" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsCompleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tCrosswordWord">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WordId" Type="bigint" Nullable="false" />
+    <Property Name="CrosswordId" Type="bigint" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TestShared">
+    <Key>
+      <PropertyRef Name="TestSharedID" />
+    </Key>
+    <Property Name="TestSharedID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SentUserID" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="200" />
+    <Property Name="WordId" Type="nvarchar" MaxLength="500" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="TestID" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedOn" Type="nvarchar" MaxLength="50" />
+    <Property Name="Pronounciation" Type="nvarchar(max)" />
+    <Property Name="Phrase" Type="nvarchar(max)" />
+    <Property Name="Hint" Type="nvarchar(max)" />
+    <Property Name="Definition" Type="nvarchar(max)" />
+    <Property Name="ShareOnline" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="Guid" Type="uniqueidentifier" />
+    <Property Name="Word" Type="nvarchar(max)" />
+    <Property Name="Retrieve" Type="bit" />
+    <Property Name="Title" Type="nvarchar(max)" />
+    <Property Name="TestTime" Type="nvarchar" MaxLength="50" />
+    <Property Name="TimePerWord" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tExam">
+    <Key>
+      <PropertyRef Name="ExamId" />
+    </Key>
+    <Property Name="ExamId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExamGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TestTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TimePerWord" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tExamResult">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ExamId" Type="bigint" Nullable="false" />
+    <Property Name="WordId" Type="bigint" Nullable="false" />
+    <Property Name="IsCorrect" Type="bit" Nullable="false" />
+    <Property Name="Timestamp" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tExamWord">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExamId" Type="bigint" Nullable="false" />
+    <Property Name="WordId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tForgotPassword">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userid" Type="bigint" Nullable="false" />
+    <Property Name="passwordguid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="timestamp" Type="datetime" Nullable="false" />
+    <Property Name="status" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tNote">
+    <Key>
+      <PropertyRef Name="NoteId" />
+    </Key>
+    <Property Name="NoteId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NotGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="ExamId" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tUser">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Forename" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Webname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AccountCreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="IsSuspended" Type="bit" Nullable="false" />
+    <Property Name="PushStatus" Type="bit" Nullable="false" />
+    <Property Name="ProfileLastEditedDate" Type="datetime" Nullable="false" />
+    <Property Name="ProfileImage" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="email" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tUserFavouriteWord">
+    <Key>
+      <PropertyRef Name="FavouriteId" />
+    </Key>
+    <Property Name="FavouriteId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="WordId" Type="bigint" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tUserSkippedWord">
+    <Key>
+      <PropertyRef Name="SkippedId" />
+    </Key>
+    <Property Name="SkippedId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="WordId" Type="bigint" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tWord">
+    <Key>
+      <PropertyRef Name="WordId" />
+    </Key>
+    <Property Name="WordId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="Word" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Pronounciation" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Phrase" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Hint" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Definition" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="ShareOnline" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Tution_2020.dbo.VerifyEmail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VerifyEmail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="200" />
+    <Property Name="Code" Type="int" />
+    <Property Name="Active" Type="tinyint" />
+  </EntityType>
+  <Association Name="FK_Quester_Category_Quester_User">
+    <End Role="Quester_User" Type="Self.Quester_User" Multiplicity="1" />
+    <End Role="Quester_Category" Type="Self.Quester_Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quester_User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Quester_Category">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Quester_ExamWord_Quester_Exam">
+    <End Role="Quester_Exam" Type="Self.Quester_Exam" Multiplicity="1" />
+    <End Role="Quester_ExamWord" Type="Self.Quester_ExamWord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quester_Exam">
+        <PropertyRef Name="ExamId" />
+      </Principal>
+      <Dependent Role="Quester_ExamWord">
+        <PropertyRef Name="ExamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Quester_ExamWord_Quester_Word">
+    <End Role="Quester_Word" Type="Self.Quester_Word" Multiplicity="1" />
+    <End Role="Quester_ExamWord" Type="Self.Quester_ExamWord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quester_Word">
+        <PropertyRef Name="WordId" />
+      </Principal>
+      <Dependent Role="Quester_ExamWord">
+        <PropertyRef Name="WordId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Quester_TreeView_Quester_User">
+    <End Role="Quester_User" Type="Self.Quester_User" Multiplicity="1" />
+    <End Role="Quester_TreeView" Type="Self.Quester_TreeView" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quester_User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Quester_TreeView">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Quester_Word_Quester_Category">
+    <End Role="Quester_Category" Type="Self.Quester_Category" Multiplicity="0..1" />
+    <End Role="Quester_Word" Type="Self.Quester_Word" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quester_Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Quester_Word">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tCrossword_tUser">
+    <End Role="tUser" Type="Self.tUser" Multiplicity="1" />
+    <End Role="tCrossword" Type="Self.tCrossword" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tCrossword">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tCrosswordWord_tCrossword">
+    <End Role="tCrossword" Type="Self.tCrossword" Multiplicity="1" />
+    <End Role="tCrosswordWord" Type="Self.tCrosswordWord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tCrossword">
+        <PropertyRef Name="CrosswordId" />
+      </Principal>
+      <Dependent Role="tCrosswordWord">
+        <PropertyRef Name="CrosswordId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tCrosswordWord_tWord">
+    <End Role="tWord" Type="Self.tWord" Multiplicity="1" />
+    <End Role="tCrosswordWord" Type="Self.tCrosswordWord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tWord">
+        <PropertyRef Name="WordId" />
+      </Principal>
+      <Dependent Role="tCrosswordWord">
+        <PropertyRef Name="WordId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tExam_tUser">
+    <End Role="tUser" Type="Self.tUser" Multiplicity="1" />
+    <End Role="tExam" Type="Self.tExam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tExam">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tExamResult_tExam">
+    <End Role="tExam" Type="Self.tExam" Multiplicity="1" />
+    <End Role="tExamResult" Type="Self.tExamResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tExam">
+        <PropertyRef Name="ExamId" />
+      </Principal>
+      <Dependent Role="tExamResult">
+        <PropertyRef Name="ExamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tExamResult_tWord">
+    <End Role="tWord" Type="Self.tWord" Multiplicity="1" />
+    <End Role="tExamResult" Type="Self.tExamResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tWord">
+        <PropertyRef Name="WordId" />
+      </Principal>
+      <Dependent Role="tExamResult">
+        <PropertyRef Name="WordId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tExamWord_tExam">
+    <End Role="tExam" Type="Self.tExam" Multiplicity="1" />
+    <End Role="tExamWord" Type="Self.tExamWord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tExam">
+        <PropertyRef Name="ExamId" />
+      </Principal>
+      <Dependent Role="tExamWord">
+        <PropertyRef Name="ExamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tExamWord_tWord">
+    <End Role="tWord" Type="Self.tWord" Multiplicity="1" />
+    <End Role="tExamWord" Type="Self.tExamWord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tWord">
+        <PropertyRef Name="WordId" />
+      </Principal>
+      <Dependent Role="tExamWord">
+        <PropertyRef Name="WordId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tNote_tUser">
+    <End Role="tUser" Type="Self.tUser" Multiplicity="1" />
+    <End Role="tNote" Type="Self.tNote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tNote">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tUserFavouriteWord_tUser">
+    <End Role="tUser" Type="Self.tUser" Multiplicity="1" />
+    <End Role="tUserFavouriteWord" Type="Self.tUserFavouriteWord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tUserFavouriteWord">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tUserFavouriteWord_tWord">
+    <End Role="tWord" Type="Self.tWord" Multiplicity="1" />
+    <End Role="tUserFavouriteWord" Type="Self.tUserFavouriteWord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tWord">
+        <PropertyRef Name="WordId" />
+      </Principal>
+      <Dependent Role="tUserFavouriteWord">
+        <PropertyRef Name="WordId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tUserSkippedWord_tUser">
+    <End Role="tUser" Type="Self.tUser" Multiplicity="1" />
+    <End Role="tUserSkippedWord" Type="Self.tUserSkippedWord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tUserSkippedWord">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tUserSkippedWord_tWord">
+    <End Role="tWord" Type="Self.tWord" Multiplicity="1" />
+    <End Role="tUserSkippedWord" Type="Self.tUserSkippedWord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tWord">
+        <PropertyRef Name="WordId" />
+      </Principal>
+      <Dependent Role="tUserSkippedWord">
+        <PropertyRef Name="WordId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tWord_tUser">
+    <End Role="tUser" Type="Self.tUser" Multiplicity="1" />
+    <End Role="tWord" Type="Self.tWord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tWord">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="DeleteALLWordListSharedwithMe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="DeleteALLWordListTestSharedWithMe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="DeleteCreateAWordLIstShare" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CreateOn" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="DeleteTestSharedbyMe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CreateOn" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="DeleteTestSharedWithMeTestSharedWithMe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CreateOn" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="DeleteWordListAchivedTest_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CreateOn" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserId" Type="bigint" Mode="In" />
+    <Parameter Name="TestID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="ManageSharedTestStats_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CreateOn" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserId" Type="bigint" Mode="In" />
+    <Parameter Name="TestID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Quester_DeleteALLWordListSharedwithMe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Quester_DeleteALLWordListTestSharedWithMe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Quester_DeleteCreateAWordLIstShare" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CreateOn" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Quester_DeleteTestSharedbyMe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CreateOn" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Quester_DeleteTestSharedWithMeTestSharedWithMe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CreateOn" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Quester_DeleteWordListAchivedTest_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CreateOn" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserId" Type="bigint" Mode="In" />
+    <Parameter Name="TestID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Quester_ShareAnArchivedTest_Dupremove_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userId" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="Quester_ShareAnArchivedTest_SentUserID_Dupremove_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SentUserID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_CHECK_FAVOURITE_WORD_ALREADY_ADDED" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="WORDID" Type="bigint" Mode="In" />
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_CHECK_SKIPLIST_WORD_ALREADY_ADDED" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="WORDID" Type="bigint" Mode="In" />
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_CHECK_WORDSHARED" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="WORD" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_CREATEAWORDLISTMAXID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_CreateAWordListToShare_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_CreateAWordListToShare_COUNT_Test" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_CreateAWordTestSharedWithMe_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_DELETE_ALL_USER_TEST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_DELETE_ALL_WORDS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_DELETE_ALL_WORDS_FROM_FAVOURITES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_DELETE_ALL_WORDS_FROM_SKIPLIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_DELETE_SELECTED_TEST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="TESTIDS" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_DELETE_SELECTED_WORDS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="WORDIDS" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_DELETE_SELECTED_WORDS_FROM_FAVOURITES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="WORDIDS" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_DELETE_SELECTED_WORDS_FROM_SKIPLIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="WORDIDS" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_DELETETABLE_FROM_ROW_WordListSharedbyMe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="testId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_DELETETABLE_FROM_ROW_WordListTestSharedbyMe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="testId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_deletWordSharedTestSharedbyMeWords" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="WordId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_deletWordSharedWithMeWords" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="WordId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_FECTH_ONLINE_COMMUNITY_WORDS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTBY" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTORDER" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_FECTH_ONLINE_COMMUNITY_WORDS_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_FETCH_EXAM_WORDS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EXAMID" Type="bigint" Mode="In" />
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_FETCH_EXAM_WORDS_Share" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EXAMID" Type="bigint" Mode="In" />
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_FETCH_NOTE_BY_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NOTEID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_FETCH_RESULTS_BY_EXAMID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="EXAMID" Type="bigint" Mode="In" />
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTBY" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTORDER" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_FETCH_TOTAL_WORDLIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+    <Parameter Name="LISTCOUNT" Type="int" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTBY" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTORDER" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_FETCH_TOTAL_WORDLIST_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_FETCH_USER_FAVOURITE_WORDLIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTBY" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTORDER" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_FETCH_USER_NOTELIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTBY" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTORDER" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_FETCH_USER_SKIPPED_WORDLIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTBY" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTORDER" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_FETCH_USER_TEST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_FETCH_USER_TOTAL_FAVOURITE_WORD_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_FETCH_USER_TOTAL_MAINPANEL_WORD_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_FETCH_USER_TOTAL_NOTE_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_FETCH_USER_TOTAL_SKIPPED_WORD_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_FETCH_USER_TOTAL_TEST_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_FETCH_USER_TOTAL_WORD_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_FETCH_USER_TOTAL_WORD_COUNT_Folder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_FETCH_USER_WORDLIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+    <Parameter Name="LISTCOUNT" Type="int" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTBY" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTORDER" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_FETCH_USER_WORDLIST_Folder_Search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+    <Parameter Name="LISTCOUNT" Type="int" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTBY" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTORDER" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_FETCH_WORD_BY_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="WORDID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_FETCH_WORD_ROWNUMBER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_GET_DISTINCT_CreateAWordListToShare" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_GET_DISTINCT_CreateAWordListToShare_Test" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_GET_DISTINCT_WordListSharedbyMe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SentUserID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_GET_DISTINCT_WordListTestSharedbyMe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SentUserID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_GET_NOTEDETAILS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NOTEID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_INSERT_ONLINECOMMUNITY_WORDS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="WORDIDS" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_PV_SHARING_SharedwithMeWords_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+    <Parameter Name="LISTCOUNT" Type="int" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTBY" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTORDER" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="CreatedOn" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_PV_SHARING_SharedwithMeWords_List_Test_Test" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+    <Parameter Name="LISTCOUNT" Type="int" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTBY" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTORDER" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="CreatedOn" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_PV_SHARING_WordListShareAnArchivedTest_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+    <Parameter Name="LISTCOUNT" Type="int" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTBY" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTORDER" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="CreatedDate" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_PV_SHARING_WordListSharedwithbyWords_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+    <Parameter Name="LISTCOUNT" Type="int" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTBY" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTORDER" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="CreatedOn" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_PV_SHARING_WordListTestSharedbyMeWords_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+    <Parameter Name="LISTCOUNT" Type="int" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTBY" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTORDER" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="CreatedOn" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_ShareAnArchivedTestIDMAXID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_SharedWithMeWord_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="CreatedOn" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_TestSharedSharedbyMe_WORD_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_UPDATE_CROSSWORD_STATUS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="WORDID" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_WordListShareAnArchivedTest_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CreatedOn" Type="nvarchar" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_WordListSharedTestSharedbyMe_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CreatedOn" Type="nvarchar" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Quester_SP_WordListSharedwithbyWords_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CreatedOn" Type="nvarchar" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Quester_SplitList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="list" Type="varchar(max)" Mode="In" />
+    <Parameter Name="separator" Type="varchar(max)" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Value" Type="nvarchar(max)" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="Quester_TimeOfTested_Word" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="WORDID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="Search_SHARING_SharedwithMeWords_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+    <Parameter Name="CreatedOn" Type="nvarchar" Mode="In" />
+    <Parameter Name="Search" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="ShareAnArchivedTest_Dupremove_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userId" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="ShareAnArchivedTest_SentUserID_Dupremove_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SentUserID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_CHECK_FAVOURITE_WORD_ALREADY_ADDED" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="WORDID" Type="bigint" Mode="In" />
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_CHECK_SKIPLIST_WORD_ALREADY_ADDED" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="WORDID" Type="bigint" Mode="In" />
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_CHECK_WORDSHARED" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="WORD" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_CHECK_WORDSHARED_EDITWORD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="WORDID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_CHECK_WORDSHAREDUSER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="WORD" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="UserId" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_CREATEAWORDLISTMAXID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_CreateAWordListToShare_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_CreateAWordListToShare_COUNT_Test" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_CreateAWordTestSharedWithMe_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_DELETE_ALL_USER_CROSSWORDS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_DELETE_ALL_USER_TEST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_DELETE_ALL_WORDS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_DELETE_ALL_WORDS_FROM_FAVOURITES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_DELETE_ALL_WORDS_FROM_SKIPLIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_DELETE_SELECTED_TEST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="TESTIDS" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_DELETE_SELECTED_WORDS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="WORDIDS" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_DELETE_SELECTED_WORDS_FROM_FAVOURITES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="WORDIDS" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_DELETE_SELECTED_WORDS_FROM_SKIPLIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="WORDIDS" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_DELETETABLE_FROM_ROW_WordListSharedbyMe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="testId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_DELETETABLE_FROM_ROW_WordListTestSharedbyMe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="testId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_deletWordSharedTestSharedbyMeWords" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="WordId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_deletWordSharedWithMeWords" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="WordId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_FECTH_ONLINE_COMMUNITY_WORDS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTBY" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTORDER" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_FECTH_ONLINE_COMMUNITY_WORDS_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_FECTH_SHARING_WordListSharedwithMe_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_FETCH_EXAM_WORDS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EXAMID" Type="bigint" Mode="In" />
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_FETCH_EXAM_WORDS_Share" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EXAMID" Type="bigint" Mode="In" />
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_FETCH_NOTE_BY_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NOTEID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_FETCH_RANDOM_SELECTED_WORD_DETAILS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="WORDID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_FETCH_RANDOM_WORDS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_FETCH_RESULTS_BY_EXAMID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="EXAMID" Type="bigint" Mode="In" />
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTBY" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTORDER" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_FETCH_RESULTS_BY_EXAMID_Share" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="EXAMID" Type="bigint" Mode="In" />
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTBY" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTORDER" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_FETCH_RESULTS_BY_EXAMID001" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="EXAMID" Type="bigint" Mode="In" />
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTBY" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTORDER" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_FETCH_SELECTED_CROSSWORD_WORD_DETAILS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="WORDIDS" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_FETCH_TOTAL_WORDLIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+    <Parameter Name="LISTCOUNT" Type="int" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTBY" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTORDER" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_FETCH_TOTAL_WORDLIST_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_FETCH_USER_CROSSWORD_LIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_FETCH_USER_CROSSWORD_WORDLIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="CROSSWORDID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_FETCH_USER_FAVOURITE_WORDLIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTBY" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTORDER" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_FETCH_USER_NOTELIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTBY" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTORDER" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_FETCH_USER_SKIPPED_WORDLIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTBY" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTORDER" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_FETCH_USER_TEST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_FETCH_USER_TOTAL_CROSSWORD_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_FETCH_USER_TOTAL_FAVOURITE_WORD_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_FETCH_USER_TOTAL_MAINPANEL_WORD_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_FETCH_USER_TOTAL_NOTE_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_FETCH_USER_TOTAL_SKIPPED_WORD_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_FETCH_USER_TOTAL_TEST_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_FETCH_USER_TOTAL_WORD_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_FETCH_USER_WORDLIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+    <Parameter Name="LISTCOUNT" Type="int" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTBY" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTORDER" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_FETCH_WORD_BY_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="WORDID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_FETCH_WORD_ROWNUMBER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_DISTINCT_CreateAWordListToShare" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_DISTINCT_CreateAWordListToShare_Test" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_DISTINCT_WordListSharedbyMe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SentUserID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_DISTINCT_WordListTestSharedbyMe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SentUserID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_NOTEDETAILS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NOTEID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_INSERT_ONLINECOMMUNITY_WORDS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="WORDIDS" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_PV_SHARING_SharedwithMeWords_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+    <Parameter Name="LISTCOUNT" Type="int" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTBY" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTORDER" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="CreatedOn" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_PV_SHARING_SharedwithMeWords_List_Test_Test" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+    <Parameter Name="LISTCOUNT" Type="int" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTBY" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTORDER" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="CreatedOn" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_PV_SHARING_WordListShareAnArchivedTest_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+    <Parameter Name="LISTCOUNT" Type="int" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTBY" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTORDER" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="CreatedDate" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_PV_SHARING_WordListSharedwithbyWords_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+    <Parameter Name="LISTCOUNT" Type="int" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTBY" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTORDER" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="CreatedOn" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_PV_SHARING_WordListTestSharedbyMeWords_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+    <Parameter Name="LISTCOUNT" Type="int" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTBY" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTORDER" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="CreatedOn" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_PV_WordListSharedbyMe_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="INDEX" Type="int" Mode="In" />
+    <Parameter Name="LISTCOUNT" Type="int" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTBY" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SORTORDER" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="CreatedOn" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_ShareAnArchivedTestIDMAXID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_SharedWithMeWord_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="CreatedOn" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_SHOW_ALL_WORDS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_SHOW_REVIEWED_WORDS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="WORDIDS" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_TestSharedSharedbyMe_WORD_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_UPDATE_CROSSWORD_STATUS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="WORDID" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_WordListShareAnArchivedTest_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CreatedOn" Type="nvarchar" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_WordListSharedbyMe_WORD_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="bigint" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_WordListSharedTestSharedbyMe_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CreatedOn" Type="nvarchar" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_WordListSharedwithbyWords_COUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CreatedOn" Type="nvarchar" Mode="In" />
+    <Parameter Name="SEARCH" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SplitList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="list" Type="varchar(max)" Mode="In" />
+    <Parameter Name="separator" Type="varchar(max)" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Value" Type="nvarchar(max)" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="UpdateQuesterUserByUserId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="TutionCloudEntitiesModelStoreContainer">
+    <EntitySet Name="CreateAWordListTestID" EntityType="Self.CreateAWordListTestID" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CreateAWordListToShare" EntityType="Self.CreateAWordListToShare" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Quester_Category" EntityType="Self.Quester_Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Quester_CreateAWordListTestID" EntityType="Self.Quester_CreateAWordListTestID" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Quester_CreateAWordListToShare" EntityType="Self.Quester_CreateAWordListToShare" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Quester_Crossword" EntityType="Self.Quester_Crossword" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Quester_Exam" EntityType="Self.Quester_Exam" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Quester_ExamResult" EntityType="Self.Quester_ExamResult" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Quester_ExamWord" EntityType="Self.Quester_ExamWord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Quester_Exception" EntityType="Self.Quester_Exception" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Quester_ForgotPassword" EntityType="Self.Quester_ForgotPassword" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Quester_Note" EntityType="Self.Quester_Note" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Quester_ShareAnArchivedTest" EntityType="Self.Quester_ShareAnArchivedTest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Quester_ShareAnArchivedTestID" EntityType="Self.Quester_ShareAnArchivedTestID" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Quester_TestShared" EntityType="Self.Quester_TestShared" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Quester_TreeView" EntityType="Self.Quester_TreeView" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Quester_User" EntityType="Self.Quester_User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Quester_UserFavouriteWord" EntityType="Self.Quester_UserFavouriteWord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Quester_UserSkippedWord" EntityType="Self.Quester_UserSkippedWord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Quester_Word" EntityType="Self.Quester_Word" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShareAnArchivedTest" EntityType="Self.ShareAnArchivedTest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShareAnArchivedTestID" EntityType="Self.ShareAnArchivedTestID" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShareExamResults" EntityType="Self.ShareExamResults" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tCrossword" EntityType="Self.tCrossword" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tCrosswordWord" EntityType="Self.tCrosswordWord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TestShared" EntityType="Self.TestShared" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tExam" EntityType="Self.tExam" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tExamResult" EntityType="Self.tExamResult" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tExamWord" EntityType="Self.tExamWord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tForgotPassword" EntityType="Self.tForgotPassword" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tNote" EntityType="Self.tNote" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tUser" EntityType="Self.tUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tUserFavouriteWord" EntityType="Self.tUserFavouriteWord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tUserSkippedWord" EntityType="Self.tUserSkippedWord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tWord" EntityType="Self.tWord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VerifyEmail" EntityType="Self.VerifyEmail" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VerifyEmail].[ID] AS [ID], 
+    [VerifyEmail].[Email] AS [Email], 
+    [VerifyEmail].[Code] AS [Code], 
+    [VerifyEmail].[Active] AS [Active]
+    FROM [dbo].[VerifyEmail] AS [VerifyEmail]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Quester_Category_Quester_User" Association="Self.FK_Quester_Category_Quester_User">
+      <End Role="Quester_User" EntitySet="Quester_User" />
+      <End Role="Quester_Category" EntitySet="Quester_Category" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Quester_ExamWord_Quester_Exam" Association="Self.FK_Quester_ExamWord_Quester_Exam">
+      <End Role="Quester_Exam" EntitySet="Quester_Exam" />
+      <End Role="Quester_ExamWord" EntitySet="Quester_ExamWord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Quester_ExamWord_Quester_Word" Association="Self.FK_Quester_ExamWord_Quester_Word">
+      <End Role="Quester_Word" EntitySet="Quester_Word" />
+      <End Role="Quester_ExamWord" EntitySet="Quester_ExamWord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Quester_TreeView_Quester_User" Association="Self.FK_Quester_TreeView_Quester_User">
+      <End Role="Quester_User" EntitySet="Quester_User" />
+      <End Role="Quester_TreeView" EntitySet="Quester_TreeView" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Quester_Word_Quester_Category" Association="Self.FK_Quester_Word_Quester_Category">
+      <End Role="Quester_Category" EntitySet="Quester_Category" />
+      <End Role="Quester_Word" EntitySet="Quester_Word" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tCrossword_tUser" Association="Self.FK_tCrossword_tUser">
+      <End Role="tUser" EntitySet="tUser" />
+      <End Role="tCrossword" EntitySet="tCrossword" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tCrosswordWord_tCrossword" Association="Self.FK_tCrosswordWord_tCrossword">
+      <End Role="tCrossword" EntitySet="tCrossword" />
+      <End Role="tCrosswordWord" EntitySet="tCrosswordWord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tCrosswordWord_tWord" Association="Self.FK_tCrosswordWord_tWord">
+      <End Role="tWord" EntitySet="tWord" />
+      <End Role="tCrosswordWord" EntitySet="tCrosswordWord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tExam_tUser" Association="Self.FK_tExam_tUser">
+      <End Role="tUser" EntitySet="tUser" />
+      <End Role="tExam" EntitySet="tExam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tExamResult_tExam" Association="Self.FK_tExamResult_tExam">
+      <End Role="tExam" EntitySet="tExam" />
+      <End Role="tExamResult" EntitySet="tExamResult" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tExamResult_tWord" Association="Self.FK_tExamResult_tWord">
+      <End Role="tWord" EntitySet="tWord" />
+      <End Role="tExamResult" EntitySet="tExamResult" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tExamWord_tExam" Association="Self.FK_tExamWord_tExam">
+      <End Role="tExam" EntitySet="tExam" />
+      <End Role="tExamWord" EntitySet="tExamWord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tExamWord_tWord" Association="Self.FK_tExamWord_tWord">
+      <End Role="tWord" EntitySet="tWord" />
+      <End Role="tExamWord" EntitySet="tExamWord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tNote_tUser" Association="Self.FK_tNote_tUser">
+      <End Role="tUser" EntitySet="tUser" />
+      <End Role="tNote" EntitySet="tNote" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tUserFavouriteWord_tUser" Association="Self.FK_tUserFavouriteWord_tUser">
+      <End Role="tUser" EntitySet="tUser" />
+      <End Role="tUserFavouriteWord" EntitySet="tUserFavouriteWord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tUserFavouriteWord_tWord" Association="Self.FK_tUserFavouriteWord_tWord">
+      <End Role="tWord" EntitySet="tWord" />
+      <End Role="tUserFavouriteWord" EntitySet="tUserFavouriteWord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tUserSkippedWord_tUser" Association="Self.FK_tUserSkippedWord_tUser">
+      <End Role="tUser" EntitySet="tUser" />
+      <End Role="tUserSkippedWord" EntitySet="tUserSkippedWord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tUserSkippedWord_tWord" Association="Self.FK_tUserSkippedWord_tWord">
+      <End Role="tWord" EntitySet="tWord" />
+      <End Role="tUserSkippedWord" EntitySet="tUserSkippedWord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tWord_tUser" Association="Self.FK_tWord_tUser">
+      <End Role="tUser" EntitySet="tUser" />
+      <End Role="tWord" EntitySet="tWord" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

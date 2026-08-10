@@ -1,0 +1,1459 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TutionCloudEntitiesModelStoreContainer" CdmEntityContainer="TutionCloudEntities">
+    <EntitySetMapping Name="CreateAWordListTestIDs">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.CreateAWordListTestID">
+        <MappingFragment StoreEntitySet="CreateAWordListTestID">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="TestID" ColumnName="TestID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CreateAWordListToShares">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.CreateAWordListToShare">
+        <MappingFragment StoreEntitySet="CreateAWordListToShare">
+          <ScalarProperty Name="CreateAWordListToShareID" ColumnName="CreateAWordListToShareID" />
+          <ScalarProperty Name="SentUserID" ColumnName="SentUserID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="WordId" ColumnName="WordId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="TestID" ColumnName="TestID" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Pronounciation" ColumnName="Pronounciation" />
+          <ScalarProperty Name="Phrase" ColumnName="Phrase" />
+          <ScalarProperty Name="Hint" ColumnName="Hint" />
+          <ScalarProperty Name="Definition" ColumnName="Definition" />
+          <ScalarProperty Name="ShareOnline" ColumnName="ShareOnline" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="Word" ColumnName="Word" />
+          <ScalarProperty Name="Retrieve" ColumnName="Retrieve" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Quester_Category">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.Quester_Category">
+        <MappingFragment StoreEntitySet="Quester_Category">
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Quester_CreateAWordListTestID">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.Quester_CreateAWordListTestID">
+        <MappingFragment StoreEntitySet="Quester_CreateAWordListTestID">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="TestID" ColumnName="TestID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Quester_CreateAWordListToShare">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.Quester_CreateAWordListToShare">
+        <MappingFragment StoreEntitySet="Quester_CreateAWordListToShare">
+          <ScalarProperty Name="CreateAWordListToShareID" ColumnName="CreateAWordListToShareID" />
+          <ScalarProperty Name="SentUserID" ColumnName="SentUserID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="WordId" ColumnName="WordId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="TestID" ColumnName="TestID" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Pronounciation" ColumnName="Pronounciation" />
+          <ScalarProperty Name="Phrase" ColumnName="Phrase" />
+          <ScalarProperty Name="Hint" ColumnName="Hint" />
+          <ScalarProperty Name="Definition" ColumnName="Definition" />
+          <ScalarProperty Name="ShareOnline" ColumnName="ShareOnline" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="Word" ColumnName="Word" />
+          <ScalarProperty Name="Retrieve" ColumnName="Retrieve" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Quester_Crossword">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.Quester_Crossword">
+        <MappingFragment StoreEntitySet="Quester_Crossword">
+          <ScalarProperty Name="CrosswordId" ColumnName="CrosswordId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CrosswordSaveString" ColumnName="CrosswordSaveString" />
+          <ScalarProperty Name="IsCompleted" ColumnName="IsCompleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Quester_Exam">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.Quester_Exam">
+        <MappingFragment StoreEntitySet="Quester_Exam">
+          <ScalarProperty Name="ExamId" ColumnName="ExamId" />
+          <ScalarProperty Name="ExamGuid" ColumnName="ExamGuid" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="TestTime" ColumnName="TestTime" />
+          <ScalarProperty Name="TimePerWord" ColumnName="TimePerWord" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Quester_ExamResult">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.Quester_ExamResult">
+        <MappingFragment StoreEntitySet="Quester_ExamResult">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="ExamId" ColumnName="ExamId" />
+          <ScalarProperty Name="WordId" ColumnName="WordId" />
+          <ScalarProperty Name="IsCorrect" ColumnName="IsCorrect" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Quester_ExamWord">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.Quester_ExamWord">
+        <MappingFragment StoreEntitySet="Quester_ExamWord">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ExamId" ColumnName="ExamId" />
+          <ScalarProperty Name="WordId" ColumnName="WordId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Quester_Exception">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.Quester_Exception">
+        <MappingFragment StoreEntitySet="Quester_Exception">
+          <ScalarProperty Name="ExceptionID" ColumnName="ExceptionID" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+          <ScalarProperty Name="FunctionName" ColumnName="FunctionName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Quester_ForgotPassword">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.Quester_ForgotPassword">
+        <MappingFragment StoreEntitySet="Quester_ForgotPassword">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="passwordguid" ColumnName="passwordguid" />
+          <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Quester_Note">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.Quester_Note">
+        <MappingFragment StoreEntitySet="Quester_Note">
+          <ScalarProperty Name="NoteId" ColumnName="NoteId" />
+          <ScalarProperty Name="NotGuid" ColumnName="NotGuid" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ExamId" ColumnName="ExamId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Quester_TestShared">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.Quester_TestShared">
+        <MappingFragment StoreEntitySet="Quester_TestShared">
+          <ScalarProperty Name="TestSharedID" ColumnName="TestSharedID" />
+          <ScalarProperty Name="SentUserID" ColumnName="SentUserID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="WordId" ColumnName="WordId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="TestID" ColumnName="TestID" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Pronounciation" ColumnName="Pronounciation" />
+          <ScalarProperty Name="Phrase" ColumnName="Phrase" />
+          <ScalarProperty Name="Hint" ColumnName="Hint" />
+          <ScalarProperty Name="Definition" ColumnName="Definition" />
+          <ScalarProperty Name="ShareOnline" ColumnName="ShareOnline" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="Word" ColumnName="Word" />
+          <ScalarProperty Name="Retrieve" ColumnName="Retrieve" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="TestTime" ColumnName="TestTime" />
+          <ScalarProperty Name="TimePerWord" ColumnName="TimePerWord" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Quester_TreeView">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.Quester_TreeView">
+        <MappingFragment StoreEntitySet="Quester_TreeView">
+          <ScalarProperty Name="TreeID" ColumnName="TreeID" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="TreeData" ColumnName="TreeData" />
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Quester_User">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.Quester_User">
+        <MappingFragment StoreEntitySet="Quester_User">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserGuid" ColumnName="UserGuid" />
+          <ScalarProperty Name="Forename" ColumnName="Forename" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Webname" ColumnName="Webname" />
+          <ScalarProperty Name="AccountCreatedDate" ColumnName="AccountCreatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsSuspended" ColumnName="IsSuspended" />
+          <ScalarProperty Name="PushStatus" ColumnName="PushStatus" />
+          <ScalarProperty Name="ProfileLastEditedDate" ColumnName="ProfileLastEditedDate" />
+          <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="Islogged" ColumnName="Islogged" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Quester_UserFavouriteWord">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.Quester_UserFavouriteWord">
+        <MappingFragment StoreEntitySet="Quester_UserFavouriteWord">
+          <ScalarProperty Name="FavouriteId" ColumnName="FavouriteId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="WordId" ColumnName="WordId" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Quester_UserSkippedWord">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.Quester_UserSkippedWord">
+        <MappingFragment StoreEntitySet="Quester_UserSkippedWord">
+          <ScalarProperty Name="SkippedId" ColumnName="SkippedId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="WordId" ColumnName="WordId" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Quester_Word">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.Quester_Word">
+        <MappingFragment StoreEntitySet="Quester_Word">
+          <ScalarProperty Name="WordId" ColumnName="WordId" />
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Word" ColumnName="Word" />
+          <ScalarProperty Name="Pronounciation" ColumnName="Pronounciation" />
+          <ScalarProperty Name="Phrase" ColumnName="Phrase" />
+          <ScalarProperty Name="Hint" ColumnName="Hint" />
+          <ScalarProperty Name="Definition" ColumnName="Definition" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ShareOnline" ColumnName="ShareOnline" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShareAnArchivedTests">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.ShareAnArchivedTest">
+        <MappingFragment StoreEntitySet="ShareAnArchivedTest">
+          <ScalarProperty Name="ShareAnArchivedTestId" ColumnName="ShareAnArchivedTestId" />
+          <ScalarProperty Name="WordId" ColumnName="WordId" />
+          <ScalarProperty Name="ExamId" ColumnName="ExamId" />
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="TestID" ColumnName="TestID" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="SentUserID" ColumnName="SentUserID" />
+          <ScalarProperty Name="Word" ColumnName="Word" />
+          <ScalarProperty Name="Pronounciation" ColumnName="Pronounciation" />
+          <ScalarProperty Name="Phrase" ColumnName="Phrase" />
+          <ScalarProperty Name="Hint" ColumnName="Hint" />
+          <ScalarProperty Name="Definition" ColumnName="Definition" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ShareOnline" ColumnName="ShareOnline" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShareAnArchivedTestIDs">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.ShareAnArchivedTestID">
+        <MappingFragment StoreEntitySet="ShareAnArchivedTestID">
+          <ScalarProperty Name="ShareAnArchivedTest_TestId" ColumnName="ShareAnArchivedTest_TestId" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="TestID" ColumnName="TestID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShareExamResults">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.ShareExamResult">
+        <MappingFragment StoreEntitySet="ShareExamResults">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ExamId" ColumnName="ExamId" />
+          <ScalarProperty Name="WordId" ColumnName="WordId" />
+          <ScalarProperty Name="IsCorrect" ColumnName="IsCorrect" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tCrosswords">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.tCrossword">
+        <MappingFragment StoreEntitySet="tCrossword">
+          <ScalarProperty Name="CrosswordId" ColumnName="CrosswordId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CrosswordSaveString" ColumnName="CrosswordSaveString" />
+          <ScalarProperty Name="IsCompleted" ColumnName="IsCompleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tCrosswordWords">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.tCrosswordWord">
+        <MappingFragment StoreEntitySet="tCrosswordWord">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="WordId" ColumnName="WordId" />
+          <ScalarProperty Name="CrosswordId" ColumnName="CrosswordId" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TestShareds">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.TestShared">
+        <MappingFragment StoreEntitySet="TestShared">
+          <ScalarProperty Name="TestSharedID" ColumnName="TestSharedID" />
+          <ScalarProperty Name="SentUserID" ColumnName="SentUserID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="WordId" ColumnName="WordId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="TestID" ColumnName="TestID" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Pronounciation" ColumnName="Pronounciation" />
+          <ScalarProperty Name="Phrase" ColumnName="Phrase" />
+          <ScalarProperty Name="Hint" ColumnName="Hint" />
+          <ScalarProperty Name="Definition" ColumnName="Definition" />
+          <ScalarProperty Name="ShareOnline" ColumnName="ShareOnline" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="Word" ColumnName="Word" />
+          <ScalarProperty Name="Retrieve" ColumnName="Retrieve" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="TestTime" ColumnName="TestTime" />
+          <ScalarProperty Name="TimePerWord" ColumnName="TimePerWord" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tExams">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.tExam">
+        <MappingFragment StoreEntitySet="tExam">
+          <ScalarProperty Name="ExamId" ColumnName="ExamId" />
+          <ScalarProperty Name="ExamGuid" ColumnName="ExamGuid" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="TestTime" ColumnName="TestTime" />
+          <ScalarProperty Name="TimePerWord" ColumnName="TimePerWord" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tExamResults">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.tExamResult">
+        <MappingFragment StoreEntitySet="tExamResult">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="ExamId" ColumnName="ExamId" />
+          <ScalarProperty Name="WordId" ColumnName="WordId" />
+          <ScalarProperty Name="IsCorrect" ColumnName="IsCorrect" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tExamWords">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.tExamWord">
+        <MappingFragment StoreEntitySet="tExamWord">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ExamId" ColumnName="ExamId" />
+          <ScalarProperty Name="WordId" ColumnName="WordId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tForgotPasswords">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.tForgotPassword">
+        <MappingFragment StoreEntitySet="tForgotPassword">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="passwordguid" ColumnName="passwordguid" />
+          <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tNotes">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.tNote">
+        <MappingFragment StoreEntitySet="tNote">
+          <ScalarProperty Name="NoteId" ColumnName="NoteId" />
+          <ScalarProperty Name="NotGuid" ColumnName="NotGuid" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ExamId" ColumnName="ExamId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tUsers">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.tUser">
+        <MappingFragment StoreEntitySet="tUser">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserGuid" ColumnName="UserGuid" />
+          <ScalarProperty Name="Forename" ColumnName="Forename" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Webname" ColumnName="Webname" />
+          <ScalarProperty Name="AccountCreatedDate" ColumnName="AccountCreatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsSuspended" ColumnName="IsSuspended" />
+          <ScalarProperty Name="PushStatus" ColumnName="PushStatus" />
+          <ScalarProperty Name="ProfileLastEditedDate" ColumnName="ProfileLastEditedDate" />
+          <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tUserFavouriteWords">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.tUserFavouriteWord">
+        <MappingFragment StoreEntitySet="tUserFavouriteWord">
+          <ScalarProperty Name="FavouriteId" ColumnName="FavouriteId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="WordId" ColumnName="WordId" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tUserSkippedWords">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.tUserSkippedWord">
+        <MappingFragment StoreEntitySet="tUserSkippedWord">
+          <ScalarProperty Name="SkippedId" ColumnName="SkippedId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="WordId" ColumnName="WordId" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tWords">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.tWord">
+        <MappingFragment StoreEntitySet="tWord">
+          <ScalarProperty Name="WordId" ColumnName="WordId" />
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Word" ColumnName="Word" />
+          <ScalarProperty Name="Pronounciation" ColumnName="Pronounciation" />
+          <ScalarProperty Name="Phrase" ColumnName="Phrase" />
+          <ScalarProperty Name="Hint" ColumnName="Hint" />
+          <ScalarProperty Name="Definition" ColumnName="Definition" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ShareOnline" ColumnName="ShareOnline" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VerifyEmails">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.VerifyEmail">
+        <MappingFragment StoreEntitySet="VerifyEmail">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionName="TutionCloudEntitiesModel.Store.Quester_SplitList" FunctionImportName="Quester_SplitList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.Quester_SplitList_Result">
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="TutionCloudEntitiesModel.Store.SplitList" FunctionImportName="SplitList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.SplitList_Result">
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DeleteALLWordListSharedwithMe" FunctionName="TutionCloudEntitiesModel.Store.DeleteALLWordListSharedwithMe" />
+    <FunctionImportMapping FunctionImportName="DeleteALLWordListTestSharedWithMe" FunctionName="TutionCloudEntitiesModel.Store.DeleteALLWordListTestSharedWithMe" />
+    <FunctionImportMapping FunctionImportName="DeleteCreateAWordLIstShare" FunctionName="TutionCloudEntitiesModel.Store.DeleteCreateAWordLIstShare" />
+    <FunctionImportMapping FunctionImportName="DeleteTestSharedbyMe" FunctionName="TutionCloudEntitiesModel.Store.DeleteTestSharedbyMe" />
+    <FunctionImportMapping FunctionImportName="DeleteTestSharedWithMeTestSharedWithMe" FunctionName="TutionCloudEntitiesModel.Store.DeleteTestSharedWithMeTestSharedWithMe" />
+    <FunctionImportMapping FunctionImportName="DeleteWordListAchivedTest_Delete" FunctionName="TutionCloudEntitiesModel.Store.DeleteWordListAchivedTest_Delete" />
+    <FunctionImportMapping FunctionImportName="ManageSharedTestStats_Delete" FunctionName="TutionCloudEntitiesModel.Store.ManageSharedTestStats_Delete" />
+    <FunctionImportMapping FunctionImportName="Quester_DeleteALLWordListSharedwithMe" FunctionName="TutionCloudEntitiesModel.Store.Quester_DeleteALLWordListSharedwithMe" />
+    <FunctionImportMapping FunctionImportName="Quester_DeleteCreateAWordLIstShare" FunctionName="TutionCloudEntitiesModel.Store.Quester_DeleteCreateAWordLIstShare" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_CHECK_FAVOURITE_WORD_ALREADY_ADDED" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_CHECK_FAVOURITE_WORD_ALREADY_ADDED" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_CHECK_SKIPLIST_WORD_ALREADY_ADDED" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_CHECK_SKIPLIST_WORD_ALREADY_ADDED" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_CHECK_WORDSHARED" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_CHECK_WORDSHARED" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_CREATEAWORDLISTMAXID" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_CREATEAWORDLISTMAXID" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_CreateAWordListToShare_COUNT" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_CreateAWordListToShare_COUNT" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_DELETE_ALL_USER_TEST" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_DELETE_ALL_USER_TEST" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_DELETE_ALL_WORDS" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_DELETE_ALL_WORDS" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_DELETE_ALL_WORDS_FROM_FAVOURITES" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_DELETE_ALL_WORDS_FROM_FAVOURITES" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_DELETE_ALL_WORDS_FROM_SKIPLIST" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_DELETE_ALL_WORDS_FROM_SKIPLIST" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_DELETE_SELECTED_TEST" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_DELETE_SELECTED_TEST" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_DELETE_SELECTED_WORDS" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_DELETE_SELECTED_WORDS" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_DELETE_SELECTED_WORDS_FROM_FAVOURITES" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_DELETE_SELECTED_WORDS_FROM_FAVOURITES" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_DELETE_SELECTED_WORDS_FROM_SKIPLIST" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_DELETE_SELECTED_WORDS_FROM_SKIPLIST" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_DELETETABLE_FROM_ROW_WordListSharedbyMe" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_DELETETABLE_FROM_ROW_WordListSharedbyMe" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_FECTH_ONLINE_COMMUNITY_WORDS" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_FECTH_ONLINE_COMMUNITY_WORDS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.Quester_SP_FECTH_ONLINE_COMMUNITY_WORDS_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="DUPLICATECHECK" ColumnName="DUPLICATECHECK" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Quester_SP_FECTH_ONLINE_COMMUNITY_WORDS_COUNT" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_FECTH_ONLINE_COMMUNITY_WORDS_COUNT" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_FETCH_EXAM_WORDS" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_FETCH_EXAM_WORDS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.Quester_SP_FETCH_EXAM_WORDS_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Quester_SP_FETCH_NOTE_BY_ID" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_FETCH_NOTE_BY_ID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.Quester_SP_FETCH_NOTE_BY_ID_Result">
+          <ScalarProperty Name="NOTEID" ColumnName="NOTEID" />
+          <ScalarProperty Name="NOTEGUID" ColumnName="NOTEGUID" />
+          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Quester_SP_FETCH_RESULTS_BY_EXAMID" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_FETCH_RESULTS_BY_EXAMID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.Quester_SP_FETCH_RESULTS_BY_EXAMID_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="ISCORRECT" ColumnName="ISCORRECT" />
+          <ScalarProperty Name="OVERALLSCORE" ColumnName="OVERALLSCORE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Quester_SP_FETCH_TOTAL_WORDLIST" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_FETCH_TOTAL_WORDLIST">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.Quester_SP_FETCH_TOTAL_WORDLIST_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="OVERALLSCORE" ColumnName="OVERALLSCORE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Quester_SP_FETCH_TOTAL_WORDLIST_COUNT" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_FETCH_TOTAL_WORDLIST_COUNT" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_FETCH_USER_FAVOURITE_WORDLIST" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_FETCH_USER_FAVOURITE_WORDLIST">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.Quester_SP_FETCH_USER_FAVOURITE_WORDLIST_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="SHAREONLINE" ColumnName="SHAREONLINE" />
+          <ScalarProperty Name="CATEGORYNAME" ColumnName="CATEGORYNAME" />
+          <ScalarProperty Name="OVERALLSCORE" ColumnName="OVERALLSCORE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Quester_SP_FETCH_USER_NOTELIST" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_FETCH_USER_NOTELIST">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.Quester_SP_FETCH_USER_NOTELIST_Result">
+          <ScalarProperty Name="NOTEID" ColumnName="NOTEID" />
+          <ScalarProperty Name="NOTEGUID" ColumnName="NOTEGUID" />
+          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Quester_SP_FETCH_USER_SKIPPED_WORDLIST" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_FETCH_USER_SKIPPED_WORDLIST">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.Quester_SP_FETCH_USER_SKIPPED_WORDLIST_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="SHAREONLINE" ColumnName="SHAREONLINE" />
+          <ScalarProperty Name="CATEGORYNAME" ColumnName="CATEGORYNAME" />
+          <ScalarProperty Name="OVERALLSCORE" ColumnName="OVERALLSCORE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Quester_SP_FETCH_USER_TEST" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_FETCH_USER_TEST">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.Quester_SP_FETCH_USER_TEST_Result">
+          <ScalarProperty Name="EXAMID" ColumnName="EXAMID" />
+          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="SCORE" ColumnName="SCORE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Quester_SP_FETCH_USER_TOTAL_FAVOURITE_WORD_COUNT" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_FETCH_USER_TOTAL_FAVOURITE_WORD_COUNT" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_FETCH_USER_TOTAL_MAINPANEL_WORD_COUNT" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_FETCH_USER_TOTAL_MAINPANEL_WORD_COUNT" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_FETCH_USER_TOTAL_NOTE_COUNT" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_FETCH_USER_TOTAL_NOTE_COUNT" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_FETCH_USER_TOTAL_SKIPPED_WORD_COUNT" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_FETCH_USER_TOTAL_SKIPPED_WORD_COUNT" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_FETCH_USER_TOTAL_TEST_COUNT" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_FETCH_USER_TOTAL_TEST_COUNT" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_FETCH_USER_TOTAL_WORD_COUNT" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_FETCH_USER_TOTAL_WORD_COUNT" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_FETCH_USER_TOTAL_WORD_COUNT_Folder" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_FETCH_USER_TOTAL_WORD_COUNT_Folder" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_FETCH_USER_WORDLIST" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_FETCH_USER_WORDLIST">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.Quester_SP_FETCH_USER_WORDLIST_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="CATEGORYID" ColumnName="CATEGORYID" />
+          <ScalarProperty Name="CATEGORYNAME" ColumnName="CATEGORYNAME" />
+          <ScalarProperty Name="OVERALLSCORE" ColumnName="OVERALLSCORE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Quester_SP_FETCH_USER_WORDLIST_Folder_Search" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_FETCH_USER_WORDLIST_Folder_Search">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.Quester_SP_FETCH_USER_WORDLIST_Folder_Search_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="CATEGORYID" ColumnName="CATEGORYID" />
+          <ScalarProperty Name="CATEGORYNAME" ColumnName="CATEGORYNAME" />
+          <ScalarProperty Name="OVERALLSCORE" ColumnName="OVERALLSCORE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Quester_SP_FETCH_WORD_BY_ID" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_FETCH_WORD_BY_ID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.Quester_SP_FETCH_WORD_BY_ID_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="SHAREONLINE" ColumnName="SHAREONLINE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Quester_SP_FETCH_WORD_ROWNUMBER" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_FETCH_WORD_ROWNUMBER">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.Quester_SP_FETCH_WORD_ROWNUMBER_Result">
+          <ScalarProperty Name="ROWNUMBER" ColumnName="ROWNUMBER" />
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="SHAREONLINE" ColumnName="SHAREONLINE" />
+          <ScalarProperty Name="ISFAVOURITE" ColumnName="ISFAVOURITE" />
+          <ScalarProperty Name="ISSKIPPED" ColumnName="ISSKIPPED" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Quester_SP_GET_DISTINCT_CreateAWordListToShare" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_GET_DISTINCT_CreateAWordListToShare" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_GET_DISTINCT_WordListSharedbyMe" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_GET_DISTINCT_WordListSharedbyMe" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_INSERT_ONLINECOMMUNITY_WORDS" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_INSERT_ONLINECOMMUNITY_WORDS" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_PV_SHARING_SharedwithMeWords_List" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_PV_SHARING_SharedwithMeWords_List">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.Quester_SP_PV_SHARING_SharedwithMeWords_List_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="OVERALLSCORE" ColumnName="OVERALLSCORE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Quester_SP_PV_SHARING_WordListSharedwithbyWords_List" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_PV_SHARING_WordListSharedwithbyWords_List">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.Quester_SP_PV_SHARING_WordListSharedwithbyWords_List_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="OVERALLSCORE" ColumnName="OVERALLSCORE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Quester_SP_SharedWithMeWord_COUNT" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_SharedWithMeWord_COUNT" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_UPDATE_CROSSWORD_STATUS" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_UPDATE_CROSSWORD_STATUS" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_WordListSharedwithbyWords_COUNT" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_WordListSharedwithbyWords_COUNT" />
+    <FunctionImportMapping FunctionImportName="Quester_TimeOfTested_Word" FunctionName="TutionCloudEntitiesModel.Store.Quester_TimeOfTested_Word" />
+    <FunctionImportMapping FunctionImportName="Search_SHARING_SharedwithMeWords_List" FunctionName="TutionCloudEntitiesModel.Store.Search_SHARING_SharedwithMeWords_List">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.Search_SHARING_SharedwithMeWords_List_Result">
+          <ScalarProperty Name="CreateAWordListToShareID" ColumnName="CreateAWordListToShareID" />
+          <ScalarProperty Name="SentUserID" ColumnName="SentUserID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="WordId" ColumnName="WordId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="TestID" ColumnName="TestID" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Pronounciation" ColumnName="Pronounciation" />
+          <ScalarProperty Name="Phrase" ColumnName="Phrase" />
+          <ScalarProperty Name="Hint" ColumnName="Hint" />
+          <ScalarProperty Name="Definition" ColumnName="Definition" />
+          <ScalarProperty Name="ShareOnline" ColumnName="ShareOnline" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="Word" ColumnName="Word" />
+          <ScalarProperty Name="Retrieve" ColumnName="Retrieve" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ShareAnArchivedTest_Dupremove_Get" FunctionName="TutionCloudEntitiesModel.Store.ShareAnArchivedTest_Dupremove_Get" />
+    <FunctionImportMapping FunctionImportName="ShareAnArchivedTest_SentUserID_Dupremove_Get" FunctionName="TutionCloudEntitiesModel.Store.ShareAnArchivedTest_SentUserID_Dupremove_Get" />
+    <FunctionImportMapping FunctionImportName="SP_CHECK_FAVOURITE_WORD_ALREADY_ADDED" FunctionName="TutionCloudEntitiesModel.Store.SP_CHECK_FAVOURITE_WORD_ALREADY_ADDED" />
+    <FunctionImportMapping FunctionImportName="SP_CHECK_SKIPLIST_WORD_ALREADY_ADDED" FunctionName="TutionCloudEntitiesModel.Store.SP_CHECK_SKIPLIST_WORD_ALREADY_ADDED" />
+    <FunctionImportMapping FunctionImportName="SP_CHECK_WORDSHARED" FunctionName="TutionCloudEntitiesModel.Store.SP_CHECK_WORDSHARED" />
+    <FunctionImportMapping FunctionImportName="SP_CHECK_WORDSHARED_EDITWORD" FunctionName="TutionCloudEntitiesModel.Store.SP_CHECK_WORDSHARED_EDITWORD" />
+    <FunctionImportMapping FunctionImportName="SP_CHECK_WORDSHAREDUSER" FunctionName="TutionCloudEntitiesModel.Store.SP_CHECK_WORDSHAREDUSER" />
+    <FunctionImportMapping FunctionImportName="SP_CREATEAWORDLISTMAXID" FunctionName="TutionCloudEntitiesModel.Store.SP_CREATEAWORDLISTMAXID" />
+    <FunctionImportMapping FunctionImportName="SP_CreateAWordListToShare_COUNT" FunctionName="TutionCloudEntitiesModel.Store.SP_CreateAWordListToShare_COUNT" />
+    <FunctionImportMapping FunctionImportName="SP_CreateAWordListToShare_COUNT_Test" FunctionName="TutionCloudEntitiesModel.Store.SP_CreateAWordListToShare_COUNT_Test" />
+    <FunctionImportMapping FunctionImportName="SP_CreateAWordTestSharedWithMe_COUNT" FunctionName="TutionCloudEntitiesModel.Store.SP_CreateAWordTestSharedWithMe_COUNT" />
+    <FunctionImportMapping FunctionImportName="SP_DELETE_ALL_USER_CROSSWORDS" FunctionName="TutionCloudEntitiesModel.Store.SP_DELETE_ALL_USER_CROSSWORDS" />
+    <FunctionImportMapping FunctionImportName="SP_DELETE_ALL_USER_TEST" FunctionName="TutionCloudEntitiesModel.Store.SP_DELETE_ALL_USER_TEST" />
+    <FunctionImportMapping FunctionImportName="SP_DELETE_ALL_WORDS" FunctionName="TutionCloudEntitiesModel.Store.SP_DELETE_ALL_WORDS" />
+    <FunctionImportMapping FunctionImportName="SP_DELETE_ALL_WORDS_FROM_FAVOURITES" FunctionName="TutionCloudEntitiesModel.Store.SP_DELETE_ALL_WORDS_FROM_FAVOURITES" />
+    <FunctionImportMapping FunctionImportName="SP_DELETE_ALL_WORDS_FROM_SKIPLIST" FunctionName="TutionCloudEntitiesModel.Store.SP_DELETE_ALL_WORDS_FROM_SKIPLIST" />
+    <FunctionImportMapping FunctionImportName="SP_DELETE_SELECTED_TEST" FunctionName="TutionCloudEntitiesModel.Store.SP_DELETE_SELECTED_TEST" />
+    <FunctionImportMapping FunctionImportName="SP_DELETE_SELECTED_WORDS" FunctionName="TutionCloudEntitiesModel.Store.SP_DELETE_SELECTED_WORDS" />
+    <FunctionImportMapping FunctionImportName="SP_DELETE_SELECTED_WORDS_FROM_FAVOURITES" FunctionName="TutionCloudEntitiesModel.Store.SP_DELETE_SELECTED_WORDS_FROM_FAVOURITES" />
+    <FunctionImportMapping FunctionImportName="SP_DELETE_SELECTED_WORDS_FROM_SKIPLIST" FunctionName="TutionCloudEntitiesModel.Store.SP_DELETE_SELECTED_WORDS_FROM_SKIPLIST" />
+    <FunctionImportMapping FunctionImportName="SP_DELETETABLE_FROM_ROW_WordListSharedbyMe" FunctionName="TutionCloudEntitiesModel.Store.SP_DELETETABLE_FROM_ROW_WordListSharedbyMe" />
+    <FunctionImportMapping FunctionImportName="SP_DELETETABLE_FROM_ROW_WordListTestSharedbyMe" FunctionName="TutionCloudEntitiesModel.Store.SP_DELETETABLE_FROM_ROW_WordListTestSharedbyMe" />
+    <FunctionImportMapping FunctionImportName="SP_deletWordSharedTestSharedbyMeWords" FunctionName="TutionCloudEntitiesModel.Store.SP_deletWordSharedTestSharedbyMeWords" />
+    <FunctionImportMapping FunctionImportName="SP_deletWordSharedWithMeWords" FunctionName="TutionCloudEntitiesModel.Store.SP_deletWordSharedWithMeWords" />
+    <FunctionImportMapping FunctionImportName="SP_FECTH_ONLINE_COMMUNITY_WORDS" FunctionName="TutionCloudEntitiesModel.Store.SP_FECTH_ONLINE_COMMUNITY_WORDS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.SP_FECTH_ONLINE_COMMUNITY_WORDS_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="DUPLICATECHECK" ColumnName="DUPLICATECHECK" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_FECTH_ONLINE_COMMUNITY_WORDS_COUNT" FunctionName="TutionCloudEntitiesModel.Store.SP_FECTH_ONLINE_COMMUNITY_WORDS_COUNT" />
+    <FunctionImportMapping FunctionImportName="SP_FECTH_SHARING_WordListSharedwithMe_COUNT" FunctionName="TutionCloudEntitiesModel.Store.SP_FECTH_SHARING_WordListSharedwithMe_COUNT" />
+    <FunctionImportMapping FunctionImportName="SP_FETCH_EXAM_WORDS" FunctionName="TutionCloudEntitiesModel.Store.SP_FETCH_EXAM_WORDS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.SP_FETCH_EXAM_WORDS_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_FETCH_EXAM_WORDS_Share" FunctionName="TutionCloudEntitiesModel.Store.SP_FETCH_EXAM_WORDS_Share">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.SP_FETCH_EXAM_WORDS_Share_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_FETCH_NOTE_BY_ID" FunctionName="TutionCloudEntitiesModel.Store.SP_FETCH_NOTE_BY_ID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.SP_FETCH_NOTE_BY_ID_Result">
+          <ScalarProperty Name="NOTEID" ColumnName="NOTEID" />
+          <ScalarProperty Name="NOTEGUID" ColumnName="NOTEGUID" />
+          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_FETCH_RANDOM_SELECTED_WORD_DETAILS" FunctionName="TutionCloudEntitiesModel.Store.SP_FETCH_RANDOM_SELECTED_WORD_DETAILS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.SP_FETCH_RANDOM_SELECTED_WORD_DETAILS_Result">
+          <ScalarProperty Name="ROWNUMBER" ColumnName="ROWNUMBER" />
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="SHAREONLINE" ColumnName="SHAREONLINE" />
+          <ScalarProperty Name="ISFAVOURITE" ColumnName="ISFAVOURITE" />
+          <ScalarProperty Name="ISSKIPPED" ColumnName="ISSKIPPED" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_FETCH_RANDOM_WORDS" FunctionName="TutionCloudEntitiesModel.Store.SP_FETCH_RANDOM_WORDS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.SP_FETCH_RANDOM_WORDS_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="OVERALLSCORE" ColumnName="OVERALLSCORE" />
+          <ScalarProperty Name="ISFAVOURITE" ColumnName="ISFAVOURITE" />
+          <ScalarProperty Name="ISSKIPPED" ColumnName="ISSKIPPED" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_FETCH_RESULTS_BY_EXAMID" FunctionName="TutionCloudEntitiesModel.Store.SP_FETCH_RESULTS_BY_EXAMID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.SP_FETCH_RESULTS_BY_EXAMID_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="ISCORRECT" ColumnName="ISCORRECT" />
+          <ScalarProperty Name="OVERALLSCORE" ColumnName="OVERALLSCORE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_FETCH_RESULTS_BY_EXAMID_Share" FunctionName="TutionCloudEntitiesModel.Store.SP_FETCH_RESULTS_BY_EXAMID_Share">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.SP_FETCH_RESULTS_BY_EXAMID_Share_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="ISCORRECT" ColumnName="ISCORRECT" />
+          <ScalarProperty Name="OVERALLSCORE" ColumnName="OVERALLSCORE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_FETCH_RESULTS_BY_EXAMID001" FunctionName="TutionCloudEntitiesModel.Store.SP_FETCH_RESULTS_BY_EXAMID001">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.SP_FETCH_RESULTS_BY_EXAMID001_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="ISCORRECT" ColumnName="ISCORRECT" />
+          <ScalarProperty Name="OVERALLSCORE" ColumnName="OVERALLSCORE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_FETCH_SELECTED_CROSSWORD_WORD_DETAILS" FunctionName="TutionCloudEntitiesModel.Store.SP_FETCH_SELECTED_CROSSWORD_WORD_DETAILS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.SP_FETCH_SELECTED_CROSSWORD_WORD_DETAILS_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="OVERALLSCORE" ColumnName="OVERALLSCORE" />
+          <ScalarProperty Name="ISFAVOURITE" ColumnName="ISFAVOURITE" />
+          <ScalarProperty Name="ISSKIPPED" ColumnName="ISSKIPPED" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_FETCH_TOTAL_WORDLIST" FunctionName="TutionCloudEntitiesModel.Store.SP_FETCH_TOTAL_WORDLIST">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.SP_FETCH_TOTAL_WORDLIST_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="OVERALLSCORE" ColumnName="OVERALLSCORE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_FETCH_TOTAL_WORDLIST_COUNT" FunctionName="TutionCloudEntitiesModel.Store.SP_FETCH_TOTAL_WORDLIST_COUNT" />
+    <FunctionImportMapping FunctionImportName="SP_FETCH_USER_CROSSWORD_LIST" FunctionName="TutionCloudEntitiesModel.Store.SP_FETCH_USER_CROSSWORD_LIST">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.SP_FETCH_USER_CROSSWORD_LIST_Result">
+          <ScalarProperty Name="CrosswordId" ColumnName="CrosswordId" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="CREATEDTIME" ColumnName="CREATEDTIME" />
+          <ScalarProperty Name="ISDELETED" ColumnName="ISDELETED" />
+          <ScalarProperty Name="HTML" ColumnName="HTML" />
+          <ScalarProperty Name="ISCOMPLETED" ColumnName="ISCOMPLETED" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_FETCH_USER_CROSSWORD_WORDLIST" FunctionName="TutionCloudEntitiesModel.Store.SP_FETCH_USER_CROSSWORD_WORDLIST">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.SP_FETCH_USER_CROSSWORD_WORDLIST_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="SHAREONLINE" ColumnName="SHAREONLINE" />
+          <ScalarProperty Name="ISFAVOURITE" ColumnName="ISFAVOURITE" />
+          <ScalarProperty Name="ISSKIPPED" ColumnName="ISSKIPPED" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_FETCH_USER_FAVOURITE_WORDLIST" FunctionName="TutionCloudEntitiesModel.Store.SP_FETCH_USER_FAVOURITE_WORDLIST">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.SP_FETCH_USER_FAVOURITE_WORDLIST_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="SHAREONLINE" ColumnName="SHAREONLINE" />
+          <ScalarProperty Name="OVERALLSCORE" ColumnName="OVERALLSCORE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_FETCH_USER_NOTELIST" FunctionName="TutionCloudEntitiesModel.Store.SP_FETCH_USER_NOTELIST">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.SP_FETCH_USER_NOTELIST_Result">
+          <ScalarProperty Name="NOTEID" ColumnName="NOTEID" />
+          <ScalarProperty Name="NOTEGUID" ColumnName="NOTEGUID" />
+          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_FETCH_USER_SKIPPED_WORDLIST" FunctionName="TutionCloudEntitiesModel.Store.SP_FETCH_USER_SKIPPED_WORDLIST">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.SP_FETCH_USER_SKIPPED_WORDLIST_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="SHAREONLINE" ColumnName="SHAREONLINE" />
+          <ScalarProperty Name="OVERALLSCORE" ColumnName="OVERALLSCORE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_FETCH_USER_TEST" FunctionName="TutionCloudEntitiesModel.Store.SP_FETCH_USER_TEST">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.SP_FETCH_USER_TEST_Result">
+          <ScalarProperty Name="EXAMID" ColumnName="EXAMID" />
+          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="SCORE" ColumnName="SCORE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_FETCH_USER_TOTAL_CROSSWORD_COUNT" FunctionName="TutionCloudEntitiesModel.Store.SP_FETCH_USER_TOTAL_CROSSWORD_COUNT" />
+    <FunctionImportMapping FunctionImportName="SP_FETCH_USER_TOTAL_FAVOURITE_WORD_COUNT" FunctionName="TutionCloudEntitiesModel.Store.SP_FETCH_USER_TOTAL_FAVOURITE_WORD_COUNT" />
+    <FunctionImportMapping FunctionImportName="SP_FETCH_USER_TOTAL_MAINPANEL_WORD_COUNT" FunctionName="TutionCloudEntitiesModel.Store.SP_FETCH_USER_TOTAL_MAINPANEL_WORD_COUNT" />
+    <FunctionImportMapping FunctionImportName="SP_FETCH_USER_TOTAL_NOTE_COUNT" FunctionName="TutionCloudEntitiesModel.Store.SP_FETCH_USER_TOTAL_NOTE_COUNT" />
+    <FunctionImportMapping FunctionImportName="SP_FETCH_USER_TOTAL_SKIPPED_WORD_COUNT" FunctionName="TutionCloudEntitiesModel.Store.SP_FETCH_USER_TOTAL_SKIPPED_WORD_COUNT" />
+    <FunctionImportMapping FunctionImportName="SP_FETCH_USER_TOTAL_TEST_COUNT" FunctionName="TutionCloudEntitiesModel.Store.SP_FETCH_USER_TOTAL_TEST_COUNT" />
+    <FunctionImportMapping FunctionImportName="SP_FETCH_USER_TOTAL_WORD_COUNT" FunctionName="TutionCloudEntitiesModel.Store.SP_FETCH_USER_TOTAL_WORD_COUNT" />
+    <FunctionImportMapping FunctionImportName="SP_FETCH_USER_WORDLIST" FunctionName="TutionCloudEntitiesModel.Store.SP_FETCH_USER_WORDLIST">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.SP_FETCH_USER_WORDLIST_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="OVERALLSCORE" ColumnName="OVERALLSCORE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_FETCH_WORD_BY_ID" FunctionName="TutionCloudEntitiesModel.Store.SP_FETCH_WORD_BY_ID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.SP_FETCH_WORD_BY_ID_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="SHAREONLINE" ColumnName="SHAREONLINE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_FETCH_WORD_ROWNUMBER" FunctionName="TutionCloudEntitiesModel.Store.SP_FETCH_WORD_ROWNUMBER">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.SP_FETCH_WORD_ROWNUMBER_Result">
+          <ScalarProperty Name="ROWNUMBER" ColumnName="ROWNUMBER" />
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="SHAREONLINE" ColumnName="SHAREONLINE" />
+          <ScalarProperty Name="ISFAVOURITE" ColumnName="ISFAVOURITE" />
+          <ScalarProperty Name="ISSKIPPED" ColumnName="ISSKIPPED" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GET_DISTINCT_CreateAWordListToShare" FunctionName="TutionCloudEntitiesModel.Store.SP_GET_DISTINCT_CreateAWordListToShare" />
+    <FunctionImportMapping FunctionImportName="SP_GET_DISTINCT_CreateAWordListToShare_Test" FunctionName="TutionCloudEntitiesModel.Store.SP_GET_DISTINCT_CreateAWordListToShare_Test" />
+    <FunctionImportMapping FunctionImportName="SP_GET_DISTINCT_WordListSharedbyMe" FunctionName="TutionCloudEntitiesModel.Store.SP_GET_DISTINCT_WordListSharedbyMe" />
+    <FunctionImportMapping FunctionImportName="SP_GET_DISTINCT_WordListTestSharedbyMe" FunctionName="TutionCloudEntitiesModel.Store.SP_GET_DISTINCT_WordListTestSharedbyMe" />
+    <FunctionImportMapping FunctionImportName="SP_INSERT_ONLINECOMMUNITY_WORDS" FunctionName="TutionCloudEntitiesModel.Store.SP_INSERT_ONLINECOMMUNITY_WORDS" />
+    <FunctionImportMapping FunctionImportName="SP_PV_SHARING_SharedwithMeWords_List" FunctionName="TutionCloudEntitiesModel.Store.SP_PV_SHARING_SharedwithMeWords_List">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.SP_PV_SHARING_SharedwithMeWords_List_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="OVERALLSCORE" ColumnName="OVERALLSCORE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_PV_SHARING_SharedwithMeWords_List_Test_Test" FunctionName="TutionCloudEntitiesModel.Store.SP_PV_SHARING_SharedwithMeWords_List_Test_Test">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.SP_PV_SHARING_SharedwithMeWords_List_Test_Test_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="OVERALLSCORE" ColumnName="OVERALLSCORE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_PV_SHARING_WordListShareAnArchivedTest_List" FunctionName="TutionCloudEntitiesModel.Store.SP_PV_SHARING_WordListShareAnArchivedTest_List">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.SP_PV_SHARING_WordListShareAnArchivedTest_List_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="OVERALLSCORE" ColumnName="OVERALLSCORE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_PV_SHARING_WordListSharedwithbyWords_List" FunctionName="TutionCloudEntitiesModel.Store.SP_PV_SHARING_WordListSharedwithbyWords_List">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.SP_PV_SHARING_WordListSharedwithbyWords_List_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="OVERALLSCORE" ColumnName="OVERALLSCORE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_PV_SHARING_WordListTestSharedbyMeWords_List" FunctionName="TutionCloudEntitiesModel.Store.SP_PV_SHARING_WordListTestSharedbyMeWords_List">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.SP_PV_SHARING_WordListTestSharedbyMeWords_List_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="OVERALLSCORE" ColumnName="OVERALLSCORE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_PV_WordListSharedbyMe_List" FunctionName="TutionCloudEntitiesModel.Store.SP_PV_WordListSharedbyMe_List">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.SP_PV_WordListSharedbyMe_List_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="OVERALLSCORE" ColumnName="OVERALLSCORE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_ShareAnArchivedTestIDMAXID" FunctionName="TutionCloudEntitiesModel.Store.SP_ShareAnArchivedTestIDMAXID" />
+    <FunctionImportMapping FunctionImportName="SP_SharedWithMeWord_COUNT" FunctionName="TutionCloudEntitiesModel.Store.SP_SharedWithMeWord_COUNT" />
+    <FunctionImportMapping FunctionImportName="SP_SHOW_ALL_WORDS" FunctionName="TutionCloudEntitiesModel.Store.SP_SHOW_ALL_WORDS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.SP_SHOW_ALL_WORDS_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="SHAREONLINE" ColumnName="SHAREONLINE" />
+          <ScalarProperty Name="ISFAVOURITE" ColumnName="ISFAVOURITE" />
+          <ScalarProperty Name="ISSKIPPED" ColumnName="ISSKIPPED" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_SHOW_REVIEWED_WORDS" FunctionName="TutionCloudEntitiesModel.Store.SP_SHOW_REVIEWED_WORDS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.SP_SHOW_REVIEWED_WORDS_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="SHAREONLINE" ColumnName="SHAREONLINE" />
+          <ScalarProperty Name="ISFAVOURITE" ColumnName="ISFAVOURITE" />
+          <ScalarProperty Name="ISSKIPPED" ColumnName="ISSKIPPED" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_TestSharedSharedbyMe_WORD_COUNT" FunctionName="TutionCloudEntitiesModel.Store.SP_TestSharedSharedbyMe_WORD_COUNT" />
+    <FunctionImportMapping FunctionImportName="SP_UPDATE_CROSSWORD_STATUS" FunctionName="TutionCloudEntitiesModel.Store.SP_UPDATE_CROSSWORD_STATUS" />
+    <FunctionImportMapping FunctionImportName="SP_WordListShareAnArchivedTest_COUNT" FunctionName="TutionCloudEntitiesModel.Store.SP_WordListShareAnArchivedTest_COUNT" />
+    <FunctionImportMapping FunctionImportName="SP_WordListSharedbyMe_WORD_COUNT" FunctionName="TutionCloudEntitiesModel.Store.SP_WordListSharedbyMe_WORD_COUNT" />
+    <FunctionImportMapping FunctionImportName="SP_WordListSharedTestSharedbyMe_COUNT" FunctionName="TutionCloudEntitiesModel.Store.SP_WordListSharedTestSharedbyMe_COUNT" />
+    <FunctionImportMapping FunctionImportName="SP_WordListSharedwithbyWords_COUNT" FunctionName="TutionCloudEntitiesModel.Store.SP_WordListSharedwithbyWords_COUNT" />
+    <FunctionImportMapping FunctionImportName="UpdateQuesterUserByUserId" FunctionName="TutionCloudEntitiesModel.Store.UpdateQuesterUserByUserId" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_FETCH_EXAM_WORDS_Share" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_FETCH_EXAM_WORDS_Share">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.Quester_SP_FETCH_EXAM_WORDS_Share_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Quester_ShareAnArchivedTestID">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.Quester_ShareAnArchivedTestID">
+        <MappingFragment StoreEntitySet="Quester_ShareAnArchivedTestID">
+          <ScalarProperty Name="TestID" ColumnName="TestID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ShareAnArchivedTest_TestId" ColumnName="ShareAnArchivedTest_TestId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Quester_SP_ShareAnArchivedTestIDMAXID" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_ShareAnArchivedTestIDMAXID" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_deletWordSharedWithMeWords" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_deletWordSharedWithMeWords" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_CreateAWordTestSharedWithMe_COUNT" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_CreateAWordTestSharedWithMe_COUNT" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_CreateAWordListToShare_COUNT_Test" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_CreateAWordListToShare_COUNT_Test" />
+    <FunctionImportMapping FunctionImportName="Quester_DeleteTestSharedWithMeTestSharedWithMe" FunctionName="TutionCloudEntitiesModel.Store.Quester_DeleteTestSharedWithMeTestSharedWithMe" />
+    <FunctionImportMapping FunctionImportName="Quester_DeleteALLWordListTestSharedWithMe" FunctionName="TutionCloudEntitiesModel.Store.Quester_DeleteALLWordListTestSharedWithMe" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_TestSharedSharedbyMe_WORD_COUNT" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_TestSharedSharedbyMe_WORD_COUNT" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_deletWordSharedTestSharedbyMeWords" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_deletWordSharedTestSharedbyMeWords" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_WordListSharedTestSharedbyMe_COUNT" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_WordListSharedTestSharedbyMe_COUNT" />
+    <EntitySetMapping Name="Quester_ShareAnArchivedTest">
+      <EntityTypeMapping TypeName="TutionCloudEntitiesModel.Quester_ShareAnArchivedTest">
+        <MappingFragment StoreEntitySet="Quester_ShareAnArchivedTest">
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ShareOnline" ColumnName="ShareOnline" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Definition" ColumnName="Definition" />
+          <ScalarProperty Name="Hint" ColumnName="Hint" />
+          <ScalarProperty Name="Phrase" ColumnName="Phrase" />
+          <ScalarProperty Name="Pronounciation" ColumnName="Pronounciation" />
+          <ScalarProperty Name="Word" ColumnName="Word" />
+          <ScalarProperty Name="SentUserID" ColumnName="SentUserID" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="TestID" ColumnName="TestID" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="ExamId" ColumnName="ExamId" />
+          <ScalarProperty Name="WordId" ColumnName="WordId" />
+          <ScalarProperty Name="ShareAnArchivedTestId" ColumnName="ShareAnArchivedTestId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Quester_SP_GET_DISTINCT_CreateAWordListToShare_Test" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_GET_DISTINCT_CreateAWordListToShare_Test" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_GET_DISTINCT_WordListTestSharedbyMe" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_GET_DISTINCT_WordListTestSharedbyMe" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_PV_SHARING_WordListShareAnArchivedTest_List" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_PV_SHARING_WordListShareAnArchivedTest_List">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.Quester_SP_PV_SHARING_WordListShareAnArchivedTest_List_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="OVERALLSCORE" ColumnName="OVERALLSCORE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Quester_SP_PV_SHARING_SharedwithMeWords_List_Test_Test" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_PV_SHARING_SharedwithMeWords_List_Test_Test">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.Quester_SP_PV_SHARING_SharedwithMeWords_List_Test_Test_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="OVERALLSCORE" ColumnName="OVERALLSCORE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Quester_SP_PV_SHARING_WordListTestSharedbyMeWords_List" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_PV_SHARING_WordListTestSharedbyMeWords_List">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.Quester_SP_PV_SHARING_WordListTestSharedbyMeWords_List_Result">
+          <ScalarProperty Name="WORDID" ColumnName="WORDID" />
+          <ScalarProperty Name="WORDGUID" ColumnName="WORDGUID" />
+          <ScalarProperty Name="WORD" ColumnName="WORD" />
+          <ScalarProperty Name="PRONOUNCIATION" ColumnName="PRONOUNCIATION" />
+          <ScalarProperty Name="PHRASE" ColumnName="PHRASE" />
+          <ScalarProperty Name="HINT" ColumnName="HINT" />
+          <ScalarProperty Name="DEFINITION" ColumnName="DEFINITION" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="OVERALLSCORE" ColumnName="OVERALLSCORE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Quester_DeleteTestSharedbyMe" FunctionName="TutionCloudEntitiesModel.Store.Quester_DeleteTestSharedbyMe" />
+    <FunctionImportMapping FunctionImportName="Quester_DeleteWordListAchivedTest_Delete" FunctionName="TutionCloudEntitiesModel.Store.Quester_DeleteWordListAchivedTest_Delete" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_DELETETABLE_FROM_ROW_WordListTestSharedbyMe" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_DELETETABLE_FROM_ROW_WordListTestSharedbyMe" />
+    <FunctionImportMapping FunctionImportName="Quester_ShareAnArchivedTest_Dupremove_Get" FunctionName="TutionCloudEntitiesModel.Store.Quester_ShareAnArchivedTest_Dupremove_Get" />
+    <FunctionImportMapping FunctionImportName="Quester_ShareAnArchivedTest_SentUserID_Dupremove_Get" FunctionName="TutionCloudEntitiesModel.Store.Quester_ShareAnArchivedTest_SentUserID_Dupremove_Get" />
+    <FunctionImportMapping FunctionImportName="Quester_SP_GET_NOTEDETAILS" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_GET_NOTEDETAILS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.Quester_SP_GET_NOTEDETAILS_Result">
+          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+          <ScalarProperty Name="DETAILS" ColumnName="DETAILS" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GET_NOTEDETAILS" FunctionName="TutionCloudEntitiesModel.Store.SP_GET_NOTEDETAILS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TutionCloudEntitiesModel.SP_GET_NOTEDETAILS_Result">
+          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+          <ScalarProperty Name="DETAILS" ColumnName="DETAILS" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Quester_SP_WordListShareAnArchivedTest_COUNT" FunctionName="TutionCloudEntitiesModel.Store.Quester_SP_WordListShareAnArchivedTest_COUNT" />
+  </EntityContainerMapping>
+</Mapping>
