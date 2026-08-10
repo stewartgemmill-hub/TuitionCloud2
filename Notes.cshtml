@@ -1,4 +1,4 @@
-﻿@model TutionCloudWeb.Model.Wordutopia.Notes
+﻿@model TutionCloudWeb.Models.PostModel.Note.NoteClass
 @{
     ViewBag.Title = "Notes";
     Layout = "~/Views/Shared/_Layout_Wordutopia_Home.cshtml";
@@ -164,11 +164,28 @@
                                     <button style="cursor:pointer;" id="btn-search-note">SEARCH</button>
                                 </div>
                             </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="newdrpn note-drpn">
+                                    <div class="dropdown">
+                                        <button type="button" class="btn btn-primary " data-toggle="dropdown">Task Dropdown List <img class="png_rightarrow" src="~/Content/img/rightarrow.png" /></button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" style="cursor:pointer;" onclick="history.back()">Back</a>
+                                            <a class="dropdown-item" style="cursor:pointer;" href="/Wordutopia/TestArchives">View Test Archives</a>
+                                            @*<a class="dropdown-item" style="cursor:pointer;" href="/Sharing/ShareanArchivedTest">View Test Archives</a>*@
+                                            <a class="dropdown-item" style="cursor:pointer;" id="a-create-testformat" href="/Sharing/CreateaNewTesttoShare">View All Shared Test</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+               
             </div>
+            
         </div>
+        
 
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12	col-xs-12">
@@ -229,7 +246,7 @@
                             <li class="nav-item">
                                 @*<a href="http://www.xnumber.com/xnumber/windows_calc.htm" target="_blank">Calculator</a>*@
                                 <a href="https://www.google.com/search?q=calculator" target="_blank">Calculator</a>
-
+                                
                             </li>
                             <li class="nav-item">
                                 <a href="https://www.google.com/maps/" target="_blank">Maps</a>
@@ -287,8 +304,18 @@
 
 <script>
 
+    $('#ipt-note-search').keypress(function (e) {
+
+        var key = e.which;
+        if (key == 13)  // the enter key code
+        {
+            $('#btn-search-note').click();
+            //return false;
+        }
+    });
+
     $(document).on('click', '.note-delete', function () {
-       
+        
         var source = $(this);
         var wordId = $(this).attr('data-noteid');
 
@@ -404,6 +431,7 @@
 <script>
     $(document).on('click', '#btn-search-note', function () {
         var searchText = $('#ipt-note-search').val();
+        searchText = $.trim(searchText);
         $.ajax({
             url: '/Wordutopia/NoteCount?userId=' + parseInt($('#userId').val()) + '&searchText=' + searchText,
             type: "GET",

@@ -1,0 +1,4 @@
+﻿@using CaptchaMvc.HtmlHelpers;
+@using CaptchaMvc;
+@Html.MathCaptcha("Try another", "Enter the result you see above:", "", true)
+<p id="error-p-tag" style="color: red; margin-top: -15px;display:none;">Invalid captcha</p>

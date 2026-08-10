@@ -1,0 +1,123 @@
+﻿@model TutionCloudWeb.Models.PostModel.Crossword.CrosswordArchivesList
+@{
+    var crosswordList = new TutionCloudWeb.Models.DataClass.WebService().getCrosswordList(Model.userId, Model.index);
+}
+
+
+@if (crosswordList.Count > 0)
+{
+    foreach (var item in crosswordList)
+    {
+
+
+        var crosswordWordList = new TutionCloudWeb.Models.DataClass.WebService().getCrosswordWordList(Model.userId, item.CrosswordId);
+        var idList = crosswordWordList.Select(z => z.WORDID).ToList();
+        var x = String.Join(", ", idList.ToArray());
+
+
+
+        dynamic MyDynamic = new System.Dynamic.ExpandoObject();
+        MyDynamic.isNew = true;
+        //MyDynamic.isNew = false;
+        MyDynamic.RandomCrossword = false;
+        MyDynamic.crosswordId = Convert.ToInt64(0);
+        //MyDynamic.crosswordId = Convert.ToInt64(item.CrosswordId);
+        MyDynamic.wordList = x;
+        //MyDynamic.completeStatus = Convert.ToBoolean(item.ISCOMPLETED);
+        MyDynamic.completeStatus = false;
+        var json = Newtonsoft.Json.JsonConvert.SerializeObject(MyDynamic);
+        byte[] byt12 = System.Text.Encoding.UTF8.GetBytes(json);
+
+        //byte[] byt12 = System.Text.Encoding.UTF8.GetBytes(x);
+        var strModified12 = Convert.ToBase64String(byt12);
+        var classname = "td-" + item.CrosswordId;
+
+
+
+
+         dynamic MyDynamic12 = new System.Dynamic.ExpandoObject();
+         MyDynamic12.isNew = false;
+         MyDynamic12.RandomCrossword = false;
+         MyDynamic12.crosswordId = item.CrosswordId;
+         MyDynamic12.wordList = x;
+         MyDynamic12.completeStatus = item.ISCOMPLETED;
+
+         var json12 = Newtonsoft.Json.JsonConvert.SerializeObject(MyDynamic12);
+         byte[] bytMyDynamic12 = System.Text.Encoding.UTF8.GetBytes(json12);
+
+         //byte[] byt12 = System.Text.Encoding.UTF8.GetBytes(x);
+         var strModifiedMyDynamic12 = Convert.ToBase64String(bytMyDynamic12);
+
+
+
+
+        <tr class="tr-word-row">
+            <td><input class="ckb-word-item @classname" data-wordlist="@x" data-completestatus="@item.ISCOMPLETED" data-crosswordid="@item.CrosswordId" type="checkbox"></td>
+            <td>
+                <strong>
+                    <span class="spn-utcdate" style="display:none;" data-utctime="@item.CREATEDTIME.ToString()"></span>
+                    <span class="spn-date"></span>
+                    <span class="spc-Date"></span>
+                    <span class="spn-time"></span>
+                </strong>
+            </td>
+            @if (item.ISCOMPLETED)
+            {
+                <td>
+                    Completed
+                </td>
+            }
+            else
+            {
+                <td>
+                    Incompleted
+                </td>
+            }
+
+
+
+            <td class="toggle_dropdown_cust">
+                <div class="web-dsp">
+                    <span class="edts">
+                        <a href="/Wordutopia/Crossword/@strModifiedMyDynamic12">View</a>
+                    </span>
+                    <span class="ck_brd">|</span>
+                    <span class="edts">
+                        <a href="/Wordutopia/Crossword/@strModified12">Resit</a>
+                    </span>
+                    <span class="ck_brd">|</span>
+                    <span class="edts">
+                        <a style="cursor:pointer;" href="#" class="crossword-delete" data-crosswordid="@item.CrosswordId">Delete</a>
+                    </span>
+                </div>
+                <div class="togButns attachmts">
+                    <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    <div class="dropdown-menu labes" aria-labelledby="dropdownMenuButton">
+                        <span class="edts">
+                            <a href="/Wordutopia/Crossword/@strModifiedMyDynamic12">View</a>
+                        </span>
+                        <span class="ck_brd">|</span>
+                        <span class="edts">
+                            <a href="/Wordutopia/Crossword/@strModified12">Resit</a>
+                        </span>
+                        <span class="ck_brd">|</span>
+                        <span class="edts">
+                            <a style="cursor:pointer;" href="#" class="crossword-delete" data-crosswordid="@item.CrosswordId">Delete</a>
+                        </span>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+    }
+}
+else
+{
+    <tr>
+        <td colspan="4">No Crosswords found</td>
+    </tr>
+}
+
+

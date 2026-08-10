@@ -1,0 +1,48 @@
+﻿@model TutionCloudWeb.Models.PostModel.User.Forgotpassword
+@{
+
+}
+@using (Ajax.BeginForm("SendEmail", "User", null, new AjaxOptions
+        {
+            HttpMethod = "POST",
+            OnSuccess = "SendEmailSuccess",
+            OnFailure = "SendEmailFailure",
+        }, new { id = "tutioncloud-SendEmail" }))
+                            {
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content InnerLgrt" style="padding:inherit;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group" style="padding:0 10px;">
+                        <label style="font-size :16px">WEB NAME</label>
+
+                        @Html.DropDownListFor(m => m.webname, new List<SelectListItem>
+       { new SelectListItem{Text="Wordutopia", Value=TutionCloudWeb.Models.Enum.webname.Wordutopia.ToString()},
+         new SelectListItem{Text="Choicer", Value=TutionCloudWeb.Models.Enum.webname.Choicer.ToString() },
+       new SelectListItem{Text="Quester", Value=TutionCloudWeb.Models.Enum.webname.Quester.ToString()}}, new { @class = "form-control location_slct" })
+                    </div>
+
+
+                    <div class="form-group" style="padding:0 10px;">
+                        <label style="font-size :16px">Email</label>
+                        @*<input type="email" name="receiver" id="email" style="width:100%" class="form-control" />*@
+                        @Html.TextBoxFor(m => m.reciever, new { autocomplete = "off", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.reciever)
+                        @*<input type="text" hidden="hidden" name="userid" id="userid" />*@
+                        @Html.HiddenFor(z => z.userid, new { Value = 0, id = "userid" })
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-default Lgbtn">SUBMIT</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}

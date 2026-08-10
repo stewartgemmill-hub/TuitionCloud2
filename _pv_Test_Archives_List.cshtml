@@ -1,0 +1,59 @@
+﻿@model TutionCloudWeb.Models.PostModel.Exam.TestArchivesList
+@{
+    var testList = new TutionCloudWeb.Models.DataClass.WebService().getTestList(Model.userId, Model.index);
+}
+
+
+@if (testList.Count > 0)
+{
+    foreach (var test in testList)
+    {
+        byte[] byt12 = System.Text.Encoding.UTF8.GetBytes(test.EXAMID.ToString());
+
+        var strModified12 = Convert.ToBase64String(byt12);
+
+        <tr class="tr-word-row">
+            <td><input class="ckb-word-item" data-examid="@test.EXAMID" name="radio_Retest" type="radio" value="@strModified12"></td>
+            <td>
+                <strong>
+                    <span class="spn-utcdate" style="display:none;" data-utctime="@test.CREATEDDATE.ToString()"></span>
+                    <span class="spn-date"></span>
+                    <span class="spc-Date"></span>
+                    <span class="spn-time"></span>
+                </strong>
+            </td>
+            <td>@test.SCORE %</td>
+            <td>Self Gen</td>
+            <td class="toggle_dropdown_cust">
+                <div class="web-dsp">
+                    <span class="edts"><a style="cursor:pointer;" href="/Wordutopia/TestSummary/@strModified12">View</a></span>
+                    @*<span class="ck_brd">|</span>
+                    <span class="edts"><a style="cursor:pointer;" href="/Wordutopia/ResitTest">Resit</a></span>*@
+                    <span class="ck_brd">|</span>
+                    <span class="edts"><a style="cursor:pointer;" class="test-delete" data-testid="@test.EXAMID">Delete</a></span>
+                </div>
+                <div class="togButns attachmts">
+                    <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    <div class="dropdown-menu labes" aria-labelledby="dropdownMenuButton">
+                        <span class="edts"><a style="cursor:pointer;" href="/Wordutopia/TestSummary/@strModified12">View</a></span>
+                        @*<span class="ck_brd">|</span>
+                        <span class="edts"><a style="cursor:pointer;" href="/Wordutopia/ResitTest">Resit</a></span>*@
+                        <span class="ck_brd">|</span>
+                        <span class="edts"><a style="cursor:pointer;" class="test-delete" data-testid="@test.EXAMID">Delete</a></span>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+    }
+}
+else
+{
+    <tr>
+        <td colspan="5">No Test found</td>
+    </tr>
+}
+
+

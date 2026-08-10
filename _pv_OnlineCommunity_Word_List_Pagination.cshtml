@@ -1,4 +1,4 @@
-﻿@model TutionCloudWeb.Models.PostModel.Word.WordListPagination
+﻿@model TutionCloudWeb.Models.PostModel.OnlineCommunity.WordListPagination
 @{
     var totalWordCount = Model.totalWordCount;
 }
@@ -6,7 +6,6 @@
     var res = Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalWordCount) / Convert.ToDouble(10))));
 }
 <ul id="wordlist-pagination" class="blade-pagination" data-current="@(Model.index)" data-total="@(res)"></ul>
-
 
 
 <script>
@@ -39,7 +38,7 @@
                 }
                 console.log(obj);
                 $.ajax({
-                    url: '/Wordutopia/refreshUserWordList',
+                    url: '/Wordutopia/refreshOnlineCommunityWordList',
                     type: "POST",
                     data: obj,
                     dataType: 'html',
@@ -66,7 +65,7 @@
                         obj1.sortBy = $('#hfn-sortby').val();
                         obj1.sortOrder = $('#hfn-sortorder').val();
                         $.ajax({
-                            url: '/Wordutopia/refreshUserWordListPagination',
+                            url: '/Wordutopia/refreshOnlineCommunityWordListPagination',
                             type: "POST",
                             data: obj1,
                             dataType: 'html',
@@ -86,4 +85,3 @@
     });
 
 </script>
-

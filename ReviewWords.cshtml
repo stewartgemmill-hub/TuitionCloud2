@@ -1,0 +1,611 @@
+﻿@model TutionCloudWeb.Models.PostModel.ReviewWords.WordList
+@{
+    ViewBag.Title = "ReviewWords";
+    Layout = "~/Views/Shared/_Layout_Wordutopia_Home.cshtml";
+}
+
+<input id="hfn-userid" value="@Model.userId" type="hidden" />
+<input id="hfn-showallwords" value="@Model.showAllWords" type="hidden" />
+<input id="hfn-totalwords" value="@Model.totalWordCount" type="hidden" />
+<input id="hfn-reviewedtotalwords" value="@Model.mainPanelReviewedtotalWordCount" type="hidden" />
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="re-header">
+                <h6>Review Words</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12  cust_margin ">
+                <div class="review-tab">
+                    @*<p>You have viewed 4 word(s). Try remembering as many words as you can be writing them in the following text boxes.</p>*@
+                    <p>You were presented with @Model.mainPanelReviewedtotalWordCount random words in the Main Panel section. Type the ones you remember into the fields provided below then choose SHOW ALL WORDS from the Task Dropdown List to see the full list.</p>
+
+                    <table class="table newTable table-bordered table_cust offset-lg-2 ">
+                        <thead>
+                            <tr>
+                                <th class="tabhead">Select</th>
+                                <th class="tabhead">Enter Word</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-reviewwords">
+                            @if (Model.showAllWords)
+                            {
+                                @Html.Partial("~/Views/Wordutopia/_pv_table_review_words_list.cshtml", Model)
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td class="td-checkbox-review-words"><input type="checkbox"></td>
+                                    <td><input type="text" class="datas123"></td>
+                                </tr>
+                                <tr>
+                                    <td class="td-checkbox-review-words"><input type="checkbox"></td>
+                                    <td><input type="text" class="datas123"></td>
+                                </tr>
+                                <tr>
+                                    <td class="td-checkbox-review-words"><input type="checkbox"></td>
+                                    <td><input type="text" class="datas123"></td>
+                                </tr>
+                                <tr>
+                                    <td class="td-checkbox-review-words"><input type="checkbox"></td>
+                                    <td><input type="text" class="datas123"></td>
+                                </tr>
+                                <tr>
+                                    <td class="td-checkbox-review-words"><input type="checkbox"></td>
+                                    <td><input type="text" class="datas123"></td>
+                                </tr>
+                                <tr>
+                                    <td class="td-checkbox-review-words"><input type="checkbox"></td>
+                                    <td><input type="text" class="txt-review-words datas123"></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="newdrpn re-drpn">
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-primary " data-toggle="dropdown">Task Dropdown List <img class="png_rightarrow" src="~/Content/img/rightarrow.png" /></button>
+                        <div class="dropdown-menu">
+                            <a style="cursor:pointer;" id="dpd-show-all-words-reviewwords" class="dropdown-item">Show all words</a>
+                            <a class="dropdown-item" style="cursor:pointer;" onclick="history.back()">Back</a>
+                            <a style="cursor:pointer;" class="dropdown-item" id="SelectAll">Select All</a>
+                            <a style="cursor:pointer;" class="dropdown-item" id="delete-all-words">Delete all</a>
+                            <a style="cursor:pointer;" id="a-create-testformat" class="dropdown-item">Test selected words</a>
+                            <a style="cursor:pointer;" class="dropdown-item" id="a-word-synonym">Synonym</a>
+                            <a style="cursor:pointer;" class="dropdown-item" id="a-add-word-fav">Add to Favourites</a>
+                            <a style="cursor:pointer;" class="dropdown-item" id="a-add-word-skiplist">Add to  Skip list</a>
+                            <a style="cursor:pointer;" id="a-edit-word" class="dropdown-item">Edit</a>
+                            <a style="cursor:pointer;" class="dropdown-item" id="delete-selected-words">Delete</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="outAccordtn fav_out">
+                    <div id="accordion">
+                        <div class="card">
+                            <div class="accordhead">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Database Word
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                <div class="card-body" id="div-databaseword">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="accordhead">
+                                <div class="card-header" id="headingTwo">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Pronounced
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                <div class="card-body" id="div-Pronounced">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="accordhead">
+                                <div class="card-header" id="headingThree">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            Phrase
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                <div class="card-body" id="div-Phrase">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="accordhead">
+                                <div class="card-header" id="headingfour">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsefour" aria-expanded="false" aria-controls="collapseThree">
+                                            Show Hint
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div id="collapsefour" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                <div class="card-body" id="div-Hint">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="accordhead">
+                                <div class="card-header" id="headingfive">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsefive" aria-expanded="false" aria-controls="collapseThree">
+                                            Definition
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div id="collapsefive" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                <div class="card-body lastAccord" id="div-Definition">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lowerNav">
+            <nav class="navbar navbar-expand-sm  justify-content-center">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="https://en.wikipedia.org/wiki/Main.page" target="_blank">Wikipedia</a>
+                    </li>
+                    <li class="nav-item">
+                        @*<a href="http://www.xnumber.com/xnumber/windows_calc.htm" target="_blank">Calculator</a>*@
+                        <a href="https://www.google.com/search?q=calculator" target="_blank">Calculator</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.google.com/maps/" target="_blank">Maps</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="http://www.xe.com/currencyconverter/" target="_blank">Currency Converter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.timeanddate.com/worldclock/full.html" target="_blank">World Clocks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://translate.google.com" target="_blank">Translator</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+
+<script id="review-words-template" type="text/template">
+    <tr>
+        <td class="td-checkbox-review-words"><input type="checkbox"></td>
+        <td><input type="text" class="txt-review-words"></td>
+    </tr>
+</script>
+
+
+<script>
+
+    var wordList = [];
+    var wordListName = [];
+
+    $(document).on('click', '.tr-word-row', function () {
+        var source = $(this);
+        var word = $(source).attr('data-word');
+        var pronounciation = $(source).attr('data-pronounciation');
+        var phrase = $(source).attr('data-phrase');
+        var hint = $(source).attr('data-hint');
+        var definition = $(source).attr('data-definition');
+
+        $('#div-databaseword').html(word);
+        $('#div-Pronounced').html(pronounciation);
+        $('#div-Phrase').html(phrase);
+        $('#div-Hint').html(hint);
+        $('#div-Definition').html(definition);
+    });
+
+
+
+    $(document).ready(function () {
+        var tr = $(document).find('.tr-word-row').first();
+
+        if (tr.length > 0) {
+            var word = $(tr).attr('data-word');
+            var pronounciation = $(tr).attr('data-pronounciation');
+            var phrase = $(tr).attr('data-phrase');
+            var hint = $(tr).attr('data-hint');
+            var definition = $(tr).attr('data-definition');
+            $('#div-databaseword').html(word);
+            $('#div-Pronounced').html(pronounciation);
+            $('#div-Phrase').html(phrase);
+            $('#div-Hint').html(hint);
+            $('#div-Definition').html(definition);
+        }
+
+
+    });
+
+
+
+    $(document).on('keypress', '.txt-review-words', function (e) {
+        alert();
+        var key = e.which;
+        if (key == 13)  // the enter key code
+        {
+            var template = $("#review-words-template").html();
+            $('#tbody-reviewwords').append(template);
+            $('.td-checkbox-review-words').css('pointer-events', 'none');
+        }
+    });
+    var active = true;
+
+    $(".datas123").keypress(function () {
+        
+        if (active == true) {
+            $.ajax({
+                type: "POST",
+                url: "/Wordutopia/ActivateDatasByID",                                 
+                success: function (response) {
+                    
+                },
+                 
+                error: function (response) {
+                    
+                }
+            });
+
+            active = false;
+        }
+        
+    })
+
+    $(document).ready(function () {
+        $('.td-checkbox-review-words').css('pointer-events', 'none');
+    });
+
+
+
+    $(document).on('click', '#dpd-show-all-words-reviewwords', function () {
+        $.ajax({
+            url: '/Wordutopia/refreshReviewWordList',
+            type: "POST",
+            dataType: 'html',
+            success: function (data) {
+                
+                $('#tbody-reviewwords').html(data);
+
+                wordList = [];
+                wordListName = [];
+
+
+                var tr = $(document).find('.tr-word-row').first();
+
+                if (tr.length > 0) {
+                    var word = $(tr).attr('data-word');
+                    var pronounciation = $(tr).attr('data-pronounciation');
+                    var phrase = $(tr).attr('data-phrase');
+                    var hint = $(tr).attr('data-hint');
+                    var definition = $(tr).attr('data-definition');
+                    $('#div-databaseword').html(word);
+                    $('#div-Pronounced').html(pronounciation);
+                    $('#div-Phrase').html(phrase);
+                    $('#div-Hint').html(hint);
+                    $('#div-Definition').html(definition);
+                }
+
+            }
+        });
+    });
+
+
+</script>
+
+
+<script>
+
+    $(document).on('click', '#a-create-testformat', function () {
+        if (wordList.length == 0) {
+            toastrError('Please select a word');
+        }
+        else {
+            var encodedString = btoa(wordList.join(','));
+            window.location.href = "/Wordutopia/CreateTest/" + encodedString;
+        }
+    });
+
+
+
+    $(document).on('click', '.ckb-word-item', function () {
+        var wordId = $(this).attr('data-wordid');
+        var word = $(this).attr('data-word');
+        if ($(this).prop("checked") == true) {
+            wordList.push(wordId);
+            wordListName.push(word);
+            $('#selected-item-count').text(" " + parseInt(parseInt($('#selected-item-count').text()) + parseInt(1)));
+        }
+        else {
+            wordList.splice($.inArray(wordId, wordList), 1);
+            wordListName.splice($.inArray(word, wordListName), 1);
+            $('#selected-item-count').text(" " + parseInt(parseInt($('#selected-item-count').text()) - parseInt(1)));
+        }
+        //console.log(wordList);
+    });
+
+
+
+    $(document).on('click', '#a-edit-word', function () {
+        if (wordList.length == 0) {
+            toastrError('Please select a word');
+        }
+        else if (wordList.length > 1) {
+            toastrError('You can only edit one word at a time!');
+        }
+        else {
+            var encodedString = btoa(wordList.join(',') + "-ReviewWords-1");
+            window.location.href = "/Wordutopia/EditWord/" + encodedString;
+        }
+    });
+
+
+</script>
+
+<script>
+
+
+    $(document).on('click', '#delete-selected-words', function () {
+        var cbkStatus = false;
+        var wordIds = "";
+        var count = 0;
+        $(document).find('.ckb-word-item').each(function (index, value) {
+            if ($(this).prop("checked") == true) {
+                count = count + 1;
+                cbkStatus = true;
+                if (wordIds == "")
+                    wordIds = wordIds + $(this).attr('data-wordid');
+                else
+                    wordIds = wordIds + "," + $(this).attr('data-wordid');
+            }
+        });
+        if (cbkStatus == false && wordList.length <= 0) {
+            toastrError('Please select a word');
+        }
+        else {
+            swal({
+                title: "Are you sure?",
+                text: "You are about to delete the selected words!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#004b8d",
+                confirmButtonText: "Yes, delete!",
+                closeOnConfirm: true
+            },
+  function (isConfirm) {
+      if (isConfirm) {
+          $('#tbody-reviewwords').html('<tr><td class="td-checkbox-review-words"><input type="checkbox"></td><td><input type="text" class=""></td></tr>');
+          //var userId = $('#hfn-userid').val();
+          //var objs = new Object();
+          //objs.userId = userId;
+          //objs.wordIds = wordList.join(',')
+
+          //$.ajax({
+          //    //url: '/Wordutopia/deletSelectedWords',
+          //    url: '/Wordutopia/deletSelectedReviewedWords',
+          //    type: "POST",
+          //    data: objs,
+          //    dataType: 'JSON',
+          //    success: function (data) {
+          //        if (data.status) {
+          //            toastrSuccess("Words deleted");
+          //            setTimeout(function () {
+          //                location.reload();
+          //            }, 400);
+          //        }
+          //        else {
+          //            toastrError(data.message);
+          //        }
+          //    }
+          //});
+      }
+  });
+        }
+    });
+
+
+    $(document).on('click', '#delete-all-words', function () {
+
+        if ($('.tr-word-row').length > 0) {
+
+
+            swal({
+                title: "Are you sure?",
+                text: "This action will delete all the Reviewed Words from the list, confirm action:",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#004b8d",
+                confirmButtonText: "YES",
+                closeOnConfirm: true
+            },
+    function (isConfirm) {
+        if (isConfirm) {
+
+            $('#tbody-reviewwords').html('<tr><td class="td-checkbox-review-words"><input type="checkbox"></td><td><input type="text" class=""></td></tr>');
+
+            //var userId = $('#hfn-userid').val();
+            //var objs = new Object();
+            //objs.userId = userId;
+
+            //$.ajax({
+            //    //url: '/Wordutopia/deleteAllWords',
+            //    url: '/Wordutopia/deleteAllReviewedWords',
+            //    type: "POST",
+            //    data: objs,
+            //    dataType: 'JSON',
+            //    success: function (data) {
+            //        if (data.status) {
+            //            toastrSuccess("Words deleted");
+            //            setTimeout(function () {
+            //                location.reload();
+            //            }, 400);
+            //        }
+            //        else {
+            //            toastrError(data.message);
+            //        }
+            //    }
+            //});
+        }
+    });
+        }
+        else {
+            toastrError("No words to delete");
+        }
+    });
+
+
+    $(document).on('click', '#a-word-synonym', function () {
+        if (wordListName.length == 0) {
+            toastrError('Please select a word');
+        }
+        else if (wordListName.length > 1) {
+            toastrError('You can only find synonym of one word at a time!');
+        }
+        else {
+            window.open("https://www.thesaurus.com/browse/" + wordListName.join(',') + "?s=t", '_blank');
+        }
+    });
+
+
+
+</script>
+
+
+
+<script>
+    $(document).on('click', '#a-add-word-fav', function () {
+        var cbkStatus = false;
+        var wordIds = "";
+        var count = 0;
+        $(document).find('.ckb-word-item').each(function (index, value) {
+            if ($(this).prop("checked") == true) {
+                count = count + 1;
+                cbkStatus = true;
+                if (wordIds == "")
+                    wordIds = wordIds + $(this).attr('data-wordid');
+                else
+                    wordIds = wordIds + "," + $(this).attr('data-wordid');
+            }
+        });
+        if (cbkStatus == false) {
+            toastrError('Please select a word');
+        }
+        else {
+            var userId = $('#hfn-userid').val();
+            var objs = new Object();
+            objs.userId = userId;
+            objs.wordIds = wordIds;
+
+            $.ajax({
+                url: '/Wordutopia/addfavouriteword',
+                type: "POST",
+                data: objs,
+                dataType: 'JSON',
+                success: function (data) {
+                    if (data.status) {
+                        toastrSuccess("Words added to favourites");
+                        setTimeout(function () {
+                            location.reload();
+                        }, 500);
+                    }
+                    else {
+                        toastrError(data.message);
+                    }
+                }
+            });
+        }
+    });
+
+
+    $(document).on('click', '#a-add-word-skiplist', function () {
+        var cbkStatus = false;
+        var wordIds = "";
+        var count = 0;
+        $(document).find('.ckb-word-item').each(function (index, value) {
+            if ($(this).prop("checked") == true) {
+                count = count + 1;
+                cbkStatus = true;
+                if (wordIds == "")
+                    wordIds = wordIds + $(this).attr('data-wordid');
+                else
+                    wordIds = wordIds + "," + $(this).attr('data-wordid');
+            }
+        });
+        if (cbkStatus == false && wordList.length <= 0) {
+            toastrError('Please select a word');
+        }
+        else {
+            var userId = $('#hfn-userid').val();
+            var objs = new Object();
+            objs.userId = userId;
+            //objs.wordIds = wordIds;
+            objs.wordIds = wordList.join(',')
+            $.ajax({
+                url: '/Wordutopia/addskippedword',
+                type: "POST",
+                data: objs,
+                dataType: 'JSON',
+                success: function (data) {
+                    if (data.status) {
+                        toastrSuccess("Words added to skip list");
+                        setTimeout(function () {
+                            location.reload();
+                        }, 500);
+                    }
+                    else {
+                        toastrError(data.message);
+                    }
+                }
+            });
+        }
+    });
+
+
+    $("#SelectAll").click(function () {
+        $("#selected-item-count").text("0");
+        $('.ckb-word-item').each(function () {
+            this.checked = true;
+            $('#selected-item-count').text(" " + parseInt(parseInt($('#selected-item-count').text()) + parseInt(1)));
+            var wordId = $(this).attr('data-wordid');
+            if ($(this).prop("checked") == true) {
+                wordList.push(wordId);
+            }
+            else {
+                wordList.splice($.inArray(wordId, wordList), 1);
+            }
+        });
+
+    });
+
+</script>
+

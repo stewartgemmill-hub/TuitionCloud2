@@ -2,8 +2,7 @@
 @{
     ViewBag.Title = "StartTest";
     Layout = "~/Views/Shared/_Layout_Wordutopia_Home.cshtml";
-    var wordList = new TutionCloudWeb.Models.DataClass.WebService().getExamWords_share(Model.userId, Convert.ToInt64(Model.examId));
-
+    var wordList = new TutionCloudWeb.Models.DataClass.WebService().getExamWords(Model.userId, Convert.ToInt64(Model.examId));
 }
 
 
@@ -30,7 +29,7 @@
                         <div class="dropdown">
                             <button type="button" class="btn btn-primary " data-toggle="dropdown">Task Dropdown List <img src="~/Content/img/rightarrow.png" /></button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" onclick="history.back()">Back</a>
+                                <a class="dropdown-item" href="#">Back</a>
                                 <a class="dropdown-item" href="#">Create a Test Format </a>
                             </div>
                         </div>
@@ -211,7 +210,7 @@
 
                         setTimeout(function () {
                             var encodedString = btoa($('#examId').val() + "," + wordList.join(','));
-                            window.location.href = "/Sharing/ViewAnswer/" + encodedString;
+                            window.location.href = "/Wordutopia/ViewAnswer/" + encodedString;
                             //window.clearInterval(timer);
                         }, 300);
                     }
@@ -236,12 +235,12 @@
 
                     setTimeout(function () {
                         var encodedString = btoa($('#examId').val() + "," + wordList.join(','));
-                        window.location.href = "/Sharing/ViewAnswer/" + encodedString;
+                        window.location.href = "/Wordutopia/ViewAnswer/" + encodedString;
                         //window.clearInterval(timer);
                     }, 300);
 
                     //var encodedString = btoa($('#examId').val());
-                    //window.location.href = "/Sharing/ViewAnswer/" + encodedString;
+                    //window.location.href = "/Wordutopia/ViewAnswer/" + encodedString;
                 }
             });
         }
@@ -308,13 +307,13 @@
 
                             setTimeout(function () {
                                 var encodedString = btoa($('#examId').val() + "," + wordList.join(','));
-                                window.location.href = "/Sharing/ViewAnswer/" + encodedString;
+                                window.location.href = "/Wordutopia/ViewAnswer/" + encodedString;
                                 //window.clearInterval(timer);
                             }, 300);
 
 
                             //var encodedString = btoa($('#examId').val());
-                            //window.location.href = "/Sharing/ViewAnswer/" + encodedString;
+                            //window.location.href = "/Wordutopia/ViewAnswer/" + encodedString;
                             //window.clearInterval(timer);
                         }
                     }
@@ -360,12 +359,12 @@
 
                             setTimeout(function () {
                                 var encodedString = btoa($('#examId').val() + "," + wordList.join(','));
-                                window.location.href = "/Sharing/ViewAnswer/" + encodedString;
+                                window.location.href = "/Wordutopia/ViewAnswer/" + encodedString;
                                 //window.clearInterval(timer);
                             }, 300);
 
                             //var encodedString = btoa($('#examId').val());
-                            //window.location.href = "/Sharing/ViewAnswer/" + encodedString;
+                            //window.location.href = "/Wordutopia/ViewAnswer/" + encodedString;
                             //window.clearInterval(timer);
                         }
                     }
@@ -407,13 +406,13 @@
 
                 //    setTimeout(function () {
                 //        var encodedString = btoa($('#examId').val() + "," + wordList.join(','));
-                //        window.location.href = "/Sharing/ViewAnswer/" + encodedString;
+                //        window.location.href = "/Wordutopia/ViewAnswer/" + encodedString;
                 //        //window.clearInterval(timer);
                 //    }, 300);
 
 
                 //    //var encodedString = btoa($('#examId').val());
-                //    //window.location.href = "/Sharing/ViewAnswer/" + encodedString;
+                //    //window.location.href = "/Wordutopia/ViewAnswer/" + encodedString;
                 //    //window.clearInterval(timer);
                 //}
 
@@ -447,12 +446,12 @@
 
                     setTimeout(function () {
                         var encodedString = btoa($('#examId').val() + "," + wordList.join(','));
-                        window.location.href = "/Sharing/ViewAnswer/" + encodedString;
+                        window.location.href = "/Wordutopia/ViewAnswer/" + encodedString;
                         //window.clearInterval(timer);
                     }, 300);
 
                     //var encodedString = btoa($('#examId').val());
-                    //window.location.href = "/Sharing/ViewAnswer/" + encodedString;
+                    //window.location.href = "/Wordutopia/ViewAnswer/" + encodedString;
                     //window.clearInterval(timer);
                 }
             }
@@ -510,13 +509,13 @@
 
                             setTimeout(function () {
                                 var encodedString = btoa($('#examId').val() + "," + wordList.join(','));
-                                window.location.href = "/Sharing/ViewAnswer/" + encodedString;
+                                window.location.href = "/Wordutopia/ViewAnswer/" + encodedString;
                                 //window.clearInterval(timer);
                             }, 300);
 
 
                             //var encodedString = btoa($('#examId').val());
-                            //window.location.href = "/Sharing/ViewAnswer/" + encodedString;
+                            //window.location.href = "/Wordutopia/ViewAnswer/" + encodedString;
                             //window.clearInterval(timer);
                         }
                     }
@@ -554,13 +553,13 @@
 
                     setTimeout(function () {
                         var encodedString = btoa($('#examId').val() + "," + wordList.join(','));
-                        window.location.href = "/Sharing/ViewAnswer/" + encodedString;
+                        window.location.href = "/Wordutopia/ViewAnswer/" + encodedString;
                         //window.clearInterval(timer);
                     }, 300);
 
 
                     //var encodedString = btoa($('#examId').val());
-                    //window.location.href = "/Sharing/ViewAnswer/" + encodedString;
+                    //window.location.href = "/Wordutopia/ViewAnswer/" + encodedString;
                     //window.clearInterval(timer);
                 }
             }

@@ -1,0 +1,52 @@
+﻿@model TutionCloudWeb.Models.PostModel.Exam.TestSummaryWordList
+@{
+    var wordList = new TutionCloudWeb.Models.DataClass.WebService().getTestSummaryWordList(Model.userId, Model.index, 10, Model.searchText, Model.sortBy, Model.sortOrder, Model.examId);
+}
+
+
+@if (wordList.Count > 0)
+{
+    foreach (var item in wordList)
+    {
+        var value = item.WORDID.ToString() + "-TestSummary-" + Model.examId.ToString();
+        byte[] byt = System.Text.Encoding.UTF8.GetBytes(value);
+
+        // convert the byte array to a Base64 string
+
+        var strModified = Convert.ToBase64String(byt);
+        var Synonym = "https://www.thesaurus.com/browse/" + item.WORD + "?s=t";
+
+
+        <tr class="tr-word-row" style="cursor:pointer;" data-word="@item.WORD" data-pronounciation="@item.PRONOUNCIATION" data-phrase="@item.PHRASE" data-hint="@item.HINT" data-definition="@item.DEFINITION">
+            <td><input class="ckb-word-item" data-wordid="@item.WORDID" type="checkbox"></td>
+            <td><strong>@item.WORD</strong></td>
+            @if (item.ISCORRECT)
+            {
+                <td>Correct</td>
+            }
+            else
+            {
+                <td>Incorrect</td>
+            }
+            <td>@item.OVERALLSCORE %</td>
+            <td class="toggle_dropdown_cust ">
+                <div class="togButns attachmts archive">
+                    <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    <div class="dropdown-menu labes" aria-labelledby="dropdownMenuButton">
+                        <span class="edts"><a target="_blank" href="@Synonym">Synonym</a></span>
+                        <span class="edts"><a href="/Wordutopia/EditWord/@strModified">Edit</a></span>
+                        <span class="edts"><a class="word-delete"> Delete</a></span>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    }
+}
+else
+{
+    <tr>
+        <td colspan="4">No words found</td>
+    </tr>
+}

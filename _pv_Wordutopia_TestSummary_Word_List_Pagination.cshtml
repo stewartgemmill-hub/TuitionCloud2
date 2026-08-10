@@ -1,4 +1,4 @@
-﻿@model TutionCloudWeb.Models.PostModel.Word.WordListPagination
+﻿@model TutionCloudWeb.Models.PostModel.Exam.TestSummaryWordListPagination
 @{
     var totalWordCount = Model.totalWordCount;
 }
@@ -6,7 +6,6 @@
     var res = Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalWordCount) / Convert.ToDouble(10))));
 }
 <ul id="wordlist-pagination" class="blade-pagination" data-current="@(Model.index)" data-total="@(res)"></ul>
-
 
 
 <script>
@@ -27,19 +26,13 @@
                 $('#hfn-index').val(parseInt(parseInt(page) - 1));
                 var obj = new Object();
                 obj.userId = $('#userId').val();
+                obj.examId = $('#examId').val();
                 obj.totalWordCount = $('#totalWordCount').val();
                 obj.index = parseInt(parseInt(page) - 1);
                 obj.sortBy = $('#hfn-sortby').val();
                 obj.sortOrder = $('#hfn-sortorder').val();
-                if (wordList.length == 0) {
-                    obj.wordIds = "";
-                }
-                else {
-                    obj.wordIds = wordList.join(',');
-                }
-                console.log(obj);
                 $.ajax({
-                    url: '/Wordutopia/refreshUserWordList',
+                    url: '/Wordutopia/refreshTestSummaryWordList',
                     type: "POST",
                     data: obj,
                     dataType: 'html',
@@ -65,8 +58,9 @@
                         obj1.index = parseInt(parseInt(page));
                         obj1.sortBy = $('#hfn-sortby').val();
                         obj1.sortOrder = $('#hfn-sortorder').val();
+                        obj1.examId = $('#examId').val();
                         $.ajax({
-                            url: '/Wordutopia/refreshUserWordListPagination',
+                            url: '/Wordutopia/refreshTestSummaryWordListPagination',
                             type: "POST",
                             data: obj1,
                             dataType: 'html',

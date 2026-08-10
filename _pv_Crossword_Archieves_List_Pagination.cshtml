@@ -1,0 +1,99 @@
+﻿@model TutionCloudWeb.Models.PostModel.Crossword.CrosswordArchivesListPagination
+@{
+    var totalCrossWordCount = Model.totalCrosswordCount;
+}
+@{
+    var res = Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalCrossWordCount) / Convert.ToDouble(10))));
+}
+<ul id="crosswordlist-pagination" class="blade-pagination" data-current="@(Model.index)" data-total="@(res)"></ul>
+
+
+<script>
+
+    $(document).ready(function () {
+
+        $('#crosswordlist-pagination').bladePagination({
+            // max number of pages
+            maxPageNum: 5,
+            // label text
+            firstLabel: '|&lt;', // |<
+            prevLabel: '&lt;',   // <
+            nextLabel: '&gt;',   // >
+            lastLabel: '&gt;|',  // >|
+            moreLabel: '...',
+            // callback
+            clickPage: function (page) {
+                $('#hfn-index').val(parseInt(parseInt(page) - 1));
+                var obj = new Object();
+                obj.userId = $('#userId').val();
+                obj.totalCrosswordCount = $('#totalCrosswordCount').val();
+                obj.index = parseInt(parseInt(page) - 1);
+                $.ajax({
+                    url: '/Wordutopia/refreshUserCrosswordList',
+                    type: "POST",
+                    data: obj,
+                    dataType: 'html',
+                    success: function (data) {
+                        $('#tbody-crosswordlist').html(data);
+
+
+                        $(document).find('.spn-utcdate').each(function () {
+                            try {
+                                var date = $(this).attr('data-utctime');
+                                //var serverDate = moment.utc(date).local().format('MMMM DD.YYYY');
+                                var serverDate = moment.utc(date).local().format('DD/MM/YYYY');
+                                var serverTime = moment.utc(date).local().format('hh:mm A');
+                                //console.log(serverDate);
+                                //console.log(serverTime);
+                                //console.log(moment.utc(date).local().format("YYYY-MM-DD HH:mm:ss"));
+                                $(this).parent().find('.spn-date').text(serverDate);
+                                $(this).parent().find('.spn-time').text(serverTime);
+                            }
+                            catch (ex) {
+                                console.warn("Error converting date time", ex);
+                            }
+                        });
+
+
+                        //var tr = $(document).find('.tr-word-row').first();
+                        //if (tr.length > 0) {
+                        //    var word = $(tr).attr('data-word');
+                        //    var pronounciation = $(tr).attr('data-pronounciation');
+                        //    var phrase = $(tr).attr('data-phrase');
+                        //    var hint = $(tr).attr('data-hint');
+                        //    var definition = $(tr).attr('data-definition');
+                        //    $('#div-databaseword').html(word);
+                        //    $('#div-Pronounced').html(pronounciation);
+                        //    $('#div-Phrase').html(phrase);
+                        //    $('#div-Hint').html(hint);
+                        //    $('#div-Definition').html(definition);
+                        //}
+                        //$('#wordlist-pagination').data("current", page);
+                        var obj1 = new Object();
+                        obj1.userId = $('#userId').val();
+                        obj1.totalCrosswordCount = $('#totalCrosswordCount').val();
+                        obj1.index = parseInt(parseInt(page));
+                        $.ajax({
+                            url: '/Wordutopia/refreshUserCrosswordListPagination',
+                            type: "POST",
+                            data: obj1,
+                            dataType: 'html',
+                            success: function (data) {
+                                $('#nav-pagination').html(data);
+                                $('#div-page-count').html('<p>Page ' + parseInt(page) + ' of @Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalCrossWordCount) / Convert.ToDouble(10))))</p>')
+                            }
+                        });
+                    }
+                });
+            }
+        });
+
+
+
+
+    });
+
+</script>
+
+
+

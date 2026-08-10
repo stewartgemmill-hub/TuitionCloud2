@@ -1,0 +1,115 @@
+﻿@model TutionCloudWeb.Models.PostModel.Note.AddNote
+@{
+    ViewBag.Title = "CreateNote";
+    Layout = "~/Views/Shared/_Layout_Wordutopia_Home.cshtml";
+}
+
+<style>
+    .field-validation-error {
+        color: red;
+    }
+</style>
+
+
+<section>
+    <div class="container">
+
+        <div class="tstsec2" style="padding:25px 0;">
+            <h5 class="text-left" style="border-bottom: 1px solid #dddddd85; padding: 0 0 10px;">Create Note</h5>
+        </div>
+
+        <div class="createNotes-div">
+            <span id="error-invalid-details" style="display:none;color:red;"></span>
+            @using (Ajax.BeginForm("addnote", "Wordutopia", null, new AjaxOptions
+        {
+            HttpMethod = "POST",
+            OnSuccess = "addnoteSuccess",
+            OnFailure = "addnoteFailure",
+        }, new { id = "tutioncloud-addnote" }))
+            {
+                @Html.ValidationSummary(true)
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(z => z.userId, new { Value = Model.userId })
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4">
+                            <label class="text-right">Title</label>
+                        </div>
+                        <div class="col-lg-9 col-md-8">
+                            @*<input type="text" class="form-control">*@
+                            @Html.TextBoxFor(m => m.title, new { autocomplete = "off", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.title)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4">
+                            <label class="text-right">Description</label>
+                        </div>
+                        <div class="col-lg-9 col-md-8">
+                            @*<textarea style="min-height: 100px;" class="form-control"></textarea>*@
+                            @Html.TextAreaFor(m => m.description, new { autocomplete = "off", @class = "form-control", @style = "min-height: 100px;" })
+                            @Html.ValidationMessageFor(model => model.description)
+                         </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4"> </div>
+                        <div class="col-lg-9 col-md-8">
+                            @*<a href="#" class="button_sty">SAVE</a>*@
+                            <button type="submit" style="cursor:pointer;" class="button_sty">SAVE</button>
+                        </div>
+                    </div>
+                </div>
+            }
+    </div>
+                <div class="lowerNav">
+                    <nav class="navbar navbar-expand-sm  justify-content-center">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a href="https://en.wikipedia.org/wiki/Main.page" target="_blank">Wikipedia</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href=" https://www.google.com/search?q=calculator" target="_blank">Calculator</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://www.google.com/maps/" target="_blank">Maps</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://www.google.com/search?ei=DyM3XNbMEdH6kwW-lpLgCA&q=google+currency+converter&oq=google+currency+converter&gs_l=psy-ab.3..35i39j0i7i30l2j0j0i7i30j0j0i7i30j0l3.211.5629..6378...0.0..0.282.1593.0j6j3......0....1..gws-wiz.......0i71j0i30j0i131i67j35i304i39.BbyIqE0P5UY" target="_blank">Currency Converter</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://www.timeanddate.com/worldclock/full.html" target="_blank">World Clocks</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href=" https://translate.google.com/" target="_blank">Translator</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+            </div>
+        </section>
+
+
+<script>
+    function addnoteFailure(data) {
+        toastrError(data.message);
+    }
+
+    function addnoteSuccess(data) {
+        if (data.status) {
+            toastrSuccess("Note added")
+            setTimeout(function () {
+                window.location.href = "/Wordutopia/Notes";
+            }, 400);
+        }
+        else {
+            $('#error-invalid-details').text(data.message);
+            $('#error-invalid-details').show();
+        }
+    }
+
+</script>

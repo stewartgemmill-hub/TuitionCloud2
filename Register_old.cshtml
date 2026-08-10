@@ -54,37 +54,37 @@
                             <h5>USER REGISTER</h5>
                             <span id="error-invalid-details" style="display:none;color:red;"></span>
                             @using (Ajax.BeginForm("register", "User", null, new AjaxOptions
-                            {
-                                HttpMethod = "POST",
-                                OnSuccess = "adduserSuccess",
-                                OnFailure = "adduserFailure",
-                            }, new { id = "tutioncloud-register" }))
+        {
+            HttpMethod = "POST",
+            OnSuccess = "adduserSuccess",
+            OnFailure = "adduserFailure",
+        }, new { id = "tutioncloud-register" }))
                             {
                                 @Html.ValidationSummary(true)
                                 @Html.AntiForgeryToken()
                                 <div class="form-group">
                                     <label for="Name">FORENAME</label>
                                     @*<input type="text" class="form-control" id="N1" name="fname" placeholder="e.g. lorum Ipsum">*@
-                                    @Html.TextBoxFor(m => m.forename, new { autocomplete = "off", @id = "txt_forename", @class = "form-control" })
+                                    @Html.TextBoxFor(m => m.forename, new { autocomplete = "off", @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.forename)
                                 </div>
                                 <div class="form-group">
                                     <label for="Name">SURNAME</label>
                                     @*<input type="text" class="form-control" id="N2" name="sname" placeholder="e.g. lorum Ipsum">*@
-                                    @Html.TextBoxFor(m => m.surname, new { autocomplete = "off", @id = "txt_surname", @class = "form-control" })
+                                    @Html.TextBoxFor(m => m.surname, new { autocomplete = "off", @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.surname)
                                 </div>
                                 <div class="form-group">
                                     <label for="Name">USERNAME</label>
                                     @*<input type="text" class="form-control" id="N3" name="uname" placeholder="e.g. lorum Ipsum">*@
-                                    @Html.TextBoxFor(m => m.username, new { autocomplete = "off", @id = "txt_Username", @class = "form-control" })
+                                    @Html.TextBoxFor(m => m.username, new { autocomplete = "off", @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.username)
                                 </div>
-
+                                
                                 <div class="form-group">
                                     <label for="mail">Email</label>
                                     @*<input type="text" class="form-control" id="N3" name="uname" placeholder="e.g. lorum Ipsum">*@
-                                    @Html.TextBoxFor(m => m.Email, new { autocomplete = "off", @id = "txt_Email", @class = "form-control" })
+                                    @Html.TextBoxFor(m => m.Email, new { autocomplete = "off", @id ="txt_Email", @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.Email)
                                 </div>
 
@@ -95,69 +95,68 @@
 
                                 <div class="form-group" id="div_Verificationcode">
                                     <label for="mail">Verification code</label>
-                                    <input type="number" id="txt_Verificationcode" class="form-control" required="required" />
-
+                                    <input type="number" id="txt_Verificationcode" class="form-control" />
                                 </div>
                                 <div class="code_verify" id="div_Verifycode">
                                     <div class="form-group">
-                                        <input type="button" id="Verifycode" class="Lgbtn" value="Verify Code" />
+                                        <input type="button" id="Verifycode" class="Lgbtn" value="Verify Code" />                                        
                                     </div>
                                     <div class="form-group">
-                                        <input type="button" id="ResendVerifycode" class="Lgbtn" value="Resend code" />
-
+                                        <input type="button" id="ResendVerifycode" class="Lgbtn" value="Resend code" /> 
+                                         
                                     </div>
                                 </div>
-                                <div id="div_panelSecond">
-                                    <div class="form-group">
-                                        <label>PASSWORD *</label>
-                                        @*<input type="password" class="form-control">*@
-                                        @Html.PasswordFor(m => m.password, new { autocomplete = "off", @id = "txt_password", @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.password)
-                                    </div>
-                                    <div class="form-group">
-                                        <label>CONFIRM PASSWORD *</label>
-                                        @*<input type="password" class="form-control">*@
-                                        @Html.PasswordFor(m => m.confirmPassword, new { autocomplete = "off", @id = "txt_Cpassword", @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.confirmPassword)
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="webname">WEB NAME</label>
-                                        @*<select class="form-control location_slct">
-                                                <option>Wordutopia</option>
-                                                <option>Choicer</option>
-                                                <option>Quester</option>
-                                            </select>*@
+    <div id="div_panelSecond">
+        <div class="form-group">
+            <label>PASSWORD *</label>
+            @*<input type="password" class="form-control">*@
+            @Html.PasswordFor(m => m.password, new { autocomplete = "off", @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.password)
+        </div>
+        <div class="form-group">
+            <label>CONFIRM PASSWORD *</label>
+            @*<input type="password" class="form-control">*@
+            @Html.PasswordFor(m => m.confirmPassword, new { autocomplete = "off", @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.confirmPassword)
+        </div>
+        <div class="form-group">
+            <label for="webname">WEB NAME</label>
+            @*<select class="form-control location_slct">
+                    <option>Wordutopia</option>
+                    <option>Choicer</option>
+                    <option>Quester</option>
+                </select>*@
 
-                                        @Html.DropDownListFor(m => m.webname, new List<SelectListItem>
-                                               { new SelectListItem{Text="Wordutopia", Value=TutionCloudWeb.Models.Enum.webname.Wordutopia.ToString()},
-                                                 new SelectListItem{Text="Choicer", Value=TutionCloudWeb.Models.Enum.webname.Choicer.ToString() },
-                                               new SelectListItem{Text="Quester", Value=TutionCloudWeb.Models.Enum.webname.Quester.ToString()}}, new { @id = "mywebname", @class = "form-control location_slct" })
-                                    </div>
-                                    <div class="form-group">
-                                        <label>SECURITY</label>
-                                        <div class="row">
-                                            @*<div class="col-lg-5">
-                                                    <img src="~/Content/img/homeicons/security.jpg" />
-                                                </div>
-                                                <div class="col-lg-7">
-                                                    <input type="text" class="form-control" id="N1" name="name" placeholder="The anser is">
-                                                </div>*@
-                                            <div class="col-lg-7" id="div-captcha">
-                                                @*@Html.MathCaptcha()*@
-                                                @*@Html.MathCaptcha("Try another", "Enter the result you see above:", "", true)*@
-                                                @*@Html.Captcha("Refresh", "Enter Captcha", 4, "ErrorMessage")@*2413*@
+            @Html.DropDownListFor(m => m.webname, new List<SelectListItem>
+                   { new SelectListItem{Text="Wordutopia", Value=TutionCloudWeb.Models.Enum.webname.Wordutopia.ToString()},
+                     new SelectListItem{Text="Choicer", Value=TutionCloudWeb.Models.Enum.webname.Choicer.ToString() },
+                   new SelectListItem{Text="Quester", Value=TutionCloudWeb.Models.Enum.webname.Quester.ToString()}}, new { @class = "form-control location_slct" })
+        </div>
+        <div class="form-group">
+            <label>SECURITY</label>
+            <div class="row">
+                @*<div class="col-lg-5">
+                        <img src="~/Content/img/homeicons/security.jpg" />
+                    </div>
+                    <div class="col-lg-7">
+                        <input type="text" class="form-control" id="N1" name="name" placeholder="The anser is">
+                    </div>*@
+                <div class="col-lg-7" id="div-captcha">
+                    @*@Html.MathCaptcha()*@
+                    @*@Html.MathCaptcha("Try another", "Enter the result you see above:", "", true)*@
+                    @*@Html.Captcha("Refresh", "Enter Captcha", 4, "ErrorMessage")@*2413*@
 
-                                                @* @Html.ValidationMessage("ErrorMessage")*@
-                                                @*<p id="error-p-tag" style="color: red; margin-top: -15px;"></p>*@
-                                                @Html.Partial("~/Views/User/_pv_captcha.cshtml")
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        @*<a href="#" class="Lgbtn">CREATE ACCOUNT</a>*@
-                                        <button type="submit" style="cursor:pointer;" id="btn_Login" class="Lgbtn">CREATE ACCOUNT</button>
-                                    </div>
-                                </div>
+                    @* @Html.ValidationMessage("ErrorMessage")*@
+                    @*<p id="error-p-tag" style="color: red; margin-top: -15px;"></p>*@
+                    @Html.Partial("~/Views/User/_pv_captcha.cshtml")
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            @*<a href="#" class="Lgbtn">CREATE ACCOUNT</a>*@
+            <button type="submit" style="cursor:pointer;" id="btn_Login" class="Lgbtn">CREATE ACCOUNT</button>
+        </div>
+    </div>
                             }
                         </div>
                     </div>
@@ -173,18 +172,17 @@
     $("#div_Verifycode").hide();
     $("#div_Verificationcode").hide();
     //$("#VerifyEmail").hide();
-    //  $("#btn_Login").prop('disabled', true);
+    $("#btn_Login").prop('disabled', true);
+  
 
-
-    $("#VerifyEmail").click(function () {
-
+    $("#VerifyEmail").click(function () {        
         $("#VerifyEmail").prop('disabled', true);
         var datas = $("#txt_Email").val();
         $.ajax({
             url: '/User/VerifyEmail',
             type: "POST",
             dataType: 'JSON',
-            data: { "value": datas },
+            data: {"value":datas},
             success: function (data) {
 
                 if (data.RandomNumber == "0") {
@@ -200,10 +198,10 @@
                     $("#VerifyEmail").prop('disabled', false);
                 }
 
-
+                
             }
         });
-
+        
     });
 
     $("#ResendVerifycode").click(function () {
@@ -222,7 +220,7 @@
                 $("#ResendVerifycode").prop('disabled', false);
             }
         });
-
+        
     });
 
     //$("#txt_Email").focusout(function () {
@@ -230,8 +228,8 @@
     //});
 
     $("#Verifycode").click(function () {
-        var values = $("#txt_Verificationcode").val();
-
+        var values = $("#txt_Verificationcode").val();        
+        
         if (public_Number == values) {
             public_EmailSuccess = true;
             swal("Email verification successful!");
@@ -240,7 +238,7 @@
             $("#div_Verificationcode").hide();
             $("#VerifyEmail").hide();
             $("#btn_Login").prop('disabled', false);
-
+            
         }
         else {
             swal("Mismatch number!");
@@ -251,7 +249,7 @@
 
     function adduserSuccess(data) {
         if (data.status == "Wordutopia") {
-
+            
             window.location.href = '/Wordutopia/home';
         }
         else if (data.status == "Quester") {
@@ -300,36 +298,10 @@
     });
 
 
-    function adduserFailure() {
+    function adduserFailure()
+    {
 
     }
-
-
-    $("#btn_Login").click(function () {
-        var values = $("#txt_Verificationcode").val();
-        var emailvalue = $("#txt_Email").val();
-
-        if (values == "" && emailvalue != "") {
-
-            $('#txt_Email').prop('readonly', true);
-            $('#txt_Username').prop('readonly', true);
-            $('#txt_surname').prop('readonly', true);
-            $('#txt_forename').prop('readonly', true);
-            $('#txt_password').prop('readonly', true);
-            $('#txt_Cpassword').prop('readonly', true);
-            $('#mywebname').prop('disabled', true);
-            $('#CaptchaInputText').prop('readonly', true);
-
-            swal("Enter Email verification code!");
-        }
-
-
-
-
-
-    });
-
-
 
 
 </script>

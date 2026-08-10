@@ -1,0 +1,43 @@
+﻿@model TutionCloudWeb.Models.PostModel.ReviewWords.WordList
+@{
+    //var wordList = new TutionCloudWeb.Models.DataClass.WebService().showAllWords(Model.userId);
+    var wordList = new TutionCloudWeb.Models.DataClass.WebService().showREVIEWEDWords(Model.userId, Model.mainPanelReviewedWordIDs ?? string.Empty);
+}
+
+@if (wordList.Count > 0)
+{
+    foreach (var item in wordList)
+    {
+        <tr class="tr-word-row" style="cursor:pointer;" data-word="@item.WORD" data-pronounciation="@item.PRONOUNCIATION" data-phrase="@item.PHRASE" data-hint="@item.HINT" data-definition="@item.DEFINITION">
+            <td class=""><input class="ckb-word-item" type="checkbox" data-word="@item.WORD" data-wordid="@item.WORDID"></td>
+            <td><input type="text" class="datas123" value="@item.WORD" style="pointer-events:none;"></td>
+        </tr>
+    }
+}
+else
+{
+    <tr>
+        <td class="td-checkbox-review-words"><input type="checkbox"></td>
+        <td><input type="text" class="datas123"></td>
+    </tr>
+    <tr>
+        <td class="td-checkbox-review-words"><input type="checkbox"></td>
+        <td><input type="text" class="datas123"></td>
+    </tr>
+    <tr>
+        <td class="td-checkbox-review-words"><input type="checkbox"></td>
+        <td><input type="text" class="datas123"></td>
+    </tr>
+    <tr>
+        <td class="td-checkbox-review-words"><input type="checkbox"></td>
+        <td><input type="text" class="datas123"></td>
+    </tr>
+    <tr>
+        <td class="td-checkbox-review-words"><input type="checkbox"></td>
+        <td><input type="text" class="datas123"></td>
+    </tr>
+    <tr>
+        <td class="td-checkbox-review-words"><input type="checkbox"></td>
+        <td><input type="text" class="txt-review-words datas123"></td>
+    </tr>
+}

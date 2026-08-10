@@ -1,0 +1,40 @@
+﻿@model TutionCloudWeb.Models.PostModel.Exam.WordList
+@{
+    var wordList = new TutionCloudWeb.Models.DataClass.WebService().getUserExamWordList(Model.userId, Model.index, 10, Model.searchText, Model.sortBy, Model.sortOrder);
+}
+
+@if (wordList.Count > 0)
+{
+    foreach (var item in wordList)
+    {
+        var value = item.WORDID.ToString() + "-Words-1";
+        byte[] byt = System.Text.Encoding.UTF8.GetBytes(value);
+
+        // convert the byte array to a Base64 string
+
+        var strModified = Convert.ToBase64String(byt);
+
+
+        <tr class="tr-word-row" style="cursor:pointer;" data-word="@item.WORD" data-pronounciation="@item.PRONOUNCIATION" data-phrase="@item.PHRASE" data-hint="@item.HINT" data-definition="@item.DEFINITION">
+            <td>
+                @if (Model.wordIds != null && Model.wordIds != string.Empty)
+                {
+                    List<string> result = Model.wordIds.Split(',').ToList();
+                    <input class="ckb-word-item" @(result.Contains(item.WORDID.ToString()) == true ? "checked" : "") data-wordid="@item.WORDID" type="checkbox">
+                }
+                else
+                {
+                    <input class="ckb-word-item"  data-wordid="@item.WORDID" type="checkbox">
+                }
+            </td>
+            <td><strong>@item.WORD</strong></td>
+            <td>@item.OVERALLSCORE %</td>
+        </tr>
+    }
+}
+else
+{
+    <tr>
+        <td colspan="3">No words found</td>
+    </tr>
+}

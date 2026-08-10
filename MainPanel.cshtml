@@ -1,0 +1,432 @@
+﻿@model TutionCloudWeb.Models.PostModel.MainPanel.WordList
+@{
+    ViewBag.Title = "MainPanel";
+    Layout = "~/Views/Shared/_Layout_Wordutopia_Home.cshtml";
+    var totalWordCount = Model.totalWordCount;
+}
+<input type="hidden" id="hfn-index" value="@Model.index" />
+<input type="hidden" id="hfn-prevIndex" value="@Model.prevIndex" />
+@Html.HiddenFor(z => z.totalWordCount, new { Value = Model.totalWordCount })
+<input type="hidden" id="hfn-userId" value="@Model.userId" />
+<section>
+    <div class="container">
+        <div class="row">
+
+            <div class="main_head">
+                <h6>Wordutopia - Mainpanel</h6>
+            </div>
+        </div>
+        <div class="outAccordtn Mainpanel">
+            <div class=" upperAccor  wraper">
+                <div class="float-left">
+                    <div class="innerprv" style="cursor: pointer;">
+                        <a id="a-previous-mainpanel" style="color: #ce1414;"><img src="~/Content/img/leftarrow.png" /><span>Previous</span></a>
+                    </div>
+                </div>
+                <div class="float-right">
+                    <div class="innernxt" style="cursor: pointer;">
+                        <a id="a-next-mainpanel" style="color: #159623;@(Convert.ToInt32(totalWordCount)<=1?"pointer-events: none":"")">Next<span><img src="~/Content/img/rightarrow.png" /></span></a>
+                    </div>
+                </div>
+            </div>
+            <div id="div-mainpanel">
+                @Html.Partial("~/Views/Wordutopia/_pv_Wordutopia_Mainpanel_List.cshtml", Model)
+            </div>
+            @*<div class="newdrpn wraper">
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-primary " data-toggle="dropdown">Task Dropdown List <img src="~/Content/img/arrowright.png" /></button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" style="cursor:pointer;" onclick="history.back()">Back</a>
+                            <a class="dropdown-item" href="/Wordutopia/CreateWord">Add New Word</a>
+                            <a class="dropdown-item" href="/Wordutopia/CreateNote">Add New Note</a>
+                            <a class="dropdown-item ddl-add-word-fav" href="#">Add To Favourite </a>
+                            <a class="dropdown-item" id="ddl-skiplist" href="#">Add To Skipped List</a>
+                            <a class="dropdown-item" id="ddl-editword" href="#">Edit Word </a>
+                            <a class="dropdown-item" href="#">Find Synonym</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="accordion" class="accordion">
+                    @Html.Partial("~/Views/Wordutopia/_pv_Wordutopia_Mainpanel_List.cshtml", Model)
+                </div>*@
+        </div>
+        <div class="lowerNav">
+            <nav class="navbar navbar-expand-sm  justify-content-center">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="https://en.wikipedia.org/wiki/Main.page" target="_blank">Wikipedia</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.google.com/search?q=calculator" target="_blank">Calculator</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.google.com/maps/" target="_blank">Maps</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.google.com/search?ei=DyM3XNbMEdH6kwW-lpLgCA&q=google+currency+converter&oq=google+currency+converter&gs_l=psy-ab.3..35i39j0i7i30l2j0j0i7i30j0j0i7i30j0l3.211.5629..6378...0.0..0.282.1593.0j6j3......0....1..gws-wiz.......0i71j0i30j0i131i67j35i304i39.BbyIqE0P5UY" target="_blank">Currency Converter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.timeanddate.com/worldclock/full.html" target="_blank">World Clocks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://translate.google.com/" target="_blank">Translator</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<script>
+
+    $(document).on('click', '#a-previous-mainpanel', function () {
+        var source = $(this);
+        var userId = $('#hfn-userId').val();
+        var index = $('#hfn-index').val();
+        var prevIndex = $('#hfn-prevIndex').val(); //13-02-2019
+        var obj = new Object();
+        obj.userId = userId;
+
+        if (previousWordIndex.length > 0) {
+            obj.index = parseInt(previousWordIndex.pop());
+            obj.prevIndex = parseInt(prevIndex); //18-02-2019
+            obj.isNewRandom = false;
+        }
+        else {
+            obj.index = parseInt(parseInt(index) - parseInt(1));
+            obj.prevIndex = parseInt(index); //13-02-2019
+            obj.isNewRandom = true;
+        }
+        obj.totalWordCount = $('#totalWordCount').val();
+        $.ajax({
+            url: '/Wordutopia/refreshUserMainPanelList',
+            type: "POST",
+            data: obj,
+            dataType: 'HTML',
+            success: function (data) {
+                //previousWordIndex.splice(-1, 1);
+                $('#hfn-index').val(obj.index);
+                $('#hfn-prevIndex').val(obj.prevIndex); //13-02-2019
+                //$('#accordion').html(data);
+                $('#div-mainpanel').html(data);
+                $('#hfn-index').val($('#hfn-toupdate-index').val()); //13-02-2019
+
+
+                var wordId = $('#hfn-wordid').val();
+                //$('#ddl-add-word-fav').attr("href", "/Wordutopia/EditWord/" + wordId);
+                //var result = btoa(wordId + '-' + 'MainPanel' + '-' + $('#hfn-index').val())
+                //$('#ddl-editword').attr("href", "/Wordutopia/EditWord/" + result);
+                //$('#').attr("href", "http://www.google.com/");
+
+                //13-02-2019
+                //if (parseInt(obj.index) <= parseInt(1)) {
+                //    $('#a-previous-mainpanel').css('pointer-events', 'none');
+                //}
+                //else {
+                //    $('#a-previous-mainpanel').css('pointer-events', 'auto');
+                //    $('#a-next-mainpanel').css('pointer-events', 'auto');
+                //}
+                if (previousWordIndex.length <= 0) {
+                    $('#a-previous-mainpanel').css('pointer-events', 'none');//13-02-2019
+                }
+                console.log(previousWordIndex);
+
+            }
+        });
+    });
+
+    $(document).on('click', '#a-next-mainpanel', function () {
+        var source = $(this);
+        var userId = $('#hfn-userId').val();
+        var index = $('#hfn-index').val();
+        var prevIndex = $('#hfn-prevIndex').val(); //13-02-2019
+        var randumNumberAdd = $("#randumNumberAdd").val();
+        previousWordIndex.push(index);
+
+        var obj = new Object();
+        obj.userId = userId;
+        obj.index = parseInt(parseInt(index) + parseInt(1));
+        obj.prevIndex = parseInt(index); //13-02-2019
+        obj.isNewRandom = true;
+        if (randumNumberAdd != "") {
+            obj.randumNumberAdd = randumNumberAdd;
+        }
+         
+        obj.totalWordCount = $('#totalWordCount').val();
+        $.ajax({
+            url: '/Wordutopia/refreshUserMainPanelList',
+            type: "POST",
+            data: obj,
+            dataType: 'HTML',
+            success: function (data) {
+                $('#hfn-index').val(obj.index);
+                $('#hfn-prevIndex').val(obj.prevIndex);//13-02-2019
+                $('#div-mainpanel').html(data);
+                $('#hfn-index').val($('#hfn-toupdate-index').val());//13-02-2019
+                //$('#accordion').html(data);
+                var wordId = $('#hfn-wordid').val();
+                
+
+                if (previousWordIndex.length > 0) {
+                    $('#a-previous-mainpanel').css('pointer-events', 'auto');//13-02-2019
+                }
+                console.log(previousWordIndex);
+
+            }
+        });
+    });
+
+
+    $(document).ready(function () {
+        var wordId = $('#hfn-wordid').val();
+        var index = $('#hfn-index').val();
+        $('#hfn-index').val($('#hfn-toupdate-index').val());
+        if (parseInt(index) <= 1) {
+            //$('#a-previous-mainpanel').css('pointer-events', 'none');//13-02-2019
+        }
+        $('#a-previous-mainpanel').css('pointer-events', 'none');//13-02-2019
+
+        if (previousWordIndex.length > 0) {
+            $('#a-previous-mainpanel').css('pointer-events', 'auto');//13-02-2019
+        }
+
+        //$('#ddl-editword').attr("href", "/Wordutopia/EditWord/" + wordId);
+        //var result = btoa(wordId + '-' + 'MainPanel' + '-' + index)
+        //$('#ddl-editword').attr("href", "/Wordutopia/EditWord/" + result);
+    });
+
+    var previousWordIndex = [];
+
+    $(document).on('click', '.a-add-word-SkippedList', function () {
+        var source = $(this);
+        var wordId = $(source).attr('data-wordid');
+        var userId = $('#hfn-userId').val();
+        var objs = new Object();
+        objs.userId = userId;
+        objs.wordIds = wordId;
+        $.ajax({
+            url: '/Wordutopia/addskippedword',
+            type: "POST",
+            data: objs,
+            dataType: 'JSON',
+            success: function (data) {
+                if (data.status) {
+                    toastrSuccess("Word added to skip list");
+                    var index = $('#hfn-index').val();
+                    var obj = new Object();
+                    obj.userId = userId;
+                    obj.index = parseInt(parseInt(index));
+                    var prevIndex = $('#hfn-prevIndex').val();//13-02-2019
+                    obj.prevIndex = parseInt(parseInt(prevIndex));//13-02-2019
+                    obj.totalWordCount = $('#totalWordCount').val();
+                    $.ajax({
+                        url: '/Wordutopia/refreshUserMainPanelList',
+                        type: "POST",
+                        data: obj,
+                        dataType: 'HTML',
+                        success: function (data) {
+                            $('#hfn-index').val(obj.index);
+                            //$('#accordion').html(data);
+                            $('#hfn-prevIndex').val(obj.prevIndex);//13-02-2019
+                            $('#div-mainpanel').html(data);
+                            $('#hfn-index').val($('#hfn-toupdate-index').val());//13-02-2019
+                            var wordId = $('#hfn-wordid').val();
+                            //$('#ddl-add-word-fav').attr("href", "/Wordutopia/EditWord/" + wordId);
+                            //var result = btoa(wordId + '-' + 'MainPanel' + '-' + $('#hfn-index').val())
+                            //$('#ddl-editword').attr("href", "/Wordutopia/EditWord/" + result);
+                            //$('#').attr("href", "http://www.google.com/");
+
+                            //13-02-2019
+                            //if (parseInt(obj.index) <= parseInt(1)) {
+                            //    $('#a-previous-mainpanel').css('pointer-events', 'none');
+                            //}
+                            //else {
+                            //    $('#a-previous-mainpanel').css('pointer-events', 'auto');
+                            //    $('#a-next-mainpanel').css('pointer-events', 'auto');
+                            //}
+
+
+                        }
+                    });
+                }
+                else {
+                    toastrError(data.message);
+                }
+            }
+        });
+    });
+
+    $(document).on('click', '.a-add-word-fav', function () {
+        var source = $(this);
+        var wordId = $(source).attr('data-wordid');
+        var userId = $('#hfn-userId').val();
+        var objs = new Object();
+        objs.userId = userId;
+        objs.wordIds = wordId;
+        $.ajax({
+            url: '/Wordutopia/addfavouriteword',
+            type: "POST",
+            data: objs,
+            dataType: 'JSON',
+            success: function (data) {
+                if (data.status) {
+                    toastrSuccess("Word added to favourites");
+                    var index = $('#hfn-index').val();
+                    var obj = new Object();
+                    obj.userId = userId;
+                    obj.index = parseInt(parseInt(index));
+                    var prevIndex = $('#hfn-prevIndex').val();//13-02-2019
+                    obj.prevIndex = parseInt(parseInt(prevIndex));//13-02-2019
+                    obj.totalWordCount = $('#totalWordCount').val();
+                    $.ajax({
+                        url: '/Wordutopia/refreshUserMainPanelList',
+                        type: "POST",
+                        data: obj,
+                        dataType: 'HTML',
+                        success: function (data) {
+                            $('#hfn-index').val(obj.index);
+                            //$('#accordion').html(data);
+                            $('#hfn-prevIndex').val(obj.prevIndex);//13-02-2019
+                            $('#div-mainpanel').html(data);
+                            $('#hfn-index').val($('#hfn-toupdate-index').val());//13-02-2019
+                            var wordId = $('#hfn-wordid').val();
+                            //$('#ddl-add-word-fav').attr("href", "/Wordutopia/EditWord/" + wordId);
+                            //var result = btoa(wordId + '-' + 'MainPanel' + '-' + $('#hfn-index').val())
+                            //$('#ddl-editword').attr("href", "/Wordutopia/EditWord/" + result);
+                            //$('#').attr("href", "http://www.google.com/");
+
+                            //13-02-2019
+                            //if (parseInt(obj.index) <= parseInt(1)) {
+                            //    $('#a-previous-mainpanel').css('pointer-events', 'none');
+                            //}
+                            //else {
+                            //    $('#a-previous-mainpanel').css('pointer-events', 'auto');
+                            //    $('#a-next-mainpanel').css('pointer-events', 'auto');
+                            //}
+
+
+                        }
+                    });
+                }
+                else {
+                    toastrError(data.message);
+                }
+            }
+        });
+    });
+
+    $(document).on('click', '.a-remove-word-fav', function () {
+        var source = $(this);
+        var wordId = $(source).attr('data-wordid');
+        var userId = $('#hfn-userId').val();
+        //var objs = new Object();
+        //objs.userId = userId;
+        //objs.wordIds = wordId;
+        $.ajax({
+            url: '/Wordutopia/deletWordFromFavourites?wordId=' + wordId,
+            type: "GET",
+            dataType: 'JSON',
+            success: function (data) {
+                if (data.status) {
+                    toastrSuccess("Word removed from favourites");
+                    var index = $('#hfn-index').val();
+                    var obj = new Object();
+                    obj.userId = userId;
+                    obj.index = parseInt(parseInt(index));
+                    var prevIndex = $('#hfn-prevIndex').val();//13-02-2019
+                    obj.prevIndex = parseInt(parseInt(prevIndex));//13-02-2019
+                    obj.totalWordCount = $('#totalWordCount').val();
+                    $.ajax({
+                        url: '/Wordutopia/refreshUserMainPanelList',
+                        type: "POST",
+                        data: obj,
+                        dataType: 'HTML',
+                        success: function (data) {
+                            $('#hfn-index').val(obj.index);
+                            //$('#accordion').html(data);
+                            $('#hfn-prevIndex').val(obj.prevIndex);//13-02-2019
+                            $('#div-mainpanel').html(data);
+                            $('#hfn-index').val($('#hfn-toupdate-index').val());//13-02-2019
+                            var wordId = $('#hfn-wordid').val();
+                            //$('#ddl-add-word-fav').attr("href", "/Wordutopia/EditWord/" + wordId);
+                            //var result = btoa(wordId + '-' + 'MainPanel' + '-' + $('#hfn-index').val())
+                            //$('#ddl-editword').attr("href", "/Wordutopia/EditWord/" + result);
+                            //$('#').attr("href", "http://www.google.com/");
+
+                            //13-02-2019
+                            //if (parseInt(obj.index) <= parseInt(1)) {
+                            //    $('#a-previous-mainpanel').css('pointer-events', 'none');
+                            //}
+                            //else {
+                            //    $('#a-previous-mainpanel').css('pointer-events', 'auto');
+                            //    $('#a-next-mainpanel').css('pointer-events', 'auto');
+                            //}
+
+                        }
+                    });
+                }
+                else {
+                    toastrError(data.message);
+                }
+            }
+        });
+    });
+
+    $(document).on('click', '.a-remove-word-SkippedList', function () {
+        var source = $(this);
+        var wordId = $(source).attr('data-wordid');
+        var userId = $('#hfn-userId').val();
+        //var objs = new Object();
+        //objs.userId = userId;
+        //objs.wordIds = wordId;
+        $.ajax({
+            url: '/Wordutopia/deletWordFromSkipList?wordId=' + wordId,
+            type: "GET",
+            dataType: 'JSON',
+            success: function (data) {
+                if (data.status) {
+                    toastrSuccess("Word removed from Skip List");
+                    var index = $('#hfn-index').val();
+                    var obj = new Object();
+                    obj.userId = userId;
+                    obj.index = parseInt(parseInt(index));
+                    var prevIndex = $('#hfn-prevIndex').val();//13-02-2019
+                    obj.prevIndex = parseInt(parseInt(prevIndex));//13-02-2019
+                    obj.totalWordCount = $('#totalWordCount').val();
+                    $.ajax({
+                        url: '/Wordutopia/refreshUserMainPanelList',
+                        type: "POST",
+                        data: obj,
+                        dataType: 'HTML',
+                        success: function (data) {
+                            $('#hfn-index').val(obj.index);
+                            //$('#accordion').html(data);
+                            $('#hfn-prevIndex').val(obj.prevIndex);//13-02-2019
+                            $('#div-mainpanel').html(data);
+                            $('#hfn-index').val($('#hfn-toupdate-index').val());//13-02-2019
+                            var wordId = $('#hfn-wordid').val();
+                            //$('#ddl-add-word-fav').attr("href", "/Wordutopia/EditWord/" + wordId);
+                            //var result = btoa(wordId + '-' + 'MainPanel' + '-' + $('#hfn-index').val())
+                            //$('#ddl-editword').attr("href", "/Wordutopia/EditWord/" + result);
+                            //$('#').attr("href", "http://www.google.com/");
+
+                            //13-02-2019
+                            //if (parseInt(obj.index) <= parseInt(1)) {
+                            //    $('#a-previous-mainpanel').css('pointer-events', 'none');
+                            //}
+                            //else {
+                            //    $('#a-previous-mainpanel').css('pointer-events', 'auto');
+                            //    $('#a-next-mainpanel').css('pointer-events', 'auto');
+                            //}
+
+                        }
+                    });
+                }
+                else {
+                    toastrError(data.message);
+                }
+            }
+        });
+    });
+
+</script>

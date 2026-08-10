@@ -1,4 +1,4 @@
-﻿@model TutionCloudWeb.Models.PostModel.Word.WordListPagination
+﻿@model TutionCloudWeb.Models.PostModel.SkipList.WordListPagination
 @{
     var totalWordCount = Model.totalWordCount;
 }
@@ -29,17 +29,11 @@
                 obj.userId = $('#userId').val();
                 obj.totalWordCount = $('#totalWordCount').val();
                 obj.index = parseInt(parseInt(page) - 1);
+                obj.searchText = $('#ipt-word-search').val();
                 obj.sortBy = $('#hfn-sortby').val();
                 obj.sortOrder = $('#hfn-sortorder').val();
-                if (wordList.length == 0) {
-                    obj.wordIds = "";
-                }
-                else {
-                    obj.wordIds = wordList.join(',');
-                }
-                console.log(obj);
                 $.ajax({
-                    url: '/Wordutopia/refreshUserWordList',
+                    url: '/Wordutopia/refreshUserSkipListWordList',
                     type: "POST",
                     data: obj,
                     dataType: 'html',
@@ -63,10 +57,11 @@
                         obj1.userId = $('#userId').val();
                         obj1.totalWordCount = $('#totalWordCount').val();
                         obj1.index = parseInt(parseInt(page));
+                        obj1.searchText = $('#ipt-word-search').val();
                         obj1.sortBy = $('#hfn-sortby').val();
                         obj1.sortOrder = $('#hfn-sortorder').val();
                         $.ajax({
-                            url: '/Wordutopia/refreshUserWordListPagination',
+                            url: '/Wordutopia/refreshUserSkipListWordListPagination',
                             type: "POST",
                             data: obj1,
                             dataType: 'html',
@@ -86,4 +81,6 @@
     });
 
 </script>
+
+
 

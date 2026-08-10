@@ -1,0 +1,251 @@
+﻿@model TutionCloudWeb.Models.PostModel.Word.AddWord
+@{
+    ViewBag.Title = "CreateWord";
+    Layout = "~/Views/Shared/_Layout_Wordutopia_Home.cshtml";
+}
+
+<style>
+    .field-validation-error {
+        color: red;
+    }
+</style>
+
+<section>
+    <div class="container">
+
+        <div class="tstsec2" style="padding:25px 0;">
+            <h5 class=" text-left" style="border-bottom: 1px solid #dddddd85; padding: 0 0 10px;">Wordutopia- Create Word</h5>
+        </div>
+
+        <div class="createNotes-div">
+            <span id="error-invalid-details" style="display:none;color:red;"></span>
+            @using (Ajax.BeginForm("addword", "Wordutopia", null, new AjaxOptions
+        {
+            HttpMethod = "POST",
+            OnSuccess = "addwordSuccess",
+            OnFailure = "addwordFailure",
+        }, new { id = "tutioncloud-addword" }))
+            {
+                @Html.ValidationSummary(true)
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(z => z.userId, new { Value = Model.userId })
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4">
+                            <label class="text-left">Word</label>
+                        </div>
+                        <div class="col-lg-9 col-md-8">
+                            @*<input type="text" class="form-control">*@
+                            @Html.TextBoxFor(m => m.word, new { id = "word", autocomplete = "off", @class = "form-control", onfocusout = "Checkshare()" })
+                            @Html.ValidationMessageFor(model => model.word)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4">
+                            <label class="text-left">Pronounciation</label>
+                        </div>
+                        <div class="col-lg-9 col-md-8">
+                            @*<input type="text" class="form-control">*@
+                            @Html.TextBoxFor(m => m.pronounciation, new { autocomplete = "off", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.pronounciation)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4">
+                            <label class="text-left">Phrase</label>
+                        </div>
+                        <div class="col-lg-9 col-md-8">
+                            @*<input type="text" class="form-control">*@
+                            @Html.TextBoxFor(m => m.phrase, new { autocomplete = "off", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.phrase)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4">
+                            <label class="text-left">Hint</label>
+                        </div>
+                        <div class="col-lg-9 col-md-8">
+                            @*<input type="text" class="form-control">*@
+                            @Html.TextBoxFor(m => m.hint, new { autocomplete = "off", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.hint)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4">
+                            <label class="text-left">Definition</label>
+                        </div>
+                        <div class="col-lg-9 col-md-8">
+                            @*<textarea style="min-height: 100px;" class="form-control"></textarea>*@
+                            @Html.TextAreaFor(m => m.definition, new { autocomplete = "off", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.definition)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4"> </div>
+                        <div class="col-lg-9 col-md-8">
+                            @*<input type="checkbox"> Share Online*@
+                            @Html.CheckBoxFor(z => z.sharOnline, new { id = "chkOnlineshare" })  Share Online
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4"> </div>
+                        <div class="col-lg-9 col-md-8">
+                            <button type="submit" style="cursor:pointer;" class="button_sty" id="btnsave">SAVE</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="lowerNav">
+            <nav class="navbar navbar-expand-sm  justify-content-center">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="https://en.wikipedia.org/wiki/Main.page" target="_blank">Wikipedia</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.google.com/search?q=calculator" target="_blank">Calculator</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.google.com/maps/" target="_blank">Maps</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.google.com/search?ei=DyM3XNbMEdH6kwW-lpLgCA&q=google+currency+converter&oq=google+currency+converter&gs_l=psy-ab.3..35i39j0i7i30l2j0j0i7i30j0j0i7i30j0l3.211.5629..6378...0.0..0.282.1593.0j6j3......0....1..gws-wiz.......0i71j0i30j0i131i67j35i304i39.BbyIqE0P5UY" target="_blank">Currency Converter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.timeanddate.com/worldclock/full.html" target="_blank">World Clocks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://translate.google.com/" target="_blank">Translator</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+</section>
+
+<script>
+    function addwordFailure(data) {
+        toastrError(data.message);
+    }
+
+    function addwordSuccess(data) {
+        if (data.status) {
+            toastrSuccess("Word added")
+            setTimeout(function () {
+                window.location.href = "/Wordutopia/Words";
+            }, 400);
+        }
+        else {
+            $('#error-invalid-details').text(data.message);
+            $('#error-invalid-details').show();
+        }
+    }
+
+</script>
+
+@* Basheer on 02/01/2019 to check if its already shared or not *@
+<script>
+    function Checkshare() {
+        var word = $("#word").val();
+        
+        if (word !== "")
+        {
+            if ($("#chkOnlineshare").prop('checked') == true) {
+
+                $.ajax({
+                    url: '/Wordutopia/Sharecheck?word=' + word,
+                    type: "GET",
+                    dataType: 'JSON',
+                    success: function (data) {
+                        //alert("Check Work" + data);
+                        if (data > 0) {
+                            //toastrError("Sorry, that word already exists in the Online Community Database Of Words.");
+                            swal({
+                                type: "error",
+                                title: "Sorry!",
+                                text: "This word has already been added to your Database.",
+                                showCloseButton: true,
+                                // icon: "error",
+                                //showCancelButton: true,
+                                //showConfirmButton: false,
+                                confirmButtonText: 'Cancel',
+
+                                //  confirmButtonColor: "#ff1a1a",
+
+                            },
+                            function (isConfirm) {
+                                window.location.href = "/Wordutopia/Words";
+                            })
+                           
+                            
+                            $("#btnsave").prop('disabled', true);
+
+                        }
+                        else {
+                            $("#btnsave").prop('disabled', false);
+                        }
+                    }
+                });
+            }
+           
+        }
+    }
+
+    $("#chkOnlineshare").change(function () {
+        if(this.checked) {
+            var word = $("#word").val();
+
+            if (word !== "") {
+                $.ajax({
+                    url: '/Wordutopia/Sharecheck?word=' + word,
+                    type: "GET",
+                    dataType: 'JSON',
+                    success: function (data) {
+                        //alert("Check Work" + data);
+                        if (data > 0) {
+                            // toastrError("Sorry, that word already exists in the Online Community Database Of Words.");
+                            swal({
+                                type: "error",
+                                title: "Sorry!",
+                                text: "This word has already been added to your Database.",
+                                showCloseButton: true,
+                                // icon: "error",
+                                //showCancelButton: true,
+                                //showConfirmButton: false,
+                                confirmButtonText: 'Cancel',
+
+                                //  confirmButtonColor: "#ff1a1a",
+
+                            },
+                            function (isConfirm) {
+                                window.location.href = "/Wordutopia/Words";
+                            })
+                            $("#btnsave").prop('disabled', true);
+
+                        }
+                        else {
+                            $("#btnsave").prop('disabled', false);
+                        }
+                    }
+                });
+
+            }
+        }
+        else {
+            $("#btnsave").prop('disabled', false);
+        }
+    });
+</script>

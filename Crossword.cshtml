@@ -1,0 +1,924 @@
+﻿@model TutionCloudWeb.Models.PostModel.Crossword.ListWordList
+@{
+    ViewBag.Title = "Crossword";
+    Layout = "~/Views/Shared/_Layout_Wordutopia_Home.cshtml";
+    var list = Model.list.ToList();
+    var wordIdlist = Model.wordDetailsList.Select(z => z.WORDID).ToList();
+    var wordIdlistString = String.Join(", ", wordIdlist.ToArray());
+    int count = Model.maxCount;
+    //int count = 15;
+    byte[] byt2 = System.Text.Encoding.UTF8.GetBytes(wordIdlistString);
+    var strModified2 = Convert.ToBase64String(byt2);
+}
+<style>
+    .BorderClass {
+        /*border-style: solid !important;
+        border-width: 1px 1px 1px 1px !important;
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 25px !important;
+        text-align: center !important;*/
+    }
+
+    .BlackSpace {
+        /*background-color: #00000042;*/
+    }
+
+    .FirstLetter {
+        /*background-color: #ef23064a;*/
+    }
+
+    #wrapper {
+        /*border: 1px solid black;
+        max-width: 310px;
+        height: auto;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;*/
+    }
+
+    .empty .ip {
+        /*text-align: center;*/
+    }
+
+    .Puzzle table {
+        /*margin: auto;
+        display: table;
+        float: none;
+        width: 100%;
+        margin-bottom: 20px;*/
+    }
+
+    .Puzzle tbody {
+        /*display: table;
+        max-height: 349px;
+        overflow-y: scroll;
+        margin: auto;*/
+    }
+
+    .BorderClass {
+        /*border-color: #656565;
+        border-style: solid !important;
+        border-width: 1px 1px 1px 1px !important;*/
+        /*border: 1px solid #656565;
+        width: 45px !important;
+        height: 45px !important;
+        font-size: 18px !important;
+        text-align: center !important;
+        font-weight: bold;
+        display: inline-block;
+        padding: 0 !important;*/
+    }
+
+    .BlackSpace {
+        /*background: rgba(0,0,0,1);*/
+    }
+
+    .input-text {
+        /*width: 43px;
+        height: 43px;
+        border: none;
+        text-align: center;
+        font-weight: bold;
+        text-transform: uppercase;*/
+    }
+</style>
+
+<input type="hidden" id="hfn-crossword-complete-status" value="@(Convert.ToString(Model.completeStatus))" />
+<input type="hidden" id="hfn-crossword-isnew" value="@(Convert.ToString(Model.isNew))" />
+<input type="hidden" id="hfn-crossword-wordidlist-string" value="@strModified2" />
+<input type="hidden" id="hfn-crossword-id" value="@(Model.crosswordId)" />
+<input type="hidden" id="hfn-userId" value="@Model.userId" />
+
+<section class="favSecn">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-sm-12">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="favsection">
+                            <h6>Wordutopia - Crossword Puzzle</h6>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div id="wrapper">
+                      @for (int i = 1; i < count + 1; i++)
+                      {
+                          var listString = list.Where(x => x.xAxis == i).ToList();
+                          for (int j = 1; j < count + 1; j++)
+                          {
+                              var yData = listString.Where(x => x.yAxis == j).FirstOrDefault();
+                              if (yData != null)
+                              {
+                                  var data = listString.Where(x => x.yAxis == j && x.first == true).FirstOrDefault();
+                                  if (data != null)
+                                  {
+                                      var classname = "td-" + data.wordId;
+                                      <div class="empty ">
+                                          <input type="text" value="@yData.letter.ToUpper()" class="ip" maxlength="1">
+                                      </div>
+
+                                      @*<input type="text" data-value="@yData.letter.ToUpper()"  maxlength="1" />*@
+                                  }
+                                  else
+                                  {
+                                      var classname = "td-" + yData.wordId;
+                                      <div class="empty ">
+                                          <input type="text" value="@yData.letter.ToUpper()" class="ip" maxlength="1">
+                                      </div>
+                                      @*@yData.letter.ToUpper()
+                                      <input type="text" data-value="@yData.letter.ToUpper()" maxlength="1"/>*@
+                                  }
+
+                              }
+                              else
+                              {
+                                  <div class="filled"></div>
+                              }
+                          }
+                      }
+                  </div>-->
+
+                <div class="Puzzle">
+                    @if (Convert.ToBoolean(Model.isNew))
+                    {
+                        <table>
+                            <tbody>
+                                @for (int i = 1; i < count + 1; i++)
+                                {
+                                    var listString = list.Where(x => x.xAxis == i).ToList();
+                                    <tr>
+                                        @for (int j = 1; j < count + 1; j++)
+                                        {
+                                            var elementcoordinate = "element" + i.ToString() + j.ToString();
+                                            var yDa1ta = listString.Where(x => x.yAxis == j).ToList();
+                                            var yData = listString.Where(x => x.yAxis == j).FirstOrDefault();
+                                            if (yData != null)
+                                            {
+                                                var dat1a = listString.Where(x => x.yAxis == j && x.first == true).ToList();
+                                                var data = listString.Where(x => x.yAxis == j && x.first == true).FirstOrDefault();
+                                                if (data != null)
+                                                {
+                                                    var classname = "";
+                                                    string isvertical = "";
+                                                    foreach (var itemz in dat1a)
+                                                    {
+                                                        classname = classname + "td-" + itemz.wordId + " ";
+                                                        if (isvertical == "")
+                                                        {
+                                                            isvertical = isvertical + itemz.wordId + "-" + itemz.isVertical.ToString();
+                                                        }
+                                                        else
+                                                        {
+                                                            isvertical = isvertical + "," + itemz.wordId + "-" + itemz.isVertical.ToString();
+                                                        }
+                                                    }
+                                            @*<td class="BorderClass FirstLetter @classname" data-isvertical="@data.isVertical" data-xaxis="@data.xAxis" data-yaxis="@data.yAxis">
+                                            *@
+                                            <td class="BorderClass FirstLetter @classname" data-isvertical="@isvertical" data-xaxis="@data.xAxis" data-yaxis="@data.yAxis">
+                                                @*<div class="empty ">
+                                                        <input type="text" value="@yData.letter.ToUpper()" class="ip" maxlength="1">
+                                                    </div>*@
+                                                @*@yData.letter.ToUpper()*@
+                                                @{
+                                                    byte[] byt1 = System.Text.Encoding.UTF8.GetBytes(data.letter.ToUpper());
+                                                    var strModified1 = Convert.ToBase64String(byt1);
+                                                }
+                                                <input type="text" id="testingid" data-usersetvalue="" value="" data-val="@strModified1" class="input-text @elementcoordinate checkblock" maxlength="1" data-xaxis="@data.xAxis" data-yaxis="@data.yAxis" />
+                                            </td>
+                                                }
+                                                else
+                                                {
+                                                    var classname = "td-" + yData.wordId;
+                                            <td class="BorderClass" data-first="false" data-xaxis="@yData.xAxis" data-yaxis="@yData.yAxis">
+                                                @*<div class="empty ">
+                                                        <input type="text" value="@yData.letter.ToUpper()" class="ip" maxlength="1">
+                                                    </div>*@
+                                                @*@yData.letter.ToUpper()*@
+                                                @{
+                                                    byte[] byt1 = System.Text.Encoding.UTF8.GetBytes(yData.letter.ToUpper());
+                                                    var strModified1 = Convert.ToBase64String(byt1);
+                                                }
+                                                <input type="text" id="testingid" data-usersetvalue="" value="" data-val="@strModified1" class="input-text @elementcoordinate checkblock" maxlength="1" data-xaxis="@yData.xAxis" data-yaxis="@yData.yAxis" />
+                                            </td>
+                                                }
+
+                                            }
+                                            else
+                                            {
+                                            <td class="BorderClass BlackSpace">
+                                                @*<div class="filled"></div>*@
+                                            </td>
+                                            }
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    }
+                    else
+                    {
+                        @*byte[] data = Convert.FromBase64String(Model.html);
+                            string decodedString = System.Text.Encoding.UTF8.GetString(data);
+                            @Html.Raw(HttpUtility.HtmlDecode(decodedString));*@
+                        @Html.Raw(HttpUtility.HtmlDecode(Model.html));
+                    }
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                @{
+                    var count1 = 1;
+                    var totalCount = Model.wordDetailsList.Count;
+                }
+                @*@foreach (var item in Model.wordDetailsList)*@
+                @for (int i = 0; i < Model.wordDetailsList.Count; i++)
+                {
+                    var item = Model.wordDetailsList[i];
+                    long nextElementId = 0;
+                    long prevElementId = 0;
+                    try
+                    {
+                        var nextElement = Model.wordDetailsList[i + 1];
+                        nextElementId = nextElement.WORDID;
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+
+                    try
+                    {
+                        var prevElement = Model.wordDetailsList[i - 1];
+                        prevElementId = prevElement.WORDID;
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+
+                    var classname = "iterate-div" + count1;
+                    <div class="@classname word-main-div" data-word="@item.WORD" data-wordid="@item.WORDID" style="@(count1 != 1 ? "display:none" : "")">
+
+                        <div class="Btns-blks">
+                            <div class="float-left">
+                                <div class="innerprv">
+                                    <img src="~/Content/img/leftarrow.png" /><span>
+                                        @if (count1 == 1)
+                                        {
+                                            <a class="crossword-prev" data-wordid="@item.WORDID" style="pointer-events: none; cursor: pointer; color: #ce1414;">Previous</a>
+                                        }
+                                        else
+                                        {
+                                            var redirect = "iterate-div" + (count1 - 1);
+                                            <a class="crossword-prev" data-redirect="@redirect" data-wordid="@prevElementId" data-current="@classname" style="cursor: pointer; color: #ce1414;">Previous</a>
+                                        }
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="float-right">
+                                <div class="innernxt">
+                                    @if (count1 == totalCount)
+                                    {
+                                        <a class="crossword-next" data-wordid="@item.WORDID" style="cursor: pointer; pointer-events: none; color: #159623;">Next</a><span><img src="~/Content/img/rightarrow.png" /></span>
+                                    }
+                                    else
+                                    {
+                                        var redirect = "iterate-div" + (count1 + 1);
+                                        <a class="crossword-next" data-wordid="@nextElementId" data-redirect="@redirect" data-current="@classname" style="cursor: pointer; color: #159623;">Next</a><span><img src="~/Content/img/rightarrow.png" /></span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        @{
+                    var Synonym = "https://www.thesaurus.com/browse/" + item.WORD + "?s=t";
+                        }
+                        <div class="newdrpn">
+                            <div class="dropdown">
+                                <button type="button" class="btn btn-primary " data-toggle="dropdown">Task Dropdown List <img src="~/Content/img/rightarrow.png" /></button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" style="cursor:pointer;" onclick="history.back()">Back</a>
+
+                                    @{
+                    var classname1 = "a-favourite" + item.WORDID;
+                    var classname2 = "a-skiplist" + item.WORDID;
+                                    }
+                                    @if (item.ISFAVOURITE)
+                                    {
+                                        <a class="dropdown-item a-remove-word-fav @classname1" data-wordid="@item.WORDID" style="cursor:pointer;">Remove From Favourite</a>
+                                    }
+                                    else
+                                    {
+                                        <a class="dropdown-item a-add-word-fav @classname1" data-wordid="@item.WORDID" style="cursor:pointer;">Add To Favourite</a>
+                                    }
+
+                                    @if (item.ISSKIPPED)
+                                    {
+                                        <a class="dropdown-item a-remove-word-SkippedList @classname2" data-wordid="@item.WORDID" style="cursor:pointer;">Remove From Skipped List</a>
+                                    }
+                                    else
+                                    {
+                                        <a class="dropdown-item a-add-word-SkippedList @classname2" data-wordid="@item.WORDID" style="cursor:pointer;">Add To Skipped List</a>
+                                    }
+
+                                    <a class="dropdown-item save-crossword" style="cursor:pointer;">Save Crossword</a>
+                                    <a class="dropdown-item" style="cursor:pointer;" href="/Wordutopia/Exams">Create a Test </a>
+                                    <a class="dropdown-item" style="cursor:pointer;" target="_blank" href="@Synonym">Find Synonym</a>
+                                    <a class="dropdown-item" style="cursor:pointer;" href="/Wordutopia/CrosswordArchives">Go To Test Archive </a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        @{
+
+                                    var dataTargetOne = "#collapseOne" + count1;
+                                    var dataTargetIdOne = "collapseOne" + count1;
+
+
+                                    var dataTargetTwo = "#collapseTwo" + count1;
+                                    var dataTargetIdTwo = "collapseTwo" + count1;
+
+
+                                    var dataTargetThree = "#collapseThree" + count1;
+                                    var dataTargetIdThree = "collapseThree" + count1;
+
+                                    var dataTargetfour = "#collapsefour" + count1;
+                                    var dataTargetIdfour = "collapsefour" + count1;
+
+
+                                    var dataTargetfive = "#collapsefive" + count1;
+                                    var dataTargetIdfive = "collapsefive" + count1;
+                        }
+
+
+                        <div class="outAccordtn fav_out">
+                            <div id="accordion">
+
+                                <div class="card">
+                                    <div class="accordhead">
+                                        <div class="card-header" id="headingfive">
+                                            <h5 class="mb-0">
+                                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="@dataTargetfive" aria-expanded="false" aria-controls="collapseThree">
+                                                    Definition
+                                                </button>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div id="@dataTargetIdfive" class="collapse show" aria-labelledby="headingThree" data-parent="#accordion">
+                                        <div class="card-body lastAccord">
+                                            @item.DEFINITION
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="accordhead">
+                                        <div class="card-header" id="headingfour">
+                                            <h5 class="mb-0">
+                                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="@dataTargetfour" aria-expanded="false" aria-controls="collapseThree">
+                                                    Hint
+                                                </button>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div id="@dataTargetIdfour" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                        <div class="card-body">
+                                            @item.HINT
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="accordhead">
+                                        <div class="card-header" id="headingThree">
+                                            <h5 class="mb-0">
+                                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="@dataTargetThree" aria-expanded="false" aria-controls="collapseThree">
+                                                    Phrase
+                                                </button>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div id="@dataTargetIdThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                        <div class="card-body">
+                                            @item.PHRASE
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="accordhead accordhead-word" data-wordid="@item.WORDID" data-word="@item.WORD">
+                                        <div class="card-header" id="headingOne">
+                                            <h5 class="mb-0">
+                                                <button class="btn btn-link" data-toggle="collapse" data-target="@dataTargetOne" aria-expanded="true" aria-controls="collapseOne">
+                                                    Database Word
+                                                </button>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div id="@dataTargetIdOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                        <div class="card-body">
+                                            @item.WORD
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="accordhead">
+                                        <div class="card-header" id="headingTwo">
+                                            <h5 class="mb-0">
+                                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="@dataTargetTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                    Pronounced
+                                                </button>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div id="@dataTargetIdTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                        <div class="card-body">
+                                            @item.PRONOUNCIATION
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                                    count1 = count1 + 1;
+                }
+
+            </div>
+        </div>
+        <div class="lowerNav">
+            <nav class="navbar navbar-expand-sm  justify-content-center">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="https://en.wikipedia.org/wiki/Main.page" target="_blank">Wikipedia</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="http://www.xnumber.com/xnumber/windows_calc.htm" target="_blank">Calculator</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.google.com/maps/" target="_blank">Maps</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="http://www.xe.com/currencyconverter/" target="_blank">Currency Converter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.timeanddate.com/worldclock/full.html" target="_blank">World Clocks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://translate.google.com" target="_blank">Translator</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+
+<script>
+
+    $(document).on('click', '.crossword-next , .crossword-prev', function () {
+        var current = $(this).attr('data-current');
+        $('.' + current).hide();
+        var redirect = $(this).attr('data-redirect');
+        $('.' + redirect).show();
+        //$('.td-' + $(this).attr('data-wordid')).css('background-color', 'green !important');
+        var wordid = $('.' + redirect).attr('data-wordid');
+        $(document).find('.input-text').css('background-color', 'white');
+        $('.td-' + wordid).find('.input-text').focus().css('background-color', 'yellow');
+    });
+
+
+    $(document).ready(function () {
+        var wordid = $('.iterate-div1').attr('data-wordid');
+        //console.log($('td-' + wordid).find('.input-text'));
+        $(document).find('.input-text').css('background-color', 'white');
+        $('.td-' + wordid).find('.input-text').focus().css('background-color', 'yellow');
+
+
+        $(document).find('.checkblock').each(function () {
+            //debugger;
+            var dataValue = $(this).attr('data-usersetvalue');
+            if (dataValue != '' && dataValue != null && dataValue.length == 1) {
+                $(this).val(dataValue);
+            }
+        });
+
+
+    });
+
+
+
+
+
+
+    //$("li").each(function (index) {
+    //    console.log(index + ": " + $(this).text());
+    //})
+
+
+    $(document).on('click', '.accordhead-word', function () {
+        
+        var wordId = $(this).attr('data-wordid');
+        var word = $(this).attr('data-word');
+        var isVertical = "";
+        var isVerticalNew = $('.td-' + wordId).attr('data-isvertical');
+        var arr = isVerticalNew.split(',');
+        console.log(arr);
+        var arraycontains = (arr.indexOf(wordId + "-" + "True") > -1);
+        console.log(arraycontains);
+        if (arraycontains.toString() == 'true') {
+            isVertical = "True";
+        }
+        else {
+            isVertical = "False";
+        }
+        var xAxis = $('.td-' + wordId).attr('data-xaxis');
+        var yAxis = $('.td-' + wordId).attr('data-yaxis');
+        var array = word.split("");
+
+        for (var i = 0; i < array.length; i = i + 1) {
+
+            if (isVertical == "True" || isVertical == "true") {
+                if (i > 0) {
+                    var newXaxis = parseInt(parseInt(xAxis) + parseInt(i));
+                    var classname = ".element" + newXaxis + yAxis;
+                    $(classname).val(array[i]);
+                    $(classname).attr('data-usersetvalue', array[i].toUpperCase());
+                }
+                else {
+                    var classname = ".element" + xAxis + yAxis;
+                    $(classname).val(array[i]);
+                    $(classname).attr('data-usersetvalue', array[i].toUpperCase());
+                }
+            }
+            else {
+                if (i > 0) {
+                    var newYaxis = parseInt(parseInt(yAxis) + parseInt(i));
+                    var classname = ".element" + xAxis + newYaxis;
+                    $(classname).val(array[i]);
+                    $(classname).attr('data-usersetvalue', array[i].toUpperCase());
+                }
+                else {
+                    var classname = ".element" + xAxis + yAxis;
+                    $(classname).val(array[i]);
+                    $(classname).attr('data-usersetvalue', array[i].toUpperCase());
+                }
+            }
+
+        }
+
+
+    });
+
+    //basheer on 19/02/2019
+
+    $(document).on('keypress', '.checkblock', function (e) {
+        //debugger
+
+        if (e.shiftKey || e.ctrlKey || e.altKey) {
+            e.preventDefault();
+        } else {
+            var key = e.keyCode;
+            //if (!((key == 8) || (key == 32) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90)))
+            //if ((key > 64 && key < 91) || (key > 96 && key < 123) || key == 8)
+            if (key == 8 || key == 0 || (key > 48 && key < 57) || key == 32 || key == 13) {
+                e.preventDefault();
+            }
+            else {
+
+                //console.log();
+
+
+                var sourceThis = $(this);
+                var value = String.fromCharCode(key);
+
+                //$("#testingid").on('keyup',function(){
+                var correctValue = $(this).attr('data-val');
+                //$(sourceThis).val($(sourceThis).val());
+                if (value.toUpperCase() != atob(correctValue)) {
+                    $('#hfn-crossword-complete-status').val('false');
+                }
+                //alert("basheer");
+                var box = $(this).parent();
+                var xAxis = $(box).attr('data-xaxis');
+                var yAxis = $(box).attr('data-yaxis');
+                //document.getElementsByClassName("element" + xAxis + yAxis).value = value;
+                //var elem = document.getElementsByClassName("element" + xAxis + yAxis);
+                //document.getElementsByClassName("element" + xAxis + yAxis).setAttribute("value", value);
+
+                //for (var k = 0; k < elem.length; k++) {
+                //    if (elem[k].hasAttribute("value")) {
+                //        alert();
+                //        elem.setAttribute("value", value);
+                //    }
+                //}
+
+                //$(sourceThis).data('usersetvalue', value);
+                $(sourceThis).attr('data-usersetvalue', value.toUpperCase());
+                //var x = elem.hasAttribute("value");
+                //document;
+                //var box1 = $(this).closest('.BorderClass');
+                //console.log(box);
+                //var xAxis1 = $(this).attr('data-xaxis');
+                //var yAxis1 = $(this).attr('data-yaxis');
+
+                //testing comments for pushing git
+                var word = "";
+                var wordId = "0";
+                $(document).find('.word-main-div').each(function () {
+                    if ($(this).css('display') == 'block') {
+                        var iterativeDivSource = $(this);
+                        word = $(iterativeDivSource).attr('data-word');
+                        wordId = $(iterativeDivSource).attr('data-wordid');
+                        //console.log(word);
+                        //console.log(wordId);
+                    }
+                });
+
+                setTimeout(function () {
+
+                    //var isVertical = $('.td-' + wordId).attr('data-isvertical');
+
+                    var isVertical = "";
+                    var isVerticalNew = $('.td-' + wordId).attr('data-isvertical');
+                    var arr = isVerticalNew.split(',');
+                    console.log(arr);
+                    var arraycontains = (arr.indexOf(wordId + "-" + "True") > -1);
+                    console.log(arraycontains);
+                    if (arraycontains.toString() == 'true') {
+                        isVertical = "True";
+                    }
+                    else {
+                        isVertical = "False";
+                    }
+
+
+                    var xAxis1 = $('.td-' + wordId).attr('data-xaxis');
+                    var yAxis1 = $('.td-' + wordId).attr('data-yaxis');
+                    var array = word.split("");
+                    var numberarray = [];
+                    for (var i = 0; i < array.length; i = i + 1) {
+
+                        if (isVertical == "True" || isVertical == "true") {
+                            if (i >= 0) {
+                                var newXaxis = parseInt(parseInt(xAxis1) + parseInt(i));
+                                var classname = ".element" + newXaxis + yAxis1;
+                                numberarray.push(newXaxis + yAxis1);
+                            }
+                            else {
+                                var classname = ".element" + xAxis1 + yAxis1;
+                                $(classname).val(array[i]);
+                            }
+                        }
+                        else {
+                            if (i >= 0) {
+                                var newYaxis = parseInt(parseInt(yAxis) + parseInt(i));
+                                var classname = ".element" + xAxis1 + newYaxis;
+                                numberarray.push(xAxis1 + newYaxis);
+                            }
+                            else {
+                                var classname = ".element" + xAxis1 + yAxis1;
+                                $(classname).val(array[i]);
+                            }
+                        }
+
+                    }
+                    //console.log(numberarray);
+                    var axis = xAxis + yAxis;
+                    setTimeout(function () {
+                        //debugger
+                        if ($.inArray(axis, numberarray) != -1) {
+                            $(document).find('.word-main-div').each(function () {
+                                if ($(this).css('display') == 'block') {
+                                    var iterativeDivSource = $(this);
+                                    var i = 1;
+                                    var wordId = $(iterativeDivSource).attr('data-wordid');
+                                    //var isVertical = $('.td-' + wordId).attr('data-isvertical');
+
+
+                                    var isVertical = "";
+                                    var isVerticalNew = $('.td-' + wordId).attr('data-isvertical');
+                                    var arr = isVerticalNew.split(',');
+                                    console.log(arr);
+                                    var arraycontains = (arr.indexOf(wordId + "-" + "True") > -1);
+                                    console.log(arraycontains);
+                                    if (arraycontains.toString() == 'true') {
+                                        isVertical = "True";
+                                    }
+                                    else {
+                                        isVertical = "False";
+                                    }
+
+
+
+
+                                    if (isVertical == "True" || isVertical == "true") {
+                                        if (i > 0) {
+                                            var newXaxis = parseInt(parseInt(xAxis) + parseInt(1));
+                                            var classname = ".element" + newXaxis + yAxis;
+                                            $(classname).focus();
+                                        }
+                                        else {
+                                            var classname = ".element" + xAxis + yAxis;
+                                            $(classname).focus();
+                                        }
+                                    }
+                                    else {
+                                        if (i > 0) {
+                                            var newYaxis = parseInt(parseInt(yAxis) + parseInt(1));
+
+                                            var classname = ".element" + xAxis + newYaxis;
+                                            $(classname).focus();
+
+                                        }
+                                        else {
+                                            var classname = ".element" + xAxis + yAxis;
+                                            $(classname).focus();
+                                            //alert("test4");
+                                        }
+                                    }
+
+                                }
+                            });
+                        }
+                    }, 400);
+
+
+
+                }, 400);
+
+
+
+            }
+        }
+
+        //arr = jQuery.grep(arr, function( n, i )
+    });
+
+
+    $(document).on('click', '.save-crossword', function () {
+        
+        var isNew = $('#hfn-crossword-isnew').val();
+        var wordlistString = $('#hfn-crossword-wordidlist-string').val();
+        var crosswordId = $('#hfn-crossword-id').val();
+        //var completeStatus = $('#hfn-crossword-complete-status').val();
+        var completeStatus = true;
+
+        $(document).find('.checkblock').each(function () {
+            //debugger;
+            var dataValue = $(this).val();
+            console.log(dataValue);
+            var correctValue = $(this).attr('data-val');
+            console.log(correctValue);
+            if (dataValue.toUpperCase() != atob(correctValue)) {
+                completeStatus = false;
+                $('#hfn-crossword-complete-status').val(false);
+            }
+        });
+
+        setTimeout(function () {
+
+
+            var postObj = new Object();
+            postObj.wordIdListString = wordlistString;
+            postObj.isNewCrossword = isNew;
+            postObj.completeStatus = completeStatus;
+            postObj.crosswordId = parseInt(crosswordId);
+            postObj.html = btoa($(".Puzzle").html());
+            //postObj.html = "dsfsfkishkufhskdsfkh";
+            //postObj.html = JSON.stringify($(".Puzzle").html());
+            $.ajax({
+                url: '/Wordutopia/saveCrosswordToDB',
+                type: "POST",
+                data: postObj,
+                dataType: 'JSON',
+                success: function (data) {
+                    if (data.status) {
+                        toastrSuccess("Crossword Saved");
+                        setTimeout(function () {
+                            window.location.href = '/Wordutopia/CrosswordArchives/';
+                        }, 450);
+                    }
+                }
+            });
+
+        }, 350);
+    });
+
+
+
+
+</script>
+
+
+<script>
+
+    $(document).on('click', '.a-add-word-SkippedList', function () {
+        var source = $(this);
+        var wordId = $(source).attr('data-wordid');
+        var userId = $('#hfn-userId').val();
+        var objs = new Object();
+        objs.userId = userId;
+        objs.wordIds = wordId;
+        $.ajax({
+            url: '/Wordutopia/addskippedword',
+            type: "POST",
+            data: objs,
+            dataType: 'JSON',
+            success: function (data) {
+                if (data.status) {
+                    toastrSuccess("Word added to skip list");
+                    $(source).addClass('a-remove-word-SkippedList').text('Remove From Skipped List');
+                    $(source).removeClass('a-add-word-SkippedList');
+                    $(document).find('.a-favourite' + wordId).removeClass('a-remove-word-fav');
+                    $(document).find('.a-favourite' + wordId).addClass('a-add-word-fav').text('Add To Favourite');
+                }
+                else {
+                    toastrError(data.message);
+                }
+            }
+        });
+    });
+
+    $(document).on('click', '.a-add-word-fav', function () {
+        var source = $(this);
+        var wordId = $(source).attr('data-wordid');
+        var userId = $('#hfn-userId').val();
+        var objs = new Object();
+        objs.userId = userId;
+        objs.wordIds = wordId;
+        $.ajax({
+            url: '/Wordutopia/addfavouriteword',
+            type: "POST",
+            data: objs,
+            dataType: 'JSON',
+            success: function (data) {
+                if (data.status) {
+                    toastrSuccess("Word added to favourites");
+                    $(source).addClass('a-remove-word-fav').text('Remove From Favourite');
+                    $(source).removeClass('a-add-word-fav');
+                    $(document).find('.a-skiplist' + wordId).removeClass('a-remove-word-SkippedList');
+                    $(document).find('.a-skiplist' + wordId).addClass('a-add-word-SkippedList').text('Add To Skipped List');
+                }
+                else {
+                    toastrError(data.message);
+                }
+            }
+        });
+    });
+
+    $(document).on('click', '.a-remove-word-fav', function () {
+        var source = $(this);
+        var wordId = $(source).attr('data-wordid');
+        var userId = $('#hfn-userId').val();
+        //var objs = new Object();
+        //objs.userId = userId;
+        //objs.wordIds = wordId;
+        $.ajax({
+            url: '/Wordutopia/deletWordFromFavourites?wordId=' + wordId,
+            type: "GET",
+            dataType: 'JSON',
+            success: function (data) {
+                if (data.status) {
+                    toastrSuccess("Word removed from favourites");
+                    $(source).addClass('a-add-word-fav').text('Add To Favourite');
+                    $(source).removeClass('a-remove-word-fav');
+                }
+                else {
+                    toastrError(data.message);
+                }
+            }
+        });
+    });
+
+    $(document).on('click', '.a-remove-word-SkippedList', function () {
+        var source = $(this);
+        var wordId = $(source).attr('data-wordid');
+        var userId = $('#hfn-userId').val();
+
+        $.ajax({
+            url: '/Wordutopia/deletWordFromSkipList?wordId=' + wordId,
+            type: "GET",
+            dataType: 'JSON',
+            success: function (data) {
+                if (data.status) {
+                    toastrSuccess("Word removed from Skip List");
+                    $(source).addClass('a-add-word-SkippedList').text('Add To Skipped List');
+                    $(source).removeClass('a-remove-word-SkippedList');
+
+                }
+                else {
+                    toastrError(data.message);
+                }
+            }
+        });
+    });
+
+
+</script>
