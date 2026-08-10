@@ -1,0 +1,155 @@
+﻿@*@using CaptchaMvc.HtmlHelpers;*@
+@model TutionCloudWeb.Model.ContactModel
+@{
+    ViewBag.Title = "Contact";
+    Layout = "/Views/Shared/_Layout_Index.cshtml";
+}
+
+<style>
+    .captcha a {
+        display: block !important;
+    }
+
+    .captcha img {
+        width: 150px !important;
+    }
+
+    #CaptchaInputText {
+        display: block;
+        width: 100%;
+        height: calc(2.25rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+</style>
+
+<section style="display:none;">
+    <div class="Upperhead">
+        <h5>Contact Us</h5>
+        <p>Home > Contact</p>
+    </div>
+</section>
+<!--Login Section-->
+<section class="cntct">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-7 col-sm-12">
+                <div>
+                    <h5>Contact Information</h5>
+                    @*<form class="form-horizontal" action="">*@
+                    @using (Ajax.BeginForm("CreateContact", "Home", null, new AjaxOptions
+                    {
+                        HttpMethod = "POST",
+                        OnSuccess = "ContactSuccess",
+                        OnFailure = "ContactFailure",
+                    }, new { id = "tutioncloud-login" }))
+                    {
+                        @Html.ValidationSummary(true)
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="control-label col-lg-2 col-md-2 col-sm-12" for="name">NAME</label>
+                                <div class="col-lg-10 col-md-10 col-sm-12">
+                                    @Html.TextBoxFor(m => m.Name, new { autocomplete = "off", @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Name)
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="control-label col-lg-2 col-md-2 col-sm-12" for="email">EMAIL</label>
+                                <div class="col-lg-10 col-md-10 col-sm-12">
+                                    @Html.TextBoxFor(m => m.Emale, new { autocomplete = "off", @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Emale)
+                                    @*<input type="email" class="form-control" id="mail">*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="control-label col-lg-2 col-md-2 col-sm-12" for="enquiry">ENQUIRY</label>
+                                <div class="col-lg-10 col-md-10 col-sm-12">
+                                    @Html.TextAreaFor(m => m.Enquiry, new { autocomplete = "off", @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Enquiry)
+                                    @*<textarea class="form-control" rows="5" id="enquiry"></textarea>*@
+                                </div>
+                            </div>
+                        </div>
+                        @*<div class="form-group">
+                            <div class="row">
+                                <label class="control-label col-lg-3 col-md-3 col-sm-12" for="seccode">SECURITYCODE</label>
+                                <div class="col-lg-4 col-md-4 col-sm-12 secIMG captcha">
+
+                                    @Html.MathCaptcha()
+                                </div>
+
+                            </div>
+                        </div>*@
+                        <div class="form-group ">
+                            <button type="submit" class="Lgbtn">SUBMIT</button>
+
+                            @*<a href="/Home/Contact/" class="Lgbtn">SUBMIT</a>*@
+                        </div>
+                        @*</form>*@
+                    }
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-12">
+                <div class="cntctrgt">
+                    <div class="innerrgt">
+                        <span class="icns"><i class="fas fa-map-marker-alt"></i></span>
+                        <span class="Txar">35A, Sliver Town, Road<br /> No-3 London, England</span>
+                    </div>
+                    <div class="innerrgt">
+                        <span class="icns"> <i class="fas fa-phone-volume"></i></span>
+                        <span class="Txar">+613124566<br /> +613124566</span>
+                    </div>
+                    <div class="innerrgt">
+                        <span class="icns"><i class="fas fa-envelope"></i></span>
+                        <span class="Txar"><a href="mailto:contacttuitioncloud@gmail.com">contacttuitioncloud@gmail.com</a></span>
+                    </div>
+                    <div class="socialIco">
+                        <ul>
+                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    function ContactSuccess(data) {
+
+        if (data.status == true) {
+            //toastrSuccess("Successfully sent");
+            toastrSuccess(data.message);
+            $("#Name").val("");
+            $("#Emale").val("");
+            $("#Enquiry").val("");
+        }
+        else
+        {
+            toastrError(data.message);
+        }
+
+    }
+
+    function ContactFailure(data) {
+        toastrError(data.message);
+    }
+
+</script>

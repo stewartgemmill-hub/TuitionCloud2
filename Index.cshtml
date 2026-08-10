@@ -1,0 +1,116 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "/Views/Shared/_Layout_Index.cshtml";
+}
+
+  <!-- SLIDER SECTION START -->
+<section class="Slider">
+    @*<a href="javascript:;" id="scrollToBottom"><img src="~/Content/img/arrow.png" /></a>*@
+    <a href="#scrollup" id="scrollToBottom"><img src="~/Content/img/arrow.png" /></a>
+    
+    <div id="carouselExampleIndicators" class="carousel slide inner-Slider" data-ride="carousel" data-interval="11000">
+        <div class="carousel-inner " role="listbox">
+            <!-- Slide One - Set the background image for this slide in the line below -->
+            <div class="carousel-item active sliderImg" style="background-image: url('/Content/img/banner/banner1.jpg')">
+                <div class="container ">
+                    <div class="carousel-caption d-none d-md-block SliderTxt">
+                        <h3>Welcome to Tuition Cloud</h3>
+                        <p> Here you can learn any subject fast!</p>
+                        <ul>
+                            <li>Create Random Tests With Or Without Security Features.</li>
+                            <li>Create Tests in Different Formats With Or Without Timers</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Slide Two - Set the background image for this slide in the line below -->
+            <div class="carousel-item sliderImg" style="background-image: url('/Content/img/banner/banner2.jpg')">
+                <div class="container ">
+                    <div class="carousel-caption d-none d-md-block SliderTxt">
+                        <ul>
+                            <li>Post Tests As Part Of Student or Colleagues’ Work Assignments.</li>
+                            <li>Share Tests & Additional Information With Friends & Colleagues Alike.</li>
+                            <li>Create Study Groups.</li>
+                            <li>Learn New Company Policies & Procedures.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Slide Three - Set the background image for this slide in the line below -->
+            <div class="carousel-item sliderImg" style="background-image: url('/Content/img/banner/banner3.jpg')">
+                <div class="container ">
+                    <div class="carousel-caption d-none d-md-block SliderTxt">
+                        <ul>
+                            <li>Learn The Features & Benefits Of New Products & Services.</li>
+                            <li>Access & Monitor Test Results Across The Globe.</li>
+                            <li>Create & Edit Notes.</li>
+                            <li>Find New Friends In The Forums.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <div class="container">
+        <div class="bannerTxt" id="scrollup">
+            <div class="row">
+                <div class="col-md-4 ">
+                    <div class="bxClr">
+                        <div class="IconS">
+                            <img src="~/Content/img/homeicons/wordutopia-icon.png" />
+                        </div>
+                        <div class="TeXt">
+                            <h3 class="head3"><a href="/Home/Wordutopia">Wordutopia</a></h3>
+                            <p class="Para">Allows you to focus on improving your command of English vocabulary and phrasing.</p>
+                            <a class="readBtn" href="/Home/Wordutopia">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 ">
+                    <div class="bxClr">
+                        <div class="IconS">
+                            <img src="~/Content/img/homeicons/quester-icon.png" />
+                        </div>
+                        <div class="TeXt">
+                            <h3 class="head3"><a href="/Home/Quester">Quester</a></h3>
+                            <p class="Para">Allows you to create questions on any subject. </p>
+                            <a class="readBtn" href="/Home/Quester">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="bxClr">
+                        <div class="IconS">
+                            <img src="~/Content/img/homeicons/choicer.png" />
+                        </div>
+                        <div class="TeXt">
+                            <h3 class="head3"><a href="/Home/choicer">Choicer</a></h3>
+                            <p class="Para">Allows you to create multiple choice tests on any subject. </p>
+                            <a class="readBtn" href="/Home/choicer">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="innerDiv">
+    <div class="container">
+        <div class="txtPads Edited">
+            <h3>Welcome to Tuition Cloud</h3>
+            <p>Wordutopia, Quester and Choicer allow Users to create tests in random format with or without timers. Moreover, User databases can be shared with anyone across the globe with or without secure passwords.</p><span></span>
+            <a href="javascript:;" id="scrollToTop"><img src="~/Content/img/arrowup.png" /></a>
+        </div>
+
+
+    </div>
+</section>

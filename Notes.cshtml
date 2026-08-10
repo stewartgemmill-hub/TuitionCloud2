@@ -1,0 +1,609 @@
+﻿@model TutionCloudWeb.Model.Wordutopia.Notes
+@{
+    ViewBag.Title = "Notes";
+    Layout = "~/Views/Shared/_Layout_Wordutopia_Home.cshtml";
+    var totalNoteCount = Model.totalNoteCount;
+}
+@Html.HiddenFor(z => z.userId, new { Value = Model.userId })
+@Html.HiddenFor(z => z.totalNoteCount, new { Value = Model.totalNoteCount })
+<input type="hidden" id="hfn-index" value="0" />
+<input type="hidden" id="hfn-sortby" value="" />
+<input type="hidden" id="hfn-sortorder" value="" />
+
+
+<!--
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12	col-xs-12">
+                <div class="Tstsec1">
+                    <a href="/Wordutopia/CreateNote"><img src="~/Content/img/utilities/folder.png" /><span class="test">ADD NOTE</span></a>
+                </div>
+                <div class="tstsec2">
+                    <h5>Note List</h5>
+                    <div class="form-group Srch ">
+                        <div class="row">
+                            <div class="col-lg-5 offset-lg-1 col-md-6 offset-md-1">
+                                <label for="Name">Search By Note Name:</label>
+
+                                <div class="Srchbx">
+                                    <input type="text" class="form-control" id="ipt-note-search">
+                                    <button style="cursor:pointer;" id="btn-search-note">SEARCH</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12	col-xs-12">
+                <div class="note_tbl">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="sort">Notes <span class="uppsort" id="note-desc"></span><span id="note-asc" class="downsort"></span></th>
+                                    <th class="sorting">Created <span id="date-desc" class="uppsort"></span><span id="date-asc" class="downsort"></span></th>
+                                    <th>Options</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-notelist">
+                                {
+                                    var postModel = new TutionCloudWeb.Models.PostModel.Note.NoteList();
+                                    postModel.userId = Model.userId;
+                                    postModel.index = 0;
+                                    postModel.totalNoteCount = totalNoteCount;
+                                    postModel.searchText = string.Empty;
+                                    postModel.sortBy = string.Empty;
+                                    postModel.sortOrder = string.Empty;
+                                }
+                                Html.Partial("~/Views/Wordutopia/_pv_Wordutopia_Note_List.cshtml", postModel)
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="Indctor" id="div-page-count">
+                        <p>Page 1 of @Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalNoteCount) / Convert.ToDouble(10))))</p>
+                    </div>
+                    <div class="Pgntation">
+                        <nav aria-label="Page navigation example" id="nav-pagination">
+                            @*<ul class="pagination">
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </li>
+                                </ul>*@
+                            {
+                                var postModelPagination = new TutionCloudWeb.Models.PostModel.Note.NoteListPagination();
+                                postModelPagination.userId = Model.userId;
+                                postModelPagination.index = 1;
+                                postModelPagination.totalNoteCount = totalNoteCount;
+                                postModelPagination.searchText = string.Empty;
+                                postModelPagination.sortBy = string.Empty;
+                                postModelPagination.sortOrder = string.Empty;
+                            }
+                            Html.Partial("~/Views/Wordutopia/_pv_Wordutopia_Note_List_Pagination.cshtml", postModelPagination)
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12	col-xs-12">
+                <div class="lowerNav">
+                    <nav class="navbar navbar-expand-sm  justify-content-center">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a href="https://en.wikipedia.org/wiki/Main.page" target="_blank">Wikipedia</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href=" https://www.google.com/search?q=calculator" target="_blank">Calculator</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://www.google.com/maps/" target="_blank">Maps</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://www.google.com/search?ei=DyM3XNbMEdH6kwW-lpLgCA&q=google+currency+converter&oq=google+currency+converter&gs_l=psy-ab.3..35i39j0i7i30l2j0j0i7i30j0j0i7i30j0l3.211.5629..6378...0.0..0.282.1593.0j6j3......0....1..gws-wiz.......0i71j0i30j0i131i67j35i304i39.BbyIqE0P5UY" target="_blank">Currency Converter</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://www.timeanddate.com/worldclock/full.html" target="_blank">World Clocks</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://translate.google.com/" target="_blank">Translator</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+    -->
+@*01-02-2019*@
+
+
+
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12	col-xs-12">
+                <div class="Tstsec1 notes-up">
+                    <a href="/Wordutopia/CreateNote"> <img src="~/Content/img/utilities/folder.png" /><span class="test">ADD NOTE</span></a>
+                </div>
+                <div class="tstsec2">
+                    <h5>Note List</h5>
+                    <div class="form-group Srch ">
+                        <div class="row">
+                            <div class="col-lg-5 offset-lg-1 ">
+                                <label for="Name">Search By Note Name:</label>
+
+                                <div class="Srchbx">
+                                    <input type="text" class="form-control" id="ipt-note-search">
+                                    <button style="cursor:pointer;" id="btn-search-note">SEARCH</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12	col-xs-12">
+                <div class="note_tbl">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="tabhead sort">Notes<span class="uppsort" id="note-desc"></span><span id="note-asc" class="downsort"></span></th>
+                                <th class="tabhead sorting">
+                                    Created <span class="uppsort" id="date-desc"></span><span id="date-asc" class="downsort"></span>
+                                </th>
+                                <th class="tabhead">Options</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-notelist">
+                            @{
+                                var postModel = new TutionCloudWeb.Models.PostModel.Note.NoteList();
+                                postModel.userId = Model.userId;
+                                postModel.index = 0;
+                                postModel.totalNoteCount = totalNoteCount;
+                                postModel.searchText = string.Empty;
+                                postModel.sortBy = string.Empty;
+                                postModel.sortOrder = string.Empty;
+                            }
+                            @Html.Partial("~/Views/Wordutopia/_pv_Wordutopia_Note_List.cshtml", postModel)
+                        </tbody>
+                    </table>
+                    <div class="Indctor" id="div-page-count">
+                        <p>Page 1 of @Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalNoteCount) / Convert.ToDouble(10))))</p>
+                    </div>
+                    <div class="Pgntation">
+                        <nav aria-label="Page navigation example" id="nav-pagination">
+                            @{
+                                var postModelPagination = new TutionCloudWeb.Models.PostModel.Note.NoteListPagination();
+                                postModelPagination.userId = Model.userId;
+                                postModelPagination.index = 1;
+                                postModelPagination.totalNoteCount = totalNoteCount;
+                                postModelPagination.searchText = string.Empty;
+                                postModelPagination.sortBy = string.Empty;
+                                postModelPagination.sortOrder = string.Empty;
+                            }
+                            @Html.Partial("~/Views/Wordutopia/_pv_Wordutopia_Note_List_Pagination.cshtml", postModelPagination)
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12	col-xs-12">
+                <div class="lowerNav">
+                    <nav class="navbar navbar-expand-sm  justify-content-center">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a href="https://en.wikipedia.org/wiki/Main.page" target="_blank">Wikipedia</a>
+                            </li>
+                            <li class="nav-item">
+                                @*<a href="http://www.xnumber.com/xnumber/windows_calc.htm" target="_blank">Calculator</a>*@
+                                <a href="https://www.google.com/search?q=calculator" target="_blank">Calculator</a>
+
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://www.google.com/maps/" target="_blank">Maps</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="http://www.xe.com/currencyconverter/" target="_blank">Currency Converter</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://www.timeanddate.com/worldclock/full.html" target="_blank">World Clocks</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://translate.google.com" target="_blank">Translator</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*01-02-2019*@
+
+
+
+
+
+
+
+<script>
+
+    $(document).on('click', '.note-delete', function () {
+       
+        var source = $(this);
+        var wordId = $(this).attr('data-noteid');
+
+        swal({
+            title: "Are you sure?",
+            text: "You are about to delete this note!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#004b8d",
+            confirmButtonText: "Yes, delete!",
+            closeOnConfirm: true
+        },
+     function (isConfirm) {
+         if (isConfirm) {
+             $.ajax({
+                 url: '/Wordutopia/deletNote?noteId=' + wordId,
+                 type: "GET",
+                 dataType: 'JSON',
+                 success: function (data) {
+                     if (data.status) {
+                         toastrSuccess("Note deleted");
+
+                         $('#totalNoteCount').val(parseInt($('#totalNoteCount').val() - 1));
+
+                         var islasttr = $(document).find('.tr-note-row');
+                         if (islasttr.length <= 1) {
+                             $('#hfn-index').val(parseInt($('#hfn-index').val()) - 1)
+                         }
+
+                         var searchText = $('#ipt-note-search').val();
+                         var obj = new Object();
+                         obj.userId = $('#userId').val();
+                         obj.totalWordCount = $('#totalNoteCount').val();
+                         obj.index = parseInt($('#hfn-index').val());
+                         obj.sortBy = $('#hfn-sortby').val();
+                         obj.sortOrder = $('#hfn-sortorder').val();
+                         obj.searchText = searchText;
+                         console.log(obj);
+                         $.ajax({
+                             url: '/Wordutopia/refreshUserNoteList',
+                             type: "POST",
+                             data: obj,
+                             dataType: 'html',
+                             success: function (data) {
+                                 $('#tbody-notelist').html(data);
+
+                                 //$(document).find('.spn-utcdate').each(function () {
+                                 //    try {
+                                 //        var date = $(this).attr('data-utctime');
+                                 //        var serverDate = moment.utc(date).local().format('LLL');
+                                 //        $(this).html(serverDate);
+                                 //    }
+                                 //    catch (ex) {
+                                 //        console.warn("Error converting date time", ex);
+                                 //    }
+                                 //});
+
+                                 $(document).find('.spn-utcdate').each(function () {
+                                     try {
+                                         var date = $(this).attr('data-utctime');
+                                         var serverDate = moment.utc(date).local().format('MMMM DD.YYYY');
+                                         var serverTime = moment.utc(date).local().format('hh:mm A');
+                                         //console.log(serverDate);
+                                         //console.log(serverTime);
+                                         //console.log(moment.utc(date).local().format("YYYY-MM-DD HH:mm:ss"));
+                                         $(this).parent().find('.spn-date').text(serverDate);
+                                         $(this).parent().find('.spn-time').text(serverTime);
+                                     }
+                                     catch (ex) {
+                                         console.warn("Error converting date time", ex);
+                                     }
+                                 });
+
+
+
+                                 //$('#wordlist-pagination').data("current", page);
+                                 var obj1 = new Object();
+                                 obj1.userId = $('#userId').val();
+                                 obj1.totalWordCount = $('#totalNoteCount').val();
+                                 obj1.index = parseInt(parseInt($('#hfn-index').val()) + 1);
+                                 obj1.sortBy = $('#hfn-sortby').val();
+                                 obj1.sortOrder = $('#hfn-sortorder').val();
+                                 obj1.searchText = searchText;
+
+                                 console.log(obj1);
+                                 $.ajax({
+                                     url: '/Wordutopia/refreshUserNoteListPagination',
+                                     type: "POST",
+                                     data: obj1,
+                                     dataType: 'html',
+                                     success: function (data) {
+                                         $('#nav-pagination').html(data);
+                                         $('#div-page-count').html('<p>Page ' + parseInt(parseInt($('#hfn-index').val()) + 1) + ' of ' + Math.ceil(parseFloat($('#totalNoteCount').val()) / parseFloat(10)) + '</p>')
+                                         //Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalWordCount) / Convert.ToDouble(10))))</p>')
+                                     }
+                                 });
+                             }
+                         });
+
+                     }
+                     else {
+                         toastrError(data.message);
+                     }
+                 }
+             });
+         }
+     });
+    });
+
+</script>
+
+
+<script>
+    $(document).on('click', '#btn-search-note', function () {
+        var searchText = $('#ipt-note-search').val();
+        $.ajax({
+            url: '/Wordutopia/NoteCount?userId=' + parseInt($('#userId').val()) + '&searchText=' + searchText,
+            type: "GET",
+            dataType: 'JSON',
+            success: function (data) {
+                $('#totalNoteCount').val(data);
+                var obj = new Object();
+                obj.userId = $('#userId').val();
+                obj.totalWordCount = $('#totalNoteCount').val();
+                obj.index = parseInt($('#hfn-index').val());
+                obj.searchText = searchText;
+                obj.sortBy = $('#hfn-sortby').val();
+                obj.sortOrder = $('#hfn-sortorder').val();
+                $.ajax({
+                    url: '/Wordutopia/refreshUserNoteList',
+                    type: "POST",
+                    data: obj,
+                    dataType: 'html',
+                    success: function (data) {
+                        $('#tbody-notelist').html(data);
+                        //$(document).find('.spn-utcdate').each(function () {
+                        //    try {
+                        //        var date = $(this).attr('data-utctime');
+                        //        var serverDate = moment.utc(date).local().format('LLL');
+                        //        $(this).html(serverDate);
+                        //    }
+                        //    catch (ex) {
+                        //        console.warn("Error converting date time", ex);
+                        //    }
+                        //});
+
+                        $(document).find('.spn-utcdate').each(function () {
+                            try {
+                                var date = $(this).attr('data-utctime');
+                                var serverDate = moment.utc(date).local().format('MMMM DD.YYYY');
+                                var serverTime = moment.utc(date).local().format('hh:mm A');
+                                //console.log(serverDate);
+                                //console.log(serverTime);
+                                //console.log(moment.utc(date).local().format("YYYY-MM-DD HH:mm:ss"));
+                                $(this).parent().find('.spn-date').text(serverDate);
+                                $(this).parent().find('.spn-time').text(serverTime);
+                            }
+                            catch (ex) {
+                                console.warn("Error converting date time", ex);
+                            }
+                        });
+
+
+
+                        //$('#wordlist-pagination').data("current", page);
+                        var obj1 = new Object();
+                        obj1.userId = $('#userId').val();
+                        obj1.totalWordCount = $('#totalNoteCount').val();
+                        obj1.index = parseInt(parseInt($('#hfn-index').val()) + 1);
+                        obj1.sortBy = $('#hfn-sortby').val();
+                        obj1.sortOrder = $('#hfn-sortorder').val();
+                        obj1.searchText = searchText;
+                        $.ajax({
+                            url: '/Wordutopia/refreshUserNoteListPagination',
+                            type: "POST",
+                            data: obj1,
+                            dataType: 'html',
+                            success: function (data) {
+                                $('#nav-pagination').html(data);
+                                $('#div-page-count').html('<p>Page ' + parseInt(parseInt($('#hfn-index').val()) + 1) + ' of ' + Math.ceil(parseFloat($('#totalNoteCount').val()) / parseFloat(10)) + '</p>')
+                                //$('#div-page-count').html('<p>Page ' + parseInt(parseInt($('#hfn-index').val()) + 1) + ' of Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalWordCount) / Convert.ToDouble(10))))</p>')
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+<script>
+
+    $(document).ready(function () {
+        $(document).find('.spn-utcdate').each(function () {
+            try {
+                var date = $(this).attr('data-utctime');
+                var serverDate = moment.utc(date).local().format('MMMM DD.YYYY');
+                var serverTime = moment.utc(date).local().format('hh:mm A');
+                console.log(serverDate);
+                console.log(serverTime);
+                //console.log(moment.utc(date).local().format("YYYY-MM-DD HH:mm:ss"));
+                $(this).parent().find('.spn-date').text(serverDate);
+                $(this).parent().find('.spn-time').text(serverTime);
+            }
+            catch (ex) {
+                console.warn("Error converting date time", ex);
+            }
+        });
+    });
+
+</script>
+
+<script>
+    function sortList() {
+        $('#hfn-index').val(0);
+        var searchText = $('#ipt-note-search').val();
+
+        var obj = new Object();
+        obj.userId = $('#userId').val();
+        obj.totalWordCount = $('#totalNoteCount').val();
+        obj.index = parseInt($('#hfn-index').val());
+        obj.searchText = searchText;
+        obj.sortBy = $('#hfn-sortby').val();
+        obj.sortOrder = $('#hfn-sortorder').val();
+        $.ajax({
+            url: '/Wordutopia/refreshUserNoteList',
+            type: "POST",
+            data: obj,
+            dataType: 'html',
+            success: function (data) {
+                $('#tbody-notelist').html(data);
+                //$(document).find('.spn-utcdate').each(function () {
+                //    try {
+                //        var date = $(this).attr('data-utctime');
+                //        var serverDate = moment.utc(date).local().format('LLL');
+                //        $(this).html(serverDate);
+                //    }
+                //    catch (ex) {
+                //        console.warn("Error converting date time", ex);
+                //    }
+                //});
+
+                $(document).find('.spn-utcdate').each(function () {
+                    try {
+                        var date = $(this).attr('data-utctime');
+                        var serverDate = moment.utc(date).local().format('MMMM DD.YYYY');
+                        var serverTime = moment.utc(date).local().format('hh:mm A');
+                        //console.log(serverDate);
+                        //console.log(serverTime);
+                        //console.log(moment.utc(date).local().format("YYYY-MM-DD HH:mm:ss"));
+                        $(this).parent().find('.spn-date').text(serverDate);
+                        $(this).parent().find('.spn-time').text(serverTime);
+                    }
+                    catch (ex) {
+                        console.warn("Error converting date time", ex);
+                    }
+                });
+
+
+
+                //$('#wordlist-pagination').data("current", page);
+                var obj1 = new Object();
+                obj1.userId = $('#userId').val();
+                obj1.totalWordCount = $('#totalNoteCount').val();
+                obj1.index = parseInt(parseInt($('#hfn-index').val()) + 1);
+                obj1.sortBy = $('#hfn-sortby').val();
+                obj1.sortOrder = $('#hfn-sortorder').val();
+                obj1.searchText = searchText;
+                $.ajax({
+                    url: '/Wordutopia/refreshUserNoteListPagination',
+                    type: "POST",
+                    data: obj1,
+                    dataType: 'html',
+                    success: function (data) {
+                        $('#nav-pagination').html(data);
+                        $('#div-page-count').html('<p>Page ' + parseInt(parseInt($('#hfn-index').val()) + 1) + ' of ' + Math.ceil(parseFloat($('#totalNoteCount').val()) / parseFloat(10)) + '</p>')
+                        //$('#div-page-count').html('<p>Page ' + parseInt(parseInt($('#hfn-index').val()) + 1) + ' of Convert.ToString(Math.Ceiling(Convert.ToDouble(Convert.ToDouble(totalWordCount) / Convert.ToDouble(10))))</p>')
+                    }
+                });
+            }
+        });
+    }
+
+
+    $(document).on('click', '#note-asc', function () {
+        $('#hfn-sortby').val('NOTE');
+        $('#hfn-sortorder').val('ASC');
+        sortList();
+        $(this).css('opacity', '1');
+        $('#note-desc').css('opacity', '.3');
+    });
+
+    $(document).on('click', '#note-desc', function () {
+        $('#hfn-sortby').val('NOTE');
+        $('#hfn-sortorder').val('DESC');
+        sortList();
+        $(this).css('opacity', '1');
+        $('#note-asc').css('opacity', '.3');
+    });
+
+    $(document).on('click', '#date-asc', function () {
+        $('#hfn-sortby').val('DATE');
+        $('#hfn-sortorder').val('ASC');
+        sortList();
+        $(this).css('opacity', '1');
+        $('#date-desc').css('opacity', '.3');
+    });
+
+    $(document).on('click', '#date-desc', function () {
+        $('#hfn-sortby').val('DATE');
+        $('#hfn-sortorder').val('DESC');
+        sortList();
+        $(this).css('opacity', '1');
+        $('#date-asc').css('opacity', '.3');
+    });
+
+
+</script>
