@@ -1,4 +1,4 @@
-﻿@model TutionCloudWeb.Model.Quester.Quester_WordListPagination_Model
+﻿@model TutionCloudWeb.Models.PostModel.Word.WordListPagination
 @{
     var totalWordCount = Model.totalWordCount;
 }
@@ -39,7 +39,7 @@
                 }
                 console.log(obj);
                 $.ajax({
-                    url: '/Quester/Quester_refreshUserWordList',
+                    url: '/QuesterSharing/Quester_refreshUserWordList',
                     type: "POST",
                     data: obj,
                     dataType: 'html',
@@ -58,7 +58,7 @@
                             $('#div-Hint').html(hint);
                             $('#div-Definition').html(definition);
                         }
-                        
+                        //$('#wordlist-pagination').data("current", page);
                         var obj1 = new Object();
                         obj1.userId = $('#userId').val();
                         obj1.totalWordCount = $('#totalWordCount').val();
@@ -66,7 +66,7 @@
                         obj1.sortBy = $('#hfn-sortby').val();
                         obj1.sortOrder = $('#hfn-sortorder').val();
                         $.ajax({
-                            url: '/Quester/Quester_refreshUserWordListPagination',
+                            url: '/QuesterSharing/Quester_refreshUserWordListPagination',
                             type: "POST",
                             data: obj1,
                             dataType: 'html',

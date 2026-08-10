@@ -1,8 +1,9 @@
-﻿@model TutionCloudWeb.Model.Quester.Quester_StartTest
+﻿@model TutionCloudWeb.Models.PostModel.Exam.StartTest
 @{
     ViewBag.Title = "StartTest";
     Layout = "~/Views/Shared/_Layout_Quester_Home.cshtml";
-    var wordList = new TutionCloudWeb.Repository.Quester.Quester_WebService_Repository().Quester_getExamWords(Model.userId, Convert.ToInt64(Model.examId));
+    var wordList = new TutionCloudWeb.Models.DataClass.WebService().Quester_getExamWords_share(Model.userId, Convert.ToInt64(Model.examId));
+
 }
 
 
@@ -29,7 +30,7 @@
                         <div class="dropdown">
                             <button type="button" class="btn btn-primary " data-toggle="dropdown">Task Dropdown List <img src="~/Content/img/rightarrow.png" /></button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Back</a>
+                                <a class="dropdown-item" onclick="history.back()">Back</a>
                                 <a class="dropdown-item" href="#">Create a Test Format </a>
                             </div>
                         </div>
@@ -87,7 +88,7 @@
                                                     <div class="card-header" id="@headerId">
                                                         <h5 class="mb-0">
                                                             <button class="btn btn-link" data-toggle="collapse" data-target="@target" aria-expanded="true" aria-controls="@controls">
-                                                                Do you know the meaning of this word?
+                                                                Do you know the meaning of this Questions?
                                                             </button>
                                                         </h5>
                                                     </div>
@@ -158,7 +159,15 @@
 </section>
 
 <script src="~/Content/js/jquery.simple.timer.js"></script>
-
+<script type="text/javascript">
+    //$(function () {
+    //    $('.timer').startTimer({
+    //        onComplete: function (element) {
+    //            $('html, body').addClass('bodyTimeoutBackground');
+    //        }
+    //    }).click(function () { location.reload() });
+    //})
+</script>
 
 <script>
     var wordList = [];
@@ -169,7 +178,8 @@
         if ($('#timePerWord').val() != null && $('#timePerWord').val() != "0") {
             $('.hfn-isviewed' + $('#hfn-index').val()).val('true');
             var timer = $(document).find('.timer').startTimer({
-                 
+                //loop: true,
+                //loopInterval: parseInt($('#hfn-count').val()),
                 onComplete: function (element) {
                     $('html, body').addClass('bodyTimeoutBackground');
                     var count = parseInt(parseInt($('#hfn-index').val()) + parseInt(1));
@@ -181,7 +191,8 @@
                         $('.cls-test-div').eq($('#hfn-index').val()).hide();
                         $('#hfn-index').val(parseInt(parseInt($('#hfn-index').val()) + parseInt(1)))
                         $('.cls-test-div').eq($('#hfn-index').val()).show();
-                       
+                        //$('#hfn-index').val(parseInt(parseInt($('#hfn-index').val()) + parseInt(1)));
+                        //$('#div-timer').data('seconds-left', $('#timePerWord').val());
 
                         $('#btn-next').trigger('click');
                     }
@@ -191,7 +202,7 @@
                         $('.hfn-isviewed' + $('#hfn-index').val()).val('true');
 
                         $(".hfn-view-question").each(function (index) {
-                            
+                            //alert(key + ": " + value);
                             if ($(this).val() == "false") {
                                 wordList.push($(this).attr('data-wordid'));
                             }
@@ -200,8 +211,8 @@
 
                         setTimeout(function () {
                             var encodedString = btoa($('#examId').val() + "," + wordList.join(','));
-                            window.location.href = "/Quester/Quester_ViewAnswer/" + encodedString;
-                            
+                            window.location.href = "/QuesterSharing/Quester_ViewAnswer/" + encodedString;
+                            //window.clearInterval(timer);
                         }, 300);
                     }
                 }
@@ -210,12 +221,13 @@
         else {
             $('.hfn-isviewed' + $('#hfn-index').val()).val('true');
             var timer = $(document).find('.timer-overall-minute').startTimer({
-                
+                //loop: true,
+                //loopInterval: parseInt($('#hfn-count').val()),
                 onComplete: function (element) {
                     $('html, body').addClass('bodyTimeoutBackground');
                     $('.hfn-isviewed' + $('#hfn-index').val()).val('true');
                     $(".hfn-view-question").each(function (index) {
-                        
+                        //alert(key + ": " + value);
                         if ($(this).val() == "false") {
                             wordList.push($(this).attr('data-wordid'));
                         }
@@ -224,17 +236,18 @@
 
                     setTimeout(function () {
                         var encodedString = btoa($('#examId').val() + "," + wordList.join(','));
-                        window.location.href = "/Quester/Quester_ViewAnswer/" + encodedString;
-                         
+                        window.location.href = "/QuesterSharing/Quester_ViewAnswer/" + encodedString;
+                        //window.clearInterval(timer);
                     }, 300);
 
-                     
+                    //var encodedString = btoa($('#examId').val());
+                    //window.location.href = "/Sharing/ViewAnswer/" + encodedString;
                 }
             });
         }
 
 
-        
+        //.click(function () { location.reload() });
     });
 
 
@@ -247,7 +260,8 @@
 
             var element = $(document).find('#div-timer');
 
-          
+            //$(element).replaceWith("<div class='timer timeout' id='div-timer' data-seconds-left= " + $('#timePerWord').val() + "></div>");
+
             var count = parseInt(parseInt($('#hfn-index').val()) + parseInt(1));
             if (parseInt(count) < parseInt($('#hfn-count').val())) {
                 $('.cls-test-div').eq($('#hfn-index').val()).hide();
@@ -257,7 +271,8 @@
 
                 $('.cls-test-div').eq($('#hfn-index').val()).show();
                 var timer = $(document).find('.timer').startTimer({
-                     
+                    //loop: true,
+                    //loopInterval: parseInt($('#hfn-count').val()),
                     onComplete: function (element) {
                         $('html, body').addClass('bodyTimeoutBackground');
                         if (parseInt(parseInt($('#hfn-index').val()) + parseInt(1)) < parseInt($('#hfn-count').val())) {
@@ -268,7 +283,8 @@
                             $('.cls-test-div').eq($('#hfn-index').val()).hide();
                             $('#hfn-index').val(parseInt(parseInt($('#hfn-index').val()) + parseInt(1)))
                             $('.cls-test-div').eq($('#hfn-index').val()).show();
-                             
+                            //$('#hfn-index').val(parseInt(parseInt($('#hfn-index').val()) + parseInt(1)));
+                            //$('#div-timer').data('seconds-left', $('#timePerWord').val());
                             $('#btn-next').trigger('click');
                         }
                         else {
@@ -279,10 +295,11 @@
                             $(elementNew).html("<div class='timer timeout' id='div-timer' data-seconds-left=0></div>");
 
                             var element = $(document).find('#div-timer');
-                             
+                            //$(element).replaceWith("<div class='timer timeout' id='div-timer' data-seconds-left=0></div>");
+                            //$('.timer').stop();
 
                             $(".hfn-view-question").each(function (index) {
-                                 
+                                //alert(key + ": " + value);
                                 if ($(this).val() == "false") {
                                     wordList.push($(this).attr('data-wordid'));
                                 }
@@ -291,10 +308,14 @@
 
                             setTimeout(function () {
                                 var encodedString = btoa($('#examId').val() + "," + wordList.join(','));
-                                window.location.href = "/Quester/Quester_ViewAnswer/" + encodedString;
-                                 
+                                window.location.href = "/QuesterSharing/Quester_ViewAnswer/" + encodedString;
+                                //window.clearInterval(timer);
                             }, 300);
 
+
+                            //var encodedString = btoa($('#examId').val());
+                            //window.location.href = "/Sharing/ViewAnswer/" + encodedString;
+                            //window.clearInterval(timer);
                         }
                     }
                 });
@@ -303,11 +324,12 @@
                 var element = $(document).find('#div-timer');
                 var elementNew = $(document).find('#div-timer-main-div');
                 $(elementNew).html("<div class='timer timeout' id='div-timer' data-seconds-left=0></div>");
-                
+                //$(element).replaceWith("<div class='timer timeout' id='div-timer' data-seconds-left=0></div>");
                 $('.hfn-isviewed' + $('#hfn-index').val()).val('true');
 
                 var timer = $(document).find('.timer').startTimer({
-                    
+                    //loop: true,
+                    //loopInterval: parseInt($('#hfn-count').val()),
                     onComplete: function (element) {
                         $('html, body').addClass('bodyTimeoutBackground');
                         if (parseInt(count) < parseInt($('#hfn-count').val())) {
@@ -318,7 +340,8 @@
                             $('.cls-test-div').eq($('#hfn-index').val()).hide();
                             $('#hfn-index').val(parseInt(parseInt($('#hfn-index').val()) + parseInt(1)))
                             $('.cls-test-div').eq($('#hfn-index').val()).show();
-                            
+                            //$('#hfn-index').val(parseInt(parseInt($('#hfn-index').val()) + parseInt(1)));
+                            //$('#div-timer').data('seconds-left', $('#timePerWord').val());
                         }
                         else {
 
@@ -328,7 +351,7 @@
 
 
                             $(".hfn-view-question").each(function (index) {
-                                
+                                //alert(key + ": " + value);
                                 if ($(this).val() == "false") {
                                     wordList.push($(this).attr('data-wordid'));
                                 }
@@ -337,10 +360,13 @@
 
                             setTimeout(function () {
                                 var encodedString = btoa($('#examId').val() + "," + wordList.join(','));
-                                window.location.href = "/Quester/Quester_ViewAnswer/" + encodedString;
-                                
+                                window.location.href = "/QuesterSharing/Quester_ViewAnswer/" + encodedString;
+                                //window.clearInterval(timer);
                             }, 300);
-                                                        
+
+                            //var encodedString = btoa($('#examId').val());
+                            //window.location.href = "/Sharing/ViewAnswer/" + encodedString;
+                            //window.clearInterval(timer);
                         }
                     }
                 });
@@ -358,7 +384,38 @@
                 $('#hfn-index').val(parseInt(parseInt($('#hfn-index').val()) + parseInt(1)))
                 $('.cls-test-div').eq($('#hfn-index').val()).show();
 
-                                
+
+                //$('html, body').addClass('bodyTimeoutBackground');
+                //if (parseInt(parseInt($('#hfn-index').val()) + parseInt(1)) < parseInt($('#hfn-count').val())) {
+
+
+
+                //    $('.cls-test-div').eq($('#hfn-index').val()).hide();
+                //    $('#hfn-index').val(parseInt(parseInt($('#hfn-index').val()) + parseInt(1)))
+                //    $('.cls-test-div').eq($('#hfn-index').val()).show();
+                //    //$('#hfn-index').val(parseInt(parseInt($('#hfn-index').val()) + parseInt(1)));
+                //    //$('#div-timer').data('seconds-left', $('#timePerWord').val());
+                //    $('#btn-next').trigger('click');
+                //}
+                //else {
+
+
+                //    $.each('.hfn-view-question', function (key, value) {
+                //        //alert(key + ": " + value);
+                //        wordlist.push($(this).attr('data-wordid'));
+                //    });
+
+                //    setTimeout(function () {
+                //        var encodedString = btoa($('#examId').val() + "," + wordList.join(','));
+                //        window.location.href = "/Sharing/ViewAnswer/" + encodedString;
+                //        //window.clearInterval(timer);
+                //    }, 300);
+
+
+                //    //var encodedString = btoa($('#examId').val());
+                //    //window.location.href = "/Sharing/ViewAnswer/" + encodedString;
+                //    //window.clearInterval(timer);
+                //}
 
             }
             else {
@@ -372,7 +429,8 @@
                     $('.cls-test-div').eq($('#hfn-index').val()).hide();
                     $('#hfn-index').val(parseInt(parseInt($('#hfn-index').val()) + parseInt(1)))
                     $('.cls-test-div').eq($('#hfn-index').val()).show();
-                    
+                    //$('#hfn-index').val(parseInt(parseInt($('#hfn-index').val()) + parseInt(1)));
+                    //$('#div-timer').data('seconds-left', $('#timePerWord').val());
                 }
                 else {
 
@@ -380,7 +438,7 @@
 
 
                     $(".hfn-view-question").each(function (index) {
-                        
+                        //alert(key + ": " + value);
                         if ($(this).val() == "false") {
                             wordList.push($(this).attr('data-wordid'));
                         }
@@ -389,10 +447,13 @@
 
                     setTimeout(function () {
                         var encodedString = btoa($('#examId').val() + "," + wordList.join(','));
-                        window.location.href = "/Quester/Quester_ViewAnswer/" + encodedString;
-                        
+                        window.location.href = "/QuesterSharing/Quester_ViewAnswer/" + encodedString;
+                        //window.clearInterval(timer);
                     }, 300);
-                                       
+
+                    //var encodedString = btoa($('#examId').val());
+                    //window.location.href = "/Sharing/ViewAnswer/" + encodedString;
+                    //window.clearInterval(timer);
                 }
             }
 
@@ -405,18 +466,22 @@
 
 
     $(document).on('click', '#btn-next', function () {
+
         
         if ($('#timePerWord').val() != null && $('#timePerWord').val() != "0") {
-            
+
+            //$(document).find('.timer').remove();
             var elementNew = $(document).find('#div-timer-main-div');
             $(elementNew).html("<div class='timer timeout' id='div-timer' data-seconds-left= " + $('#timePerWord').val() + "></div>");
 
             var element = $(document).find('#div-timer');
-            
+            //$(element).replaceWith("<div class='timer timeout' id='div-timer' data-seconds-left= " + $('#timePerWord').val() + "></div>");
+
             var count = parseInt(parseInt($('#hfn-index').val()));
             if (parseInt(count) < parseInt($('#hfn-count').val())) {
                 var timer = $(document).find('.timer').startTimer({
-                   
+                    //loop: true,
+                    //loopInterval: parseInt($('#hfn-count').val()),
                     onComplete: function (element) {
                         
                         $('html, body').addClass('bodyTimeoutBackground');
@@ -429,14 +494,15 @@
                             $('.cls-test-div').eq($('#hfn-index').val()).hide();
                             $('#hfn-index').val(parseInt(parseInt($('#hfn-index').val()) + parseInt(1)))
                             $('.cls-test-div').eq($('#hfn-index').val()).show();
-                            
+                            //$('#hfn-index').val(parseInt(parseInt($('#hfn-index').val()) + parseInt(1)));
+                            //$('#div-timer').data('seconds-left', $('#timePerWord').val());
                             $('#btn-next').trigger('click');
                         }
                         else {
-                           
+                            //$(document).find('.timer').stop();
                             $('.hfn-isviewed' + $('#hfn-index').val()).val('true');
                             $(".hfn-view-question").each(function (index) {
-                                
+                                //alert(key + ": " + value);
                                 if ($(this).val() == "false") {
                                     wordList.push($(this).attr('data-wordid'));
                                 }
@@ -444,11 +510,14 @@
 
                             setTimeout(function () {
                                 var encodedString = btoa($('#examId').val() + "," + wordList.join(','));
-                                window.location.href = "/Quester/Quester_ViewAnswer/" + encodedString;
-                                
+                                window.location.href = "/QuesterSharing/Quester_ViewAnswer/" + encodedString;
+                                //window.clearInterval(timer);
                             }, 300);
 
 
+                            //var encodedString = btoa($('#examId').val());
+                            //window.location.href = "/Sharing/ViewAnswer/" + encodedString;
+                            //window.clearInterval(timer);
                         }
                     }
                 });
@@ -468,14 +537,15 @@
                     $('.cls-test-div').eq($('#hfn-index').val()).hide();
                     $('#hfn-index').val(parseInt(parseInt($('#hfn-index').val()) + parseInt(1)))
                     $('.cls-test-div').eq($('#hfn-index').val()).show();
-                    
+                    //$('#hfn-index').val(parseInt(parseInt($('#hfn-index').val()) + parseInt(1)));
+                    //$('#div-timer').data('seconds-left', $('#timePerWord').val());
                     $('#btn-next').trigger('click');
                 }
                 else {
-                   
+                    //$(document).find('.timer').stop();
                     $('.hfn-isviewed' + $('#hfn-index').val()).val('true');
                     $(".hfn-view-question").each(function (index) {
-                        
+                        //alert(key + ": " + value);
                         if ($(this).val() == "false") {
                             wordList.push($(this).attr('data-wordid'));
                         }
@@ -484,11 +554,14 @@
 
                     setTimeout(function () {
                         var encodedString = btoa($('#examId').val() + "," + wordList.join(','));
-                        window.location.href = "/Quester/Quester_ViewAnswer/" + encodedString;
-                        
+                        window.location.href = "/QuesterSharing/Quester_ViewAnswer/" + encodedString;
+                        //window.clearInterval(timer);
                     }, 300);
 
 
+                    //var encodedString = btoa($('#examId').val());
+                    //window.location.href = "/Sharing/ViewAnswer/" + encodedString;
+                    //window.clearInterval(timer);
                 }
             }
         }

@@ -1,15 +1,12 @@
-﻿
-@model TutionCloudWeb.Model.Quester.Quester_WordList_Model
-
-
+﻿@model TutionCloudWeb.Models.PostModel.Word.WordList
 @{
-    var a1 = 0;
+    // var wordList = new TutionCloudWeb.Models.DataClass.WebService().getUserWordList(Model.userId, Model.index, 10, Model.searchText, Model.sortBy, Model.sortOrder);
 
     var wordList = new TutionCloudWeb.Repository.Quester.Quester_WebService_Repository().Quester_getUserWordList(Model.userId, Model.index, 10, Model.searchText, Model.sortBy, Model.sortOrder);
 
-    var a2 = 0;
 
 }
+
 
 @if (wordList.Count > 0)
 {
@@ -18,14 +15,15 @@
         var value = item.WORDID.ToString() + "-Words-1";
         byte[] byt = System.Text.Encoding.UTF8.GetBytes(value);
 
-        
+        // convert the byte array to a Base64 string
+
         var strModified = Convert.ToBase64String(byt);
         var Synonym = "https://www.thesaurus.com/browse/" + item.WORD + "?s=t";
 
 
-        <tr class="tr-word-row" style="cursor:pointer;" data-word="@item.WORD" data-pronounciation="@item.PRONOUNCIATION" data-phrase="@item.PHRASE" data-hint="@item.HINT" data-definition="@item.DEFINITION" data-categoryname ="@item.CATEGORYNAME">
+        <tr class="tr-word-row" style="cursor:pointer;" data-word="@item.WORD" data-pronounciation="@item.PRONOUNCIATION" data-phrase="@item.PHRASE" data-hint="@item.HINT" data-definition="@item.DEFINITION">
             <td>
-          
+            
                 @if (Model.wordIds != null && Model.wordIds != string.Empty)
                 {
                     List<string> result = Model.wordIds.Split(',').ToList();
@@ -38,12 +36,11 @@
             </td>
             <td><strong>@item.WORD</strong></td>
             <td>@item.OVERALLSCORE %</td>
-          
-
+           
             <td class="toggle_dropdown_cust">
                 <div class="web-dsp">
-                    @*<span class="edts"><a target="_blank" href="@Synonym"><img style="width: 17px;" src="~/Content/img/utilities/ser.png"> Synonym</a></span>
-                    <span class="ck_brd">|</span>*@
+                    <span class="edts"><a target="_blank" href="@Synonym"><img style="width: 17px;" src="~/Content/img/utilities/ser.png"> Synonym</a></span>
+                    <span class="ck_brd">|</span>
                     <span class="edts"><a style="cursor:pointer;" href="/Quester/Quester_EditWord/@strModified"><i class="fas fa-pencil-alt"></i> Edit</a></span>
                     <span class="ck_brd">|</span>
                     <span class="edts"><a class="word-delete" data-wordid="@item.WORDID"><i class="fas fa-trash-alt"></i> Delete</a></span>
@@ -53,8 +50,8 @@
                         <i class="fas fa-ellipsis-v"></i>
                     </button>
                     <div class="dropdown-menu labes" aria-labelledby="dropdownMenuButton">
-                        @*<span class="edts"><a target="_blank" href="@Synonym"><img style="width: 17px;" src="~/Content/img/utilities/ser.png"> Synonym</a></span>
-                        <span class="ck_brd">|</span>*@
+                        <span class="edts"><a target="_blank" href="@Synonym"><img style="width: 17px;" src="~/Content/img/utilities/ser.png"> Synonym</a></span>
+                        <span class="ck_brd">|</span>
                         <span class="edts"><a style="cursor:pointer;" href="/Quester/Quester_EditWord/@strModified"><i class="fas fa-pencil-alt"></i> Edit</a></span>
                         <span class="ck_brd">|</span>
                         <span class="edts"><a class="word-delete" data-wordid="@item.WORDID"><i class="fas fa-trash-alt"></i> Delete</a></span>
@@ -70,7 +67,7 @@
 else
 {
     <tr>
-        <td colspan="4">No words found</td>
+        <td colspan="4">No Questions found</td>
     </tr>
 }
 
