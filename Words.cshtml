@@ -1,4 +1,4 @@
-﻿@model TutionCloudWeb.Model.Wordutopia.WordsModel
+﻿@model TutionCloudWeb.Models.PostModel.Word.WordClass
 @{
     ViewBag.Title = "Words";
     Layout = "~/Views/Shared/_Layout_Wordutopia_Home.cshtml";
@@ -11,6 +11,8 @@
 <input type="hidden" id="hfn-index" value="0" />
 <input type="hidden" id="hfn-sortby" value="" />
 <input type="hidden" id="hfn-sortorder" value="" />
+
+
 <section class="favSecn">
     <div class="container-fluid">
         <div class="row">
@@ -116,7 +118,7 @@
                         <div class="dropdown-menu">
                             <a style="cursor:pointer;" class="dropdown-item" onclick="history.back()">Back</a>
                             <a style="cursor:pointer;" class="dropdown-item" id="SelectAll">Select All</a>
-                            <a style="cursor:pointer;" class="dropdown-item" id="a-add-word-fav">Add To Favourite</a>
+                            <a style="cursor:pointer;" class="dropdown-item" id="a-add-word-fav">Add To Favourites</a>
                             <a style="cursor:pointer;" class="dropdown-item" id="a-add-word-skiplist">Add To Skipped List</a>
                             <a style="cursor:pointer;" class="dropdown-item" id="delete-selected-words">Delete selected words</a>
                             <a style="cursor:pointer;" class="dropdown-item" id="delete-all-words">Delete all</a>
@@ -259,19 +261,62 @@
 
 
 <script>
+    //$("#SelectAll").click(function () {
+    //    $("#selected-item-count").text("0");
+    //    $('.ckb-word-item').each(function () {
+    //        this.checked = true;
+    //        $('#selected-item-count').text(" " + parseInt(parseInt($('#selected-item-count').text()) + parseInt(1)));
+    //        var wordId = $(this).attr('data-wordid');
+    //        if ($(this).prop("checked") == true) {
+    //            wordList.push(wordId);
+    //        }
+    //        else {
+    //            wordList.splice($.inArray(wordId, wordList), 1);
+    //        }
+    //    });
+        
+    //});
+
+    $('#ipt-word-search').keypress(function (e) {
+
+        var key = e.which;
+        if (key == 13)  // the enter key code
+        {
+            $('#btn-search-word').click();
+            //return false;
+        }
+    });
+
     $("#SelectAll").click(function () {
         $("#selected-item-count").text("0");
-        $('.ckb-word-item').each(function () {
-            this.checked = true;
-            $('#selected-item-count').text(" " + parseInt(parseInt($('#selected-item-count').text()) + parseInt(1)));
-            var wordId = $(this).attr('data-wordid');
-            if ($(this).prop("checked") == true) {
-                wordList.push(wordId);
-            }
-            else {
-                wordList.splice($.inArray(wordId, wordList), 1);
-            }
-        });
+
+        if ($('.ckb-word-item').prop("checked") == false) {
+            $('.ckb-word-item').each(function () {
+                this.checked = true;
+                $('#selected-item-count').text(" " + parseInt(parseInt($('#selected-item-count').text()) + parseInt(1)));
+                var wordId = $(this).attr('data-wordid');
+                if ($(this).prop("checked") == true) {
+                    wordList.push(wordId);
+                }
+                else {
+                    wordList.splice($.inArray(wordId, wordList), 1);
+                }
+            });
+        }
+        else {
+            $('.ckb-word-item').each(function () {
+                this.checked = false;
+                $('#selected-item-count').text(" " + parseInt(parseInt($('#selected-item-count').text()) + parseInt(1)));
+                var wordId = $(this).attr('data-wordid');
+                if ($(this).prop("checked") == false) {
+                    wordList.push(wordId);
+                }
+                else {
+                    wordList.splice($.inArray(wordId, wordList), 1);
+                }
+            });
+
+        }
 
     });
 
@@ -593,6 +638,7 @@
 <script>
     $(document).on('click', '#btn-search-word', function () {
         var searchText = $('#ipt-word-search').val();
+        searchText = $.trim(searchText);
         $.ajax({
             url: '/Wordutopia/WordCount?userId=' + parseInt($('#userId').val()) + '&searchText=' + searchText,
             type: "GET",
@@ -653,6 +699,8 @@
 </script>
 
 <script>
+
+
     $(document).on('click', '#a-add-word-fav', function () {
         var cbkStatus = false;
         var wordIds = "";
@@ -684,14 +732,7 @@
                 success: function (data) {
                     if (data.status) {
                         toastrSuccess("Word added to favourites");
-
-                        //setTimeout(function () { })
-
-                        //$(document).find('.ckb-word-item').each(function (index, value) {
-                        //    if ($(this).prop("checked") == true) {
-                        //        $(this).closest('tr').remove();
-                        //    }
-                        //});
+                                               
 
                         $('#totalWordCount').val(parseInt($('#totalWordCount').val() - count));
 
@@ -964,6 +1005,9 @@
 
 
 </script>
+
+
+
 
 
 @*<script id="scrpt-pagination-initialize">

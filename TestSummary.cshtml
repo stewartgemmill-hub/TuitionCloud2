@@ -28,12 +28,12 @@
                     <div class="dropdown">
                         <button type="button" class="btn btn-primary " data-toggle="dropdown">Task Dropdown List <img src="~/Content/img/rightarrow.png" /></button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" style="cursor:pointer;" href="/Wordutopia/Exams/">Back</a>
+                            <a class="dropdown-item" style="cursor:pointer;" onclick="history.back()">Back</a>
                             <a style="cursor:pointer;" class="dropdown-item" id="SelectAll">Select All</a>
                             <a class="dropdown-item" style="cursor:pointer;" href="/Wordutopia/CreateNote/">Create a Test Note</a>
-                            @*<a class="dropdown-item" style="cursor:pointer;" href="/Wordutopia/ResitTest/@strModified2">Resit Test</a>*@
+                            <a class="dropdown-item" style="cursor:pointer;" href="/Wordutopia/ResitTest/@strModified2">Resit Test</a>
                             @*<a class="dropdown-item" href="#">Create New Test</a>*@
-                            @*<a class="dropdown-item" href="/Wordutopia/TestArchives">View Test Archives</a>*@
+                            <a class="dropdown-item" href="/Wordutopia/TestArchives">View Test Archives</a>
                             @*<a class="dropdown-item" href="#">View Selected Test Archives</a>
                                 <a class="dropdown-item" href="#">Resit Selected Test Archives</a>
                                 <a class="dropdown-item" href="#">View Selected Test Archives Notes</a>
@@ -53,12 +53,13 @@
                             <table class="table table-hover newTable table-bordered" style="border:none;">
                                 <thead>
                                     <tr>
-                                        <th class="tabhead">Select</th>
-                                        <th class="tabhead">Words Tested </th>
-                                        <th class="tabhead">Outcome </th>
-                                        <th class="tabhead"> Average % Score</th>
-                                        <th class="tabhead">Options</th>
-                                    </tr>
+                                        <th class=" tabhead">
+                                Select</th>
+                                <th class="tabhead">Words Tested </th>
+                                <th class="tabhead">Outcome </th>
+                                <th class="tabhead"> Average % Score</th>
+                                <th class="tabhead">Options</th>
+                                </tr>
                                 </thead>
                                 <tbody id="tbody-wordlist" style="min-height:200px;">
                                     @{
@@ -71,7 +72,7 @@
                                         postModel.sortBy = string.Empty;
                                         postModel.sortOrder = string.Empty;
                                     }
-                                    @Html.Partial("~/Views/Sharing/_pv_Wordutopia_TestSummary_Share_Word_List.cshtml", postModel)
+                                    @Html.Partial("~/Views/Wordutopia/_pv_Wordutopia_TestSummary_Word_List.cshtml", postModel)
                                 </tbody>
                             </table>
 
@@ -109,7 +110,7 @@
                                     postModelPagination.sortBy = string.Empty;
                                     postModelPagination.sortOrder = string.Empty;
                                 }
-                                @Html.Partial("~/Views/Sharing/_pv_Wordutopia_TestSummary_Word_Test_List_Pagination.cshtml", postModelPagination)
+                                @Html.Partial("~/Views/Wordutopia/_pv_Wordutopia_TestSummary_Word_List_Pagination.cshtml", postModelPagination)
                             </nav>
                         </div>
                     </div>
