@@ -21,9 +21,11 @@ if ($pLevel==null || $pLevel=="") $pLevel = "0";
 if ($pName==null) $pName = "";
 else $pName = $pName.".";
 
-$pId = htmlspecialchars($pId);
+$pId = str_replace("%<%", "&lt;", $pId);
+$pId = str_replace("%>%", "&gt;", $pId);
 
-$pName = htmlspecialchars($pName);
+$pName = str_replace("%<%", "&lt;", $pName);
+$pName = str_replace("%>%", "&gt;", $pName);
 
 //for ($i=1; $i<9999; $i++) {
 //	for ($j=1; $j<999; $j++) {
