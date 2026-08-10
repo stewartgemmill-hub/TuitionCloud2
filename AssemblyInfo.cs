@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TutionCloudWeb")]
+[assembly: AssemblyTitle("TutionCloudWeb.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("TutionCloudWeb")]
+[assembly: AssemblyProduct("TutionCloudWeb.Tests")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("acf7b7ce-4206-4898-b054-dd517e38b886")]
+[assembly: Guid("5601f428-fea6-4b38-8003-4ef2b2ee9632")]
 
 // Version information for an assembly consists of the following four values:
 //
