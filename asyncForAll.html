@@ -6,19 +6,18 @@
 	<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
 	<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css" type="text/css">
 	<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.core-3.5.js"></script>
-	<!--<script type="text/javascript" src="../../../js/jquery.ztree.excheck-3.5.js"></script>
-	<script type="text/javascript" src="../../../js/jquery.ztree.exedit-3.5.js"></script>-->
+	<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
+	<!--<script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
+	<script type="text/javascript" src="../../../js/jquery.ztree.exedit.js"></script>-->
 	<SCRIPT type="text/javascript">
 		<!--
 		var demoMsg = {
-			async: "Loading asynchronous, please wait a moment and then click...",
-			expandAllOver: "Expansion Completed.",
-			asyncAllOver: "Asynchronously loading Completed.",
-			asyncAll: "Asynchronously loading Completed, no need to reload it again.",
-			expandAll: "Asynchronously loading completed, please use expandAll method."
+			async:"正在进行异步加载，请等一会儿再点击...",
+			expandAllOver: "全部展开完毕",
+			asyncAllOver: "后台异步加载完毕",
+			asyncAll: "已经异步加载完毕，不再重新加载",
+			expandAll: "已经异步加载完毕，使用 expandAll 方法"
 		}
-
 		var setting = {
 			async: {
 				enable: true,
@@ -163,23 +162,23 @@
 </HEAD>
 
 <BODY>
-<h1>Expand All Nodes with Async</h1>
-<h6>[ File Path: super/asyncForAll.html ]</h6>
+<h1>异步加载模式下全部展开</h1>
+<h6>[ 文件路径: super/asyncForAll.html ]</h6>
 <div class="content_wrap">
 	<div class="zTreeDemoBackground left">
 		<ul id="treeDemo" class="ztree"></ul>
 	</div>
 	<div class="right">
 		<ul class="info">
-			<li class="title"><h2>Explanation of implementation method</h2>
+			<li class="title"><h2>实现方法说明</h2>
 				<ul class="list">
-				<li>Using 'onAsyncSuccess' / 'onAsyncError' callback and 'reAsyncChildNodes' or 'expandNode' method, you will achieve all functionalities.</li>
-				<li class="highlight_red">Note: If there are large amount parent nodes, please use delay to avoid excessive asynchronous process.</li>
-				<li class="highlight_red">Recommendation: please use the debugging tools to view the ajax loading process with network.</li>
-				<li>Demonstrate operation
+				<li>利用 onAsyncSuccess / onAsyncError 回调函数 和 reAsyncChildNodes 或 expandNode 方法可以实现全部功能。</li>
+				<li class="highlight_red">如果父节点数量很大，请注意利用延时进行控制，避免异步进程过多。</li>
+				<li class="highlight_red">建议：演示时请利用调试工具查看 network 的 ajax 加载过程。</li>
+				<li>演示操作
 					<br/><br/>
-				[ <a id="expandAllBtn" href="#" onclick="return false;">Expand All Nodes</a> ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				[ <a id="asyncAllBtn" href="#" onclick="return false;">Load all nodes (don't expand)</a> ]<br/><br/>
+				[ <a id="expandAllBtn" href="#" onclick="return false;">全部展开</a> ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				[ <a id="asyncAllBtn" href="#" onclick="return false;">后台自动全部加载</a> ]<br/><br/>
 				[ <a id="resetBtn" href="#" onclick="return false;">Reset zTree</a> ]<br/><br/>
 				<p class="highlight_red" id="demoMsg"></p>
 				</li>
