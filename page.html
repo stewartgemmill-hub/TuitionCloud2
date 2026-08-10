@@ -35,13 +35,13 @@
 		};
 
 		var zNodes =[
-			{name:"分页测试", t:"请点击分页按钮", id:"1", count:2000, page:0, pageSize:100, isParent:true}
+			{name:"page test", t:"Please click the paging buttons.", id:"1", count:2000, page:0, pageSize:100, isParent:true}
 		];
 		var curPage = 0;
 		function getUrl(treeId, treeNode) {
 			var param = "id="+ treeNode.id +"_"+treeNode.page +"&count="+treeNode.pageSize,
 			aObj = $("#" + treeNode.tId + "_a");
-			aObj.attr("title", "当前第 " + treeNode.page + " 页 / 共 " + treeNode.maxPage + " 页")
+			aObj.attr("title", "Page " + treeNode.page + " / " + treeNode.maxPage + "")
 			return "../asyncData/getNodesForBigData.php?" + param;
 		}
 		function goPage(treeNode, page) {
@@ -62,7 +62,7 @@
 		}
 		function onAsyncError(event, treeId, treeNode, XMLHttpRequest, textStatus, errorThrown) {
 			var zTree = $.fn.zTree.getZTreeObj("treeDemo");
-			alert("异步获取数据出现异常。");
+			alert("ajax error...");
 			treeNode.icon = "";
 			zTree.updateNode(treeNode);
 		}
@@ -117,30 +117,30 @@
  </HEAD>
 
 <BODY>
-<h1>分页加载大数据量</h1>
-<h6>[ 文件路径: bigdata/page.html ]</h6>
+<h1>Loading Data By Pagination</h1>
+<h6>[ File Path: bigdata/page.html ]</h6>
 <div class="content_wrap">
 	<div class="zTreeDemoBackground left">
 		<ul id="treeDemo" class="ztree"></ul>
 	</div>
 	<div class="right">
 		<ul class="info">
-			<li class="title"><h2>1、大数据量加载说明</h2>
+			<li class="title"><h2>1, Explanation of large data load</h2>
 				<ul class="list">
-				<li>1)、分页方案可以有效解决某一级节点数据超大的情况。</li>
-				<li>2)、分页按钮通过自定义控件的方法实现。</li>
-				<li class="highlight_red">3)、分页方案对于 checkbox 的关联关系无能为力，只能每次翻页后进行修正。由于时间关系，Demo 中不对 checkbox 的关联进行任何修正处理。</li>
-				<li class="highlight_red">4)、分页方案中，从 zTree 得到的节点数据只有当前页的节点数据，可以在每次翻页后自行保存每页的数据，作为缓存，具体情况要根据实际需求来决定。</li>
+				<li>1) Pagination can be an effective solution to the large number of child nodes of the situation.</li>
+				<li>2) Using custom method to display the pagination button.</li>
+				<li class="highlight_red">3) Pagination lead to the association  of checkbox can not be achieved, only correction after show each page . Because of the time limitation, Demo does not deal with association of checkbox.</li>
+				<li class="highlight_red">4) The use of pagination, you can only get the current page node data from zTree. You can save the data after each page loading as the cache, according to the demand to determine the specific methods.</li>
 			</li>
-			<li class="title"><h2>2、setting 配置信息说明</h2>
+			<li class="title"><h2>2, Explanation of setting</h2>
 				<ul class="list">
-				<li>需要设置 setting.async 异步加载部分的参数</li>
-				<li>其他不需要进行特殊的配置，根据自己的需求自行设置</li>
+				<li>Need to set the parameters in setting.async</li>
+				<li>No other special configuration, the user can set their own requirements.</li>
 				</ul>
 			</li>
-			<li class="title"><h2>3、treeNode 节点数据说明</h2>
+			<li class="title"><h2>3, Explanation of treeNode</h2>
 				<ul class="list">
-				<li>对 节点数据 没有特殊要求，用户可以根据自己的需求添加自定义属性</li>
+				<li>No special requirements on the node data, the user can add custom attributes.</li>
 				</ul>
 			</li>
 		</ul>

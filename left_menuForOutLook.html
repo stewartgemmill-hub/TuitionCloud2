@@ -29,19 +29,19 @@
 		};
 
 		var zNodes =[
-			{ id:1, pId:0, name:"文件夹", open:true},
-			{ id:11, pId:1, name:"收件箱"},
-			{ id:111, pId:11, name:"收件箱1"},
-			{ id:112, pId:111, name:"收件箱2"},
-			{ id:113, pId:112, name:"收件箱3"},
-			{ id:114, pId:113, name:"收件箱4"},
-			{ id:12, pId:1, name:"垃圾邮件"},
-			{ id:13, pId:1, name:"草稿"},
-			{ id:14, pId:1, name:"已发送邮件"},
-			{ id:15, pId:1, name:"已删除邮件"},
-			{ id:3, pId:0, name:"快速视图"},
-			{ id:31, pId:3, name:"文档"},
-			{ id:32, pId:3, name:"照片"}
+			{ id:1, pId:0, name:"Folders", open:true},
+			{ id:11, pId:1, name:"Inbox"},
+			{ id:111, pId:11, name:"Inbox1"},
+			{ id:112, pId:111, name:"Inbox2"},
+			{ id:113, pId:112, name:"Inbox3"},
+			{ id:114, pId:113, name:"Inbox4"},
+			{ id:12, pId:1, name:"Junk"},
+			{ id:13, pId:1, name:"Drafts"},
+			{ id:14, pId:1, name:"Sent"},
+			{ id:15, pId:1, name:"Deleted"},
+			{ id:3, pId:0, name:"Quick views"},
+			{ id:31, pId:3, name:"Documents"},
+			{ id:32, pId:3, name:"Photos"}
 		];
 
 		function addDiyDom(treeId, treeNode) {
@@ -108,24 +108,24 @@
  </HEAD>
 
 <BODY>
-<h1>OutLook 样式的左侧菜单</h1>
-<h6>[ 文件路径: super/left_menuForOutLook.html ]</h6>
+<h1>Left Menu Like OutLook Style</h1>
+<h6>[ File Path: super/left_menuForOutLook.html ]</h6>
 <div class="content_wrap">
 	<div class="zTreeDemoBackground left">
 		<ul id="treeDemo" class="ztree"></ul>
 	</div>
 	<div class="right">
 		<ul class="info">
-			<li class="title"><h2>实现方法说明</h2>
+			<li class="title"><h2>Explanation of implementation method</h2>
 				<ul class="list">
-				<li>帮朋友用 zTree 实现了一个貌似 Outlook.com 的菜单，特拿出来分享给大家</li>
-				<li class="highlight_red">1、请注意本页面源码中的 css 部分</li>
-				<li class="highlight_red">2、请查看源码中 js 的使用，特别是利用 addDiyDom 回调将 展开按钮 转移到 &lt;a&gt; 标签内</li>
-				<li class="highlight_red">3、利用添加 zTree 的 class 实现展开按钮的隐藏、显示</li>
-				<li>4、其他辅助规则，请根据实际情况自行编写</li>
-				<li>5、当前规则说明:<br/>
-				&nbsp;&nbsp;单击根节点可以展开、折叠;<br/>
-				&nbsp;&nbsp;非根节点只有点击 箭头 图标才可以展开、折叠;<br/>
+				<li>I make one left menu which resembles outlook.com, so share to everyone.</li>
+				<li class="highlight_red">1. Please note that the css code of the source of this page.</li>
+				<li class="highlight_red">2. Please note that the javascript code of the source of this page, especially the switch button is moved into the &lt;a&gt; tag  when 'addDiyDom' callback be called</li>
+				<li class="highlight_red">3. Use the method of add zTree class name to implement the switch button be hidden or showing.</li>
+				<li>4. Other auxiliary rules, please write code based on your needs.</li>
+				<li>5. The current rule description:<br/>
+				&nbsp;&nbsp;Click the root node can control the parent node be expanded or collapsed;<br/>
+				&nbsp;&nbsp;The parent nodes without root only are only clicked the arrow icon can control be expanded or  collapsed;br/>
 				</li>
 				</ul>
 			</li>

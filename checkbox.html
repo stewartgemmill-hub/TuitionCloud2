@@ -25,23 +25,23 @@
 		};
 
 		var zNodes =[
-			{ id:1, pId:0, name:"随意勾选 1", open:true},
-			{ id:11, pId:1, name:"随意勾选 1-1", open:true},
-			{ id:111, pId:11, name:"随意勾选 1-1-1"},
-			{ id:112, pId:11, name:"随意勾选 1-1-2"},
-			{ id:12, pId:1, name:"随意勾选 1-2", open:true},
-			{ id:121, pId:12, name:"随意勾选 1-2-1"},
-			{ id:122, pId:12, name:"随意勾选 1-2-2"},
-			{ id:2, pId:0, name:"随意勾选 2", checked:true, open:true},
-			{ id:21, pId:2, name:"随意勾选 2-1"},
-			{ id:22, pId:2, name:"随意勾选 2-2", open:true},
-			{ id:221, pId:22, name:"随意勾选 2-2-1", checked:true},
-			{ id:222, pId:22, name:"随意勾选 2-2-2"},
-			{ id:23, pId:2, name:"随意勾选 2-3"}
+			{ id:1, pId:0, name:"can check 1", open:true},
+			{ id:11, pId:1, name:"can check 1-1", open:true},
+			{ id:111, pId:11, name:"can check 1-1-1"},
+			{ id:112, pId:11, name:"can check 1-1-2"},
+			{ id:12, pId:1, name:"can check 1-2", open:true},
+			{ id:121, pId:12, name:"can check 1-2-1"},
+			{ id:122, pId:12, name:"can check 1-2-2"},
+			{ id:2, pId:0, name:"can check 2", checked:true, open:true},
+			{ id:21, pId:2, name:"can check 2-1"},
+			{ id:22, pId:2, name:"can check 2-2", open:true},
+			{ id:221, pId:22, name:"can check 2-2-1", checked:true},
+			{ id:222, pId:22, name:"can check 2-2-2"},
+			{ id:23, pId:2, name:"can check 2-3"}
 		];
-		
+
 		var code;
-		
+
 		function setCheck() {
 			var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
 			py = $("#py").attr("checked")? "p":"",
@@ -57,7 +57,7 @@
 			code.empty();
 			code.append("<li>"+str+"</li>");
 		}
-		
+
 		$(document).ready(function(){
 			$.fn.zTree.init($("#treeDemo"), setting, zNodes);
 			setCheck();
@@ -71,33 +71,33 @@
 </HEAD>
 
 <BODY>
-<h1>Checkbox 勾选操作</h1>
-<h6>[ 文件路径: excheck/checkbox.html ]</h6>
+<h1>Checkbox Operation</h1>
+<h6>[ File Path: excheck/checkbox.html ]</h6>
 <div class="content_wrap">
 	<div class="zTreeDemoBackground left">
 		<ul id="treeDemo" class="ztree"></ul>
 	</div>
 	<div class="right">
 		<ul class="info">
-			<li class="title"><h2>1、setting 配置信息说明</h2>
+			<li class="title"><h2>1, Explanation of setting</h2>
 				<ul class="list">
-				<li class="highlight_red">使用 checkbox，必须设置 setting.check 中的各个属性，详细请参见 API 文档中的相关内容</li>
-				<li><p>父子关联关系：<br/>
-						被勾选时：<input type="checkbox" id="py" class="checkbox first" checked /><span>关联父</span>
-						<input type="checkbox" id="sy" class="checkbox first" checked /><span>关联子</span><br/>
-						取消勾选时：<input type="checkbox" id="pn" class="checkbox first" checked /><span>关联父</span>
-						<input type="checkbox" id="sn" class="checkbox first" checked /><span>关联子</span><br/>
+				<li class="highlight_red">Must set setting.check attributes, see the API documentation for more related contents.</li>
+				<li><p>Linkage relationship between parent and child nodes:<br/>
+						check: <input type="checkbox" id="py" class="checkbox first" checked /><span>affect the parent</span>
+						<input type="checkbox" id="sy" class="checkbox first" checked /><span>affect the child</span><br/>
+						uncheck: <input type="checkbox" id="pn" class="checkbox first" checked /><span>affect the parent</span>
+						<input type="checkbox" id="sn" class="checkbox first" checked /><span>affect the child</span><br/>
 						<ul id="code" class="log" style="height:20px;"></ul></p>
 				</li>
 				</ul>
 			</li>
-			<li class="title"><h2>2、treeNode 节点数据说明</h2>
+			<li class="title"><h2>2, Explanation of treeNode</h2>
 				<ul class="list">
-				<li class="highlight_red">1)、如果需要初始化默认节点被勾选，请设置 treeNode.checked 属性，详细请参见 API 文档中的相关内容</li>
-				<li class="highlight_red">2)、如果某节点禁用 checkbox，请设置 treeNode.chkDisabled 属性，详细请参见 API 文档中的相关内容 和 'chkDisabled 演示'</li>
-				<li class="highlight_red">3)、如果某节点不显示 checkbox，请设置 treeNode.nocheck 属性，详细请参见 API 文档中的相关内容 和 'nocheck 演示'</li>
-				<li class="highlight_red">4)、如果更换 checked 属性，请参考 API 文档中 setting.data.key.checked 的详细说明</li>
-				<li>5)、其他请参考 API 文档中 treeNode.checkedOld / getCheckStatus / check_Child_State / check_Focus 的详细说明</li>
+				<li class="highlight_red">1), If you need to initialize the node is checked, please set treeNode.checked attribute. See the API documentation for more related contents.</li>
+				<li class="highlight_red">2), If you need to initialize the node's checkbox is disabled, please set treeNode.chkDisabled attribute. See the API documentation for more related contents and 'chkDisabled Demo'.</li>
+				<li class="highlight_red">3), If you need to initialize the node don't show checkbox, please set treeNode.nocheck attribute. See the API documentation for more related contents and 'nocheck Demo'.</li>
+				<li class="highlight_red">4), If you need to change 'checked' to other attribute, please set setting.data.key.checked attribute. See the API documentation for more related contents.</li>
+				<li>5), By the way, please see the API documentation for 'treeNode.checkedOld / getCheckStatus / check_Child_State / check_Focus'.</li>
 				</ul>
 			</li>
 		</ul>

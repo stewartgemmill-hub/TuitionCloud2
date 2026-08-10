@@ -43,7 +43,7 @@
 			var element = "#treeDemo";
 			var zTree = $.fn.zTree.init($(element), setting, zNodes);
 			// Initialize keyboard navigation
-			$.fn.zTreeKeyboardNavigation(zTree, document.body);
+			$.fn.zTreeKeyboardNavigation(zTree, element);
 		});
 
 	</SCRIPT>
@@ -70,31 +70,36 @@
 </HEAD>
 
 <BODY>
-<h1>设置快捷键</h1>
-<h6>[ 文件路径: super/keyboard_navigation.html ]</h6>
+<h1>Keyboard navigation</h1>
+<h6>[ File Path: core/custom_keyboard_navigation.html ]</h6>
 <div class="content_wrap">
 	<div class="zTreeDemoBackground left">
 		<ul id="treeDemo" class="ztree"></ul>
 	</div>
 	<div class="right">
 		<ul class="info">
-			<li class="title"><h2>1、设置说明</h2>
+			<li class="title"><h2>1. Explanation of setting</h2>
 				<ul class="list">
-				<li>键盘导航不需要特殊配置。</li>
-				<li>只需要加载 keyboard_navigation.js 文件并初始化。</li>
+				<li>Keyboard navigation does not require special configuration setting.</li>
+				<li>It does require that the keyboard_navigation.js file is loaded and the function initialized.</li>
 				</ul>
 			</li>
-			<li class="title"><h2>2、快捷键说明</h2>
+			<li class="title"><h2>2. Explanation of navigation</h2>
 				<ul class="list">
-					<li>Home (keycode 36)：定位到第一个根节点</li>
-					<li>End (keycode 35)：定位到树上最后一个节点</li>
-					<li>下 (keycode 39)：定位到下一个同级节点</li>
-					<li>右 (keycode 40)：定位到下一个可视节点（包括子节点/同级节点 以及后面的父级节点）</li>
-					<li>上 (keycode 37)：定位到前一个同级节点</li>
-					<li>左 (keycode 38)：定位到前一个可视节点（包括子节点/同级节点 以及后面的父级节点）</li>
-					<li>空格 (keycode 32)：切换当前父节点 折叠、展开状态</li>
+					<li>Home: home key (keycode 36)		Goes to the first root element is visible</li>
+					<li>End: end key (keycode 35)		Goes to the last leaf node and will expand nodes and scroll the element into view</li>
+					<li>Down: right cursor key (keycode 39)	Goes to the next visible node in the tree following the hierarchy</li>
+					<li>Next: down cursor key (keycode 40)		Goes to the next visible node at the same level</li>
+					<li>Up: up cursor key (keycode 37)		Goes to the prior visible node at the same level</li>
+					<li>Previous: left cursor key (keycode 38)	Goes to the prior visible node following the hierarchy</li>
+					<li>Toggle: space key (keycode 32)	Toggles the expand/collapse state of a parent node</li>
 				</ul>
-			</li>			
+			</li>
+			<li class="title"><h2>3.Other explanation</h2>
+				<ul class="list">
+				<li>No other explanation.</li>
+				</ul>
+			</li>
 		</ul>
 	</div>
 </div>
