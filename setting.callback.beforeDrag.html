@@ -1,29 +1,29 @@
 <div class="apiDetail">
 <div>
 	<h2><span>Function(treeId, treeNodes)</span><span class="path">setting.callback.</span>beforeDrag</h2>
-	<h3>Overview<span class="h3_info">[ depends on <span class="highlight_green">jquery.ztree.exedit</span> js ]</span></h3>
+	<h3>概述<span class="h3_info">[ 依赖 <span class="highlight_green">jquery.ztree.exedit</span> 扩展 js ]</span></h3>
 	<div class="desc">
 		<p></p>
 		<div class="longdesc">
-			<p>Specify callback function to be called before the drag node callback, The return value controls whether the drag node callback will execute.</p>
-			<p>Default: null</p>
+			<p>用于捕获节点被拖拽之前的事件回调函数，并且根据返回值确定是否允许开启拖拽操作</p>
+			<p>默认值：null</p>
 		</div>
 	</div>
-	<h3>Function Parameter Descriptions</h3>
+	<h3>Function 参数说明</h3>
 	<div class="desc">
 	<h4><b>treeId</b><span>String</span></h4>
-	<p>zTree unique identifier: <b class="highlight_red">treeId</b>, the id of the containing tree.</p>
+	<p>被拖拽的节点 treeNodes 所在 zTree 的 <b class="highlight_red">treeId</b>，便于用户操控</p>
 	<h4 class="topLine"><b>treeNodes</b><span>Array(JSON)</span></h4>
-	<p>A collection of the nodes being dragged</p>
-	<p class="highlight_red">v3.x allows the drag and drop of multiple sibling nodes, so this parameter's type is changed to Array(JSON).</p>
-	<p class="highlight_red">If the selected nodes aren't sibling nodes, you can only drag one node.</p>
-	<h4 class="topLine"><b>Return </b><span>Boolean</span></h4>
-	<p>return true or false</p>
-	<p class="highlight_red">If return false, zTree will abort the drag and drop, and will not trigger the 'onDrag / beforeDrop / onDrop' sequence of callbacks.</p>
+	<p>要被拖拽的节点 JSON 数据集合</p>
+	<p class="highlight_red">v3.x 允许多个同级节点同时被拖拽，因此将此参数修改为 Array(JSON)</p>
+	<p class="highlight_red">如果拖拽时多个被选择的节点不是同级关系，则只能拖拽鼠标当前所在位置的节点</p>
+	<h4 class="topLine"><b>返回值</b><span>Boolean</span></h4>
+	<p>返回值是 true / false</p>
+	<p class="highlight_red">如果返回 false，zTree 将终止拖拽，也无法触发 onDrag / beforeDrop / onDrop 事件回调函数</p>
 	</div>
-	<h3>Examples of setting & function</h3>
-	<h4>1. disable drag completely (by returning false)</h4>
-	<pre xmlns=""><code>function myBeforeDrag(treeId, treeNodes) {
+	<h3>setting & function 举例</h3>
+	<h4>1. 禁止全部拖拽操作</h4>
+	<pre xmlns=""><code>function zTreeBeforeDrag(treeId, treeNodes) {
     return false;
 };
 var setting = {
@@ -31,7 +31,7 @@ var setting = {
 		enable: true
 	},
 	callback: {
-		beforeDrag: myBeforeDrag
+		beforeDrag: zTreeBeforeDrag
 	}
 };
 ......</code></pre>

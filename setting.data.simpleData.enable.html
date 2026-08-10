@@ -1,23 +1,22 @@
 <div class="apiDetail">
 <div>
 	<h2><span>Boolean</span><span class="path">setting.data.simpleData.</span>enable</h2>
-	<h3>Overview<span class="h3_info">[ depends on <span class="highlight_green">jquery.ztree.core</span> js ]</span></h3>
+	<h3>概述<span class="h3_info">[ 依赖 <span class="highlight_green">jquery.ztree.core</span> 核心 js ]</span></h3>
 	<div class="desc">
 		<p></p>
 		<div class="longdesc">
-			<p>Set zTree's node to accept the simple data format, when zTree is initialized or when ajax get / or when use <span class="highlight_red">addNodes</span> method.</p>
-			<p>Don't have to generate the complex nested data.</p>
-			<p>Default: false</p>
+			<p>确定 zTree 初始化时的节点数据、异步加载时的节点数据、或 <span class="highlight_red">addNodes</span> 方法中输入的 newNodes 数据是否采用简单数据模式 (Array)</p>
+			<p>不需要用户再把数据库中取出的 List 强行转换为复杂的 JSON 嵌套格式</p>
+			<p>默认值：false</p>
 		</div>
 	</div>
-	<h3>Boolean Format</h3>
+	<h3>Boolean 格式说明</h3>
 	<div class="desc">
-	<p> true means: zTree's node accept the simple data format.</p>
-	<p> false means: zTree's node only accept the nested data format.</p>
-	<p class="highlight_red">If set it is true, you must set the other attributes in 'setting.data.simpleData'. (e.g., idKey, pIdKey, rootPId)  And let the data satisfy the parent-child relationship.</p>
+	<p> true / false 分别表示 使用 / 不使用 简单数据模式</p>
+	<p class="highlight_red">如果设置为 true，请务必设置 setting.data.simpleData 内的其他参数: idKey / pIdKey / rootPId，并且让数据满足父子关系。</p>
 	</div>
-	<h3>Examples of setting</h3>
-	<h4>1. use the simple data format</h4>
+	<h3>setting 举例</h3>
+	<h4>1. 使用简单 Array 格式的数据</h4>
 	<pre xmlns=""><code>var setting = {
 	data: {
 		simpleData: {

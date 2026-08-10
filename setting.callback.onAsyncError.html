@@ -2,39 +2,39 @@
 <div>
 	<h2><span class="path">setting.callback.</span>onAsyncError</h2>
 	<h2><span>Function(event, treeId, treeNode, XMLHttpRequest, textStatus, errorThrown)</span>&nbsp;</h2>
-	<h3>Overview<span class="h3_info">[ depends on <span class="highlight_green">jquery.ztree.core</span> js ]</span></h3>
+	<h3>概述<span class="h3_info">[ 依赖 <span class="highlight_green">jquery.ztree.core</span> 核心 js ]</span></h3>
 	<div class="desc">
 		<p></p>
 		<div class="longdesc">
-			<p>Used to capture the error event when execute ajax.</p>
-			<p class="highlight_red">If you set 'setting.callback.beforeAsync',and return false, zTree will not execute ajax, and will not trigger the 'onAsyncSuccess / onAsyncError' callback.</p>
-			<p>Default: null</p>
+			<p>用于捕获异步加载出现异常错误的事件回调函数</p>
+			<p class="highlight_red">如果设置了 setting.callback.beforeAsync 方法，且返回 false，将无法触发 onAsyncSuccess / onAsyncError 事件回调函数。</p>
+			<p>默认值：null</p>
 		</div>
 	</div>
-	<h3>Function Parameter Descriptions</h3>
+	<h3>Function 参数说明</h3>
 	<div class="desc">
-	<h4><b>event</b><span>js event Object</span></h4>
-	<p>event Object</p>
+	<h4><b>event</b><span>js event 对象</span></h4>
+	<p>标准的 js event 对象</p>
 	<h4 class="topLine"><b>treeId</b><span>String</span></h4>
-	<p>zTree unique identifier: <b class="highlight_red">treeId</b>.</p>
+	<p>对应 zTree 的 <b class="highlight_red">treeId</b>，便于用户操控</p>
 	<h4 class="topLine"><b>treeNode</b><span>JSON</span></h4>
-	<p>JSON data object of the parent node</p>
-	<p class="highlight_red">When load root nodes, treeNode = null</p>
+	<p>进行异步加载的父节点 JSON 数据对象</p>
+	<p class="highlight_red">针对根进行异步加载时，treeNode = null</p>
 	<h4 class="topLine"><b>XMLHttpRequest</b><span>String</span></h4>
-	<p>XMLHttpRequest Object, please refer to JQuery API documentation.</p>
+	<p>标准 XMLHttpRequest 对象，请参考 JQuery API 文档。</p>
 	<h4 class="topLine"><b>textStatus</b><span>String</span></h4>
-	<p>a string categorizing the status of the request("success", "error"...), please refer to JQuery API documentation.</p>
+	<p>请求状态：success，error，请参考 JQuery API 文档。</p>
 	<h4 class="topLine"><b>errorThrown</b><span>String</span></h4>
-	<p>eWhen an HTTP error occurs, errorThrown receives the textual portion of the HTTP status, please refer to JQuery API documentation.</p>
+	<p>errorThrown 只有当异常发生时才会被传递，请参考 JQuery API 文档。</p>
 	</div>
-	<h3>Examples of setting & function</h3>
-	<h4>1. When execute ajax make error, alert message.</h4>
-	<pre xmlns=""><code>function myOnAsyncError(event, treeId, treeNode, XMLHttpRequest, textStatus, errorThrown) {
+	<h3>setting & function 举例</h3>
+	<h4>1. 异步加载出现异常后，弹出错误信息</h4>
+	<pre xmlns=""><code>function zTreeOnAsyncError(event, treeId, treeNode, XMLHttpRequest, textStatus, errorThrown) {
     alert(XMLHttpRequest);
 };
 var setting = {
 	callback: {
-		onAsyncError: myOnAsyncError
+		onAsyncError: zTreeOnAsyncError
 	}
 };
 ......</code></pre>

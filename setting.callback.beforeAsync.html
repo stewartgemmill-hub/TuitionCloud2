@@ -1,34 +1,33 @@
 <div class="apiDetail">
 <div>
 	<h2><span>Function(treeId, treeNode)</span><span class="path">setting.callback.</span>beforeAsync</h2>
-	<h3>Overview<span class="h3_info">[ depends on <span class="highlight_green">jquery.ztree.core</span> js ]</span></h3>
+	<h3>概述<span class="h3_info">[ 依赖 <span class="highlight_green">jquery.ztree.core</span> 核心 js ]</span></h3>
 	<div class="desc">
 		<p></p>
 		<div class="longdesc">
-			<p>This callback is made before zTree makes an ajax request, giving you an opportunity to decide if it should proceed or not. 
-                            Return false to prevent zTree from sending the ajax request.</p>
-			<p>Default: null</p>
+			<p>用于捕获异步加载之前的事件回调函数，zTree 根据返回值确定是否允许进行异步加载</p>
+			<p>默认值：null</p>
 		</div>
 	</div>
-	<h3>Function Parameter Descriptions</h3>
+	<h3>Function 参数说明</h3>
 	<div class="desc">
 	<h4><b>treeId</b><span>String</span></h4>
-	<p>zTree unique identifier: <b class="highlight_red">treeId</b>.</p>
+	<p>对应 zTree 的 <b class="highlight_red">treeId</b>，便于用户操控</p>
 	<h4 class="topLine"><b>treeNode</b><span>JSON</span></h4>
-	<p>JSON data object of the parent node</p>
-	<p class="highlight_red">When asynchronously loading the root, treeNode = null</p>
-	<h4 class="topLine"><b>Return </b><span>Boolean</span></h4>
-	<p>return true or false</p>
-	<p class="highlight_red">If the function returns false, zTree will not send the ajax request, and will not trigger the 'onAsyncSuccess / onAsyncError' callback.</p>
+	<p>进行异步加载的父节点 JSON 数据对象</p>
+	<p class="highlight_red">针对根进行异步加载时，treeNode = null</p>
+	<h4 class="topLine"><b>返回值</b><span>Boolean</span></h4>
+	<p>返回值是 true / false</p>
+	<p class="highlight_red">如果返回 false，zTree 将不进行异步加载，也无法触发 onAsyncSuccess / onAsyncError 事件回调函数</p>
 	</div>
-	<h3>Examples of setting & function</h3>
-	<h4>1. If the parent node's attribute 'id' is 1, don't send the ajax request.</h4>
-	<pre xmlns=""><code>function myBeforeCallBack(treeId, treeNode) {
+	<h3>setting & function 举例</h3>
+	<h4>1. 禁止 id 为 1 的父节点进行异步加载操作</h4>
+	<pre xmlns=""><code>function zTreeBeforeAsync(treeId, treeNode) {
     return (treeNode.id !== 1);
 };
 var setting = {
 	callback: {
-		beforeAsync: myBeforeCallBack
+		beforeAsync: zTreeBeforeAsync
 	}
 };
 ......</code></pre>
